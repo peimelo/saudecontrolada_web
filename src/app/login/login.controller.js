@@ -1,0 +1,23 @@
+(function() {
+  'use strict';
+
+  angular
+    .module('app')
+    .controller('LoginController', LoginController);
+
+  /** @ngInject */
+  function LoginController(loginService, $state) {
+    var vm = this;
+
+    vm.login = login;
+    vm.user = {};
+
+    function login() {
+      return loginService.login(vm.user).then(function(data) {
+        vm.user = {};
+        toastr.success('Olá ' + data.user.name);
+        $state.go('dashboard');
+      });
+    }
+  }
+})();
