@@ -18,7 +18,6 @@
         switch(response.status) {
           case 401:
             //user not loged
-            $window.location = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/Pages/Seguranca/Login.aspx';
             break;
           case 405:
             mensagem = 'Método não implementado.';
