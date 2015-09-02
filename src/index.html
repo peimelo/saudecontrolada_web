@@ -44,6 +44,7 @@
             <ul class="nav navbar-nav navbar-right">
               <li ng-hide="main.login.user" ui-sref-active="active"><a ui-sref="cadastrar"><i class="fa fa-plus fa-lg"></i> Cadastrar-se</a></li>
               <li ng-hide="main.login.user" ui-sref-active="active"><a ui-sref="login"><i class="fa fa-sign-in fa-lg"></i> Entrar</a></li>
+              <li ng-show="main.login.user" ui-sref-active="active"><a ui-sref="pesos"><i class="fa fa-sign-out fa-lg"></i> Pesos</a></li>
               <li ng-show="main.login.user"><a href="#" ng-click="main.logout()"><i class="fa fa-sign-out fa-lg"></i> Sair</a></li>
             </ul>
           </div>

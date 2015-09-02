@@ -18,6 +18,7 @@
         switch(response.status) {
           case 401:
             //user not loged
+            mensagem = 'Você não tem permissão para acessar essa funcionalidade.';
             break;
           case 405:
             mensagem = 'Método não implementado.';

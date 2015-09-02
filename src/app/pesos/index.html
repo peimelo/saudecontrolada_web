@@ -1,0 +1,27 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-condensed table-hover table-striped">
+    <thead>
+    <tr>
+      <th>Ações</th>
+      <th>Data</th>
+      <th>Altura (m)</th>
+      <th>Valor (kg)</th>
+      <th>Peso Ideal (kg)</th>
+      <th>Situação</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="peso in vm.pesos">
+        <td width="100">
+          <a class="btn btn-default" id="Alterar_133" title="Alterar Controle do Peso" href="/pesos/133/edit"><i class="fa fa-pencil fa-lg"></i> </a>
+          <a class="btn btn-danger" data-confirm="Tem certeza que deseja excluir o registro de Controle do Peso &#39;08/08/2015&#39;?" title="Excluir Controle do Peso" registro_nome="08/08/2015" texto_botao="" rel="nofollow" data-method="delete" href="/pesos/133"><i class="fa fa-trash-o fa-lg"></i></a>
+        </td>
+        <td>{{peso.data}}</td>
+        <td>{{peso.altura}}</td>
+        <td>{{peso.valor}}</td>
+        <td>59,91 ~ 80,97</td>
+        <td><i class="fa fa-smile-o fa-lg"></i> Normal</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
