@@ -1,0 +1,11 @@
+<form class="form-signin" ng-submit="vm.login()">
+  <h2 class="form-signin-heading">Entrar</h2>
+  <input id="emailInput" type="email" class="form-control" placeholder="E-mail" ng-model="vm.user.email" required autofocus>
+  <input id="passwordInput" type="password" class="form-control" placeholder="Senha" ng-model="vm.user.password" required>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" value="remember-me"> Mantenha-me conectado por 1 semana
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+</form>
