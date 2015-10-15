@@ -24,7 +24,7 @@
             mensagem = 'Método não implementado.';
             break;
           case 422:
-            mensagem = response.data.errors ? response.data.errors : 'IMPLEMENTAR';
+          //  mensagem = response.data.errors ? response.data.errors : 'IMPLEMENTAR';
             break;
           case 500:
           case 503:
@@ -36,7 +36,8 @@
         }
 
         //$log.error('XHR Failed for login.\n' + angular.toJson(response.data, true));
-        toastr.error(mensagem);
+        if(mensagem)
+          toastr.error(mensagem);
 
         // !!Important Must use promise api's q.reject()
         // to properly implement this interceptor

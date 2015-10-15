@@ -6,7 +6,7 @@
     .factory('loginService', loginService);
 
   /** @ngInject */
-  function loginService($log, $http) {
+  function loginService($http) {
     var apiHost = '/api/users/';
 
     var service = {
@@ -37,6 +37,5 @@
         return response.data;
       }
     }
-
   }
 })();

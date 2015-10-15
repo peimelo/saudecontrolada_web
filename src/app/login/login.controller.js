@@ -9,15 +9,23 @@
   function LoginController(loginService, $state) {
     var vm = this;
 
+    vm.error = '';
     vm.login = login;
     vm.user = {};
 
     function login() {
-      return loginService.login(vm.user).then(function(data) {
-        vm.user = {};
-        toastr.success('Olá ' + data.user.name);
-        $state.go('dashboard');
-      });
+      vm.error = '';
+
+      return loginService.login(vm.user).then(
+        function(data) {
+          vm.user = {};
+          toastr.success('Olá ' + data.user.name);
+          $state.go('dashboard');
+        },
+        function(error) {
+          vm.error = error.data.errors;
+        }
+      );
     }
   }
 })();
