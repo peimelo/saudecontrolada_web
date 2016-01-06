@@ -6,7 +6,7 @@
     .factory('loginService', loginService);
 
   /** @ngInject */
-  function loginService($http) {
+  function loginService($http, $rootScope) {
     var apiHost = '/api/users/';
 
     var service = {
@@ -19,20 +19,22 @@
     return service;
 
     function login(user) {
-      return $http.post(apiHost + 'sign_in', { session: { email: user.email, password: user.password } })
+      return $http.post('/api/signin', { session: { email: user.email, password: user.password } })
         .then(getComplete);
 
       function getComplete(response) {
-        service.user = response.data.user;
+        $rootScope.user = response.data;
+        service.user = response.data;
         return response.data;
       }
     }
 
     function logout() {
-      return $http.delete(apiHost + 'sign_out', { headers: { 'Authorization': this.user.authentication_token } } )
+      return $http.delete('/api/signout', { headers: { 'Authorization': this.user.authentication_token } } )
         .then(getComplete);
 
       function getComplete(response) {
+        $rootScope.user = null;
         service.user = null;
         return response.data;
       }

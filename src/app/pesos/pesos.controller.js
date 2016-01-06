@@ -15,7 +15,7 @@
 
     function active() {
       pesosService.query(function (response) {
-        vm.pesos = response.pesos;
+        vm.pesos = response;
       });
     }
   }
