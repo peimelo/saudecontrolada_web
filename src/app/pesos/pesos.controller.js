@@ -10,6 +10,7 @@
     var vm = this;
 
     vm.pesos = [];
+    vm.title = 'Pesos';
 
     active();
 
