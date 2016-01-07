@@ -8,7 +8,6 @@
   /** @ngInject */
   function loginService($http, $rootScope) {
     var service = {
-      apiHost: apiHost,
       user: null,
       login: login,
       logout: logout
