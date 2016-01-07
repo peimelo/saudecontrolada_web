@@ -19,7 +19,6 @@
       return loginService.login(vm.user).then(
         function() {
           vm.user = {};
-          toastr.success('Olá ' + loginService.user.name);
           $state.go('dashboard');
         },
         function(error) {

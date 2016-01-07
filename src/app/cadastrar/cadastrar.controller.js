@@ -13,10 +13,9 @@
     vm.user = {};
 
     function login() {
-      return cadastrarService.create(vm.user).then(function(data) {
+      return cadastrarService.create(vm.user).then(function() {
         vm.user = {};
-        toastr.success('Olá ' + data.user.name);
-        $state.go('dashboard');
+        //$state.go('dashboard');
       });
     }
   }

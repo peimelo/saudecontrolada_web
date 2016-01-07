@@ -6,7 +6,7 @@
     .factory('httpInterceptor', httpInterceptor);
 
   /** @ngInject */
-  function httpInterceptor($q, $rootScope) {
+  function httpInterceptor($q, $rootScope, toastr) {
 
     var service = {
       request: request,
@@ -16,10 +16,9 @@
 
     return service;
 
-
     function request(config) {
       if($rootScope.user && $rootScope.user.authentication_token) {
-        config.headers['Authorization'] = $rootScope.user.authentication_token;
+        config.headers.Authorization = $rootScope.user.authentication_token;
       }
       return config;
     }
@@ -52,8 +51,9 @@
       }
 
       //$log.error('XHR Failed for login.\n' + angular.toJson(response.data, true));
-      if(mensagem)
+      if(mensagem) {
         toastr.error(mensagem);
+      }
 
       // !!Important Must use promise api's q.reject()
       // to properly implement this interceptor
