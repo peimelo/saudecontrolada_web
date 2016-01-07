@@ -9,15 +9,17 @@
   function CadastrarController(cadastrarService) {
     var vm = this;
 
-    vm.login = login;
-    vm.user = {};
+    vm.submitRegistration = submitRegistration;
+    vm.registrationForm = {};
 
-    function login() {
-      return cadastrarService.create(vm.user).then(function(data) {
-        vm.user = {};
-        toastr.success('Olá ' + data.user.name);
-        $state.go('dashboard');
-      });
+    function submitRegistration(registrationForm) {
+      return cadastrarService.create(registrationForm).then(
+        function(data) {
+          vm.registrationForm = {};
+          toastr.success('Olá ' + data.user.name);
+          $state.go('dashboard');
+        }
+      );
     }
   }
 })();

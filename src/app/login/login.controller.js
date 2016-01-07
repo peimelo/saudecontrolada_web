@@ -19,11 +19,11 @@
       return loginService.login(vm.user).then(
         function(data) {
           vm.user = {};
-          toastr.success('Olá ' + data.user.name);
+          toastr.success('Olá ' + loginService.user.name);
           $state.go('dashboard');
         },
         function(error) {
-          vm.error = error.data.errors;
+          vm.error = error.data.error;
         }
       );
     }

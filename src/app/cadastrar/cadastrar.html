@@ -1,11 +1,21 @@
-<form class="form-signin" ng-submit="vm.login()">
-  <h2 class="form-signin-heading">Entrar</h2>
-  <input id="emailInput" type="email" class="form-control" placeholder="E-mail" ng-model="vm.user.email" required autofocus>
-  <input id="passwordInput" type="password" class="form-control" placeholder="Senha" ng-model="vm.user.password" required>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" value="remember-me"> Mantenha-me conectado por 1 semana
-    </label>
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-</form>
+<div class="col-md-6 col-md-offset-3">
+  <h2>Entrar</h2>
+  <form ng-submit="vm.submitRegistration(vm.registrationForm)" role="form">
+    <div class="form-group">
+      <label>E-mail</label>
+      <input type="email" name="email" ng-model="vm.registrationForm.email" required="required" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label>Senha</label>
+      <input type="password" name="password" ng-model="vm.registrationForm.password" required="required" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label>Confirmar senha</label>
+      <input type="password" name="password_confirmation" ng-model="vm.registrationForm.password_confirmation" required="required" class="form-control"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg">Cadastrar-se</button>
+  </form>
+</div>

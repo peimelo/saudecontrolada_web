@@ -6,11 +6,8 @@
     .factory('pesosService', pesosService);
 
   /** @ngInject */
-  function pesosService($resource, loginService) {
+  function pesosService($resource) {
     return $resource('/api/pesos/:id', { id: '@id' }, {
-      query: {
-        headers: { 'Authorization': loginService.user.authentication_token }
-      },
       update: {
         method: 'PUT'
       }

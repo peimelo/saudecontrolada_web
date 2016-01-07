@@ -6,12 +6,17 @@
     .factory('httpInterceptor', httpInterceptor);
 
   /** @ngInject */
-  function httpInterceptor($q, $location, $window) {
+  function httpInterceptor($q, $rootScope) {
     return {
+      'request': function(config) {
+        if($rootScope.user && $rootScope.user.authentication_token) {
+          config.headers['Authorization'] = $rootScope.user.authentication_token;
+        }
+        return config;
+      },
       'requestError': function (rejection) {
         toastr.error('Erro de request ' + rejection.status + ': ' + rejection.statusText);
       },
-
       'responseError': function (response) {
         var mensagem = '';
 
