@@ -22,7 +22,7 @@
           $state.go('dashboard');
         },
         function(error) {
-          vm.error = error.data.errors;
+          vm.error = error.data.error;
         }
       );
     }

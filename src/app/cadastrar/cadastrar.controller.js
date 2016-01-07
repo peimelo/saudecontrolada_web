@@ -9,8 +9,8 @@
   function CadastrarController(cadastrarService) {
     var vm = this;
 
-    vm.login = login;
-    vm.user = {};
+    vm.submitRegistration = submitRegistration;
+    vm.registrationForm = {};
 
     function login() {
       return cadastrarService.create(vm.user).then(function() {
