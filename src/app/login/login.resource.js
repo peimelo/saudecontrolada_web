@@ -7,8 +7,6 @@
 
   /** @ngInject */
   function loginService($http, $rootScope) {
-    var apiHost = '/api/sessions/';
-
     var service = {
       apiHost: apiHost,
       user: null,
@@ -30,7 +28,6 @@
     }
 
     function logout() {
-      //return $http.delete('/api/signout', { headers: { 'Authorization': this.user.authentication_token } } )
       return $http.delete('/api/signout')
         .then(getComplete);
 
