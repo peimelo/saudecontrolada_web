@@ -5,10 +5,21 @@
     .module('app')
     .run(runBlock);
 
-  /** @ngInject */
-  function runBlock($log) {
-
+  function runBlock($log, Permission, $rootScope) {
+    permission();
     $log.debug('runBlock end');
+
+    /** @ngInject */
+    function permission() {
+      // logged
+      Permission.defineRole('logged', function() {
+        if ($rootScope.user) {
+          return true;
+        }
+        return false;
+      });
+    }
+
   }
 
 })();

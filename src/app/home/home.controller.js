@@ -6,7 +6,7 @@
     .controller('HomeController', HomeController);
 
   /** @ngInject */
-  function HomeController(webDevTec) {
+  function HomeController($rootScope, $state, webDevTec) {
     var vm = this;
 
     vm.awesomeThings = [];
@@ -17,6 +17,10 @@
     activate();
 
     function activate() {
+      if($rootScope.user) {
+        $state.go('dashboard');
+      }
+
       getWebDevTec();
       //$timeout(function() {
       //  vm.classAnimation = 'rubberBand';

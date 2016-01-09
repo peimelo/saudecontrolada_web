@@ -6,15 +6,7 @@
     .config(routeConfig);
 
   /** @ngInject */
-  function routeConfig($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'app/home/home.html',
-        controller: 'HomeController',
-        controllerAs: 'vm'
-      });
-
+  function routeConfig($urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
   }
 

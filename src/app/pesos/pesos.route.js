@@ -12,7 +12,13 @@
         url: '/pesos',
         templateUrl: 'app/pesos/index.html',
         controller: 'PesosController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          permissions: {
+            only: ['logged'],
+            redirectTo: 'login'
+          }
+        }
       });
   }
 

@@ -12,7 +12,13 @@
         url: '/dashboard',
         templateUrl: 'app/dashboard/dashboard.html',
         controller: 'DashboardController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          permissions: {
+            only: ['logged'],
+            redirectTo: 'login'
+          }
+        }
       });
   }
 
