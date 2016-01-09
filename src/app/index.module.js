@@ -3,17 +3,24 @@
 
   angular
     .module('app', [
+      /*
+       * Angular modules
+       */
       'ngAnimate',
       'ngCookies',
       'ngTouch',
       'ngSanitize',
       'ngResource',
 
-      'ui.router',
-      'ui.bootstrap',
+      /*
+       * 3rd Party modules
+       */
       'angular-loading-bar',
+      'chart.js',
       'googlechart',
-      'chart.js'
+      'permission',
+      'ui.bootstrap',
+      'ui.router'
     ]);
 
 })();
