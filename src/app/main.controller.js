@@ -6,19 +6,13 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(loginService, $state) {
+  function MainController(loginService) {
     var vm = this;
 
-    vm.login = loginService;
+    vm.loginService = loginService;
     vm.logout = logout;
 
-    activate();
-
-    function activate() {
-    }
-
     function logout() {
-      $state.go('home');
       return loginService.logout();
     }
 

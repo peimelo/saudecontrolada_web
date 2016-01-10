@@ -15,9 +15,11 @@
     active();
 
     function active() {
-      pesosService.query(function (response) {
-        vm.pesos = response;
-      });
+      pesosService.query(
+        function(response) {
+          vm.pesos = response;
+        }
+      );
     }
   }
 })();

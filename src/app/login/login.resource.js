@@ -6,7 +6,7 @@
     .factory('loginService', loginService);
 
   /** @ngInject */
-  function loginService($http, $rootScope) {
+  function loginService($http, $rootScope, $state) {
     var service = {
       user: null,
       login: login,
@@ -33,6 +33,7 @@
       function getComplete(response) {
         $rootScope.user = null;
         service.user = null;
+        $state.go('home');
         return response.data;
       }
     }

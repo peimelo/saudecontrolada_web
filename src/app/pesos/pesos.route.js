@@ -10,7 +10,7 @@
     $stateProvider
       .state('pesos', {
         url: '/pesos',
-        templateUrl: 'app/pesos/index.html',
+        templateUrl: 'app/pesos/pesos.html',
         controller: 'PesosController',
         controllerAs: 'vm',
         data: {

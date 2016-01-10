@@ -6,17 +6,30 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastr, $httpProvider) {
-    // Enable log
-    $logProvider.debugEnabled(true);
+  function config($logProvider, moment, toastr, $httpProvider) {
+    enabledLog();
+    httpProviderConfig();
+    momentConfig();
+    toastrConfig();
 
-    // Set options third-party lib
-    toastr.options.timeOut = 3000;
-    toastr.options.positionClass = 'toast-top-right';
-    toastr.options.preventDuplicates = true;
-    toastr.options.progressBar = true;
+    function enabledLog() {
+      $logProvider.debugEnabled(true);
+    }
 
-    $httpProvider.interceptors.push('httpInterceptor');
+    function httpProviderConfig() {
+      $httpProvider.interceptors.push('httpInterceptor');
+    }
+
+    function momentConfig() {
+      moment.locale('pt-br');
+    }
+
+    function toastrConfig() {
+      toastr.options.timeOut = 3000;
+      toastr.options.positionClass = 'toast-top-right';
+      toastr.options.preventDuplicates = true;
+      toastr.options.progressBar = true;
+    }
   }
 
 })();

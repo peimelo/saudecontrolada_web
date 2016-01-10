@@ -6,7 +6,7 @@
     .controller('DashboardController', DashboardController);
 
   /** @ngInject */
-  function DashboardController(loginService, pesosService) {
+  function DashboardController(loginService, moment, pesosService) {
     var vm = this;
 
     vm.loginService = loginService;
@@ -38,10 +38,15 @@
           var google = [];
 
           for(var i = qtde-1; i >=0; i--) {
-            vm.labels.push(response[i].data);
+            vm.labels.push(moment(response[i].data).format('L'));
             vm.data[0].push(response[i].valor);
 
-            google.push({c:[{v:response[i].data},{v:response[i].valor}]});
+            google.push({
+              c:[
+                {v:moment(response[i].data).format('L')},
+                {v:response[i].valor}
+              ]
+            });
           }
 
           vm.chartObject.data.rows = google;
