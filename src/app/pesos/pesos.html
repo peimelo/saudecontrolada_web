@@ -22,7 +22,7 @@
         <td>{{peso.altura | number}}</td>
         <td>{{peso.valor | number}}</td>
         <td>{{peso.valor_minimo | number}} ~ {{peso.valor_maximo | number}}</td>
-        <td><i class="fa fa-smile-o fa-lg"></i> Normal</td>
+        <td ng-bind-html="peso.imc | situacaoImcFilter"></td>
       </tr>
     </tbody>
   </table>
