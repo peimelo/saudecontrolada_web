@@ -1,9 +1,32 @@
 <div class="col-md-6 col-md-offset-3">
-  <h2>Entrar</h2>
+  <h2>{{ vm.title }}</h2>
   <form ng-submit="vm.submitRegistration(vm.registrationForm)" role="form">
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" name="nome" ng-model="vm.registrationForm.name" required="required" class="form-control"/>
+    </div>
+
     <div class="form-group">
       <label>E-mail</label>
       <input type="email" name="email" ng-model="vm.registrationForm.email" required="required" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label>Sexo</label>
+
+      <div class="radio">
+        <label>
+          <input type="radio" ng-model="vm.registrationForm.gender" value="Masculino"/>
+          Masculino
+        </label>
+      </div>
+
+      <div class="radio">
+        <label>
+          <input type="radio" ng-model="vm.registrationForm.gender" value="Feminino"/>
+          Feminino
+        </label>
+      </div>
     </div>
 
     <div class="form-group">
@@ -16,6 +39,6 @@
       <input type="password" name="password_confirmation" ng-model="vm.registrationForm.password_confirmation" required="required" class="form-control"/>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-lg">Cadastrar-se</button>
+    <button type="submit" class="btn btn-primary">Cadastrar-se</button>
   </form>
 </div>
