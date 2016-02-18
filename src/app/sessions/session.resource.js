@@ -3,10 +3,12 @@
 
   angular
     .module('app')
-    .factory('loginService', loginService);
+    .factory('sessionService', sessionService);
 
   /** @ngInject */
-  function loginService($http, $rootScope, $state) {
+  function sessionService($http, $rootScope, $state) {
+    var api = '/api/sessions';
+
     var service = {
       user: null,
       login: login,
@@ -16,7 +18,7 @@
     return service;
 
     function login(user) {
-      return $http.post('/api/signin', { session: { email: user.email, password: user.password } })
+      return $http.post(api, { session: { email: user.email, password: user.password } })
         .then(getComplete);
 
       function getComplete(response) {
@@ -27,7 +29,7 @@
     }
 
     function logout() {
-      return $http.delete('/api/signout')
+      return $http.delete(api + '/1')
         .then(getComplete);
 
       function getComplete(response) {

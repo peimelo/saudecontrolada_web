@@ -6,14 +6,14 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(loginService) {
+  function MainController(sessionService) {
     var vm = this;
 
-    vm.loginService = loginService;
+    vm.sessionService = sessionService;
     vm.logout = logout;
 
     function logout() {
-      return loginService.logout();
+      return sessionService.logout();
     }
 
   }

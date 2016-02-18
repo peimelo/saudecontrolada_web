@@ -6,17 +6,17 @@
     .controller('CadastrarController', CadastrarController);
 
   /** @ngInject */
-  function CadastrarController(cadastrarService) {
+  function CadastrarController(cadastrarService, $state) {
     var vm = this;
 
-    //vm.submitRegistration = submitRegistration;
     vm.registrationForm = {};
+    vm.submit = submit;
     vm.title = 'Cadastrar-se';
 
-    function login() {
-      return cadastrarService.create(vm.user).then(function() {
-        vm.user = {};
-        //$state.go('dashboard');
+    function submit() {
+      return cadastrarService.create(vm.registrationForm).then(function() {
+        vm.registrationForm = {};
+        $state.go('login');
       });
     }
   }

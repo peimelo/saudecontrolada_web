@@ -10,8 +10,8 @@
     $stateProvider
       .state('login', {
         url: '/login',
-        templateUrl: 'app/login/login.html',
-        controller: 'LoginController',
+        templateUrl: 'app/sessions/login.html',
+        controller: 'SessionController',
         controllerAs: 'vm',
         data: {
           permissions: {

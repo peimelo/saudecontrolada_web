@@ -39,7 +39,7 @@
           mensagem = 'Método não implementado.';
           break;
         case 422:
-        //  mensagem = response.data.errors ? response.data.errors : 'IMPLEMENTAR';
+          mensagem = response.data.errors ? response.data.errors : 'IMPLEMENTAR';
           break;
         case 500:
         case 503:

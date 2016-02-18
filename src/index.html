@@ -42,12 +42,12 @@
           </div>
           <div class="navbar-collapse collapse" id="navbar-saude">
             <ul class="nav navbar-nav navbar-right">
-              <li ng-hide="main.loginService.user" ui-sref-active="active"><a ui-sref="cadastrar"><i class="fa fa-plus fa-lg"></i> Cadastrar-se</a></li>
-              <li ng-hide="main.loginService.user" ui-sref-active="active"><a ui-sref="login"><i class="fa fa-sign-in fa-lg"></i> Entrar</a></li>
+              <li ng-hide="main.sessionService.user" ui-sref-active="active"><a ui-sref="cadastrar"><i class="fa fa-plus fa-lg"></i> Cadastrar-se</a></li>
+              <li ng-hide="main.sessionService.user" ui-sref-active="active"><a ui-sref="login"><i class="fa fa-sign-in fa-lg"></i> Entrar</a></li>
 
-              <li ng-show="main.loginService.user" ui-sref-active="active"><a ui-sref="dashboard"><i class="fa fa-dashboard fa-lg"></i></a></li>
-              <li ng-show="main.loginService.user" ui-sref-active="active"><a ui-sref="pesos"><i class="fa fa-balance-scale fa-lg"></i> Pesos</a></li>
-              <li ng-show="main.loginService.user"><a href="#" ng-click="main.logout()"><i class="fa fa-sign-out fa-lg"></i> Sair</a></li>
+              <li ng-show="main.sessionService.user" ui-sref-active="active"><a ui-sref="dashboard"><i class="fa fa-dashboard fa-lg"></i></a></li>
+              <li ng-show="main.sessionService.user" ui-sref-active="active"><a ui-sref="pesos"><i class="fa fa-balance-scale fa-lg"></i> Pesos</a></li>
+              <li ng-show="main.sessionService.user"><a href="#" ng-click="main.logout()"><i class="fa fa-sign-out fa-lg"></i> Sair</a></li>
             </ul>
           </div>
         </div><!--/.container-fluid -->

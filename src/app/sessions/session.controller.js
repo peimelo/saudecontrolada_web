@@ -3,10 +3,10 @@
 
   angular
     .module('app')
-    .controller('LoginController', LoginController);
+    .controller('SessionController', SessionController);
 
   /** @ngInject */
-  function LoginController(loginService, $state) {
+  function SessionController(sessionService, $state) {
     var vm = this;
 
     vm.error = '';
@@ -16,7 +16,7 @@
     function login() {
       vm.error = '';
 
-      return loginService.login(vm.user).then(
+      return sessionService.login(vm.user).then(
         function() {
           vm.user = {};
           $state.go('dashboard');

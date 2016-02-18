@@ -6,10 +6,10 @@
     .controller('DashboardController', DashboardController);
 
   /** @ngInject */
-  function DashboardController(loginService, moment, pesosService) {
+  function DashboardController(sessionService, moment, pesosService) {
     var vm = this;
 
-    vm.loginService = loginService;
+    vm.sessionService = sessionService;
 
     vm.chartObject = {};
     vm.chartObject.type = "LineChart";
