@@ -27,11 +27,21 @@
         }
       })
         .then(getComplete);
+        //.catch(getFailed);
 
       function getComplete(response) {
         service.user = response.data.user;
         return response.data;
       }
+
+      //function getFailed(response) {
+      //  angular.forEach(response.data, function(errors, key) {
+      //    angular.forEach(errors, function(e) {
+      //      $scope.form[key].$dirty = true;
+      //      $scope.form[key].$setValidity(e, false);
+      //    });
+      //  });
+      //}
     }
 
   }
