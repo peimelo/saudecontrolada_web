@@ -1,49 +1,76 @@
 <div class="col-md-6 col-md-offset-3">
   <h2>{{ vm.title }}</h2>
-  <form ng-submit="vm.submit(vm.registrationForm)" role="form" name="form">
-    <div class="form-group">
-      <label>Nome</label>
-      <input type="text" name="nome" ng-model="vm.registrationForm.name" required="required" class="form-control"/>
+  <form ng-submit="vm.submit()" role="form" name="form" novalidate>
+    <div class="form-group" ng-class="{'has-error':form.name.$invalid && form.name.$dirty}">
+      <label>Nome *</label>
+      <input type="text" name="name" ng-model="vm.registrationForm.name" required class="form-control"/>
+      <span class="help-block" ng-show="form.name.$invalid && form.name.$dirty">
+            {{vm.errorMessage('name')}}
+            <span ng-messages="form.name.$error">
+              <span ng-show="form.name.$error.required">Data de Referência é obrigatória.</span>
+            </span>
+      </span>
     </div>
 
-    <div class="form-group">
-      <label>E-mail</label>
-      <input type="email" name="email" ng-model="vm.registrationForm.email" required="required" class="form-control"/>
+    <div class="form-group" ng-class="{'has-error':form.email.$invalid && form.email.$dirty}">
+      <label for="email">E-mail *</label>
+      <input type="email" id="email" name="email" ng-model="vm.registrationForm.email" required class="form-control"/>
+      <span class="help-block"
+            ng-show="form.email.$invalid && form.email.$dirty">
+            {{vm.errorMessage('email')}}
+      </span>
     </div>
 
-    <div class="form-group">
-      <label>Sexo</label>
+    <div class="form-group" ng-class="{'has-error':form.gender.$invalid && form.gender.$dirty}">
+      <label>Sexo *</label>
 
       <div class="radio">
         <label>
-          <input type="radio" ng-model="vm.registrationForm.gender" value="Masculino"/>
+          <input type="radio" name="gender" ng-model="vm.registrationForm.gender" value="Masculino"/>
           Masculino
         </label>
       </div>
 
       <div class="radio">
         <label>
-          <input type="radio" ng-model="vm.registrationForm.gender" value="Feminino"/>
+          <input type="radio" name="gender" ng-model="vm.registrationForm.gender" value="Feminino"/>
           Feminino
         </label>
       </div>
+
+      <span class="help-block"
+            ng-show="form.gender.$invalid && form.gender.$dirty">
+            {{vm.errorMessage('gender')}}
+      </span>
     </div>
 
-    <div class="form-group">
-      <label>Data de Nascimento</label>
-      <input type="date" name="dateOfBirth" ng-model="vm.registrationForm.date_of_birth" required="required" class="form-control"/>
+    <div class="form-group" ng-class="{'has-error':form.date_of_birth.$invalid && form.date_of_birth.$dirty}">
+      <label>Data de Nascimento *</label>
+      <input type="date" name="date_of_birth" ng-model="vm.registrationForm.date_of_birth" required class="form-control"/>
+      <span class="help-block"
+            ng-show="form.date_of_birth.$invalid && form.date_of_birth.$dirty">
+            {{vm.errorMessage('date_of_birth')}}
+      </span>
     </div>
 
-    <div class="form-group">
-      <label>Senha</label>
+    <div class="form-group" ng-class="{'has-error':form.password.$invalid && form.password.$dirty}">
+      <label>Senha *</label>
       <input type="password" name="password" ng-model="vm.registrationForm.password" required="required" class="form-control"/>
+      <span class="help-block"
+            ng-show="form.password.$invalid && form.password.$dirty">
+            {{vm.errorMessage('password')}}
+      </span>
     </div>
 
-    <div class="form-group">
-      <label>Confirmar senha</label>
+    <div class="form-group" ng-class="{'has-error':form.password_confirmation.$invalid && form.password_confirmation.$dirty}">
+      <label>Confirmar senha *</label>
       <input type="password" name="password_confirmation" ng-model="vm.registrationForm.password_confirmation" required="required" class="form-control"/>
+      <span class="help-block"
+            ng-show="form.password_confirmation.$invalid && form.password_confirmation.$dirty">
+            {{vm.errorMessage('password_confirmation')}}
+      </span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Cadastrar-se</button>
+    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cadastrar-se</button>
   </form>
 </div>

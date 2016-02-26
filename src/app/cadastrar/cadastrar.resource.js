@@ -11,7 +11,8 @@
 
     var service = {
       user: null,
-      create: create
+      create: create,
+      hasAttributes: hasAttributes
     };
 
     return service;
@@ -19,11 +20,12 @@
     function create(user) {
       return $http.post(api, {
         user: {
+          date_of_birth: user.date_of_birth,
           email: user.email,
-          password: user.password,
-          name: user.name,
           gender: user.gender,
-          date_of_birth: user.date_of_birth
+          name: user.name,
+          password: user.password,
+          password_confirmation: user.password_confirmation
         }
       })
         .then(getComplete);
@@ -44,5 +46,13 @@
       //}
     }
 
+    function hasAttributes(obj) {
+      for(var key in obj) {
+        if(obj.hasOwnProperty(key)) {
+          return true;
+        }
+      }
+      return false;
+    }
   }
 })();
