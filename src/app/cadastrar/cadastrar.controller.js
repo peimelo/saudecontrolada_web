@@ -10,6 +10,8 @@
     var vm = this;
 
     vm.errorMessage = errorMessage;
+    vm.errors = {};
+    vm.clearServerError = clearServerError;
     vm.registrationForm = {};
     vm.submit = submit;
     vm.title = 'Cadastrar-se';
@@ -26,8 +28,16 @@
       }
     }
 
-    function submit() {
-      $scope.form.$setPristine();
+    function clearServerError(form, key) {
+      if(form[key].$error.server) {
+        form[key].$setValidity('server', true);
+        //form[key].$error.serverMessage = false;
+      }
+    }
+
+    function submit(form) {
+      //$scope.form.$setPristine();
+      vm.errors = {};
 
       if(cadastrarService.hasAttributes(vm.registrationForm)) {
         return cadastrarService.create(vm.registrationForm).then(
@@ -36,13 +46,18 @@
             $state.go('home');
           },
           function(response) {
-            angular.forEach(response.data, function(errors, key) {
-              $scope.form[key].$error = {};
+            angular.forEach(response.data, function(errors, field) {
+              //$scope.form[key].$error.serverMessage = errors.join(', ');
+              //form[field].$error.serverMessage = errors.join(', ');
+              //$scope.form[key].$error = {};
 
-              angular.forEach(errors, function(e) {
-                $scope.form[key].$dirty = true;
-                $scope.form[key].$setValidity(e, false);
-              });
+              //angular.forEach(errors, function(e) {
+              //  form[field].$dirty = true;
+                //$scope.form[key].$dirty = true;
+                form[field].$setValidity('server', false);
+              vm.errors[field] = errors.join(', ');
+                //form[key].$setValidity(e, false);
+              //});
             });
           }
         );
