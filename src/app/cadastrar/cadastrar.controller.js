@@ -6,7 +6,7 @@
     .controller('CadastrarController', CadastrarController);
 
   /** @ngInject */
-  function CadastrarController(cadastrarService, $scope, $state) {
+  function CadastrarController(cadastrarService, $scope, $state, toastr) {
     var vm = this;
 
     vm.errorMessage = errorMessage;
@@ -18,7 +18,9 @@
       if($scope.form[name]) {
         var result = [];
         angular.forEach($scope.form[name].$error, function (key, value) {
-          result.push(value);
+          if(name != value) {
+            result.push(value);
+          }
         });
         return result.join(", ");
       }
@@ -35,7 +37,6 @@
           },
           function(response) {
             angular.forEach(response.data, function(errors, key) {
-              console.log(key);
               $scope.form[key].$error = {};
 
               angular.forEach(errors, function(e) {
