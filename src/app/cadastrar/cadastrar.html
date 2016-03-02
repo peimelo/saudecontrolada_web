@@ -1,14 +1,19 @@
 <div class="col-md-6 col-md-offset-3">
   <h2>{{ vm.title }}</h2>
+
+  <uib-alert type="info">{{vm.info}}</uib-alert>
+
   <form ng-submit="vm.submit(form)" role="form" name="form" novalidate>
     <div class="form-group" ng-class="{'has-error':form.name.$invalid && form.name.$dirty}">
       <label>Nome *</label>
+
       <input type="text"
              name="name"
              ng-model="vm.registrationForm.name"
              class="form-control"
              required
              ng-change="vm.clearServerError(form, 'name')"/>
+
       <span class="help-block" ng-show="form.name.$invalid && form.name.$dirty">
         <span ng-messages="form.name.$error">
           <span ng-show="form.name.$error.required">Campo obrigatório.</span>
@@ -19,53 +24,65 @@
 
     <div class="form-group" ng-class="{'has-error':form.email.$invalid && form.email.$dirty}">
       <label for="email">E-mail *</label>
+
       <input type="email"
              id="email"
              name="email"
              ng-model="vm.registrationForm.email"
+             ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
              required
              class="form-control"
              ng-change="vm.clearServerError(form, 'email')"/>
+
       <span class="help-block" ng-show="form.email.$invalid && form.email.$dirty">
-        <!--{{vm.errorMessage('email')}}-->
         <span ng-messages="form.email.$error">
           <span ng-show="form.email.$error.required">Campo obrigatório.</span>
-          <span ng-show="form.email.$error.email">Formato inválido.</span>
+          <span ng-show="form.email.$error.pattern">Formato inválido.</span>
           <span ng-show="form.email.$error.server">{{vm.errors.email}}</span>
         </span>
       </span>
     </div>
 
-    <div class="form-group" ng-class="{'has-error':form.gender.$invalid && form.gender.$dirty}">
+    <div class="form-group" ng-class="{'has-error':form.gender.$invalid && form.gender.$error.server}">
       <label>Sexo *</label>
 
       <div class="radio">
         <label>
-          <input type="radio" name="gender" ng-model="vm.registrationForm.gender" value="Masculino"/>
+          <input type="radio"
+                 name="gender"
+                 ng-model="vm.registrationForm.gender"
+                 value="Masculino"
+                 ng-required="!vm.registrationForm.gender"/>
           Masculino
         </label>
       </div>
 
       <div class="radio">
         <label>
-          <input type="radio" name="gender" ng-model="vm.registrationForm.gender" value="Feminino"/>
+          <input type="radio"
+                 name="gender"
+                 ng-model="vm.registrationForm.gender"
+                 value="Feminino"
+                 ng-required="!vm.registrationForm.gender"/>
           Feminino
         </label>
       </div>
 
-      <span class="help-block" ng-show="form.gender.$invalid && form.gender.$dirty">
+      <span class="help-block" ng-show="form.gender.$invalid">
         <span ng-show="form.gender.$error.server">{{vm.errors.gender}}</span>
       </span>
     </div>
 
     <div class="form-group" ng-class="{'has-error':form.date_of_birth.$invalid && form.date_of_birth.$dirty}">
       <label>Data de Nascimento *</label>
+
       <input type="date"
              name="date_of_birth"
              ng-model="vm.registrationForm.date_of_birth"
              required
              class="form-control"
              ng-change="vm.clearServerError(form, 'date_of_birth')"/>
+
       <span class="help-block" ng-show="form.date_of_birth.$invalid && form.date_of_birth.$dirty">
         <span ng-show="form.date_of_birth.$error.required">Campo obrigatório.</span>
         <span ng-show="form.date_of_birth.$error.date">Data inválida.</span>
@@ -75,12 +92,14 @@
 
     <div class="form-group" ng-class="{'has-error':form.password.$invalid && form.password.$dirty}">
       <label>Senha *</label>
+
       <input type="password"
              name="password"
              ng-model="vm.registrationForm.password"
              required="required"
              class="form-control"
              ng-change="vm.clearServerError(form, 'password')"/>
+
       <span class="help-block" ng-show="form.password.$invalid && form.password.$dirty">
         <span ng-show="form.password.$error.server">{{vm.errors.password}}</span>
       </span>
@@ -88,14 +107,15 @@
 
     <div class="form-group" ng-class="{'has-error':form.password_confirmation.$invalid && form.password_confirmation.$dirty}">
       <label>Confirmar senha *</label>
+
       <input type="password"
              name="password_confirmation"
              ng-model="vm.registrationForm.password_confirmation"
              ng-change="vm.clearServerError(form, 'password_confirmation')"
              required="required"
              class="form-control"/>
+
       <span class="help-block" ng-show="form.password_confirmation.$invalid && form.password_confirmation.$dirty">
-          <!--{{vm.errorMessage('password_confirmation')}}-->
         <span ng-messages="form.password_confirmation.$error">
           <span ng-show="form.password_confirmation.$error.required">Campo obrigatório.</span>
           <span ng-show="form.password_confirmation.$error.server">{{vm.errors.password_confirmation}}</span>
@@ -103,9 +123,6 @@
       </span>
     </div>
 
-    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">Cadastrar-se</button>
-    <!--ng-change="vm.liberarErroServidor(form, 'password_confirmation')"-->
-    <!--<button type="submit" class="btn btn-primary">Cadastrar-se</button>-->
-    <!--<strong>Valido? => {{form.$valid}}</strong>-->
+    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">{{vm.title}}</button>
   </form>
 </div>

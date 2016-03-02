@@ -11,6 +11,7 @@
 
     vm.error = '';
     vm.login = login;
+    vm.title = 'Entrar';
     vm.user = {};
 
     function login() {
