@@ -12,3 +12,34 @@
 .thumbnail img.pull-right {
   width: 50px;
 }
+
+/*.gravatar {*/
+  /*float: left;*/
+  /*margin-right: 10px;*/
+/*}*/
+
+/*.navbar-text img {*/
+  /*padding-top: 7px;*/
+  /*padding-bottom: 7px;*/
+/*}*/
+
+/*.img-responsive2 {*/
+  /*display: inline-block;*/
+  /*max-width: 20%;*/
+  /*height: auto;*/
+/*}*/
+
+.navbar-nav>li>a.profile-image {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.navbar-nav .profile-image .img-circle {
+  width: 32px;
+  height: 32px;
+}
+
+/*.profile-image  {*/
+  /*padding-top: 0px;*/
+  /*padding-bottom: 0px;*/
+/*}*/
+

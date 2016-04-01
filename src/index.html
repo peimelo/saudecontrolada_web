@@ -47,7 +47,16 @@
 
               <li ng-show="main.sessionService.user" ui-sref-active="active"><a ui-sref="dashboard"><i class="fa fa-dashboard fa-lg"></i></a></li>
               <li ng-show="main.sessionService.user" ui-sref-active="active"><a ui-sref="pesos"><i class="fa fa-balance-scale fa-lg"></i> Pesos</a></li>
-              <li ng-show="main.sessionService.user"><a href="#" ng-click="main.logout()"><i class="fa fa-sign-out fa-lg"></i> Sair</a></li>
+
+              <li ng-show="main.sessionService.user" class="dropdown">
+                <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+                  <img src="https://secure.gravatar.com/avatar/40cf706985082f39dc4d9164d96d9093" alt="Profile Photo" class="img-circle">
+                  <span class="fa fa-angle-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li ng-show="main.sessionService.user"><a href="#" ng-click="main.logout()"><i class="fa fa-sign-out fa-lg"></i> Sair</a></li>
+                </ul>
+              </li>
             </ul>
           </div>
         </div><!--/.container-fluid -->
