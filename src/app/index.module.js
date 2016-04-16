@@ -20,6 +20,7 @@
       'googlechart',
       'permission',
       'ui.bootstrap',
+      'ui.mask',
       'ui.router',
       'ui.validate'
     ]);

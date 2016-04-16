@@ -35,6 +35,10 @@
           //user not loged
           mensagem = 'Você não tem permissão para acessar essa funcionalidade.';
           break;
+        case 404:
+          // not found
+          mensagem = 'O dado solicitado não foi encontrado.';
+          break;
         case 405:
           mensagem = 'Método não implementado.';
           break;
