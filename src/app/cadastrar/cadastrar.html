@@ -112,6 +112,8 @@
              name="password_confirmation"
              ng-model="vm.registrationForm.password_confirmation"
              ng-change="vm.clearServerError(form, 'password_confirmation')"
+             ui-validate=" '$value==vm.registrationForm.password' "
+             ui-validate-watch=" 'vm.registrationForm.password' "
              required="required"
              class="form-control"/>
 
@@ -119,6 +121,7 @@
         <span ng-messages="form.password_confirmation.$error">
           <span ng-show="form.password_confirmation.$error.required">Campo obrigatório.</span>
           <span ng-show="form.password_confirmation.$error.server">{{vm.errors.password_confirmation}}</span>
+          <span ng-show="form.password_confirmation.$error.validator">Esse campo deve ser igual a senha.</span>
         </span>
       </span>
     </div>

@@ -20,7 +20,8 @@
       'googlechart',
       'permission',
       'ui.bootstrap',
-      'ui.router'
+      'ui.router',
+      'ui.validate'
     ]);
 
 })();

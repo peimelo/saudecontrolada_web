@@ -18,7 +18,7 @@
     return service;
 
     function login(user) {
-      return $http.post(api, { session: { email: user.email, password: user.password } })
+      return $http.post(api, { login: { email: user.email, password: user.password } })
         .then(getComplete);
 
       function getComplete(response) {
@@ -29,7 +29,7 @@
     }
 
     function logout() {
-      return $http.delete(api + '/1')
+      return $http.delete(api + '/0')
         .then(getComplete);
 
       function getComplete(response) {
