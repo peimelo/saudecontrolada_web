@@ -5,7 +5,7 @@
     .module('app')
     .run(runBlock);
 
-  function runBlock($log, Permission, $rootScope) {
+  function runBlock($log, Permission, toastr, $rootScope) {
     permission();
     $log.debug('runBlock end');
 
@@ -13,10 +13,13 @@
     function permission() {
       // logged
       Permission.defineRole('logged', function() {
-        if ($rootScope.user) {
+        if ($rootScope.authentication_token) {
           return true;
         }
-        return false;
+        else {
+          // toastr.warning('Favor fazer o login para entrar.');
+          return false;
+        }
       });
     }
 

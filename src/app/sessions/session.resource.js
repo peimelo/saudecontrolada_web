@@ -22,7 +22,7 @@
         .then(getComplete);
 
       function getComplete(response) {
-        $rootScope.user = response.data;
+        $rootScope.authentication_token = response.data.authentication_token;
         service.user = response.data;
         return response.data;
       }
@@ -33,7 +33,7 @@
         .then(getComplete);
 
       function getComplete(response) {
-        $rootScope.user = null;
+        $rootScope.authentication_token = null;
         service.user = null;
         $state.go('home');
         return response.data;

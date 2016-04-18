@@ -8,6 +8,7 @@
        */
       'ngAnimate',
       'ngCookies',
+      'ngMessages',
       'ngTouch',
       'ngSanitize',
       'ngResource',

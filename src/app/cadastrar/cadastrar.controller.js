@@ -11,8 +11,7 @@
 
     vm.clearServerError = clearServerError;
     vm.errors = {};
-    vm.info = 'Campos com * (asterisco) são de preenchimento obrigatório.';
-    vm.registrationForm = {};
+    vm.user = {};
     vm.submit = submit;
     vm.title = 'Cadastrar-se';
 
@@ -22,21 +21,26 @@
       }
     }
 
-    function submit(form) {
-      vm.errors = {};
+    function submit(isValid) {
+      if (isValid) {
+        vm.errors = {};
 
-      return cadastrarService.create(vm.registrationForm).then(
-        function() {
-          vm.registrationForm = {};
-          $state.go('home');
-        },
-        function(response) {
-          angular.forEach(response.data, function(errors, field) {
-            form[field].$setValidity('server', false);
-            vm.errors[field] = errors.join(', ');
-          });
-        }
-      );
+        return cadastrarService.create(vm.user).then(
+          function () {
+            vm.user = {};
+            $state.go('home');
+          },
+          function (response) {
+            angular.forEach(response.data, function (errors, field) {
+              form[field].$setValidity('server', false);
+              vm.errors[field] = errors.join(', ');
+            });
+          }
+        );
+      }
+      else {
+        toastr.warning('Todos os campos devem estar preenchidos.')
+      }
     }
   }
 })();

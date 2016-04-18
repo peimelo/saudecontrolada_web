@@ -17,8 +17,8 @@
     return service;
 
     function request(config) {
-      if($rootScope.user && $rootScope.user.authentication_token) {
-        config.headers.Authorization = $rootScope.user.authentication_token;
+      if($rootScope.authentication_token) {
+        config.headers.Authorization = $rootScope.authentication_token;
       }
       return config;
     }
@@ -42,9 +42,10 @@
         case 405:
           mensagem = 'Método não implementado.';
           break;
-        //case 422:
-        //  mensagem = response.data.errors ? response.data.errors : 'IMPLEMENTAR';
-        //  break;
+        case 422:
+         // mensagem = response.data.errors ? response.data.errors : 'IMPLEMENTAR';
+         mensagem = 'Por favor, corrija os erros encontrados.';
+         break;
         case 500:
         case 503:
           mensagem = 'O serviço está indisponível. Tente novamente mais tarde.';

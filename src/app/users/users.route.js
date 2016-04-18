@@ -9,7 +9,7 @@
   function routeConfig($stateProvider) {
     $stateProvider
       .state('userEdit', {
-        url: '/users/:id/edit',
+        url: '/users/:id',
         templateUrl: 'app/users/userEdit.html',
         controller: 'UserEditController',
         controllerAs: 'vm',

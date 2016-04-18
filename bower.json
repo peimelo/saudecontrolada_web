@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "dependencies": {
     "angular": "~1.4.0",
-    "angular-animate": "~1.4.0",
+    "angular-animate": "~1.5.3",
     "angular-bootstrap": "~1.1.0",
-    "angular-cookies": "~1.4.0",
+    "angular-cookies": "~1.5.3",
     "angular-loading-bar": "~0.8.0",
-    "angular-resource": "~1.4.0",
-    "angular-sanitize": "~1.4.0",
-    "angular-touch": "~1.4.0",
+    "angular-resource": "~1.5.3",
+    "angular-sanitize": "~1.5.3",
+    "angular-touch": "~1.5.3",
     "angular-ui-router": "~0.2.15",
     "animate.css": "~3.3.0",
     "bootstrap": "~3.3.5",
@@ -23,10 +23,11 @@
     "angular-permission": "~1.1.1",
     "angular-i18n": "~1.4.8",
     "angular-ui-validate": "^1.2.2",
-    "angular-ui-mask": "~1.8.3"
+    "angular-ui-mask": "~1.8.3",
+    "angular-messages": "^1.5.3"
   },
   "devDependencies": {
-    "angular-mocks": "~1.4.0"
+    "angular-mocks": "~1.5.3"
   },
   "overrides": {
     "angular-i18n": {
@@ -59,6 +60,6 @@
   },
   "resolutions": {
     "jquery": "~2.1.4",
-    "angular": "~1.4.0"
+    "angular": "~1.5.3"
   }
 }
