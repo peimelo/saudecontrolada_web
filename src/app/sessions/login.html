@@ -4,39 +4,42 @@
   <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
 
   <form name="form" ng-submit="vm.login()" role="form">
-    <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && (form.email.$error.required || form.email.$invalid )}">
-      <label for="email">E-mail</label>
-      <input type="email" name="email" id="email" class="form-control" ng-model="vm.user.email" required autofocus />
-      <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">E-mail é obrigatório</span>
-      <span ng-show="form.email.$dirty && !form.email.$error.required && form.email.$invalid" class="help-block">E-mail está em formato inválido </span>
+    <div class="form-group"
+         ng-class="{ 'has-error': form.email.$touched && form.email.$invalid }">
+      <label for="email">E-mail *</label>
+      <input id="email"
+             autofocus
+             class="form-control"
+             name="email"
+             ng-model="vm.user.email"
+             ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+             required
+             type="email">
+      <div class="help-block"
+           ng-if="form.email.$touched"
+           ng-messages="form.email.$error">
+        <div ng-messages-include="app/components/messages.html"></div>
+      </div>
     </div>
 
-    <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
-      <label for="password">Senha</label>
-      <input type="password" name="password" id="password" class="form-control" ng-model="vm.user.password" required />
-      <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Senha é obrigatória</span>
+    <div class="form-group"
+         ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+      <label for="password">Senha *</label>
+      <input id="password"
+             class="form-control"
+             name="password"
+             ng-model="vm.user.password"
+             required
+             type="password">
+      <div class="help-block"
+           ng-if="form.password.$touched"
+           ng-messages="form.password.$error">
+        <div ng-messages-include="app/components/messages.html"></div>
+      </div>
     </div>
-    <!--<div class="checkbox">
-      <label>
-        <input type="checkbox" value="remember-me"> Mantenha-me conectado por 2 semanas
-      </label>
-    </div>-->
+
     <div class="form-actions">
       <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">{{vm.title}}</button>
     </div>
   </form>
 </div>
-
-<!--
-<form class="form-signin" ng-submit="vm.login()">
-  <h2 class="form-signin-heading">Entrar</h2>
-  <input id="emailInput" type="email" class="form-control" placeholder="E-mail" ng-model="vm.user.email" required autofocus>
-  <input id="passwordInput" type="password" class="form-control" placeholder="Senha" ng-model="vm.user.password" required>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" value="remember-me"> Mantenha-me conectado por 1 semana
-    </label>
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-</form>
--->

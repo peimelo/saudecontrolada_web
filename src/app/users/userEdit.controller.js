@@ -46,6 +46,9 @@
           toastr.success('Dados alterados com sucesso.');
         });
       }
+      else {
+        toastr.warning('Todos os campos devem estar preenchidos e validados.');
+      }
     }
   }
 })();

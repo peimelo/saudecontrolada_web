@@ -6,7 +6,7 @@
     .controller('CadastrarController', CadastrarController);
 
   /** @ngInject */
-  function CadastrarController(cadastrarService, $state) {
+  function CadastrarController(cadastrarService, toastr, $state) {
     var vm = this;
 
     vm.clearServerError = clearServerError;
@@ -21,8 +21,8 @@
       }
     }
 
-    function submit(isValid) {
-      if (isValid) {
+    function submit(form) {
+      if (form.$valid) {
         vm.errors = {};
 
         return cadastrarService.create(vm.user).then(
@@ -39,7 +39,7 @@
         );
       }
       else {
-        toastr.warning('Todos os campos devem estar preenchidos.')
+        toastr.warning('Todos os campos devem estar preenchidos e validados.');
       }
     }
   }

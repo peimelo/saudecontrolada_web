@@ -2,83 +2,96 @@
   <h2>{{ vm.title }}</h2>
 
   <form ng-submit="vm.submit(form.$valid)" role="form" name="form" novalidate>
-    <div class="form-group" ng-class="{'has-error':form.name.$invalid && form.name.$dirty}">
-      <label>Nome *</label>
-
-      <input type="text"
+    <div class="form-group"
+         ng-class="{ 'has-error': form.name.$touched && form.name.$invalid }">
+      <label for="name">Nome *</label>
+      <input id="name"
+             class="form-control"
              name="name"
+             ng-change="vm.clearServerError(form, 'name')"
              ng-model="vm.user.name"
-             class="form-control"
              required
-             ng-change="vm.clearServerError(form, 'name')"/>
-
-      <span class="help-block" ng-show="form.name.$invalid && form.name.$dirty">
-        <span ng-messages="form.name.$error">
-          <span ng-show="form.name.$error.required">Campo obrigatório.</span>
-          <span ng-show="form.email.$error.server">{{vm.errors.email}}</span>
-        </span>
-      </span>
+             type="text">
+      <div class="help-block"
+           ng-if="form.name.$touched"
+           ng-messages="form.name.$error">
+        <div ng-messages-include="app/components/messages.html"></div>
+        <div ng-message="server">{{vm.errors.name}}</div>
+      </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group"
+         ng-class="{ 'has-error': form.email.$touched && form.email.$invalid }">
       <label for="email">E-mail *</label>
-
-      <input type="email"
-             id="email"
-             name="email"
-             ng-model="vm.user.email"
+      <input id="email"
              class="form-control"
-             ng-disabled="true"/>
+             name="email"
+             ng-change="vm.clearServerError(form, 'email')"
+             ng-disabled="true"
+             ng-model="vm.user.email"
+             ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+             required
+             type="email">
+      <div class="help-block"
+           ng-if="form.email.$touched"
+           ng-messages="form.email.$error">
+        <div ng-messages-include="app/components/messages.html"></div>
+        <div ng-message="server">{{vm.errors.email}}</div>
+      </div>
     </div>
 
-    <div class="form-group" ng-class="{'has-error':form.gender.$invalid && form.gender.$error.server}">
+    <div class="form-group"
+         ng-class="{ 'has-error': form.gender.$touched && form.gender.$invalid }">
       <label>Sexo *</label>
-
       <div class="radio">
         <label>
-          <input type="radio"
-                 name="gender"
+          <input name="gender"
                  ng-model="vm.user.gender"
-                 value="Masculino"
-                 ng-required="!vm.user.gender"/>
+                 ng-required="!vm.user.gender"
+                 type="radio"
+                 value="Masculino">
           Masculino
         </label>
       </div>
-
       <div class="radio">
         <label>
-          <input type="radio"
-                 name="gender"
+          <input name="gender"
                  ng-model="vm.user.gender"
-                 value="Feminino"
-                 ng-required="!vm.user.gender"/>
+                 ng-required="!vm.user.gender"
+                 type="radio"
+                 value="Feminino">
           Feminino
         </label>
       </div>
-
-      <span class="help-block" ng-show="form.gender.$invalid">
-        <span ng-show="form.gender.$error.server">{{vm.errors.gender}}</span>
-      </span>
+      <div class="help-block"
+           ng-if="form.gender.$touched"
+           ng-messages="form.gender.$error">
+        <div ng-messages-include="app/components/messages.html"></div>
+        <div ng-message="server">{{vm.errors.gender}}</div>
+      </div>
     </div>
 
-    <!--<div class="form-group" ng-class="{'has-error':form.date_of_birth.$invalid && form.date_of_birth.$dirty}">-->
-      <!--<label>Data de Nascimento *</label>-->
+    <div class="form-group"
+         ng-class="{ 'has-error': form.date_of_birth.$touched && form.date_of_birth.$invalid }">
+      <label for="date_of_birth">Data de Nascimento *</label>
+      <input id="date_of_birth"
+             change-date
+             class="form-control"
+             name="date_of_birth"
+             ng-change="vm.clearServerError(form, 'date_of_birth')"
+             ng-model="vm.user.date_of_birth"
+             required
+             type="text"
+             ui-mask="99/99/9999">
+      <div class="help-block"
+           ng-if="form.date_of_birth.$touched"
+           ng-messages="form.date_of_birth.$error">
+        <div ng-messages-include="app/components/messages.html"></div>
+        <div ng-message="server">{{vm.errors.date_of_birth}}</div>
+      </div>
+    </div>
 
-      <!--<input type="date"-->
-             <!--name="date_of_birth"-->
-             <!--ng-model="vm.user.date_of_birth"-->
-             <!--required-->
-             <!--class="form-control"-->
-             <!--ng-change="vm.clearServerError(form, 'date_of_birth')"/>-->
-
-      <!--<span class="help-block" ng-show="form.date_of_birth.$invalid && form.date_of_birth.$dirty">-->
-        <!--<span ng-show="form.date_of_birth.$error.required">Campo obrigatório.</span>-->
-        <!--<span ng-show="form.date_of_birth.$error.date">Data inválida.</span>-->
-        <!--<span ng-show="form.date_of_birth.$error.server">{{vm.errors.date_of_birth}}</span>-->
-      <!--</span>-->
-    <!--</div>-->
-
-    <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">
+    <button type="submit" class="btn btn-primary">
       Salvar
     </button>
   </form>
