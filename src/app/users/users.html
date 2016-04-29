@@ -1,0 +1,26 @@
+<h1><i class="fa fa-users"></i> {{vm.title}} <span class="badge">{{vm.users.length}}</span></h1>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-condensed table-hover table-striped">
+    <thead>
+    <tr>
+      <th>Login Atual</th>
+      <th>Último Login</th>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Logins</th>
+      <th>Criação</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in vm.users">
+        <td>{{user.current_sign_in_at | date:'dd/MM/yyyy H:mm'}}</td>
+        <td>{{user.last_sign_in_at | timeAgoFilter}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.sign_in_count | number}}</td>
+        <td>{{user.created_at |date:'dd/MM/yyyy hh:mm'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -3,21 +3,21 @@
 
   angular
     .module('app')
-    .controller('PesosController', PesosController);
+    .controller('UsersController', UsersController);
 
   /** @ngInject */
-  function PesosController(pesosService) {
+  function UsersController(usersService) {
     var vm = this;
 
-    vm.pesos = [];
-    vm.title = 'Pesos';
+    vm.title = 'Usuários';
+    vm.users = [];
 
     active();
 
     function active() {
-      pesosService.query(
+      usersService.query(
         function(response) {
-          vm.pesos = response;
+          vm.users = response;
         }
       );
     }

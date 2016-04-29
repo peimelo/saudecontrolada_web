@@ -1,4 +1,4 @@
-<h1><i class="fa fa-balance-scale fa-lg"></i> {{vm.title}} <span class="badge">{{vm.pesos.length}}</span></h1>
+<h1><i class="fa fa-balance-scale"></i> {{vm.title}} <span class="badge">{{vm.pesos.length}}</span></h1>
 
 <div class="table-responsive">
   <table class="table table-bordered table-condensed table-hover table-striped">
@@ -21,7 +21,7 @@
         <td>{{peso.data | date:'dd/MM/yyyy'}}</td>
         <td>{{peso.altura | number}}</td>
         <td>{{peso.valor | number}}</td>
-        <td>{{peso.valor_minimo | number}} ~ {{peso.valor_maximo | number}}</td>
+        <td>{{peso.minimum | number}} ~ {{peso.maximum | number}}</td>
         <td ng-bind-html="peso.imc | situacaoImcFilter"></td>
       </tr>
     </tbody>
