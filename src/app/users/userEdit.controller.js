@@ -12,7 +12,7 @@
     vm.destroy = destroy;
     vm.submit = submit;
     vm.unhappy = false;
-    vm.user = {};
+    vm.user = sessionService.user;
     vm.title = 'Minha Conta';
 
     activate($stateParams);
