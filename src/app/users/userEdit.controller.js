@@ -6,10 +6,12 @@
     .controller('UserEditController', UserEditController);
 
   /** @ngInject */
-  function UserEditController($stateParams, toastr, usersService) {
+  function UserEditController($scope, sessionService, $state, $stateParams, toastr, usersService) {
     var vm = this;
 
+    vm.destroy = destroy;
     vm.submit = submit;
+    vm.unhappy = false;
     vm.user = {};
     vm.title = 'Minha Conta';
 
@@ -25,18 +27,20 @@
 
     function assignUser(response) {
       vm.user = response;
-      // vm.user.date_of_birth = strToDate(vm.user.date_of_birth);
     }
 
-    // function dateToStr(date) {
-    //   date = moment(date, 'YYYY-MM-DD', 'pt-BR');
-    //   return date;
-    // }
-    // function strToDate(date) {
-    //   date = date.split('-');
-    //   date = new Date(date[0], date[1], date[2], '4', '0', '0', '0');
-    //   return date;
-    // }
+    function destroy() {
+      if (vm.unhappy) {
+        vm.user.$delete(function() {
+          sessionService.cleanAuth();
+          $scope.main.alerts.push({
+            type: 'success',
+            msg: 'Todos seus dados foram excluídos com sucesso. Espero que um dia você volte novamente.'
+          });
+          $state.go('home');
+        });
+      }
+    }
 
     function submit(isValid) {
       if (isValid) {

@@ -10,12 +10,18 @@
     var api = '/api/sessions';
 
     var service = {
-      user: null,
+      cleanAuth: cleanAuth,
       login: login,
-      logout: logout
+      logout: logout,
+      user: null
     };
 
     return service;
+
+    function cleanAuth() {
+      $rootScope.authentication_token = null;
+      service.user = null;
+    }
 
     function login(user) {
       return $http.post(api, { login: { email: user.email, password: user.password } })
@@ -33,8 +39,7 @@
         .then(getComplete);
 
       function getComplete(response) {
-        $rootScope.authentication_token = null;
-        service.user = null;
+        cleanAuth();
         $state.go('home');
         return response.data;
       }

@@ -16,11 +16,13 @@
       /*
        * 3rd Party modules
        */
+      'angular-confirm',
       'angular-loading-bar',
       'chart.js',
       'googlechart',
       'permission',
       'ui.bootstrap',
+      'ui.gravatar',
       'ui.mask',
       'ui.router',
       'ui.validate'

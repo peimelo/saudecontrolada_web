@@ -38,7 +38,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" ui-sref="home"><i class="fa fa-heart"></i> Saúde Controlada</a>
+            <a class="navbar-brand" ui-sref="home"><i class="fa fa-heartbeat"></i> Saúde Controlada</a>
           </div>
           <div class="navbar-collapse collapse" id="navbar-saude">
             <ul class="nav navbar-nav navbar-right">
@@ -81,7 +81,7 @@
 
               <li ng-if="main.sessionService.user" class="dropdown">
                 <a href class="dropdown-toggle profile-image" data-toggle="dropdown">
-                  <img src="{{main.sessionService.user.gravatar_url}}"
+                  <img gravatar-src-once="main.sessionService.user.email"
                        alt="{{main.sessionService.user.name}}"
                        class="img-circle">
                   <span class="fa fa-angle-down"></span>
@@ -104,6 +104,11 @@
         </div><!--/.container-fluid -->
       </nav>
 
+      <uib-alert ng-repeat="alert in main.alerts"
+                 type="{{alert.type}}"
+                 close="main.closeAlert($index)">{{alert.msg}}
+      </uib-alert>
+
       <div ui-view></div>
 
     </div> <!-- /container -->
@@ -111,7 +116,7 @@
     <hr>
     <footer class="footer">
       <div class="container">
-        <a class="pull-right" href="https://badge.fury.io/gh/peimelo%2Fsaudecontrolada_api"><img src="https://badge.fury.io/gh/peimelo%2Fsaudecontrolada_api.svg" alt="GitHub version" height="18"></a>
+        <!--<a class="pull-right" href="https://badge.fury.io/gh/peimelo%2Fsaudecontrolada_api"><img src="https://badge.fury.io/gh/peimelo%2Fsaudecontrolada_api.svg" alt="GitHub version" height="18"></a>-->
       </div>
     </footer>
 

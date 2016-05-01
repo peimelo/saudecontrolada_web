@@ -6,14 +6,21 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, moment, toastr, $httpProvider) {
+  function config(gravatarServiceProvider, $httpProvider, $logProvider, moment, toastr) {
     enabledLog();
+    gravatarConfig();
     httpProviderConfig();
     momentConfig();
     toastrConfig();
 
     function enabledLog() {
       $logProvider.debugEnabled(true);
+    }
+
+    function gravatarConfig() {
+      gravatarServiceProvider.defaults = {
+        'default': 'mm'  // Mystery man as default for missing avatars
+      };
     }
 
     function httpProviderConfig() {
@@ -25,7 +32,7 @@
     }
 
     function toastrConfig() {
-      toastr.options.timeOut = 5000;
+      toastr.options.timeOut = 4000;
       toastr.options.positionClass = 'toast-top-right';
       toastr.options.preventDuplicates = true;
       toastr.options.progressBar = true;
