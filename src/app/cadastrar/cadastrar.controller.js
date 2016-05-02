@@ -6,7 +6,7 @@
     .controller('CadastrarController', CadastrarController);
 
   /** @ngInject */
-  function CadastrarController(cadastrarService, toastr, $state) {
+  function CadastrarController(cadastrarService, $scope, $state, toastr) {
     var vm = this;
 
     vm.clearServerError = clearServerError;
@@ -25,16 +25,22 @@
       if (form.$valid) {
         vm.errors = {};
 
-        return cadastrarService.create(vm.user).then(
+        cadastrarService.create(vm.user).then(
           function () {
             vm.user = {};
+            $scope.main.alerts.push({
+              type: 'success',
+              msg: 'Por favor, verifique seu e-mail para ativar sua conta.'
+            });
             $state.go('home');
           },
           function (response) {
-            angular.forEach(response.data, function (errors, field) {
-              form[field].$setValidity('server', false);
-              vm.errors[field] = errors.join(', ');
-            });
+            if (response.status === 422) {
+              angular.forEach(response.data, function (errors, field) {
+                form[field].$setValidity('server', false);
+                vm.errors[field] = errors.join(', ');
+              });
+            }
           }
         );
       }
