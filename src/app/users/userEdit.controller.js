@@ -44,7 +44,6 @@
 
     function submit(isValid) {
       if (isValid) {
-        // vm.user.date_of_birth = dateToStr(vm.user.date_of_birth);
         vm.user.$update(function(response) {
           assignUser(response);
           toastr.success('Dados alterados com sucesso.');
