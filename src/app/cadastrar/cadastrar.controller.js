@@ -30,7 +30,7 @@
             vm.user = {};
             $scope.main.alerts.push({
               type: 'success',
-              msg: 'Por favor, verifique seu e-mail para ativar sua conta.'
+              msg: 'Você receberá em breve um e-mail com instruções sobre como ativar sua conta'
             });
             $state.go('home');
           },
