@@ -1,0 +1,29 @@
+<div class="col-md-6 col-md-offset-3">
+  <h2>Esqueceu seu senha?</h2>
+
+  <div ng-if="vm.msg" class="alert alert-info">{{vm.msg}}</div>
+
+  <form name="form" ng-submit="vm.submit()" role="form">
+    <div class="form-group"
+         ng-class="{ 'has-error': form.email.$touched && form.email.$invalid }">
+      <label for="email">E-mail *</label>
+      <input id="email"
+             autofocus
+             class="form-control"
+             name="email"
+             ng-model="vm.forgot.email"
+             ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+             required
+             type="email">
+      <div class="help-block"
+           ng-if="form.email.$touched"
+           ng-messages="form.email.$error">
+        <div ng-messages-include="app/components/messages.html"></div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Enviar</button>
+    </div>
+  </form>
+</div>

@@ -8,10 +8,10 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('login', {
-        url: '/login',
-        templateUrl: 'app/sessions/login.html',
-        controller: 'SessionController',
+      .state('forgot', {
+        url: '/forgot',
+        templateUrl: 'app/passwordResets/forgot.html',
+        controller: 'PasswordResetsController',
         controllerAs: 'vm',
         data: {
           permissions: {
@@ -21,5 +21,4 @@
         }
       });
   }
-
 })();
