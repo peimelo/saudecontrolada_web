@@ -10,7 +10,7 @@
     var vm = this;
 
     vm.alert = {};
-    vm.title = 'Ativação de Conta'
+    vm.title = 'Ativação de Conta';
 
     activate();
 

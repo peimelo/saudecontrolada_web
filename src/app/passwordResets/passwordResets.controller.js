@@ -6,7 +6,7 @@
     .controller('PasswordResetsController', PasswordResetsController);
 
   /** @ngInject */
-  function PasswordResetsController(PasswordResetsResource, $location, $state, $stateParams) {
+  function PasswordResetsController(PasswordResetsResource) {
     var vm = this;
 
     vm.msg = '';
