@@ -19,6 +19,18 @@
             redirectTo: 'home'
           }
         }
+      })
+      .state('passwordReset', {
+        url: '/password_resets/:id',
+        templateUrl: 'app/passwordResets/passwordReset.html',
+        controller: 'PasswordResetsController',
+        controllerAs: 'vm',
+        data: {
+          permissions: {
+            except: ['logged'],
+            redirectTo: 'home'
+          }
+        }
       });
   }
 })();

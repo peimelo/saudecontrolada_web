@@ -11,11 +11,10 @@
 
     vm.msg = '';
     vm.forgot = {};
+    vm.resetPassword = resetPassword;
     vm.submit = submit;
 
-    active();
-
-    function active() {
+    function resetPassword() {
     }
 
     function submit() {

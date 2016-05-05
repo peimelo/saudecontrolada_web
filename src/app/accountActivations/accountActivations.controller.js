@@ -15,15 +15,15 @@
     activate();
 
     function activate() {
-      AccountActivationsService.get({
-        id: $stateParams.id,
-        email: $location.search().email
-      }, function(response) {
-        vm.alert = response;
-      }, function(response) {
-        vm.alert = response.data;
-      });
+      var data = {id: $stateParams.id, email: $location.search().email};
+      
+      AccountActivationsService.get(data,
+        function(response) {
+          vm.alert = response;
+        }, function(response) {
+          vm.alert = response.data;
+        }
+      );
     }
-
   }
 })();
