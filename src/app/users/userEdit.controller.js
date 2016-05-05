@@ -35,7 +35,7 @@
           sessionService.cleanAuth();
           $scope.main.alerts.push({
             type: 'success',
-            msg: 'Todos seus dados foram excluídos com sucesso. Espero que um dia você volte novamente.'
+            msg: 'Todos seus dados foram excluídos com sucesso. Esperamos que um dia você volte.'
           });
           $state.go('home');
         });

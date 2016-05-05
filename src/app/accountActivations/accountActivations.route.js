@@ -10,9 +10,9 @@
     $stateProvider
       .state('ativarConta', {
         url: '/account_activations/:id',
-        templateUrl: 'app/accountActivations/accountActivations.html',
         controller: 'AccountActivationsController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        templateUrl: 'app/accountActivations/accountActivations.html'
       });
   }
 })();
