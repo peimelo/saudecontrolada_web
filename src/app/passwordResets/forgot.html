@@ -3,7 +3,7 @@
 
   <div ng-if="vm.msg" class="alert alert-info">{{vm.msg}}</div>
 
-  <form name="form" ng-submit="vm.submit()" role="form">
+  <form name="form" ng-submit="vm.forgot()" role="form">
     <div class="form-group"
          ng-class="{ 'has-error': form.email.$touched && form.email.$invalid }">
       <label for="email">E-mail *</label>
@@ -11,7 +11,7 @@
              autofocus
              class="form-control"
              name="email"
-             ng-model="vm.forgot.email"
+             ng-model="vm.user.email"
              ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
              required
              type="email">

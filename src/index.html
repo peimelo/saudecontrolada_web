@@ -112,6 +112,7 @@
 
       <uib-alert ng-repeat="alert in main.alerts"
                  type="{{alert.type}}"
+                 dismiss-on-timeout="5000"
                  close="main.closeAlert($index)">{{alert.msg}}
       </uib-alert>
 

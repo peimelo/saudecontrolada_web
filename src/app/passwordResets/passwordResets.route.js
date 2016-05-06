@@ -21,7 +21,7 @@
         }
       })
       .state('passwordReset', {
-        url: '/password_resets/:id',
+        url: '/password_resets/:id/email/:email',
         templateUrl: 'app/passwordResets/passwordReset.html',
         controller: 'PasswordResetsController',
         controllerAs: 'vm',

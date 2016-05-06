@@ -9,7 +9,7 @@
   function MainController(sessionService) {
     var vm = this;
 
-    vm.alerts = [];
+    vm.alerts = [{ type: 'info', msg: 'lldldldldlldldldlww2'}];
     vm.closeAlert = closeAlert;
     vm.logout = logout;
     vm.sessionService = sessionService;

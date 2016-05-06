@@ -11,8 +11,7 @@
 
     var service = {
       user: null,
-      create: create,
-      hasAttributes: hasAttributes
+      create: create
     };
 
     return service;
@@ -27,32 +26,12 @@
           password: user.password,
           password_confirmation: user.password_confirmation
         }
-      })
-        .then(getComplete);
-        //.catch(getFailed);
+      }).then(getComplete);
 
       function getComplete(response) {
         service.user = response.data.user;
         return response.data;
       }
-
-      //function getFailed(response) {
-      //  angular.forEach(response.data, function(errors, key) {
-      //    angular.forEach(errors, function(e) {
-      //      $scope.form[key].$dirty = true;
-      //      $scope.form[key].$setValidity(e, false);
-      //    });
-      //  });
-      //}
-    }
-
-    function hasAttributes(obj) {
-      for(var key in obj) {
-        if(obj.hasOwnProperty(key)) {
-          return true;
-        }
-      }
-      return false;
     }
   }
 })();

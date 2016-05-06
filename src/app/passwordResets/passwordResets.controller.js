@@ -6,26 +6,61 @@
     .controller('PasswordResetsController', PasswordResetsController);
 
   /** @ngInject */
-  function PasswordResetsController(PasswordResetsResource) {
+  function PasswordResetsController(PasswordResetsResource, $scope, $state, $stateParams) {
     var vm = this;
 
-    vm.msg = '';
-    vm.forgot = {};
-    vm.resetPassword = resetPassword;
-    vm.submit = submit;
+    var params = null;
 
-    function resetPassword() {
+    vm.forgot = forgot;
+    vm.resetPassword = resetPassword;
+    vm.user = {};
+
+    activate();
+
+    function activate() {
+      if ($state.is('passwordReset')) {
+        params = { id: $stateParams.id, email: $stateParams.email };
+      }
+
+      // AccountActivationsService.get(data,
+      //   function(response) {
+      //     vm.alert = response;
+      //   }, function(response) {
+      //     vm.alert = response.data;
+      //   }
+      // );
     }
 
-    function submit() {
-      vm.msg = '';
-
+    function resetPassword() {
       var newPassword = new PasswordResetsResource({
-        password_reset: {email: vm.forgot.email}
+        user: {
+          password: vm.user.password,
+          password_confirmation: vm.user.password_confirmation
+        }
+      });
+
+      newPassword.$update(params, function(response) {
+        $scope.main.alerts.push({
+          type: 'info',
+          msg: response.info
+        });
+
+        $state.go('login');
+      });
+    }
+
+    function forgot() {
+      var newPassword = new PasswordResetsResource({
+        password_reset: {email: vm.user.email}
       });
 
       newPassword.$save(function(response) {
-        vm.msg = response.info;
+        $scope.main.alerts.push({
+          type: 'info',
+          msg: response.info
+        });
+
+        $state.go('login');
       });
     }
   }
