@@ -6,7 +6,7 @@
     .controller('PasswordResetsController', PasswordResetsController);
 
   /** @ngInject */
-  function PasswordResetsController(PasswordResetsResource, $scope, $state, $stateParams) {
+  function PasswordResetsController(alertingService, PasswordResetsResource, $scope, $state, $stateParams) {
     var vm = this;
 
     var params = null;
@@ -21,45 +21,26 @@
       if ($state.is('passwordReset')) {
         params = { id: $stateParams.id, email: $stateParams.email };
       }
-
-      // AccountActivationsService.get(data,
-      //   function(response) {
-      //     vm.alert = response;
-      //   }, function(response) {
-      //     vm.alert = response.data;
-      //   }
-      // );
     }
 
     function resetPassword() {
-      var newPassword = new PasswordResetsResource({
-        user: {
-          password: vm.user.password,
-          password_confirmation: vm.user.password_confirmation
-        }
-      });
+      var newPassword = new PasswordResetsResource({ user: vm.user });
 
       newPassword.$update(params, function(response) {
-        $scope.main.alerts.push({
-          type: 'info',
-          msg: response.info
-        });
-
+        alertingService.addSuccess(response.message);
         $state.go('login');
+      }, function(error) {
+        alertingService.addDanger(error.data.message);
       });
     }
 
     function forgot() {
       var newPassword = new PasswordResetsResource({
-        password_reset: {email: vm.user.email}
+        password_reset: vm.user.email
       });
 
       newPassword.$save(function(response) {
-        $scope.main.alerts.push({
-          type: 'info',
-          msg: response.info
-        });
-
+        alertingService.addSuccess(response.message);
         $state.go('login');
       });
     }

@@ -43,8 +43,8 @@
           <div class="navbar-collapse collapse" id="navbar-saude">
             <ul class="nav navbar-nav navbar-right">
               <li ng-hide="main.sessionService.user" ui-sref-active="active">
-                <a ui-sref="cadastrar">
-                  <i class="fa fa-plus"></i> Cadastrar-se
+                <a ui-sref="userNew">
+                  <i class="fa fa-user-plus"></i> Cadastrar-se
                 </a>
               </li>
               <li ng-hide="main.sessionService.user" ui-sref-active="active"><a ui-sref="login">
@@ -110,11 +110,7 @@
         </div><!--/.container-fluid -->
       </nav>
 
-      <uib-alert ng-repeat="alert in main.alerts"
-                 type="{{alert.type}}"
-                 dismiss-on-timeout="5000"
-                 close="main.closeAlert($index)">{{alert.msg}}
-      </uib-alert>
+      <alerts></alerts>
 
       <div ui-view></div>
 

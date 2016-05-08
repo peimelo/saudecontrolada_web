@@ -8,8 +8,12 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('ativarConta', {
+      .state('confirmAccountActivation', {
         url: '/account_activations/:id',
+        controller: 'AccountActivationsController'
+      })
+      .state('resentAccountActivation', {
+        url: '/account_activations',
         controller: 'AccountActivationsController',
         controllerAs: 'vm',
         templateUrl: 'app/accountActivations/accountActivations.html'

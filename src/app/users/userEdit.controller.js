@@ -6,7 +6,7 @@
     .controller('UserEditController', UserEditController);
 
   /** @ngInject */
-  function UserEditController($scope, sessionService, $state, $stateParams, toastr, usersService) {
+  function UserEditController(alertingService, $scope, sessionService, $state, $stateParams, toastr, UsersResource) {
     var vm = this;
 
     vm.destroy = destroy;
@@ -18,7 +18,7 @@
     activate($stateParams);
 
     function activate($stateParams) {
-      usersService.get({id: $stateParams.id},
+      UsersResource.get({id: $stateParams.id},
         function(response) {
           assignUser(response);
         }
@@ -31,12 +31,9 @@
 
     function destroy() {
       if (vm.unhappy) {
-        vm.user.$delete(function() {
+        vm.user.$delete(function(response) {
           sessionService.cleanAuth();
-          $scope.main.alerts.push({
-            type: 'success',
-            msg: 'Todos seus dados foram excluídos com sucesso. Esperamos que um dia você volte.'
-          });
+          alertingService.addSuccess(response.message);
           $state.go('home');
         });
       }

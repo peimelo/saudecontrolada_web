@@ -1,7 +1,5 @@
 <div class="col-md-6 col-md-offset-3">
-  <h2>Esqueceu seu senha?</h2>
-
-  <div ng-if="vm.msg" class="alert alert-info">{{vm.msg}}</div>
+  <h2><i class="fa fa-user-secret"></i> Esqueceu seu senha?</h2>
 
   <form name="form" ng-submit="vm.forgot()" role="form">
     <div class="form-group"
@@ -23,7 +21,9 @@
     </div>
 
     <div class="form-actions">
-      <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Enviar</button>
+      <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">
+        Enviar
+      </button>
     </div>
   </form>
 </div>

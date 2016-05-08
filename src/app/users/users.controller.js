@@ -6,7 +6,7 @@
     .controller('UsersController', UsersController);
 
   /** @ngInject */
-  function UsersController(usersService) {
+  function UsersController(UsersResource) {
     var vm = this;
 
     vm.title = 'Usuários';
@@ -15,7 +15,7 @@
     active();
 
     function active() {
-      usersService.query(
+      UsersResource.query(
         function(response) {
           vm.users = response;
         }

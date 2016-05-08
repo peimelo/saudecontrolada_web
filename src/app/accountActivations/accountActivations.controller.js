@@ -6,24 +6,37 @@
     .controller('AccountActivationsController', AccountActivationsController);
 
   /** @ngInject */
-  function AccountActivationsController(AccountActivationsService, $location, $stateParams) {
+  function AccountActivationsController(ActivationsResource, alertingService, $location, $state, $stateParams) {
     var vm = this;
 
-    vm.alert = {};
-    vm.title = 'Ativação de Conta';
+    vm.submit = submit;
+    vm.title = '';
+    vm.user = {};
 
     activate();
 
     function activate() {
-      var data = {id: $stateParams.id, email: $location.search().email};
-      
-      AccountActivationsService.get(data,
-        function(response) {
-          vm.alert = response;
-        }, function(response) {
-          vm.alert = response.data;
-        }
-      );
+      if ($state.is('confirmAccountActivation')) {
+        var data = { id: $stateParams.id, email: $location.search().email };
+
+        ActivationsResource.get(data, function (response) {
+          alertingService.addSuccess(response.message);
+        }, function (error) {
+          alertingService.addDanger(error.data.message);
+        });
+      }
+      else {
+        vm.title = 'Reenviar instruções de Ativação';
+      }
+    }
+
+    function submit() {
+      var newActivation = new ActivationsResource(vm.user);
+
+      newActivation.$save(function(response) {
+        alertingService.addSuccess(response.message);
+        $state.go('login');
+      });
     }
   }
 })();

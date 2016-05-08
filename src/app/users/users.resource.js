@@ -3,10 +3,10 @@
 
   angular
     .module('app')
-    .factory('usersService', usersService);
+    .factory('UsersResource', UsersResource);
 
   /** @ngInject */
-  function usersService($resource) {
+  function UsersResource($resource) {
     return $resource(
       '/api/users/:id', {id: '@id'}, {
         // get: {

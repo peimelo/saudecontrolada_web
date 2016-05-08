@@ -6,7 +6,7 @@
     .factory('sessionService', sessionService);
 
   /** @ngInject */
-  function sessionService($http, $rootScope, $state) {
+  function sessionService(alertingService, $http, $rootScope, $state) {
     var api = '/api/sessions';
 
     var service = {
@@ -24,7 +24,7 @@
     }
 
     function login(user) {
-      return $http.post(api, { login: { email: user.email, password: user.password } })
+      return $http.post(api, { login: user })
         .then(getComplete);
 
       function getComplete(response) {
@@ -40,6 +40,7 @@
 
       function getComplete(response) {
         cleanAuth();
+        alertingService.addSuccess(response.data.message);
         $state.go('home');
         return response.data;
       }

@@ -6,7 +6,7 @@
   <form name="form" ng-submit="vm.login()" role="form">
     <div class="form-group"
          ng-class="{ 'has-error': form.email.$touched && form.email.$invalid }">
-      <label for="email">E-mail *</label>
+      <label for="email">E-mail</label>
       <input id="email"
              autofocus
              class="form-control"
@@ -24,8 +24,7 @@
 
     <div class="form-group"
          ng-class="{ 'has-error': form.password.$touched && form.password.$invalid }">
-      <label for="password">Senha *</label>
-      <label>(<a  ui-sref="forgot">Esqueceu sua senha?</a>)</label>
+      <label for="password">Senha</label>
       <input id="password"
              class="form-control"
              name="password"
@@ -40,7 +39,10 @@
     </div>
 
     <div class="form-actions">
-      <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">{{vm.title}}</button>
+      <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Enviar</button>
     </div>
   </form>
+<hr>
+<p><label><a ui-sref="forgot">Esqueceu sua senha?</a></label></p>
+<p><label><a ui-sref="resentAccountActivation">Não recebeu instruções de ativação?</a></label></p>
 </div>

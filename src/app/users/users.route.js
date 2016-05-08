@@ -31,7 +31,12 @@
             redirectTo: 'login'
           }
         }
-      });
-  }
+      })
+      .state('userNew', {
+        url: '/signup',
+        templateUrl: 'app/users/userNew.html',
+        controller: 'UserNewController',
+        controllerAs: 'vm'
+      });  }
 
 })();
