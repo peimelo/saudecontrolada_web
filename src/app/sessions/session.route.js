@@ -12,13 +12,7 @@
         url: '/login',
         templateUrl: 'app/sessions/login.html',
         controller: 'SessionController',
-        controllerAs: 'vm',
-        data: {
-          permissions: {
-            except: ['logged'],
-            redirectTo: 'home'
-          }
-        }
+        controllerAs: 'vm'
       });
   }
 

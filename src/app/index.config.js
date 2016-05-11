@@ -24,7 +24,6 @@
     }
 
     function httpProviderConfig() {
-      // $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
       $httpProvider.interceptors.push('httpInterceptor');
     }
 
@@ -33,7 +32,7 @@
     }
 
     function toastrConfig() {
-      toastr.options.timeOut = 4000;
+      toastr.options.timeOut = 5000;
       toastr.options.positionClass = 'toast-top-center';
       toastr.options.preventDuplicates = true;
       toastr.options.progressBar = true;

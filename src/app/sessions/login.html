@@ -1,38 +1,44 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="col-sm-6 col-sm-offset-3">
   <h2><i class="fa fa-sign-in"></i> {{vm.title}}</h2>
 
   <div ng-if="vm.error" class="alert alert-danger">{{vm.error}}</div>
 
   <form name="form" ng-submit="vm.login()" role="form">
     <div class="form-group"
-         ng-class="{ 'has-error': form.email.$touched && form.email.$invalid }">
+         ng-class="{ 'has-error': !form.email.$pristine  && form.email.$invalid }">
+
+      <!-- EMAIL -->
       <label for="email">E-mail</label>
       <input id="email"
              autofocus
              class="form-control"
              name="email"
+             ng-maxlength="255"
              ng-model="vm.user.email"
              ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
              required
              type="email">
       <div class="help-block"
-           ng-if="form.email.$touched"
+           ng-if="!form.email.$pristine"
            ng-messages="form.email.$error">
         <div ng-messages-include="app/components/messages.html"></div>
       </div>
     </div>
 
+    <!-- PASSWORD -->
     <div class="form-group"
-         ng-class="{ 'has-error': form.password.$touched && form.password.$invalid }">
+         ng-class="{ 'has-error': !form.password.$pristine && form.password.$invalid }">
       <label for="password">Senha</label>
       <input id="password"
              class="form-control"
              name="password"
+             ng-maxlength="128"
+             ng-minlength="8"
              ng-model="vm.user.password"
              required
              type="password">
       <div class="help-block"
-           ng-if="form.password.$touched"
+           ng-if="!form.password.$pristine"
            ng-messages="form.password.$error">
         <div ng-messages-include="app/components/messages.html"></div>
       </div>
@@ -43,6 +49,10 @@
     </div>
   </form>
 <hr>
-<p><label><a ui-sref="forgot">Esqueceu sua senha?</a></label></p>
-<p><label><a ui-sref="resentAccountActivation">Não recebeu instruções de ativação?</a></label></p>
+<p><label><a ui-sref="forgot">
+  <i class="fa fa-user-secret"></i> Esqueceu sua senha?
+</a></label></p>
+<p><label><a ui-sref="resentAccountActivation">
+  <i class="fa fa-reply"></i> Não recebeu instruções de ativação?
+</a></label></p>
 </div>

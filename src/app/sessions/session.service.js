@@ -35,13 +35,13 @@
     }
 
     function logout() {
+      cleanAuth();
+      $state.go('home');
       return $http.delete(api + '/0')
         .then(getComplete);
 
       function getComplete(response) {
-        cleanAuth();
         alertingService.addSuccess(response.data.message);
-        $state.go('home');
         return response.data;
       }
     }

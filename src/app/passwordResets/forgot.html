@@ -1,20 +1,23 @@
-<div class="col-md-6 col-md-offset-3">
-  <h2><i class="fa fa-user-secret"></i> Esqueceu seu senha?</h2>
+<div class="col-sm-6 col-sm-offset-3">
+  <h2><i class="fa fa-user-secret"></i> Esqueceu sua senha?</h2>
 
   <form name="form" ng-submit="vm.forgot()" role="form">
+
+    <!-- EMAIL -->
     <div class="form-group"
-         ng-class="{ 'has-error': form.email.$touched && form.email.$invalid }">
+         ng-class="{ 'has-error': !form.email.$pristine && form.email.$invalid }">
       <label for="email">E-mail *</label>
       <input id="email"
              autofocus
              class="form-control"
              name="email"
+             ng-maxlength="255"
              ng-model="vm.user.email"
              ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
              required
              type="email">
       <div class="help-block"
-           ng-if="form.email.$touched"
+           ng-if="!form.email.$pristine"
            ng-messages="form.email.$error">
         <div ng-messages-include="app/components/messages.html"></div>
       </div>

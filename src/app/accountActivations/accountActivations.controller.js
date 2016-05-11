@@ -26,7 +26,7 @@
         });
       }
       else {
-        vm.title = 'Reenviar instruções de Ativação';
+        vm.title = 'Não recebeu instruções de ativação?';
       }
     }
 

@@ -36,7 +36,7 @@
 
     function forgot() {
       var newPassword = new PasswordResetsResource({
-        password_reset: vm.user.email
+        password_reset: vm.user
       });
 
       newPassword.$save(function(response) {

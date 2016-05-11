@@ -1,46 +1,53 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="col-sm-6 col-sm-offset-3">
   <h2><i class="fa fa-user-plus"></i> {{ vm.title }}</h2>
 
   <form ng-submit="vm.submit(form)" name="form" novalidate>
+
+    <!-- NAME -->
     <div class="form-group"
-         ng-class="{ 'has-error': form.name.$touched && form.name.$invalid }">
+         ng-class="{ 'has-error': !form.name.$pristine && form.name.$invalid }">
       <label for="name">Nome *</label>
       <input id="name"
+             autofocus
              class="form-control"
              name="name"
              ng-change="vm.clearServerError(form, 'name')"
+             ng-maxlength="255"
              ng-model="vm.user.name"
              required
              type="text">
       <div class="help-block"
-           ng-if="form.name.$touched"
+           ng-if="!form.name.$pristine"
            ng-messages="form.name.$error">
         <div ng-messages-include="app/components/messages.html"></div>
         <div ng-message="server">{{vm.formErrors.name}}</div>
       </div>
     </div>
 
+    <!-- EMAIL -->
     <div class="form-group"
-         ng-class="{ 'has-error': form.email.$touched && form.email.$invalid }">
+         ng-class="{ 'has-error': !form.email.$pristine && form.email.$invalid }">
       <label for="email">E-mail *</label>
       <input id="email"
              class="form-control"
              name="email"
              ng-change="vm.clearServerError(form, 'email')"
+             ng-maxlength="255"
              ng-model="vm.user.email"
              ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
              required
              type="email">
       <div class="help-block"
-           ng-if="form.email.$touched"
+           ng-if="!form.email.$pristine"
            ng-messages="form.email.$error">
         <div ng-messages-include="app/components/messages.html"></div>
         <div ng-message="server">{{vm.formErrors.email}}</div>
       </div>
     </div>
 
+    <!-- GENDER -->
     <div class="form-group"
-         ng-class="{ 'has-error': form.gender.$touched && form.gender.$invalid }">
+         ng-class="{ 'has-error': !form.gender.$pristine && form.gender.$invalid }">
       <label>Sexo *</label>
       <div class="radio">
         <label>
@@ -63,15 +70,16 @@
         </label>
       </div>
       <div class="help-block"
-           ng-if="form.gender.$touched"
+           ng-if="!form.gender.$pristine"
            ng-messages="form.gender.$error">
         <div ng-messages-include="app/components/messages.html"></div>
         <div ng-message="server">{{vm.formErrors.gender}}</div>
       </div>
     </div>
 
+    <!-- DATE OF BIRTH -->
     <div class="form-group"
-         ng-class="{ 'has-error': form.date_of_birth.$touched && form.date_of_birth.$invalid }">
+         ng-class="{ 'has-error': !form.date_of_birth.$pristine && form.date_of_birth.$invalid }">
       <label for="date_of_birth">Data de Nascimento *</label>
       <input id="date_of_birth"
              change-date
@@ -83,46 +91,51 @@
              type="text"
              ui-mask="99/99/9999">
       <div class="help-block"
-           ng-if="form.date_of_birth.$touched"
+           ng-if="!form.date_of_birth.$pristine"
            ng-messages="form.date_of_birth.$error">
         <div ng-messages-include="app/components/messages.html"></div>
         <div ng-message="server">{{vm.formErrors.date_of_birth}}</div>
       </div>
     </div>
 
+    <!-- PASSWORD -->
     <div class="form-group"
-         ng-class="{ 'has-error': form.password.$touched && form.password.$invalid }">
+         ng-class="{ 'has-error': !form.password.$pristine && form.password.$invalid }">
       <label for="password">Senha *</label>
       <input id="password"
              class="form-control"
              name="password"
              ng-change="vm.clearServerError(form, 'password')"
+             ng-maxlength="128"
              ng-minlength="8"
              ng-model="vm.user.password"
              required
              type="password">
       <div class="help-block"
-           ng-if="form.password.$touched"
+           ng-if="!form.password.$pristine"
            ng-messages="form.password.$error">
         <div ng-messages-include="app/components/messages.html"></div>
         <div ng-message="server">{{vm.formErrors.password}}</div>
       </div>
     </div>
 
+    <!-- CONFIRM PASSWORD -->
     <div class="form-group"
-         ng-class="{ 'has-error': form.password_confirmation.$touched && form.password_confirmation.$invalid }">
+         ng-class="{ 'has-error': !form.password_confirmation.$pristine && form.password_confirmation.$invalid }">
       <label for="password_confirmation">Confirmar senha *</label>
       <input id="password_confirmation"
              class="form-control"
              name="password_confirmation"
              ng-change="vm.clearServerError(form, 'password_confirmation')"
+             ng-maxlength="128"
              ng-model="vm.user.password_confirmation"
              required="required"
              type="password"
              ui-validate=" '$value==vm.user.password' "
              ui-validate-watch=" 'vm.user.password' ">
-      <div class="help-block" ng-messages="form.password_confirmation.$error"
-           ng-if="form.password_confirmation.$touched">
+      <div class="help-block"
+           ng-if="!form.password_confirmation.$pristine"
+           ng-messages="form.password_confirmation.$error">
         <div ng-messages-include="app/components/messages.html"></div>
         <div ng-message="server">{{vm.formErrors.password_confirmation}}</div>
         <div ng-message="validator">Esse campo deve ser igual a senha.</div>

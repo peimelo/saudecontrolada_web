@@ -14,6 +14,14 @@
     vm.title = 'Entrar';
     vm.user = {};
 
+    activate();
+
+    function activate() {
+      if (sessionService.user) {
+        sessionService.logout();
+      }
+    }
+
     function login() {
       vm.error = '';
 

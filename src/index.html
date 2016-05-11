@@ -42,22 +42,27 @@
           </div>
           <div class="navbar-collapse collapse" id="navbar-saude">
             <ul class="nav navbar-nav navbar-right">
+              <!-- SIGIN UP -->
               <li ng-hide="main.sessionService.user" ui-sref-active="active">
                 <a ui-sref="userNew">
                   <i class="fa fa-user-plus"></i> Cadastrar-se
                 </a>
               </li>
+
+              <!-- LOG IN -->
               <li ng-hide="main.sessionService.user" ui-sref-active="active"><a ui-sref="login">
                 <i class="fa fa-sign-in"></i> Entrar</a>
               </li>
 
+              <!-- ADMINISTRATION -->
               <li ng-if="main.sessionService.user.admin"
                   class="dropdown">
                 <a href class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-cog"></i>
+                  <i class="fa fa-cog"></i> Administração
                   <span class="fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu">
+                  <!-- USERS -->
                   <li ui-sref-active="active">
                     <a ui-sref="users">
                       <i class="fa fa-users"></i> Usuários
@@ -66,25 +71,23 @@
                 </ul>
               </li>
 
+              <!-- DASHBOARD -->
               <li ng-if="main.sessionService.user"
-                  ui-sref-active="active"
-                  uib-tooltip="Dashboard"
-                  tooltip-placement="bottom">
+                  ui-sref-active="active">
                 <a ui-sref="dashboard">
-                  <i class="fa fa-dashboard"></i>
-                  <span class="visible-xs-inline">Dashboard</span>
-                </a>
-              </li>
-              <li ng-if="main.sessionService.user"
-                  ui-sref-active="active"
-                  uib-tooltip="Pesos"
-                  tooltip-placement="bottom">
-                <a ui-sref="pesos">
-                  <i class="fa fa-balance-scale"></i>
-                  <span class="visible-xs-inline">Pesos</span>
+                  <i class="fa fa-dashboard"></i> Painel
                 </a>
               </li>
 
+              <!-- WEIGHT -->
+              <li ng-if="main.sessionService.user"
+                  ui-sref-active="active">
+                <a ui-sref="pesos">
+                  <i class="fa fa-balance-scale"></i> Pesos
+                </a>
+              </li>
+
+              <!-- USER -->
               <li ng-if="main.sessionService.user" class="dropdown">
                 <a href class="dropdown-toggle profile-image" data-toggle="dropdown">
                   <img gravatar-src-once="main.sessionService.user.email"
@@ -93,11 +96,14 @@
                   <span class="fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu">
+                  <!-- ACCOUNT -->
                   <li ui-sref-active="active">
                     <a ui-sref="userEdit({id:main.sessionService.user.id})">
                       <i class="fa fa-cog"></i> Minha Conta
                     </a>
                   </li>
+
+                  <!-- LOGOUT -->
                   <li>
                     <a href="#" ng-click="main.logout()">
                       <i class="fa fa-sign-out"></i> Sair

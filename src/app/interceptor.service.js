@@ -6,7 +6,7 @@
     .factory('httpInterceptor', httpInterceptor);
 
   /** @ngInject */
-  function httpInterceptor($q, $rootScope, toastr) {
+  function httpInterceptor($q, $location, $rootScope, toastr) {
 
     var service = {
       request: request,
@@ -31,31 +31,31 @@
       var mensagem = '';
 
       switch(response.status) {
-        case 401:
-          //user not loged
-          mensagem = 'Você não tem permissão para acessar essa funcionalidade.';
-          break;
-        case 404:
-          // not found
-          mensagem = 'O dado solicitado não foi encontrado.';
-          break;
-        case 405:
-          mensagem = 'Método não implementado.';
-          break;
-        case 422:
-         // mensagem = response.data.errors ? response.data.errors : 'IMPLEMENTAR';
-         mensagem = 'Por favor, corrija os erros encontrados.';
-         break;
-        case 500:
-        case 503:
-          mensagem = 'O serviço está indisponível. Tente novamente mais tarde.';
-          break;
-        default:
-          mensagem = 'Erro inesperado. Favor entrar em contato com o administrador do sistema informando o código de erro: ' + response.status;
-          break;
+      case 401:
+        mensagem = 'Existe mais de uma sessão com o mesmo login ou você não entrou.';
+        $location.path('/login');
+        break;
+      case 403:
+        mensagem = 'Você não tem permissão para acessar essa funcionalidade.';
+        break;
+      case 404:
+        mensagem = 'O dado solicitado não foi encontrado.';
+        break;
+      case 405:
+        mensagem = 'Método não implementado.';
+        break;
+      case 422:
+       mensagem = 'Por favor, corrija os erros encontrados.';
+       break;
+      case 500:
+      case 503:
+        mensagem = 'O serviço está indisponível. Tente novamente mais tarde.';
+        break;
+      default:
+        mensagem = 'Erro inesperado. Favor entrar em contato com o administrador do sistema informando o código de erro: ' + response.status;
+        break;
       }
 
-      //$log.error('XHR Failed for login.\n' + angular.toJson(response.data, true));
       if(mensagem) {
         toastr.error(mensagem);
       }

@@ -25,7 +25,6 @@
           return true;
         }
         else {
-          // toastr.warning('Favor fazer o login para entrar.');
           return false;
         }
       });
