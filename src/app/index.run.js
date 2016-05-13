@@ -21,7 +21,7 @@
     function permission() {
       // logged
       Permission.defineRole('logged', function() {
-        if ($rootScope.authentication_token) {
+        if ($rootScope.authenticationToken) {
           return true;
         }
         else {

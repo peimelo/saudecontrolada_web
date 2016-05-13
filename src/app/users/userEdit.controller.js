@@ -25,8 +25,8 @@
       );
     }
 
-    function assignUser(response) {
-      vm.user = response;
+    function assignUser(user) {
+      vm.user = user;
     }
 
     function destroy() {

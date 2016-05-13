@@ -8,9 +8,8 @@
   /** @ngInject */
   function pesosService($resource) {
     return $resource('/api/pesos/:id', { id: '@id' }, {
-      update: {
-        method: 'PUT'
-      }
+      query: { isArray: false },
+      update: { method: 'PUT' }
     });
   }
 })();

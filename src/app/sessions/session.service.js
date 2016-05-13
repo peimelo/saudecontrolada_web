@@ -6,11 +6,10 @@
     .factory('sessionService', sessionService);
 
   /** @ngInject */
-  function sessionService(alertingService, $http, $rootScope, $state) {
+  function sessionService($http, $rootScope, $state) {
     var api = '/api/sessions';
 
     var service = {
-      cleanAuth: cleanAuth,
       login: login,
       logout: logout,
       user: null
@@ -18,32 +17,36 @@
 
     return service;
 
-    function cleanAuth() {
-      $rootScope.authentication_token = null;
-      service.user = null;
-    }
-
     function login(user) {
       return $http.post(api, { login: user })
-        .then(getComplete);
+        .then(successCallback);
 
-      function getComplete(response) {
-        $rootScope.authentication_token = response.data.authentication_token;
-        service.user = response.data;
-        return response.data;
+      function successCallback(response) {
+        setAuthentication(response.data);
+        return service.user;
       }
     }
 
     function logout() {
-      cleanAuth();
       $state.go('home');
-      return $http.delete(api + '/0')
-        .then(getComplete);
 
-      function getComplete(response) {
-        alertingService.addSuccess(response.data.message);
+      return $http.delete(api + '/0')
+        .then(successCallback, errorCallback);
+
+      function successCallback(response) {
+        setAuthentication(null);
         return response.data;
       }
+
+      function errorCallback(response) {
+        setAuthentication(null);
+        return response.data;
+      }
+    }
+
+    function setAuthentication(user) {
+      service.user = user;
+      $rootScope.authenticationToken = user ? user.authentication_token : null;
     }
   }
 })();

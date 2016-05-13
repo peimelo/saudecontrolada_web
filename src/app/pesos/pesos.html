@@ -1,4 +1,7 @@
-<h1><i class="fa fa-balance-scale"></i> {{vm.title}} <span class="badge">{{vm.pesos.length}}</span></h1>
+<h1>
+  <i class="fa fa-balance-scale"></i> {{vm.title}}
+  <span class="badge">{{vm.pagination.totalItems}}</span>
+</h1>
 
 <div class="table-responsive">
   <table class="table table-bordered table-condensed table-hover table-striped">
@@ -13,6 +16,8 @@
     </tr>
     </thead>
     <tbody>
+
+      <!--<tr ng-repeat="peso in vm.pesos | startFromFilter: (vm.pagination.currentPage-1) * vm.pagination.itemsPerPage | limitTo: vm.pagination.itemsPerPage">-->
       <tr ng-repeat="peso in vm.pesos">
         <td width="100">
           <i class="fa fa-pencil fa-lg"></i>
@@ -27,3 +32,18 @@
     </tbody>
   </table>
 </div>
+
+<uib-pagination total-items="vm.pagination.totalItems"
+                ng-model="vm.pagination.currentPage"
+                ng-change="vm.query()"
+                ng-if="vm.pagination.totalItems"
+                max-size="5"
+                class="pagination-sm"
+                boundary-links="true"
+                rotate="false"
+                items-per-page="vm.pagination.itemsPerPage"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"
+                first-text="&laquo;"
+                last-text="&raquo;">
+</uib-pagination>

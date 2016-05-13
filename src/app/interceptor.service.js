@@ -17,8 +17,8 @@
     return service;
 
     function request(config) {
-      if($rootScope.authentication_token) {
-        config.headers.Authorization = $rootScope.authentication_token;
+      if($rootScope.authenticationToken) {
+        config.headers.Authorization = $rootScope.authenticationToken;
       }
       return config;
     }
