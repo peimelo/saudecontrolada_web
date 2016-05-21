@@ -13,6 +13,9 @@
         DASHBOARD: 'Dashboard',
         LOGOUT: 'Log out',
         WEIGHTS: 'Weights',
+        
+        NEXT: 'Next',
+        PREVIOUS: 'Previous',
 
         GRAPHS: 'Graphs',
         MAILBOX: 'Mailbox',
@@ -47,6 +50,9 @@
         DASHBOARD: 'Painel',
         LOGOUT: 'Sair',
         WEIGHTS: 'Pesos',
+
+        NEXT: 'Próximo',
+        PREVIOUS: 'Anterior',
 
         GRAPHS: 'Gráficos',
         MAILBOX: 'El correo',

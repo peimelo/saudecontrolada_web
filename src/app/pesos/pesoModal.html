@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="pesoModal.html">
-  <form name="form" role="form" novalidate ng-submit="vm.salvar(form.$valid);">
+  <form name="form" role="form" novalidate ng-submit="vm.submit(form.$valid);">
     <div class="modal-header">
       <h3 class="modal-title">{{vm.title}} Peso</h3>
     </div>
@@ -58,7 +58,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-primary" type="submit" ng-disabled="form.$invalid"><i class="fa fa-check"></i> Salvar</button>
-      <button class="btn btn-default" type="button" ng-click="vm.cancelar()">Cancelar</button>
+      <button class="btn btn-default" type="button" ng-click="vm.cancel()">Cancelar</button>
     </div>
   </form>
 </script>

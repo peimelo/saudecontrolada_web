@@ -9,9 +9,9 @@
   function PesoModalController(peso, PesosResource, $uibModalInstance) {
     var vm = this;
 
-    vm.cancelar = cancelar;
+    vm.cancel = cancel;
     vm.peso = peso;
-    vm.salvar = salvar;
+    vm.submit = submit;
     vm.title = '';
 
     activate();
@@ -19,7 +19,7 @@
     function activate() {
       if(peso.id) {
         vm.title = 'Alterando';
-        PesosResource.get({id: peso.id },
+        PesosResource.get({ id: peso.id },
           function(response) {
             vm.peso = response;
           }
@@ -30,11 +30,11 @@
       }
     }
 
-    function cancelar() {
+    function cancel() {
       $uibModalInstance.dismiss('cancel');
     }
 
-    function salvar(isValid) {
+    function submit(isValid) {
       if(isValid) {
         $uibModalInstance.close(vm.peso);
       }
