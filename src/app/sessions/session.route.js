@@ -12,8 +12,8 @@
         url: '/login',
         templateUrl: 'app/sessions/login.html',
         controller: 'SessionController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: { pageTitle: 'Entrar', specialClass: 'gray-bg' }
       });
   }
-
 })();

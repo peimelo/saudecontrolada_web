@@ -1,0 +1,64 @@
+<script type="text/ng-template" id="pesoModal.html">
+  <form name="form" role="form" novalidate ng-submit="vm.salvar(form.$valid);">
+    <div class="modal-header">
+      <h3 class="modal-title">{{vm.title}} Peso</h3>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+
+        <div class="col-sm-6">
+          <div class="form-group" id="data_3">
+
+            <label for="data" class="control-label">{{ 'DATE' | translate }} *</label>
+
+            <div class="input-group date">
+              <input type="datetime"
+                     id="data"
+                     class="form-control"
+                     date-time
+                     format="DD/MM/YYYY HH:mm"
+                     ng-model="vm.peso.data"
+                     view="hours"
+                     auto-close="true">
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+
+          <div class="form-group">
+            <label for="altura" class="control-label">{{ 'HEIGHT' | translate }} *</label>
+
+            <input type="decimal"
+                   class="form-control"
+                   id="altura"
+                   name="altura"
+                   ng-model="vm.peso.altura"
+                   required />
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+
+          <div class="form-group">
+            <label for="valor" class="control-label">{{ 'VALUE' | translate }} *</label>
+
+            <input type="decimal"
+                   class="form-control"
+                   id="valor"
+                   name="valor"
+                   ng-model="vm.peso.valor"
+                   required />
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="submit" ng-disabled="form.$invalid"><i class="fa fa-check"></i> Salvar</button>
+      <button class="btn btn-default" type="button" ng-click="vm.cancelar()">Cancelar</button>
+    </div>
+  </form>
+</script>

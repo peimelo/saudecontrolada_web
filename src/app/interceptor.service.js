@@ -45,7 +45,7 @@
         mensagem = 'Método não implementado.';
         break;
       case 422:
-       mensagem = 'Por favor, corrija os erros encontrados.';
+       mensagem = response.data.message ? response.data.message : 'Por favor, corrija os erros encontrados.';
        break;
       case 500:
       case 503:
@@ -66,5 +66,4 @@
       return $q.reject(response);
     }
   }
-
 })();

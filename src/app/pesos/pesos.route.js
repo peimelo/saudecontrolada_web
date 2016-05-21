@@ -7,11 +7,13 @@
 
   /** @ngInject */
   function routeConfig($stateProvider) {
-    $stateProvider.state('pesos', {
+    $stateProvider
+      .state('pesos', {
       url: '/pesos',
       controller: 'PesosController',
       controllerAs: 'vm',
       data: {
+        pageTitle: 'Pesos',
         permissions: {
           only: ['logged'],
           redirectTo: 'login'

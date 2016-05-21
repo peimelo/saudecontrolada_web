@@ -32,11 +32,15 @@
           }
         }
       })
-      .state('userNew', {
+      .state('signup', {
         url: '/signup',
         templateUrl: 'app/users/userNew.html',
         controller: 'UserNewController',
-        controllerAs: 'vm'
-      });  }
-
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Cadastrar-se',
+          specialClass: 'gray-bg'
+        }
+      });
+  }
 })();

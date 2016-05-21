@@ -19,6 +19,7 @@
 
     function gravatarConfig() {
       gravatarServiceProvider.defaults = {
+        size     : 48,
         'default': 'mm'  // Mystery man as default for missing avatars
       };
     }
@@ -32,11 +33,10 @@
     }
 
     function toastrConfig() {
-      toastr.options.timeOut = 5000;
+      toastr.options.timeOut = 7000;
       toastr.options.positionClass = 'toast-top-center';
       toastr.options.preventDuplicates = true;
       toastr.options.progressBar = true;
     }
   }
-
 })();

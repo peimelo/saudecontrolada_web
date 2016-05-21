@@ -9,42 +9,40 @@
   function DashboardController(sessionService, moment, pesosService) {
     var vm = this;
 
-    vm.sessionService = sessionService;
-
     vm.chartObject = {};
     vm.chartObject.type = "LineChart";
     vm.chartObject.data = {
       "cols": [
-        {id: "t", label: "Data", type: "string"},
-        {id: "s", label: "Peso", type: "number"}
+        { id: "t", label: "Data", type: "string" },
+        { id: "s", label: "Peso", type: "number" }
       ],
       "rows": []
     };
     vm.chartObject.options = {
       'title': 'Meu Peso (Kg)'
     };
-
-
     vm.data = [[]];
     vm.labels = [];
     vm.series = ['Peso (Kg)'];
+    vm.sessionService = sessionService;
 
-    active();
+    activate();
 
-    function active() {
+    function activate() {
       pesosService.query(
         function(response) {
-          var qtde = response.length;
+          var pesos = response.pesos;
+          var qtde = pesos.length;
           var google = [];
 
           for(var i = qtde-1; i >=0; i--) {
-            vm.labels.push(moment(response[i].data).format('L'));
-            vm.data[0].push(response[i].valor);
+            vm.labels.push(moment(pesos[i].data).format('L'));
+            vm.data[0].push(pesos[i].valor);
 
             google.push({
               c:[
-                {v:moment(response[i].data).format('L')},
-                {v:response[i].valor}
+                { v:moment(pesos[i].data).format('L') },
+                { v:pesos[i].valor }
               ]
             });
           }

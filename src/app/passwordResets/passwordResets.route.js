@@ -14,6 +14,8 @@
         controllerAs: 'vm',
         templateUrl: 'app/passwordResets/forgot.html',
         data: {
+          pageTitle: 'Redefinir minha senha',
+          specialClass: 'gray-bg',
           permissions: {
             except: ['logged'],
             redirectTo: 'home'

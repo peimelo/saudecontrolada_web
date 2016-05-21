@@ -1,0 +1,36 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+  <div class="sidebar-collapse">
+    <ul side-navigation class="nav metismenu" id="side-menu">
+      <li class="nav-header">
+
+        <div class="profile-element" uib-dropdown>
+          <img alt="main.sessionService.user.name" class="img-circle" gravatar-src-once="main.sessionService.user().email"/>
+          <a uib-dropdown-toggle href>
+            <span class="clear">
+              <span class="block m-t-xs">
+                <user-name></user-name>
+              </span>
+              <span class="text-muted text-xs block">Opções <b class="caret"></b></span>
+            </span>
+          </a>
+          <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+            <li><a ui-sref="app.profile">Profile</a></li>
+            <li><a ui-sref="app.contacts">Contacts</a></li>
+            <li><a ui-sref="mailbox.inbox">Mailbox</a></li>
+            <li class="divider"></li>
+            <li><a href="#" ng-click="main.logout()">{{ 'LOGOUT' | translate }}</a></li>
+          </ul>
+        </div>
+        <div class="logo-element">
+          SC
+        </div>
+      </li>
+      <li ui-sref-active="active">
+          <a ui-sref="dashboard"><i class="fa fa-dashboard"></i> <span class="nav-label">{{ 'DASHBOARD' | translate }}</span> </a>
+      </li>
+      <li ui-sref-active="active">
+          <a ui-sref="pesos"><i class="fa fa-balance-scale"></i> <span class="nav-label">{{ 'WEIGHTS' | translate }}</span> </a>
+      </li>
+    </ul>
+  </div>
+</nav>

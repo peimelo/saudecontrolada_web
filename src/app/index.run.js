@@ -6,13 +6,14 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($confirmModalDefaults, $log, Permission, $rootScope) {
-    angularConfirModal();
+  function runBlock($confirmModalDefaults, $log, Permission, $rootScope, $state) {
+    angularConfirmModal();
     permission();
+    state();
 
     $log.debug('runBlock end');
 
-    function angularConfirModal() {
+    function angularConfirmModal() {
       $confirmModalDefaults.defaultLabels.title = 'Confirmação';
       $confirmModalDefaults.defaultLabels.ok = 'Sim';
       $confirmModalDefaults.defaultLabels.cancel = 'Não';
@@ -28,6 +29,10 @@
           return false;
         }
       });
+    }
+
+    function state() {
+      $rootScope.$state = $state;
     }
   }
 

@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Saúde Controlada</title>
+    <meta name="description" content="Saúde Controlada">
+    <meta name="author" content="Paulo Melo">
+    <title page-title></title>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -22,112 +22,17 @@
     <!-- endinject -->
     <!-- endbuild -->
   </head>
-  <body ng-controller="MainController as main" ng-cloak>
-    <div class="container">
-      <!--[if lt IE 10]>
-        <p class="browsehappy">Você está usando um navegador <strong>desatualizado</strong>. Por favor <a href="http://browsehappy.com/">atualize seu navegador</a> para melhorar sua experiência.</p>
-      <![endif]-->
+  <!-- ControllerAs syntax -->
+  <!-- Main controller with serveral data used in Inspinia theme on diferent view -->
+  <body ng-controller="MainController as main" class="{{ $state.current.data.specialClass }}" landing-scrollspy id="page-top">
+    <!--[if lt IE 10]>
+    <p class="browsehappy">
+      Você está usando um navegador <strong>desatualizado</strong>.
+      Por favor <a href="http://browsehappy.com/">atualize seu navegador</a> para melhorar sua experiência.
+    </p>
+    <![endif]-->
 
-      <!-- Static navbar -->
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-saude" aria-expanded="false">
-              <span class="sr-only">Menu</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" ui-sref="home"><i class="fa fa-heartbeat"></i> Saúde Controlada</a>
-          </div>
-          <div class="navbar-collapse collapse" id="navbar-saude">
-            <ul class="nav navbar-nav navbar-right">
-              <!-- SIGIN UP -->
-              <li ng-hide="main.sessionService.user" ui-sref-active="active">
-                <a ui-sref="userNew">
-                  <i class="fa fa-user-plus"></i> Cadastrar-se
-                </a>
-              </li>
-
-              <!-- LOG IN -->
-              <li ng-hide="main.sessionService.user" ui-sref-active="active"><a ui-sref="login">
-                <i class="fa fa-sign-in"></i> Entrar</a>
-              </li>
-
-              <!-- ADMINISTRATION -->
-              <li ng-if="main.sessionService.user.admin"
-                  class="dropdown">
-                <a href class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-cog"></i> Administração
-                  <span class="fa fa-angle-down"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <!-- USERS -->
-                  <li ui-sref-active="active">
-                    <a ui-sref="users">
-                      <i class="fa fa-users"></i> Usuários
-                    </a>
-                  </li>
-                </ul>
-              </li>
-
-              <!-- DASHBOARD -->
-              <li ng-if="main.sessionService.user"
-                  ui-sref-active="active">
-                <a ui-sref="dashboard">
-                  <i class="fa fa-dashboard"></i> Painel
-                </a>
-              </li>
-
-              <!-- WEIGHT -->
-              <li ng-if="main.sessionService.user"
-                  ui-sref-active="active">
-                <a ui-sref="pesos">
-                  <i class="fa fa-balance-scale"></i> Pesos
-                </a>
-              </li>
-
-              <!-- USER -->
-              <li ng-if="main.sessionService.user" class="dropdown">
-                <a href class="dropdown-toggle profile-image" data-toggle="dropdown">
-                  <img gravatar-src-once="main.sessionService.user.email"
-                       alt="{{main.sessionService.user.name}}"
-                       class="img-circle">
-                  <span class="fa fa-angle-down"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <!-- ACCOUNT -->
-                  <li ui-sref-active="active">
-                    <a ui-sref="userEdit({id:main.sessionService.user.id})">
-                      <i class="fa fa-cog"></i> Minha Conta
-                    </a>
-                  </li>
-
-                  <!-- LOGOUT -->
-                  <li>
-                    <a href="#" ng-click="main.logout()">
-                      <i class="fa fa-sign-out"></i> Sair
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div><!--/.container-fluid -->
-      </nav>
-
-      <alerts></alerts>
-
-      <div ui-view></div>
-
-    </div> <!-- /container -->
-
-    <hr>
-    <footer class="footer">
-      <div class="container">
-        <!--<a class="pull-right" href="https://badge.fury.io/gh/peimelo%2Fsaudecontrolada_api"><img src="https://badge.fury.io/gh/peimelo%2Fsaudecontrolada_api.svg" alt="GitHub version" height="18"></a>-->
-      </div>
-    </footer>
+    <div ui-view></div>
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->

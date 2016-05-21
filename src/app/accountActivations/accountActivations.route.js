@@ -16,7 +16,11 @@
         url: '/account_activations',
         controller: 'AccountActivationsController',
         controllerAs: 'vm',
-        templateUrl: 'app/accountActivations/accountActivations.html'
+        templateUrl: 'app/accountActivations/accountActivations.html',
+        data: {
+          pageTitle: 'Ativar minha conta',
+          specialClass: 'gray-bg',
+        }
       });
   }
 })();

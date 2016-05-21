@@ -1,58 +1,80 @@
-<div class="col-sm-6 col-sm-offset-3">
-  <h2><i class="fa fa-sign-in"></i> {{vm.title}}</h2>
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+  <div>
+    <div>
+      <h1 class="logo-name"><i class="fa fa-sign-in"></i></h1>
+    </div>
+    <h3>Seja bem vindo ao Saúde Controlada</h3>
+    <p>Ajudando você a ter uma vida saudável.
+    </p>
+    <p>Entre para vê-lo em ação.</p>
 
-  <div ng-if="vm.error" class="alert alert-danger">{{vm.error}}</div>
-
-  <form name="form" ng-submit="vm.login()" role="form">
-    <div class="form-group"
-         ng-class="{ 'has-error': !form.email.$pristine  && form.email.$invalid }">
-
+    <form class="m-t" role="form" name="form" ng-submit="vm.submit()">
       <!-- EMAIL -->
-      <label for="email">E-mail</label>
-      <input id="email"
-             autofocus
-             class="form-control"
-             name="email"
-             ng-maxlength="255"
-             ng-model="vm.user.email"
-             ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
-             required
-             type="email">
-      <div class="help-block"
-           ng-if="!form.email.$pristine"
-           ng-messages="form.email.$error">
-        <div ng-messages-include="app/components/messages.html"></div>
+      <div class="form-group"
+           ng-class="{ 'has-error': !form.email.$pristine  && form.email.$invalid }">
+        <input id="email"
+               autofocus
+               class="form-control"
+               name="email"
+               ng-maxlength="255"
+               ng-model="vm.user.email"
+               ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+               placeholder="E-mail"
+               required
+               type="email">
+        <div class="help-block"
+             ng-if="!form.email.$pristine"
+             ng-messages="form.email.$error">
+          <div ng-messages-include="app/components/messages.html"></div>
+        </div>
       </div>
-    </div>
 
-    <!-- PASSWORD -->
-    <div class="form-group"
-         ng-class="{ 'has-error': !form.password.$pristine && form.password.$invalid }">
-      <label for="password">Senha</label>
-      <input id="password"
-             class="form-control"
-             name="password"
-             ng-maxlength="128"
-             ng-minlength="8"
-             ng-model="vm.user.password"
-             required
-             type="password">
-      <div class="help-block"
-           ng-if="!form.password.$pristine"
-           ng-messages="form.password.$error">
-        <div ng-messages-include="app/components/messages.html"></div>
+      <!-- PASSWORD -->
+      <div class="form-group"
+           ng-class="{ 'has-error': !form.password.$pristine && form.password.$invalid }">
+        <input id="password"
+               class="form-control"
+               name="password"
+               ng-maxlength="128"
+               ng-minlength="8"
+               ng-model="vm.user.password"
+               placeholder="Senha"
+               required
+               type="password">
+        <div class="help-block"
+             ng-if="!form.password.$pristine"
+             ng-messages="form.password.$error">
+          <div ng-messages-include="app/components/messages.html"></div>
+        </div>
       </div>
-    </div>
 
-    <div class="form-actions">
-      <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Enviar</button>
-    </div>
-  </form>
-<hr>
-<p><label><a ui-sref="forgot">
-  <i class="fa fa-user-secret"></i> Esqueceu sua senha?
-</a></label></p>
-<p><label><a ui-sref="resentAccountActivation">
-  <i class="fa fa-reply"></i> Não recebeu instruções de ativação?
-</a></label></p>
+      <button type="submit" class="btn btn-primary block full-width m-b" ng-disabled="form.$invalid">Enviar</button>
+
+      <p>
+        <a ui-sref="forgot">
+          <small>Esqueceu a senha?</small>
+        </a>
+      </p>
+
+      <p>
+        <a ui-sref="resentAccountActivation">
+          <small>Não recebeu instruções de ativação?</small>
+        </a>
+      </p>
+
+      <p class="text-muted text-center">
+        <small>Não tem uma conta?</small>
+      </p>
+      <p>
+        <a class="btn btn-white btn-block" ui-sref="signup">
+          <i class="fa fa-user-plus fa-lg"></i> Criar uma conta
+        </a>
+      </p>
+      <p>
+        <a  ui-sref="home">
+          <i class="fa fa-home fa-lg"></i> Início
+        </a>
+      </p>
+    </form>
+  </div>
 </div>

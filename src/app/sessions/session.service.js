@@ -8,11 +8,14 @@
   /** @ngInject */
   function sessionService($http, $rootScope, $state) {
     var api = '/api/sessions';
+    var user = null;
 
     var service = {
       login: login,
       logout: logout,
-      user: null
+      user: function() {
+        return user;
+      }
     };
 
     return service;
@@ -31,21 +34,16 @@
       $state.go('home');
 
       return $http.delete(api + '/0')
-        .then(successCallback, errorCallback);
+        .then(responseCallback, responseCallback);
 
-      function successCallback(response) {
-        setAuthentication(null);
-        return response.data;
-      }
-
-      function errorCallback(response) {
+      function responseCallback(response) {
         setAuthentication(null);
         return response.data;
       }
     }
 
-    function setAuthentication(user) {
-      service.user = user;
+    function setAuthentication(userParam) {
+      user = userParam;
       $rootScope.authenticationToken = user ? user.authentication_token : null;
     }
   }

@@ -19,7 +19,7 @@
     }
 
     function logout() {
-      return sessionService.logout();
+      sessionService.logout();
     }
 
   }

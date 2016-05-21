@@ -3,10 +3,10 @@
 
   angular
     .module('app')
-    .factory('pesosService', pesosService);
+    .factory('PesosResource', PesosResource);
 
   /** @ngInject */
-  function pesosService($resource) {
+  function PesosResource($resource) {
     return $resource('/api/pesos/:id', { id: '@id' }, {
       query: { isArray: false },
       update: { method: 'PUT' }

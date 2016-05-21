@@ -5,7 +5,15 @@
   angular
     .module('app')
     .constant('malarkey', malarkey)
-    .constant('toastr', toastr)
-    .constant('moment', moment);
+    .constant('moment', moment)
+    .constant('uibPaginationConfig', {
+      boundaryLinks: true,
+      firstText: 'Primeiro',
+      previousText: 'Anterior',
+      nextText: 'Próximo',
+      lastText: 'Último',
+      rotate: false
+    })
+    .constant('toastr', toastr);
 
 })();

@@ -12,8 +12,8 @@
         url: '/',
         templateUrl: 'app/home/home.html',
         controller: 'HomeController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: { specialClass: 'landing-page' }
       });
   }
-
 })();

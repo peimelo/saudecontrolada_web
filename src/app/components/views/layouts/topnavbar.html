@@ -1,0 +1,39 @@
+<div class="row border-bottom">
+
+  <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+
+    <div class="navbar-header">
+      <span minimaliza-sidebar></span>
+      <a class="navbar-brand" ui-sref="dashboard">Saúde Controlada</a>
+    </div>
+
+    <ul class="nav navbar-top-links navbar-right">
+
+      <li uib-dropdown ng-controller="TranslateController as vm">
+        <a class="count-info" href uib-dropdown-toggle>
+          <img ng-src="{{ vm.flags[vm.language] }}" alt="{{ vm.language }}">
+        </a>
+
+        <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+          <li>
+            <a class="btn btn-white set_br" ng-class="{active:vm.language == 'pt-BR'}" ng-click="vm.changeLanguage('pt-BR')">
+            <img src="app/theme/img/flags/16/Brazil.png"> Brasil
+            </a>
+          </li>
+
+          <li>
+            <a class="btn btn-white set_en" ng-class="{active:vm.language == 'en'}" ng-click="vm.changeLanguage('en')">
+              <img src="app/theme/img/flags/16/United-States.png"> United States
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#" ng-click="main.logout()">
+          <i class="fa fa-sign-out"></i> {{ 'LOGOUT' | translate }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
