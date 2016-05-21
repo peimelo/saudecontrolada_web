@@ -14,8 +14,8 @@
 
     vm.changeLanguage = changeLanguage;
     vm.flags = {
-      'en': 'app/theme/img/flags/16/United-States.png',
-      'pt-BR': 'app/theme/img/flags/16/Brazil.png'
+      'en': '../img/flags/16/United-States.png',
+      'pt-BR': '../img/flags/16/Brazil.png'
     };
     vm.language = 'pt-BR';
 
