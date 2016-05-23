@@ -6,7 +6,8 @@
     .controller('PasswordResetsController', PasswordResetsController);
 
   /** @ngInject */
-  function PasswordResetsController(alertingService, PasswordResetsResource, $scope, $state, $stateParams) {
+  function PasswordResetsController(PasswordResetsResource, $state,
+    $stateParams, toastr) {
     var vm = this;
 
     var params = null;
@@ -23,26 +24,36 @@
       }
     }
 
-    function resetPassword() {
-      var newPassword = new PasswordResetsResource({ user: vm.user });
+    function forgot(form) {
+      if (form.$valid) {
+        var newPassword = new PasswordResetsResource({
+          password_reset: vm.user
+        });
 
-      newPassword.$update(params, function(response) {
-        alertingService.addSuccess(response.message);
-        $state.go('login');
-      }, function(error) {
-        alertingService.addDanger(error.data.message);
-      });
+        newPassword.$save(function(response) {
+          toastr.success(response.message);
+          $state.go('login');
+        });
+      }
+      else {
+        toastr.warning('Por favor, preencha o e-mail.');
+        form.submitted = true;
+      }
     }
 
-    function forgot() {
-      var newPassword = new PasswordResetsResource({
-        password_reset: vm.user
-      });
+    function resetPassword(form) {
+      if (form.$valid) {
+        var newPassword = new PasswordResetsResource({ user: vm.user });
 
-      newPassword.$save(function(response) {
-        alertingService.addSuccess(response.message);
-        $state.go('login');
-      });
+        newPassword.$update(params, function(response) {
+          toastr.success(response.message);
+          $state.go('login');
+        });
+      }
+      else {
+        toastr.warning('Todos os campos devem estar preenchidos e validados.');
+        form.submitted = true;
+      }
     }
   }
 })();

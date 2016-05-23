@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <div class="ibox-content">
 
-        <h2 class="font-bold">Redefinir minha senha</h2>
+        <h2 class="font-bold">Esqueci minha senha</h2>
 
         <p>
           Digite seu e-mail e você receberá instruções para redefiní-la.
@@ -15,11 +15,11 @@
         <div class="row">
 
           <div class="col-lg-12">
-            <form class="m-t" role="form" name="form" ng-submit="vm.forgot()">
+            <form class="m-t" role="form" name="form" ng-submit="vm.forgot(form)" novalidate>
               <div class="form-group">
                 <!-- EMAIL -->
                 <div class="form-group"
-                     ng-class="{ 'has-error': !form.email.$pristine && form.email.$invalid }">
+                     ng-class="{ 'has-error': form.email.$invalid && form.submitted }">
                   <input id="email"
                          autofocus
                          class="form-control"
@@ -31,28 +31,23 @@
                          required
                          type="email">
                   <div class="help-block"
-                       ng-if="!form.email.$pristine"
+                       ng-if="form.email.$invalid && form.submitted"
                        ng-messages="form.email.$error">
                     <div ng-messages-include="app/components/messages.html"></div>
                   </div>
                 </div>
               </div>
 
-              <button type="submit" ng-disabled="form.$invalid"class="btn btn-primary block full-width m-b">
+              <button type="submit" class="btn btn-primary block full-width m-b">
                 Enviar
               </button>
 
+              <div ng-include="'app/components/views/layouts/shared_links_in.html'"></div>
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <hr/>
-  <p class="text-center">
-    <a  ui-sref="home">
-      <i class="fa fa-home fa-lg"></i> Início
-    </a>
-  </p>
   <div ng-include="'app/components/views/layouts/footer_admin_tasks.html'"></div>
 </div>

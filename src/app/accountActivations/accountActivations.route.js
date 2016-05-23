@@ -9,7 +9,7 @@
   function routeConfig($stateProvider) {
     $stateProvider
       .state('confirmAccountActivation', {
-        url: '/account_activations/:id',
+        url: '/account_activations/:id?email',
         controller: 'AccountActivationsController'
       })
       .state('resentAccountActivation', {

@@ -1,0 +1,34 @@
+<hr/>
+<p ng-if="!$state.is('forgot')">
+  <a ui-sref="forgot">Esqueceu a senha?</a>
+</p>
+
+<p ng-if="!$state.is('resentAccountActivation')">
+  <a ui-sref="resentAccountActivation">
+    Não recebeu instruções de ativação?
+  </a>
+</p>
+
+<p class="text-muted text-center" ng-if="!$state.is('login')">
+  Já tem uma conta?
+</p>
+<p ng-if="!$state.is('login')">
+  <a class="btn btn-white btn-block" ui-sref="login">
+    <i class="fa fa-sign-in fa-lg"></i> Entrar
+  </a>
+</p>
+
+<p class="text-muted text-center" ng-if="!$state.is('signup')">
+  Não tem uma conta?
+</p>
+<p ng-if="!$state.is('signup')">
+  <a class="btn btn-white btn-block" ui-sref="signup">
+    <i class="fa fa-user-plus fa-lg"></i> Criar uma conta
+  </a>
+</p>
+
+<p>
+  <a ui-sref="home">
+    <i class="fa fa-home fa-lg"></i> Voltar para o Início
+  </a>
+</p>

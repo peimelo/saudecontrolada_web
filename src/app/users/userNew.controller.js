@@ -31,6 +31,7 @@
             $state.go('home');
           },
           function(error) {
+            form.submitted = true;
             if (error.status === 422) {
               angular.forEach(error.data, function (errors, field) {
                 form[field].$setValidity('server', false);
@@ -42,6 +43,7 @@
       }
       else {
         toastr.warning('Todos os campos devem estar preenchidos e validados.');
+        form.submitted = true;
       }
     }
   }

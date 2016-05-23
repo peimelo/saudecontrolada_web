@@ -23,11 +23,13 @@
         }
       })
       .state('passwordReset', {
-        url: '/password_resets/:id/email/:email',
+        url: '/password_resets/:id?email',
         controller: 'PasswordResetsController',
         controllerAs: 'vm',
         templateUrl: 'app/passwordResets/passwordReset.html',
         data: {
+          pageTitle: 'Redefinir minha senha',
+          specialClass: 'gray-bg',
           permissions: {
             except: ['logged'],
             redirectTo: 'home'
