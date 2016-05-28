@@ -13,9 +13,10 @@
         DASHBOARD: 'Dashboard',
         LOGOUT: 'Log out',
         WEIGHTS: 'Weights',
-        
+
         NEXT: 'Next',
         PREVIOUS: 'Previous',
+        INCLUDE: 'Include',
 
         GRAPHS: 'Graphs',
         MAILBOX: 'Mailbox',
@@ -53,6 +54,7 @@
 
         NEXT: 'Próximo',
         PREVIOUS: 'Anterior',
+        INCLUDE: 'Incluir',
 
         GRAPHS: 'Gráficos',
         MAILBOX: 'El correo',

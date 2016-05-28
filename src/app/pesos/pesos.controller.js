@@ -6,19 +6,37 @@
     .controller('PesosController', PesosController);
 
   /** @ngInject */
-  function PesosController(PesosResource, $uibModal) {
+  function PesosController(moment, PesosResource, toastr, $uibModal) {
     var vm = this;
 
     vm.pagination = {};
     vm.pesos = [];
     vm.openModal = openModal;
     vm.query = query;
+    vm.remove = remove;
+    vm.showMode = 'table';
     vm.title = 'Pesos';
+
+    // graphics
+    vm.data = [[]];
+    vm.labels = [];
+    vm.series = ['Peso (Kg)'];
 
     activate();
 
     function activate() {
       query();
+    }
+    
+    function getChart() {
+      vm.data = [[]];
+      vm.labels = [];
+      var qtde = vm.pesos.length;
+
+      for (var i = qtde - 1; i >= 0; i--) {
+        vm.labels.push(moment(vm.pesos[i].data).format('L'));
+        vm.data[0].push(vm.pesos[i].valor);
+      }
     }
 
     function openModal(pesoGrid) {
@@ -26,21 +44,18 @@
         animation: true,
         controller: 'PesoModalController',
         controllerAs: 'vm',
-        windowClass: 'center-modal',
         resolve: {
           peso: function() {
             return angular.copy(pesoGrid);
           }
         },
-        templateUrl: 'pesoModal.html'
+        templateUrl: 'pesoModal.html',
+        windowClass: 'center-modal'
       });
 
       modalInstance.result.then(
-        function(peso) {
-          if (peso.id) {
-          }
-          else {
-          }
+        function() {
+          query();
         }
       );
     }
@@ -50,6 +65,16 @@
         function(response) {
           vm.pesos = response.pesos;
           vm.pagination = response.meta;
+          getChart();
+        }
+      );
+    }
+
+    function remove(peso) {
+      PesosResource.delete({ id: peso.id },
+        function(response) {
+          toastr.success(response.message);
+          query();
         }
       );
     }

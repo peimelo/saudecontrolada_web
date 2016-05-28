@@ -6,7 +6,7 @@
     .controller('PesoModalController', PesoModalController);
 
   /** @ngInject */
-  function PesoModalController(peso, PesosResource, $uibModalInstance) {
+  function PesoModalController(moment, peso, PesosResource, toastr, $uibModalInstance) {
     var vm = this;
 
     vm.cancel = cancel;
@@ -17,7 +17,7 @@
     activate();
 
     function activate() {
-      if(peso.id) {
+      if(peso) {
         vm.title = 'Alterando';
         PesosResource.get({ id: peso.id },
           function(response) {
@@ -26,6 +26,7 @@
         );
       }
       else {
+        vm.peso = { data: moment().format('YYYY-MM-DD') };
         vm.title = 'Incluindo';
       }
     }
@@ -34,9 +35,25 @@
       $uibModalInstance.dismiss('cancel');
     }
 
-    function submit(isValid) {
-      if(isValid) {
-        $uibModalInstance.close(vm.peso);
+    function submit(form) {
+      if (form.$valid) {
+        if (vm.peso.id) {
+          vm.peso.$update(function(response) {
+            toastr.success(response.message);
+            $uibModalInstance.close(response);
+          });
+        }
+        else {
+          var newPeso = new PesosResource(vm.peso);
+
+          newPeso.$save(function(response) {
+            toastr.success(response.message);
+            $uibModalInstance.close(response);
+          });
+        }
+      }
+      else {
+        form.submitted = true;
       }
     }
   }

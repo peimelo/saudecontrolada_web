@@ -20,13 +20,13 @@
       'angular-loading-bar',
       'chart.js',
       'datePicker',
-      'googlechart',
       'pascalprecht.translate',
       'permission',
       'ui.bootstrap',
       'ui.gravatar',
       'ui.mask',
       'ui.router',
+      'ui.utils.masks',
       'ui.validate'
     ]);
 
