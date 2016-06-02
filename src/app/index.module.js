@@ -20,6 +20,7 @@
       'angular-loading-bar',
       'chart.js',
       'datePicker',
+      'googlechart',
       'pascalprecht.translate',
       'permission',
       'ui.bootstrap',

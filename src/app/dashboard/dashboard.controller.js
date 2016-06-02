@@ -6,7 +6,7 @@
     .controller('DashboardController', DashboardController);
 
   /** @ngInject */
-  function DashboardController(sessionService, moment, pesosService) {
+  function DashboardController(sessionService, moment, PesosResource) {
     var vm = this;
 
     vm.chartObject = {};
@@ -29,7 +29,7 @@
     activate();
 
     function activate() {
-      pesosService.query(
+      PesosResource.query(
         function(response) {
           var pesos = response.pesos;
           var qtde = pesos.length;
