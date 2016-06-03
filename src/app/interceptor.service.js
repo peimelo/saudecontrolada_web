@@ -33,6 +33,7 @@
       switch(response.status) {
       case 401:
         mensagem = 'Existe mais de uma sessão com o mesmo login ou você não entrou.';
+        $rootScope.authenticationToken = null;
         $location.path('/login');
         break;
       case 403:

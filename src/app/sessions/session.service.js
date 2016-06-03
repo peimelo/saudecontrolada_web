@@ -6,7 +6,7 @@
     .factory('sessionService', sessionService);
 
   /** @ngInject */
-  function sessionService($http, $rootScope, $state) {
+  function sessionService($http, $rootScope) {
     var api = '/api/sessions';
     // var user = null;
 
@@ -29,8 +29,6 @@
     }
 
     function logout() {
-      $state.go('home');
-
       return $http.delete(api + '/0')
         .then(responseCallback, responseCallback);
 

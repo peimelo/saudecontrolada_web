@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(sessionService) {
+  function MainController(sessionService, $state) {
     var vm = this;
 
     vm.alerts = [];
@@ -19,8 +19,9 @@
     }
 
     function logout() {
-      sessionService.logout();
+      sessionService.logout().then(function() {
+        $state.go('home');
+      });
     }
-
   }
 })();

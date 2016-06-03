@@ -10,9 +10,9 @@
     activate();
 
     function activate() {
-      if (sessionService.user) {
-        $state.go('dashboard');
-      }
+      // if (sessionService.user) {
+      //   $state.go('dashboard');
+      // }
     }
   }
 })();

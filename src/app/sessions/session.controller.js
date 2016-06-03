@@ -6,7 +6,7 @@
     .controller('SessionController', SessionController);
 
   /** @ngInject */
-  function SessionController(sessionService, $state, toastr) {
+  function SessionController($rootScope, sessionService, $state, toastr) {
     var vm = this;
 
     vm.submit = submit;
@@ -15,8 +15,9 @@
     activate();
 
     function activate() {
-      if (sessionService.user) {
-        sessionService.logout();
+      if ($rootScope.authenticationToken && sessionService.user) {
+        // sessionService.logout();
+        $state.go('dashboard');
       }
     }
 
