@@ -15,7 +15,7 @@
     activate();
 
     function activate() {
-      if (sessionService.user()) {
+      if (sessionService.user) {
         sessionService.logout();
       }
     }
@@ -25,7 +25,7 @@
         sessionService.login(vm.user).then(
           function() {
             vm.user = {};
-            $state.go('pesos');
+            $state.go('dashboard');
           }
         );
       }

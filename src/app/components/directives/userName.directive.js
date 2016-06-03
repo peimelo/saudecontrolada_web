@@ -9,7 +9,7 @@
   function userName(sessionService) {
     var directive = {
       restrict: 'E',
-      template: '<strong class="font-bold">{{user}}</strong>',
+      template: '<strong class="font-bold">{{ sessionService.user.name }}</strong>',
       scope: true,
       link: linkFunc
     };
@@ -18,7 +18,7 @@
 
     /** @ngInject */
     function linkFunc(scope) {
-      scope.user = sessionService.user().name;
+      scope.sessionService = sessionService;
     }
   }
 })();

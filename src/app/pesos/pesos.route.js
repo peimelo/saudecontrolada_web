@@ -19,6 +19,10 @@
           redirectTo: 'login'
         }
       },
+      ncyBreadcrumb: {
+        label: 'Pesos',
+        parent: 'home'
+      },
       templateUrl: 'app/pesos/pesos.html'
     });
   }

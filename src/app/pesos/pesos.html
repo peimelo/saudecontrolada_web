@@ -15,22 +15,14 @@
     <div class="row wrapper border-bottom white-bg page-heading">
       <div class="col-lg-10">
         <h2>
-          {{ $state.current.data.pageTitle }}
+          <i class="fa fa-balance-scale"></i> {{ $state.current.data.pageTitle }}
           <span class="badge badge-info">{{ vm.pagination.totalItems }}</span>
         </h2>
-        <ol class="breadcrumb">
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li class="active">
-            <strong>Layouts</strong>
-          </li>
-        </ol>
-      </div>
-      <div class="col-lg-2">
 
+        <div ncy-breadcrumb></div>
       </div>
     </div>
+
     <div class="wrapper wrapper-content animated fadeInRight">
       <div class="row">
         <div class="col-lg-12">
@@ -43,11 +35,13 @@
               <div class="btn-group pull-right">
                 <label class="btn btn-default"
                        ng-model="vm.showMode.chart"
+                       uib-tooltip="Mostrar/Esconder o gráfico"
                        uib-btn-checkbox>
                   <i class="fa fa-line-chart"></i>
                 </label>
                 <label class="btn btn-default"
                        ng-model="vm.showMode.table"
+                       uib-tooltip="Mostrar/Esconder a tabela"
                        uib-btn-checkbox>
                   <i class="fa fa-list-alt"></i>
                 </label>
@@ -56,15 +50,6 @@
             <div class="ibox-content">
               <!-- CHART -->
               <div google-chart chart="vm.chartObject" ng-if="vm.showMode.chart"></div>
-
-              <canvas id="line"
-                      class="chart chart-line"
-                      chart-data="vm.data"
-                      chart-labels="vm.labels"
-                      chart-legend="true"
-                      chart-series="vm.series"
-                      ng-if="vm.showMode == 'chartw'">
-              </canvas>
 
               <!-- TABLE -->
               <div class="table-responsive" ng-if="vm.showMode.table">
@@ -107,7 +92,7 @@
               <uib-pagination total-items="vm.pagination.totalItems"
                               ng-model="vm.pagination.currentPage"
                               ng-change="vm.query()"
-                              ng-if="vm.pagination.totalItems"
+                              ng-if="vm.pagination.totalItems && (vm.showMode.chart || vm.showMode.table)"
                               max-size="5"
                               class="pagination-sm"
                               items-per-page="vm.pagination.itemsPerPage">

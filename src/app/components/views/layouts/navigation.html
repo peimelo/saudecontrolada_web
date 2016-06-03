@@ -4,21 +4,27 @@
       <li class="nav-header">
 
         <div class="profile-element" uib-dropdown>
-          <img alt="main.sessionService.user.name" class="img-circle" gravatar-src-once="main.sessionService.user().email"/>
+          <img alt="main.sessionService.user.name"
+               class="img-circle"
+               gravatar-src-once="main.sessionService.user.email"/>
+
           <a uib-dropdown-toggle href>
             <span class="clear">
               <span class="block m-t-xs">
                 <user-name></user-name>
               </span>
-              <span class="text-muted text-xs block">Opções <b class="caret"></b></span>
+              <span class="text-muted text-xs block">
+                Opções <b class="caret"></b>
+              </span>
             </span>
           </a>
+
           <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
-            <li><a ui-sref="app.profile">Profile</a></li>
-            <li><a ui-sref="app.contacts">Contacts</a></li>
-            <li><a ui-sref="mailbox.inbox">Mailbox</a></li>
+            <li><a ui-sref="userEdit">{{ 'PROFILE' | translate }}</a></li>
             <li class="divider"></li>
-            <li><a href="#" ng-click="main.logout()">{{ 'LOGOUT' | translate }}</a></li>
+            <li>
+              <a href="#" ng-click="main.logout()">{{ 'LOGOUT' | translate }}</a>
+            </li>
           </ul>
         </div>
         <div class="logo-element">
@@ -26,10 +32,16 @@
         </div>
       </li>
       <li ui-sref-active="active">
-          <a ui-sref="dashboard"><i class="fa fa-dashboard"></i> <span class="nav-label">{{ 'DASHBOARD' | translate }}</span> </a>
+        <a ui-sref="dashboard">
+          <i class="fa fa-dashboard"></i>
+          <span class="nav-label">{{ 'DASHBOARD' | translate }}</span>
+        </a>
       </li>
       <li ui-sref-active="active">
-          <a ui-sref="pesos"><i class="fa fa-balance-scale"></i> <span class="nav-label">{{ 'WEIGHTS' | translate }}</span> </a>
+        <a ui-sref="pesos">
+          <i class="fa fa-balance-scale"></i>
+          <span class="nav-label">{{ 'WEIGHTS' | translate }}</span>
+        </a>
       </li>
     </ul>
   </div>

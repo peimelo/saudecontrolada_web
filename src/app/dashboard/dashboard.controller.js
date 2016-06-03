@@ -6,50 +6,54 @@
     .controller('DashboardController', DashboardController);
 
   /** @ngInject */
-  function DashboardController(sessionService, moment, PesosResource) {
+  function DashboardController(moment, PesosResource) {
     var vm = this;
 
-    vm.chartObject = {};
-    vm.chartObject.type = "LineChart";
-    vm.chartObject.data = {
-      "cols": [
-        { id: "t", label: "Data", type: "string" },
-        { id: "s", label: "Peso", type: "number" }
-      ],
-      "rows": []
+    vm.chartObject = {
+      data: {
+        cols: [
+          { id: 't', label: 'Data', type: 'string' },
+          { id: 's', label: 'Peso', type: 'number' }
+        ],
+        rows: []
+      },
+      options: {
+        hAxis: {
+          title: 'Data'
+        },
+        vAxis: {
+          title: 'Peso (kg)'
+        }
+      },
+      type: 'LineChart'
     };
-    vm.chartObject.options = {
-      'title': 'Meu Peso (Kg)'
-    };
-    vm.data = [[]];
-    vm.labels = [];
-    vm.series = ['Peso (Kg)'];
-    vm.sessionService = sessionService;
+    var pesos = [];
 
     activate();
 
     function activate() {
-      PesosResource.query(
+      PesosResource.query({ page: 1 },
         function(response) {
-          var pesos = response.pesos;
-          var qtde = pesos.length;
-          var google = [];
-
-          for(var i = qtde-1; i >=0; i--) {
-            vm.labels.push(moment(pesos[i].data).format('L'));
-            vm.data[0].push(pesos[i].valor);
-
-            google.push({
-              c:[
-                { v:moment(pesos[i].data).format('L') },
-                { v:pesos[i].valor }
-              ]
-            });
-          }
-
-          vm.chartObject.data.rows = google;
+          pesos = response.pesos;
+          getChart();
         }
       );
+    }
+
+    function getChart() {
+      var qtde = pesos.length;
+      var googleChart = [];
+
+      for (var i = qtde - 1; i >= 0; i--) {
+        googleChart.push({
+          c:[
+            { v: moment(pesos[i].data).format('L') },
+            { v: pesos[i].valor }
+          ]
+        });
+      }
+
+      vm.chartObject.data.rows = googleChart;
     }
   }
 })();

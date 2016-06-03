@@ -6,7 +6,7 @@
     .controller('UserEditController', UserEditController);
 
   /** @ngInject */
-  function UserEditController(alertingService, $scope, sessionService, $state, $stateParams, toastr, UsersResource) {
+  function UserEditController(alertingService, sessionService, $state, toastr, UsersResource) {
     var vm = this;
 
     vm.destroy = destroy;
@@ -15,10 +15,10 @@
     vm.user = sessionService.user;
     vm.title = 'Minha Conta';
 
-    activate($stateParams);
+    activate();
 
-    function activate($stateParams) {
-      UsersResource.get({id: $stateParams.id},
+    function activate() {
+      UsersResource.get({ id: 0 },
         function(response) {
           assignUser(response);
         }
@@ -43,6 +43,7 @@
       if (isValid) {
         vm.user.$update(function(response) {
           assignUser(response);
+          sessionService.user = angular.copy(response);
           toastr.success('Dados alterados com sucesso.');
         });
       }

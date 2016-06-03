@@ -18,9 +18,9 @@
        */
       'angular-confirm',
       'angular-loading-bar',
-      'chart.js',
       'datePicker',
       'googlechart',
+      'ncy-angular-breadcrumb',
       'pascalprecht.translate',
       'permission',
       'ui.bootstrap',

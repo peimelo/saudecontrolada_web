@@ -9,6 +9,24 @@
   function PesosController(moment, PesosResource, toastr, $uibModal) {
     var vm = this;
 
+    vm.chartObject = {
+      data: {
+        cols: [
+          { id: 't', label: 'Data', type: 'string' },
+          { id: 's', label: 'Peso', type: 'number' }
+        ],
+        rows: []
+      },
+      options: {
+        hAxis: {
+          title: 'Data'
+        },
+        vAxis: {
+          title: 'Peso (kg)'
+        }
+      },
+      type: 'LineChart'
+    };
     vm.pagination = {};
     vm.pesos = [];
     vm.openModal = openModal;
@@ -17,32 +35,6 @@
     vm.showMode = { chart: true, table: true };
     vm.title = 'Pesos';
 
-    // graphics
-    vm.data = [[]];
-    vm.labels = [];
-    vm.series = ['Peso (Kg)'];
-
-    vm.chartObject = {};
-    vm.chartObject.type = "LineChart";
-    vm.chartObject.data = {
-      "cols": [
-        { id: "t", label: "Data", type: "string" },
-        { id: "s", label: "Peso", type: "number" }
-      ],
-      "rows": []
-    };
-    vm.chartObject.options = {
-      hAxis: {
-        title: 'Data'
-      },
-      vAxis: {
-        title: 'Meu Peso (Kg)'
-      }
-    };
-    // vm.chartObject.options = {
-    //   'title': 'Meu Peso (Kg)'
-    // };
-
     activate();
 
     function activate() {
@@ -50,24 +42,19 @@
     }
 
     function getChart() {
-      vm.data = [[]];
-      vm.labels = [];
       var qtde = vm.pesos.length;
-      var google = [];
+      var googleChart = [];
 
       for (var i = qtde - 1; i >= 0; i--) {
-        vm.labels.push(moment(vm.pesos[i].data).format('L'));
-        vm.data[0].push(vm.pesos[i].valor);
-
-        google.push({
+        googleChart.push({
           c:[
-            { v:moment(vm.pesos[i].data).format('L') },
-            { v:vm.pesos[i].valor }
+            { v: moment(vm.pesos[i].data).format('L') },
+            { v: vm.pesos[i].valor }
           ]
         });
       }
 
-      vm.chartObject.data.rows = google;
+      vm.chartObject.data.rows = googleChart;
     }
 
     function openModal(pesoGrid) {

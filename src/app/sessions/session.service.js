@@ -8,14 +8,12 @@
   /** @ngInject */
   function sessionService($http, $rootScope, $state) {
     var api = '/api/sessions';
-    var user = null;
+    // var user = null;
 
     var service = {
       login: login,
       logout: logout,
-      user: function() {
-        return user;
-      }
+      user: null
     };
 
     return service;
@@ -43,8 +41,8 @@
     }
 
     function setAuthentication(userParam) {
-      user = userParam;
-      $rootScope.authenticationToken = user ? user.authentication_token : null;
+      service.user = userParam;
+      $rootScope.authenticationToken = userParam ? userParam.authentication_token : null;
     }
   }
 })();

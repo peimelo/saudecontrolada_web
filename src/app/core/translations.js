@@ -15,7 +15,9 @@
         WEIGHTS: 'Weights',
 
         NEXT: 'Next',
+        OPTIONS: 'Options',
         PREVIOUS: 'Previous',
+        PROFILE: 'Profile',
         INCLUDE: 'Include',
 
         GRAPHS: 'Graphs',
@@ -53,7 +55,9 @@
         WEIGHTS: 'Pesos',
 
         NEXT: 'Próximo',
+        OPTIONS: 'Opções',
         PREVIOUS: 'Anterior',
+        PROFILE: 'Perfil',
         INCLUDE: 'Incluir',
 
         GRAPHS: 'Gráficos',

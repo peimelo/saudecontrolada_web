@@ -1,129 +1,189 @@
-<div class="col-md-6 col-md-offset-3">
-  <h2>{{ vm.title }}</h2>
+<!-- Wrapper-->
+<div id="wrapper">
 
-  <form ng-submit="vm.submit(form.$valid)" role="form" name="form" novalidate>
-    <div class="row">
-      <div class="col-sm-9">
-        <div class="form-group"
-             ng-class="{ 'has-error': form.name.$touched && form.name.$invalid }">
-          <label for="name">Nome *</label>
-          <input id="name"
-                 class="form-control"
-                 name="name"
-                 ng-change="vm.clearServerError(form, 'name')"
-                 ng-model="vm.user.name"
-                 required
-                 type="text">
-          <div class="help-block"
-               ng-if="form.name.$touched"
-               ng-messages="form.name.$error">
-            <div ng-messages-include="app/components/messages.html"></div>
-            <div ng-message="server">{{vm.errors.name}}</div>
+  <!-- Navigation -->
+  <div ng-include="'app/components/views/layouts/navigation.html'"></div>
+
+  <!-- Page wraper -->
+  <!-- ng-class with current state name give you the ability to extended customization your view -->
+  <div id="page-wrapper" class="gray-bg {{ $state.current.name }}">
+
+    <!-- Page wrapper -->
+    <div ng-include="'app/components/views/layouts/topnavbar.html'"></div>
+
+    <!-- Main view  -->
+    <div class="row wrapper border-bottom white-bg page-heading">
+      <div class="col-lg-10">
+        <h2>
+          <i class="fa fa-cog"></i> {{ $state.current.data.pageTitle }}
+        </h2>
+
+        <div ncy-breadcrumb></div>
+      </div>
+    </div>
+
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="ibox float-e-margins">
+            <div class="ibox-content">
+              <div class="row">
+                <div class="col-sm-6 b-r">
+
+                  <form ng-submit="vm.submit(form.$valid)" role="form" name="form" novalidate>
+                    <div class="form-group"
+                         ng-class="{ 'has-error': form.name.$touched && form.name.$invalid }">
+                      <label for="name">Nome *</label>
+                      <input id="name"
+                             class="form-control"
+                             name="name"
+                             ng-change="vm.clearServerError(form, 'name')"
+                             ng-model="vm.user.name"
+                             required
+                             type="text">
+                      <div class="help-block"
+                           ng-if="form.name.$touched"
+                           ng-messages="form.name.$error">
+                        <div ng-messages-include="app/components/messages.html"></div>
+                        <div ng-message="server">{{vm.errors.name}}</div>
+                      </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-class="{ 'has-error': form.email.$touched && form.email.$invalid }">
+                      <label for="email">E-mail *</label>
+                      <input id="email"
+                             class="form-control"
+                             name="email"
+                             ng-change="vm.clearServerError(form, 'email')"
+                             ng-disabled="true"
+                             ng-model="vm.user.email"
+                             ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
+                             required
+                             type="email">
+                      <div class="help-block"
+                           ng-if="form.email.$touched"
+                           ng-messages="form.email.$error">
+                        <div ng-messages-include="app/components/messages.html"></div>
+                        <div ng-message="server">{{vm.errors.email}}</div>
+                      </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-class="{ 'has-error': form.gender.$touched && form.gender.$invalid }">
+                      <label>Sexo *</label>
+                      <div class="radio">
+                        <label>
+                          <input name="gender"
+                                 ng-model="vm.user.gender"
+                                 ng-required="!vm.user.gender"
+                                 type="radio"
+                                 value="Masculino">
+                          Masculino
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="gender"
+                                 ng-model="vm.user.gender"
+                                 ng-required="!vm.user.gender"
+                                 type="radio"
+                                 value="Feminino">
+                          Feminino
+                        </label>
+                      </div>
+                      <div class="help-block"
+                           ng-if="form.gender.$touched"
+                           ng-messages="form.gender.$error">
+                        <div ng-messages-include="app/components/messages.html"></div>
+                        <div ng-message="server">{{vm.errors.gender}}</div>
+                      </div>
+                    </div>
+
+                    <div class="form-group"
+                         ng-class="{ 'has-error': form.date_of_birth.$touched && form.date_of_birth.$invalid }">
+                      <label for="date_of_birth">Data de Nascimento *</label>
+                      <input id="date_of_birth"
+                             change-date
+                             class="form-control"
+                             name="date_of_birth"
+                             ng-change="vm.clearServerError(form, 'date_of_birth')"
+                             ng-model="vm.user.date_of_birth"
+                             required
+                             type="text"
+                             ui-mask="99/99/9999">
+                      <div class="help-block"
+                           ng-if="form.date_of_birth.$touched"
+                           ng-messages="form.date_of_birth.$error">
+                        <div ng-messages-include="app/components/messages.html"></div>
+                        <div ng-message="server">{{vm.errors.date_of_birth}}</div>
+                      </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                      Salvar
+                    </button>
+                  </form>
+                </div>
+
+                <div class="col-sm-6">
+                  <h4>Foto</h4>
+
+                  <p>
+                    <img gravatar-src-once="vm.user.email"
+                         class="img-circle"
+                         alt="{{vm.user.name}}">
+                  </p>
+
+                  <p class="text-center">
+                    Para ver sua foto aqui, crie uma conta no site
+                    <a href="https://br.gravatar.com/" target="_blank">
+                      Gravatar <i class="fa fa-external-link"></i>
+                    </a> com esse mesmo e-mail e faça o upload
+                    da sua foto lá.
+                  </p>
+
+                  <p class="text-center">
+                    <a href="https://br.gravatar.com/" target="_blank">
+                      <i class="fa fa-camera mid-icon"></i>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="form-group"
-             ng-class="{ 'has-error': form.email.$touched && form.email.$invalid }">
-          <label for="email">E-mail *</label>
-          <input id="email"
-                 class="form-control"
-                 name="email"
-                 ng-change="vm.clearServerError(form, 'email')"
-                 ng-disabled="true"
-                 ng-model="vm.user.email"
-                 ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/"
-                 required
-                 type="email">
-          <div class="help-block"
-               ng-if="form.email.$touched"
-               ng-messages="form.email.$error">
-            <div ng-messages-include="app/components/messages.html"></div>
-            <div ng-message="server">{{vm.errors.email}}</div>
+
+        <div class="col-lg-5">
+          <div class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5><i class="fa fa-frown-o"></i> Excluir minha conta</h5>
+            </div>
+            <div class="ibox-content">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="vm.unhappy"> Não estou contente.
+                </label>
+              </div>
+              <a href class="btn btn-danger"
+                 ng-click="vm.destroy()"
+                 ng-if="vm.unhappy"
+                 confirm-if="checked"
+                 confirm="Tem certeza que deseja excluir sua conta e todos os dados contidos nela?">
+                Excluir minha conta ...
+              </a>
+            </div>
           </div>
         </div>
       </div>
-      <div class="form-group col-xs-12 col-sm-3 text-center">
-        <label for="name"
-               uib-tooltip="Para ver sua foto aqui, crie uma conta no site
-                            Gravatar com esse mesmo e-mail e faça o upload
-                            da sua foto lá."
-               tooltip-placement="bottom">
-          Foto <i class="fa fa-info-circle"></i>
-        </label><br>
-        <img gravatar-src-once="vm.user.email"
-             alt="{{vm.user.name}}"><br>
-        <a href="https://br.gravatar.com/" target="_blank">
-          Gravatar <i class="fa fa-external-link"></i>
-        </a>
-      </div>
     </div>
 
-    <div class="form-group"
-         ng-class="{ 'has-error': form.gender.$touched && form.gender.$invalid }">
-      <label>Sexo *</label>
-      <div class="radio">
-        <label>
-          <input name="gender"
-                 ng-model="vm.user.gender"
-                 ng-required="!vm.user.gender"
-                 type="radio"
-                 value="Masculino">
-          Masculino
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <input name="gender"
-                 ng-model="vm.user.gender"
-                 ng-required="!vm.user.gender"
-                 type="radio"
-                 value="Feminino">
-          Feminino
-        </label>
-      </div>
-      <div class="help-block"
-           ng-if="form.gender.$touched"
-           ng-messages="form.gender.$error">
-        <div ng-messages-include="app/components/messages.html"></div>
-        <div ng-message="server">{{vm.errors.gender}}</div>
-      </div>
-    </div>
+    <!-- Footer -->
+    <div ng-include="'app/components/views/layouts/footer.html'"></div>
 
-    <div class="form-group"
-         ng-class="{ 'has-error': form.date_of_birth.$touched && form.date_of_birth.$invalid }">
-      <label for="date_of_birth">Data de Nascimento *</label>
-      <input id="date_of_birth"
-             change-date
-             class="form-control"
-             name="date_of_birth"
-             ng-change="vm.clearServerError(form, 'date_of_birth')"
-             ng-model="vm.user.date_of_birth"
-             required
-             type="text"
-             ui-mask="99/99/9999">
-      <div class="help-block"
-           ng-if="form.date_of_birth.$touched"
-           ng-messages="form.date_of_birth.$error">
-        <div ng-messages-include="app/components/messages.html"></div>
-        <div ng-message="server">{{vm.errors.date_of_birth}}</div>
-      </div>
-    </div>
-
-    <button type="submit" class="btn btn-primary">
-      Salvar
-    </button>
-  </form>
-
-  <h3><i class="fa fa-frown-o"></i> Excluir minha conta</h3>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" ng-model="vm.unhappy"> Não estou contente.
-    </label>
   </div>
-  <a href class="btn btn-danger"
-     ng-click="vm.destroy()"
-     ng-if="vm.unhappy"
-     confirm-if="checked"
-     confirm="Tem certeza que deseja excluir sua conta e todos os dados contidos nela?">
-    Excluir minha conta ...
-  </a>
+  <!-- End page wrapper-->
+
 </div>
+<!-- End wrapper-->

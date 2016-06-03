@@ -19,6 +19,10 @@
             only: ['logged'],
             redirectTo: 'login'
           }
+        },
+        ncyBreadcrumb: {
+          label: 'Painel',
+          parent: 'home'
         }
       });
   }

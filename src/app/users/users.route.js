@@ -26,10 +26,15 @@
         controller: 'UserEditController',
         controllerAs: 'vm',
         data: {
+          pageTitle: 'Perfil',
           permissions: {
             only: ['logged'],
             redirectTo: 'login'
           }
+        },
+        ncyBreadcrumb: {
+          label: 'Perfil',
+          parent: 'home'
         }
       })
       .state('signup', {

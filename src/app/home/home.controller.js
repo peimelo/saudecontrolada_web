@@ -6,11 +6,11 @@
     .controller('HomeController', HomeController);
 
   /** @ngInject */
-  function HomeController($rootScope, $state) {
+  function HomeController(sessionService, $state) {
     activate();
 
     function activate() {
-      if($rootScope.user) {
+      if (sessionService.user) {
         $state.go('dashboard');
       }
     }
