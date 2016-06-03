@@ -6,5 +6,5 @@ bower_components/
 dist/
 
 src/img/
-srp/app/patterns/
+src/app/patterns/
 src/app/style.css
