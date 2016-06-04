@@ -27,14 +27,13 @@
       },
       type: 'LineChart'
     };
-    vm.pagination = {};
-    vm.pesos = [];
     vm.openModal = openModal;
+    vm.pagination = { currentPage: 1 };
+    vm.pesos = [];
     vm.query = query;
     vm.remove = remove;
     vm.showMode = { chart: true, table: true };
-    vm.title = 'Pesos';
-
+    
     activate();
 
     function activate() {
@@ -64,7 +63,7 @@
         controllerAs: 'vm',
         resolve: {
           peso: function() {
-            return angular.copy(pesoGrid);
+            return pesoGrid;
           }
         },
         templateUrl: 'pesoModal.html',

@@ -11,8 +11,8 @@
       .state('home', {
         url: '/',
         templateUrl: 'app/home/home.html',
-        controller: 'HomeController',
-        controllerAs: 'vm',
+        // controller: 'HomeController',
+        // controllerAs: 'vm',
         data: { specialClass: 'landing-page' },
         ncyBreadcrumb: {
           label: 'Home'

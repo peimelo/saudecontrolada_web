@@ -16,7 +16,6 @@
 
     function activate() {
       if ($rootScope.authenticationToken && sessionService.user) {
-        // sessionService.logout();
         $state.go('dashboard');
       }
     }

@@ -43,6 +43,12 @@
           <span class="nav-label">{{ 'WEIGHTS' | translate }}</span>
         </a>
       </li>
+      <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
+        <a ui-sref="units">
+          <i class="fa fa-superscript"></i>
+          <span class="nav-label">{{ 'UNITS' | translate }}</span>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

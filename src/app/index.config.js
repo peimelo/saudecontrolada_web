@@ -32,6 +32,7 @@
       moment.locale('pt-br');
     }
 
+    // TODO: ao abrir um novo ele emenda o tempo do aberto
     function toastrConfig() {
       toastr.options.timeOut = 8000;
       toastr.options.positionClass = 'toast-top-center';

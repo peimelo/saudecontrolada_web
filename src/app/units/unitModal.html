@@ -1,0 +1,39 @@
+<script type="text/ng-template" id="unitModal.html">
+  <form name="form" role="form" novalidate ng-submit="vm.submit(form)">
+
+    <div class="modal-header">
+      <h3 class="modal-title">
+        {{ vm.title }} | {{ $state.current.data.pageTitle }}
+      </h3>
+    </div>
+
+    <div class="modal-body">
+      <div class="input-group"
+           ng-class="{ 'has-error': form.name.$invalid && form.submitted }">
+        <label for="height" class="control-label">
+          {{ 'NAME' | translate }} *
+        </label>
+        <input id="height"
+               class="form-control"
+               name="name"
+               ng-model="vm.unit.name"
+               required
+               type="text">
+        <div class="help-block"
+             ng-if="form.name.$invalid && form.submitted"
+             ng-messages="form.name.$error">
+          <div ng-messages-include="app/components/messages.html"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="submit">
+        <i class="fa fa-check"></i> Salvar
+      </button>
+      <button class="btn btn-default" type="button" ng-click="vm.cancel()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</script>

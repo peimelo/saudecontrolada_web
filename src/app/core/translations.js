@@ -15,10 +15,12 @@
         WEIGHTS: 'Weights',
 
         NEXT: 'Next',
+        INCLUDE: 'Include',
+        NAME: 'Name',
         OPTIONS: 'Options',
         PREVIOUS: 'Previous',
         PROFILE: 'Profile',
-        INCLUDE: 'Include',
+        UNITS: 'Units',
 
         GRAPHS: 'Graphs',
         MAILBOX: 'Mailbox',
@@ -55,10 +57,12 @@
         WEIGHTS: 'Pesos',
 
         NEXT: 'Próximo',
+        INCLUDE: 'Incluir',
+        NAME: 'Nome',
         OPTIONS: 'Opções',
         PREVIOUS: 'Anterior',
         PROFILE: 'Perfil',
-        INCLUDE: 'Incluir',
+        UNITS: 'Unidades',
 
         GRAPHS: 'Gráficos',
         MAILBOX: 'El correo',

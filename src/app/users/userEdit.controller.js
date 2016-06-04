@@ -27,6 +27,7 @@
 
     function assignUser(user) {
       vm.user = user;
+      sessionService.user = angular.copy(user);
     }
 
     function destroy() {
@@ -43,7 +44,6 @@
       if (isValid) {
         vm.user.$update(function(response) {
           assignUser(response);
-          sessionService.user = angular.copy(response);
           toastr.success('Dados alterados com sucesso.');
         });
       }
