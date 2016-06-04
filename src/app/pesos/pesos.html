@@ -14,7 +14,8 @@
     <div class="row wrapper border-bottom white-bg page-heading">
       <div class="col-lg-10">
         <h2>
-          <i class="fa fa-balance-scale"></i> {{ $state.current.data.pageTitle }}
+          <i class="fa fa-balance-scale"></i>
+          {{ $state.current.data.pageTitle | translate }}
           <span class="badge badge-info">{{ vm.pagination.totalItems }}</span>
         </h2>
 
@@ -34,13 +35,13 @@
               <div class="btn-group pull-right">
                 <label class="btn btn-default"
                        ng-model="vm.showMode.chart"
-                       uib-tooltip="Mostrar/Esconder o gráfico"
+                       uib-tooltip="{{ vm.showMode.chart | iif : 'Esconder' : 'Mostrar' }} o gráfico"
                        uib-btn-checkbox>
                   <i class="fa fa-line-chart"></i>
                 </label>
                 <label class="btn btn-default"
                        ng-model="vm.showMode.table"
-                       uib-tooltip="Mostrar/Esconder a tabela"
+                       uib-tooltip="{{ vm.showMode.table | iif : 'Esconder' : 'Mostrar' }} a tabela"
                        uib-btn-checkbox>
                   <i class="fa fa-list-alt"></i>
                 </label>
@@ -48,7 +49,9 @@
             </div>
             <div class="ibox-content">
               <!-- CHART -->
-              <div google-chart chart="vm.chartObject" ng-if="vm.showMode.chart"></div>
+              <div google-chart
+                   chart="vm.chartObject"
+                   ng-if="vm.showMode.chart"></div>
 
               <!-- TABLE -->
               <div class="table-responsive" ng-if="vm.showMode.table">
@@ -73,7 +76,7 @@
                       </a>
                       <a href=""
                          class="btn btn-danger"
-                         confirm="Tem certeza que deseja excluir o peso do dia {{ peso.data | date:'dd/MM/yyyy' }}?"
+                         confirm="Tem certeza que deseja excluir o peso do dia {{ peso.data | date: 'dd/MM/yyyy' }}?"
                          ng-click="vm.remove(peso)">
                         <i class="fa fa-trash-o"></i>
                       </a>

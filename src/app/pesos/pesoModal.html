@@ -2,7 +2,9 @@
   <form name="form" role="form" novalidate ng-submit="vm.submit(form)">
     <div class="modal-header">
       <h3 class="modal-title">
-        {{ vm.title }} | {{ $state.current.data.pageTitle }}
+        <span ng-if="!vm.peso">{{ 'INCLUDING' | translate }}</span>
+        <span ng-if="vm.peso">{{ 'CHANGING' | translate }}</span>
+        | {{ $state.current.data.pageTitle | translate }}
       </h3>
     </div>
 

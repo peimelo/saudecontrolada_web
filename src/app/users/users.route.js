@@ -14,11 +14,16 @@
         controller: 'UsersController',
         controllerAs: 'vm',
         data: {
+          pageTitle: 'USERS',
           permissions: {
             only: ['logged'],
             redirectTo: 'login'
           }
-        }
+        },
+        ncyBreadcrumb: {
+          label: 'Users',
+          parent: 'home'
+        },
       })
       .state('userEdit', {
         url: '/users/:id',

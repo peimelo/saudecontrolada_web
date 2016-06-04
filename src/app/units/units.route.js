@@ -13,7 +13,7 @@
       controller: 'UnitsController',
       controllerAs: 'vm',
       data: {
-        pageTitle: 'Units',
+        pageTitle: 'UNITS',
         permissions: {
           only: ['logged'],
           redirectTo: 'login'

@@ -11,23 +11,18 @@
     var vm = this;
 
     vm.cancel = cancel;
-    vm.unit = unit;
     vm.submit = submit;
-    vm.title = '';
+    vm.unit = unit;
 
     activate();
 
     function activate() {
       if(unit) {
-        vm.title = 'Alterando';
         UnitsResource.get({ id: unit.id },
           function(response) {
             vm.unit = response;
           }
         );
-      }
-      else {
-        vm.title = 'Incluindo';
       }
     }
 

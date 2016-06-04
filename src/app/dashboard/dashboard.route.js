@@ -14,7 +14,7 @@
         controller: 'DashboardController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Painel',
+          pageTitle: 'DASHBOARD',
           permissions: {
             only: ['logged'],
             redirectTo: 'login'

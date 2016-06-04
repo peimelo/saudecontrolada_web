@@ -13,7 +13,7 @@
       controller: 'PesosController',
       controllerAs: 'vm',
       data: {
-        pageTitle: 'Pesos',
+        pageTitle: 'WEIGHTS',
         permissions: {
           only: ['logged'],
           redirectTo: 'login'

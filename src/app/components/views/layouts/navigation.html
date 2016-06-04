@@ -44,9 +44,21 @@
         </a>
       </li>
       <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
+        <a ui-sref="references">
+          <i class="fa fa-book"></i>
+          <span class="nav-label">{{ 'REFERENCES' | translate }}</span>
+        </a>
+      </li>
+      <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
         <a ui-sref="units">
           <i class="fa fa-superscript"></i>
           <span class="nav-label">{{ 'UNITS' | translate }}</span>
+        </a>
+      </li>
+      <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
+        <a ui-sref="users">
+          <i class="fa fa-users"></i>
+          <span class="nav-label">{{ 'USERS' | translate }}</span>
         </a>
       </li>
     </ul>

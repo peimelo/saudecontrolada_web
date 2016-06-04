@@ -9,17 +9,24 @@
   function UsersController(UsersResource) {
     var vm = this;
 
-    vm.title = 'Usuários';
+    vm.pagination = { currentPage: 1 };
+    vm.query = query;
     vm.users = [];
 
     active();
 
     function active() {
-      UsersResource.query(
+      query();
+    }
+
+    function query() {
+      UsersResource.query({ page: vm.pagination.currentPage },
         function(response) {
-          vm.users = response;
+          vm.users = response.users;
+          vm.pagination = response.meta;
         }
       );
     }
+
   }
 })();

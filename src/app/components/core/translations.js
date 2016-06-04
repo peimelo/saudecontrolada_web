@@ -14,8 +14,10 @@
         LOGOUT: 'Log out',
         WEIGHTS: 'Weights',
 
+        CHANGING: 'Changing',
         NEXT: 'Next',
         INCLUDE: 'Include',
+        INCLUDING: 'Including',
         NAME: 'Name',
         OPTIONS: 'Options',
         PREVIOUS: 'Previous',
@@ -56,8 +58,10 @@
         LOGOUT: 'Sair',
         WEIGHTS: 'Pesos',
 
+        CHANGING: 'Alterando',
         NEXT: 'Próximo',
         INCLUDE: 'Incluir',
+        INCLUDING: 'Incluindo',
         NAME: 'Nome',
         OPTIONS: 'Opções',
         PREVIOUS: 'Anterior',
