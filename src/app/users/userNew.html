@@ -61,9 +61,11 @@
               <!-- GENDER -->
               <div class="form-group"
                    ng-class="{ 'has-error': form.gender.$invalid && form.submitted }">
+                <label class="font-noraml" >Sexo:</label>
                 <div class="radio-inline">
                   <label>
                     <input name="gender"
+                           icheck
                            ng-model="vm.user.gender"
                            ng-required="!vm.user.gender"
                            type="radio"
@@ -74,6 +76,7 @@
                 <div class="radio-inline">
                   <label>
                     <input name="gender"
+                           icheck
                            ng-model="vm.user.gender"
                            ng-required="!vm.user.gender"
                            type="radio"

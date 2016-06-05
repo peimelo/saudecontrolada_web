@@ -24,12 +24,10 @@ exports.paths = {
  *  to inject css preprocessor deps and js files in karma
  */
 exports.wiredep = {
+  exclude: [/\/bootstrap\.css/],
+  // exclude: [/\/bootstrap\.js$/, /\/bootstrap-sass\/.*\.js/, /\/bootstrap\.css/],
   directory: 'bower_components'
 };
-//exports.wiredep = {
-//  exclude: [/bootstrap.js$/],
-//  directory: 'bower_components'
-//};
 
 /**
  *  Common implementation for an error handler of a Gulp plugin

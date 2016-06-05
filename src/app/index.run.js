@@ -13,6 +13,7 @@
 
     $log.debug('runBlock end');
 
+    // TODO: translate
     function angularConfirmModal() {
       $confirmModalDefaults.defaultLabels.title = 'Confirmação';
       $confirmModalDefaults.defaultLabels.ok = 'Sim';
@@ -35,5 +36,4 @@
       $rootScope.$state = $state;
     }
   }
-
 })();

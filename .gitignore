@@ -7,4 +7,6 @@ dist/
 
 src/img/
 src/app/patterns/
+src/app/SCSS/
 src/app/style.css
+src/app/css/

@@ -3,16 +3,16 @@
 
   angular
     .module('app')
-    .controller('UnitsController', UnitsController);
+    .controller('ReferencesController', ReferencesController);
 
   /** @ngInject */
-  function UnitsController(toastr, UnitsResource, $uibModal) {
+  function ReferencesController(toastr, ReferencesResource, $uibModal) {
     var vm = this;
 
     vm.openModal = openModal;
     vm.pagination = { currentPage: 1 };
     vm.query = query;
-    vm.units = [];
+    vm.references = [];
     vm.remove = remove;
 
     activate();
@@ -21,17 +21,18 @@
       query();
     }
 
-    function openModal(unitGrid) {
+    function openModal(referenceGrid) {
       var modalInstance = $uibModal.open({
         animation: true,
-        controller: 'UnitModalController',
+        controller: 'ReferenceModalController',
         controllerAs: 'vm',
         resolve: {
-          unit: function() {
-            return unitGrid;
+          reference: function() {
+            return referenceGrid;
           }
         },
-        templateUrl: 'unitModal.html',
+        size: 'sm',
+        templateUrl: 'referenceModal.html',
         windowClass: 'center-modal'
       });
 
@@ -43,16 +44,16 @@
     }
 
     function query() {
-      UnitsResource.query({ page: vm.pagination.currentPage },
+      ReferencesResource.query({ page: vm.pagination.currentPage },
         function(response) {
-          vm.units = response.units;
+          vm.references = response.references;
           vm.pagination = response.meta;
         }
       );
     }
 
     function remove(unit) {
-      UnitsResource.delete({ id: unit.id },
+      ReferencesResource.delete({ id: unit.id },
         function(response) {
           toastr.success(response.message);
           query();

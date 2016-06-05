@@ -8,7 +8,7 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('users', {
+      .state('admin.users', {
         url: '/users',
         templateUrl: 'app/users/users.html',
         controller: 'UsersController',
@@ -23,15 +23,15 @@
         ncyBreadcrumb: {
           label: 'Users',
           parent: 'home'
-        },
+        }
       })
-      .state('userEdit', {
-        url: '/users/:id',
+      .state('admin.userEdit', {
+        url: '/userEdit',
         templateUrl: 'app/users/userEdit.html',
         controller: 'UserEditController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Perfil',
+          pageTitle: 'PROFILE',
           permissions: {
             only: ['logged'],
             redirectTo: 'login'

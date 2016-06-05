@@ -8,7 +8,7 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('units', {
+      .state('admin.units', {
       url: '/units',
       controller: 'UnitsController',
       controllerAs: 'vm',
@@ -20,10 +20,9 @@
         }
       },
       ncyBreadcrumb: {
-        label: 'Units',
-        parent: 'home'
+        label: 'Units'
       },
-      templateUrl: 'app/units/units.html'
+      templateUrl: 'app/admin/units/units.html'
     });
   }
 })();

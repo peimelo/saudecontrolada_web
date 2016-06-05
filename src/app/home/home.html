@@ -8,51 +8,25 @@
   </nav>
 </div>
 
-<div id="inSlider" class="carousel slide carousel-fade" data-ride="carousel" ng-non-bindable>
-  <ol class="carousel-indicators">
-    <li data-target="inSlider" data-slide-to="0" class="active"></li>
-    <li data-target="inSlider" data-slide-to="1"></li>
-  </ol>
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <div class="container">
-        <div class="carousel-caption">
-          <h1>Saúde Controlada</h1>
-          <p>Para você ter uma vida saudável e tranquila.</p>
-        </div>
-        <div class="carousel-image wow zoomIn">
-          <img src="../img/landing/laptop.png" alt="laptop"/>
-        </div>
+<uib-carousel active="active" interval="5000" no-wrap="noWrapSlides">
+  <uib-slide ng-repeat="slide in vm.slides track by slide.id" index="$index">
+    <div class="container">
+      <div class="carousel-caption blank">
+        <h1>Saúde Controlada</h1>
+        <p>{{ slide.text }}</p>
       </div>
-      <!-- Set background for slide in css -->
-      <div class="header-back one"></div>
-
-    </div>
-    <div class="item">
-      <div class="container">
-        <div class="carousel-caption blank">
-          <h1>Saúde Controlada</h1>
-          <p>Um sistema feito para ajudá-lo a cuidar da sua saúde.</p>
-        </div>
+      <div class="carousel-image wow zoomIn" ng-if="slide.id == 1">
+        <img src="../img/landing/laptop.png" alt="laptop"/>
       </div>
-      <!-- Set background for slide in css -->
-      <div class="header-back two"></div>
     </div>
-  </div>
-  <a class="left carousel-control" data-target="#inSlider" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">{{ 'PREVIOUS' | translate }}</span>
-  </a>
-  <a class="right carousel-control" data-target="#inSlider" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">{{ 'NEXT' | translate }}</span>
-  </a>
-</div>
+    <div class="{{ slide.class }}"></div>
+  </uib-slide>
+</uib-carousel>
 
 <section id="features" class="container services">
   <div class="row">
     <div class="col-sm-3">
-      <h2>Totalmente Responsivo</h2>
+      <h2>Responsivo</h2>
       <p>Significa que você pode acessar do seu computador, tablet ou celular.</p>
     </div>
     <div class="col-sm-3">

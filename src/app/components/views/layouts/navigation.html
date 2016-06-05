@@ -14,13 +14,13 @@
                 <user-name></user-name>
               </span>
               <span class="text-muted text-xs block">
-                Opções <b class="caret"></b>
+                {{ 'OPTIONS' | translate }} <b class="caret"></b>
               </span>
             </span>
           </a>
 
           <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
-            <li><a ui-sref="userEdit">{{ 'PROFILE' | translate }}</a></li>
+            <li><a ui-sref="admin.userEdit">{{ 'PROFILE' | translate }}</a></li>
             <li class="divider"></li>
             <li>
               <a href="#" ng-click="main.logout()">{{ 'LOGOUT' | translate }}</a>
@@ -43,24 +43,60 @@
           <span class="nav-label">{{ 'WEIGHTS' | translate }}</span>
         </a>
       </li>
-      <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
-        <a ui-sref="references">
-          <i class="fa fa-book"></i>
-          <span class="nav-label">{{ 'REFERENCES' | translate }}</span>
+      <li ng-class="{ active: $state.includes('admin') }">
+        <a href="">
+          <i class="fa fa-cog"></i>
+          <span class="nav-label">{{ 'ADMIN' | translate }}</span>
+          <span class="fa arrow"></span>
         </a>
+
+        <ul class="nav nav-second-level collapse"
+            ng-class="{ in: $state.includes('admin') }">
+
+          <li ui-sref-active="active">
+            <a ui-sref="admin.userEdit">
+              <i class="fa fa-user"></i>
+              {{ 'PROFILE' | translate }}
+            </a>
+          </li>
+          <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
+            <a ui-sref="admin.references">
+              <i class="fa fa-book"></i>
+              {{ 'REFERENCES' | translate }}
+            </a>
+          </li>
+          <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
+            <a ui-sref="admin.units">
+              <i class="fa fa-superscript"></i>
+              {{ 'UNITS' | translate }}
+            </a>
+          </li>
+          <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
+            <a ui-sref="admin.users">
+              <i class="fa fa-users"></i>
+              {{ 'USERS' | translate }}
+            </a>
+          </li>
+        </ul>
       </li>
-      <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
-        <a ui-sref="units">
-          <i class="fa fa-superscript"></i>
-          <span class="nav-label">{{ 'UNITS' | translate }}</span>
-        </a>
-      </li>
-      <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
-        <a ui-sref="users">
-          <i class="fa fa-users"></i>
-          <span class="nav-label">{{ 'USERS' | translate }}</span>
-        </a>
-      </li>
+      <!--<li ui-sref-active="active" ng-if="main.sessionService.user.admin">-->
+        <!--<a ui-sref="references">-->
+          <!--<i class="fa fa-book"></i>-->
+          <!--<span class="nav-label">{{ 'REFERENCES' | translate }}</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active" ng-if="main.sessionService.user.admin">-->
+        <!--<a ui-sref="admin.units">-->
+          <!--<i class="fa fa-superscript"></i>-->
+          <!--<span class="nav-label">{{ 'UNITS' | translate }}</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active" ng-if="main.sessionService.user.admin">-->
+        <!--<a ui-sref="users">-->
+          <!--<i class="fa fa-users"></i>-->
+          <!--<span class="nav-label">{{ 'USERS' | translate }}</span>-->
+        <!--</a>-->
+      <!--</li>-->
     </ul>
   </div>
 </nav>
