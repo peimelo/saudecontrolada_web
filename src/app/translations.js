@@ -9,6 +9,7 @@
   function config($translateProvider) {
     $translateProvider
       .translations('en', {
+        ACTIONS: 'Actions',
         ADMIN: 'Administration',
         CHANGING: 'Changing',
         CONFIRMATION: 'Confirmation',
@@ -30,6 +31,7 @@
         WEIGHTS: 'Weights'
       })
       .translations('pt-BR', {
+        ACTIONS: 'Ações',
         ADMIN: 'Administração',
         CHANGING: 'Alterando',
         CONFIRMATION: 'Confirmação',

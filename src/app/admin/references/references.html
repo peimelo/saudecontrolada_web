@@ -28,7 +28,7 @@
                    dt-options="dtOptions">
               <thead>
               <tr>
-                <th>Ações</th>
+                <th>{{ 'ACTIONS' | translate }}</th>
                 <th>{{ 'NAME' | translate }}</th>
               </tr>
               </thead>
@@ -41,7 +41,7 @@
                   </a>
                   <a href=""
                      class="btn btn-danger"
-                     confirm="Tem certeza que deseja excluir a unidade {{ reference.name }}?"
+                     confirm="Tem certeza que deseja excluir a referência {{ reference.name }}?"
                      ng-click="vm.remove(reference)">
                     <i class="fa fa-trash-o"></i>
                   </a>

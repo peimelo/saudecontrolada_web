@@ -9,7 +9,22 @@
 
     <ul class="nav navbar-top-links navbar-right">
 
-      <preferred-language></preferred-language>
+      <li uib-dropdown>
+        <a class="count-info" href uib-dropdown-toggle>
+          <img ng-src="{{ main.language.flag }}"
+               alt="{{ main.language.country }}">
+        </a>
+
+        <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+          <li ng-repeat="language in main.languages">
+            <a class="btn btn-white"
+               ng-class="{ active: main.language.langKey == language.langKey }"
+               ng-click="main.changeLanguage(language)">
+              <img ng-src="{{ language.flag }}"> {{ language.country }}
+            </a>
+          </li>
+        </ul>
+      </li>
 
       <li>
         <a href="#" ng-click="main.logout()">

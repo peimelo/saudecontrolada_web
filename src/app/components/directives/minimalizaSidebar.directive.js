@@ -10,7 +10,7 @@
   function minimalizaSidebar($timeout, $window) {
     var directive = {
       restrict: 'A',
-      template: '<a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="" ng-click="vm.minimalize()"><i class="fa fa-bars"></i></a>',
+      template: '<a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="" ng-click="vm.minimalize()"><i class="fa fa-bars"></i></a>',
       controller: NavbarController,
       controllerAs: 'vm',
       bindToController: true

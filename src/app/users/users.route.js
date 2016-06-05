@@ -38,8 +38,7 @@
           }
         },
         ncyBreadcrumb: {
-          label: 'Perfil',
-          parent: 'home'
+          label: 'Perfil'
         }
       })
       .state('signup', {
