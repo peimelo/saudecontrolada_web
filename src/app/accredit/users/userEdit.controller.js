@@ -6,7 +6,7 @@
     .controller('UserEditController', UserEditController);
 
   /** @ngInject */
-  function UserEditController(alertingService, sessionService, $state, toaster,
+  function UserEditController(sessionService, $state, toaster,
                               UsersResource) {
     var vm = this;
 
@@ -34,9 +34,8 @@
     function destroy() {
       if (vm.unhappy) {
         vm.user.$delete(function(response) {
-          sessionService.cleanAuth();
-          alertingService.addSuccess(response.message);
           $state.go('home');
+          toaster.pop('success', '', response.message);
         });
       }
     }

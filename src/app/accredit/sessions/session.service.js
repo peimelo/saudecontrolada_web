@@ -8,7 +8,6 @@
   /** @ngInject */
   function sessionService($http, $rootScope) {
     var api = '/api/sessions';
-    // var user = null;
 
     var service = {
       login: login,

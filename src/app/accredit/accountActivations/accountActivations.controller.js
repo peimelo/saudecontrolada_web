@@ -11,7 +11,6 @@
     var vm = this;
 
     vm.submit = submit;
-    vm.title = '';
     vm.user = {};
 
     activate();
@@ -26,10 +25,7 @@
           }
         );
 
-        $state.go('login');
-      }
-      else {
-        vm.title = 'Não recebeu instruções de ativação?';
+        $state.go('accredit.login');
       }
     }
 
@@ -39,7 +35,7 @@
 
         newActivation.$save(function (response) {
           toaster.pop('note', '', response.message);
-          $state.go('login');
+          $state.go('accredit.login');
         });
       }
       else {

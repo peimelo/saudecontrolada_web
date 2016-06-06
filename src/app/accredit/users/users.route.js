@@ -10,7 +10,7 @@
     $stateProvider
       .state('admin.users', {
         url: '/users',
-        templateUrl: 'app/users/users.html',
+        templateUrl: 'app/accredit/users/users.html',
         controller: 'UsersController',
         controllerAs: 'vm',
         data: {
@@ -27,7 +27,7 @@
       })
       .state('admin.userEdit', {
         url: '/userEdit',
-        templateUrl: 'app/users/userEdit.html',
+        templateUrl: 'app/accredit/users/userEdit.html',
         controller: 'UserEditController',
         controllerAs: 'vm',
         data: {
@@ -41,14 +41,25 @@
           label: 'Perfil'
         }
       })
-      .state('signup', {
+      .state('accredit.signup', {
         url: '/signup',
-        templateUrl: 'app/users/userNew.html',
-        controller: 'UserNewController',
-        controllerAs: 'vm',
         data: {
           pageTitle: 'Cadastrar-se',
-          specialClass: 'gray-bg'
+          specialClass: 'gray-bg',
+          subTitle: 'Um sistema feito para ajudá-lo a cuidar da sua saúde.'
+        },
+        views: {
+          '': {
+            controller: 'UserNewController',
+            controllerAs: 'vm',
+            templateUrl: 'app/accredit/users/userNew.html',
+          },
+          'footer': {
+            templateUrl: 'app/accredit/footer.html'
+          },
+          'links': {
+            templateUrl: 'app/accredit/links.html'
+          }
         }
       });
   }

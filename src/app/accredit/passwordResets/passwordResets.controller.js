@@ -19,7 +19,7 @@
     activate();
 
     function activate() {
-      if ($state.is('passwordReset')) {
+      if ($state.is('accredit.passwordReset')) {
         params = { id: $stateParams.id, email: $stateParams.email };
       }
     }
@@ -31,7 +31,7 @@
         });
 
         newPassword.$save(function(response) {
-          $state.go('login');
+          $state.go('accredit.login');
           toaster.pop('success', '', response.message);
         });
       }
@@ -46,7 +46,7 @@
         var newPassword = new PasswordResetsResource({ user: vm.user });
 
         newPassword.$update(params, function(response) {
-          $state.go('login');
+          $state.go('accredit.login');
           toaster.pop('success', '', response.message);
         });
       }
