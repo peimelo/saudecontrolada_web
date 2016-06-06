@@ -6,12 +6,11 @@
     .config(config);
 
   /** @ngInject */
-  function config(gravatarServiceProvider, $httpProvider, $logProvider, moment, toastr) {
+  function config(gravatarServiceProvider, $httpProvider, $logProvider, moment) {
     enabledLog();
     gravatarConfig();
     httpProviderConfig();
     momentConfig();
-    toastrConfig();
 
     function enabledLog() {
       $logProvider.debugEnabled(true);
@@ -30,14 +29,6 @@
 
     function momentConfig() {
       moment.locale('pt-br');
-    }
-
-    // TODO: ao abrir um novo ele emenda o tempo do aberto
-    function toastrConfig() {
-      toastr.options.timeOut = 8000;
-      toastr.options.positionClass = 'toast-top-center';
-      toastr.options.preventDuplicates = true;
-      toastr.options.progressBar = true;
     }
   }
 })();

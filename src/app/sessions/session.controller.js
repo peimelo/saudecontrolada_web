@@ -6,7 +6,7 @@
     .controller('SessionController', SessionController);
 
   /** @ngInject */
-  function SessionController($rootScope, sessionService, $state, toastr) {
+  function SessionController($rootScope, sessionService, $state, toaster) {
     var vm = this;
 
     vm.submit = submit;
@@ -30,7 +30,7 @@
         );
       }
       else {
-        toastr.warning('Todos os campos devem estar preenchidos e validados.');
+        toaster.pop('warning', '', 'Todos os campos devem estar preenchidos e validados.');
         form.submitted = true;
       }
     }

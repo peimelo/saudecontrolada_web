@@ -23,6 +23,7 @@
       'ncy-angular-breadcrumb',
       'pascalprecht.translate',
       'permission',
+      'toaster',
       'ui.bootstrap',
       'ui.gravatar',
       'ui.mask',

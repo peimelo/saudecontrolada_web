@@ -6,7 +6,7 @@
     .controller('PesosController', PesosController);
 
   /** @ngInject */
-  function PesosController(moment, PesosResource, toastr, $uibModal) {
+  function PesosController(moment, PesosResource, toaster, $uibModal) {
     var vm = this;
 
     vm.chartObject = {
@@ -90,7 +90,7 @@
     function remove(peso) {
       PesosResource.delete({ id: peso.id },
         function(response) {
-          toastr.success(response.message);
+          toaster.pop('success', '', response.message);
           query();
         }
       );

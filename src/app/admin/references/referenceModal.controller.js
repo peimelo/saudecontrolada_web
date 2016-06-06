@@ -6,7 +6,7 @@
     .controller('ReferenceModalController', ReferenceModalController);
 
   /** @ngInject */
-  function ReferenceModalController(toastr, $uibModalInstance, reference,
+  function ReferenceModalController(toaster, $uibModalInstance, reference,
                                     ReferencesResource) {
     var vm = this;
 
@@ -29,21 +29,24 @@
     function cancel() {
       $uibModalInstance.dismiss('cancel');
     }
+    
+    function closeWithSuccess(response) {
+      toaster.pop('success', '', response.message);
+      $uibModalInstance.close(response);
+    }
 
     function submit(form) {
       if (form.$valid) {
         if (vm.reference.id) {
           vm.reference.$update(function(response) {
-            toastr.success(response.message);
-            $uibModalInstance.close(response);
+            closeWithSuccess(response);
           });
         }
         else {
           var newReference = new ReferencesResource(vm.reference);
 
           newReference.$save(function(response) {
-            toastr.success(response.message);
-            $uibModalInstance.close(response);
+            closeWithSuccess(response);
           });
         }
       }

@@ -6,7 +6,7 @@
     .controller('ReferencesController', ReferencesController);
 
   /** @ngInject */
-  function ReferencesController(toastr, ReferencesResource, $uibModal) {
+  function ReferencesController(ReferencesResource, toaster, $uibModal) {
     var vm = this;
 
     vm.openModal = openModal;
@@ -55,8 +55,8 @@
     function remove(unit) {
       ReferencesResource.delete({ id: unit.id },
         function(response) {
-          toastr.success(response.message);
           query();
+          toaster.pop('success', '', response.message);
         }
       );
     }

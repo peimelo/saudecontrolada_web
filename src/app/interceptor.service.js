@@ -6,7 +6,7 @@
     .factory('httpInterceptor', httpInterceptor);
 
   /** @ngInject */
-  function httpInterceptor($q, $location, $rootScope, toastr) {
+  function httpInterceptor($q, $location, $rootScope, toaster) {
 
     var service = {
       request: request,
@@ -24,7 +24,7 @@
     }
 
     function requestError(rejection) {
-      toastr.error('Erro de request ' + rejection.status + ': ' + rejection.statusText);
+      toaster.pop('error', '', 'Erro de request ' + rejection.status + ': ' + rejection.statusText);
     }
 
     function responseError(response) {
@@ -58,7 +58,7 @@
       }
 
       if(mensagem) {
-        toastr.error(mensagem);
+        toaster.pop('error', '', message);
       }
 
       // !!Important Must use promise api's q.reject()

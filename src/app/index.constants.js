@@ -1,4 +1,4 @@
-/* global malarkey:false, toastr:false, moment:false */
+/* global moment:false */
 (function() {
   'use strict';
 
@@ -13,7 +13,5 @@
       nextText: 'Próximo',
       lastText: 'Último',
       rotate: false
-    })
-    .constant('toastr', toastr);
-
+    });
 })();

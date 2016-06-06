@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function AccountActivationsController(ActivationsResource, $state,
-    $stateParams, toastr) {
+    $stateParams, toaster) {
     var vm = this;
 
     vm.submit = submit;
@@ -22,7 +22,7 @@
 
         ActivationsResource.get(data,
           function(response) {
-            toastr.success(response.message);
+            toaster.pop('success', '', response.message);
           }
         );
 
@@ -38,12 +38,12 @@
         var newActivation = new ActivationsResource(vm.user);
 
         newActivation.$save(function (response) {
-          toastr.info(response.message);
+          toaster.pop('note', '', response.message);
           $state.go('login');
         });
       }
       else {
-        toastr.warning('Por favor, preencha o e-mail.');
+        toaster.pop('warning', '', 'Por favor, preencha o e-mail.');
         form.submitted = true;
       }
     }

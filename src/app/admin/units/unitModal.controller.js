@@ -6,7 +6,7 @@
     .controller('UnitModalController', UnitModalController);
 
   /** @ngInject */
-  function UnitModalController(toastr, $uibModalInstance, unit,
+  function UnitModalController(toaster, $uibModalInstance, unit,
                                UnitsResource) {
     var vm = this;
 
@@ -30,20 +30,23 @@
       $uibModalInstance.dismiss('cancel');
     }
 
+    function closeWithSuccess(response) {
+      toaster.pop('success', '', response.message);
+      $uibModalInstance.close(response);
+    }
+
     function submit(form) {
       if (form.$valid) {
         if (vm.unit.id) {
           vm.unit.$update(function(response) {
-            toastr.success(response.message);
-            $uibModalInstance.close(response);
+            closeWithSuccess(response);
           });
         }
         else {
           var newUnit = new UnitsResource(vm.unit);
 
           newUnit.$save(function(response) {
-            toastr.success(response.message);
-            $uibModalInstance.close(response);
+            closeWithSuccess(response);
           });
         }
       }

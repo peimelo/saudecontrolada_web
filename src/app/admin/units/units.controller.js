@@ -6,7 +6,7 @@
     .controller('UnitsController', UnitsController);
 
   /** @ngInject */
-  function UnitsController(toastr, UnitsResource, $uibModal) {
+  function UnitsController(toaster, UnitsResource, $uibModal) {
     var vm = this;
 
     vm.openModal = openModal;
@@ -55,8 +55,8 @@
     function remove(unit) {
       UnitsResource.delete({ id: unit.id },
         function(response) {
-          toastr.success(response.message);
           query();
+          toaster.pop('success', '', response.message);
         }
       );
     }

@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function PasswordResetsController(PasswordResetsResource, $state,
-    $stateParams, toastr) {
+    $stateParams, toaster) {
     var vm = this;
 
     var params = null;
@@ -31,12 +31,12 @@
         });
 
         newPassword.$save(function(response) {
-          toastr.success(response.message);
           $state.go('login');
+          toaster.pop('success', '', response.message);
         });
       }
       else {
-        toastr.warning('Por favor, preencha o e-mail.');
+        toaster.pop('warning', '', 'Por favor, preencha o e-mail.');
         form.submitted = true;
       }
     }
@@ -46,13 +46,13 @@
         var newPassword = new PasswordResetsResource({ user: vm.user });
 
         newPassword.$update(params, function(response) {
-          toastr.success(response.message);
           $state.go('login');
+          toaster.pop('success', '', response.message);
         });
       }
       else {
-        toastr.warning('Todos os campos devem estar preenchidos e validados.');
         form.submitted = true;
+        toaster.pop('warning', '', 'Todos os campos devem estar preenchidos e validados.');
       }
     }
   }

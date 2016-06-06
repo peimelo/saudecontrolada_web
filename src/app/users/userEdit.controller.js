@@ -6,7 +6,8 @@
     .controller('UserEditController', UserEditController);
 
   /** @ngInject */
-  function UserEditController(alertingService, sessionService, $state, toastr, UsersResource) {
+  function UserEditController(alertingService, sessionService, $state, toaster,
+                              UsersResource) {
     var vm = this;
 
     vm.destroy = destroy;
@@ -43,12 +44,12 @@
     function submit(isValid) {
       if (isValid) {
         vm.user.$update(function(response) {
-          assignUser(response);
-          toastr.success('Dados alterados com sucesso.');
+          assignUser(response.user);
+          toaster.pop('success', '', response.message);
         });
       }
       else {
-        toastr.warning('Todos os campos devem estar preenchidos e validados.');
+        toaster.pop('warning', '', 'Todos os campos devem estar preenchidos e validados.');
       }
     }
   }

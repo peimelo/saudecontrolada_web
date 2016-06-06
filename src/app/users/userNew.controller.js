@@ -6,7 +6,7 @@
     .controller('UserNewController', UserNewController);
 
   /** @ngInject */
-  function UserNewController($state, toastr, UsersResource) {
+  function UserNewController($state, toaster, UsersResource) {
     var vm = this;
 
     vm.clearServerError = clearServerError;
@@ -27,8 +27,8 @@
         UsersResource.save({ user: vm.user },
           function(response) {
             vm.user = {};
-            toastr.success(response.message);
             $state.go('home');
+            toaster.pop('success', '', response.message);
           },
           function(error) {
             form.submitted = true;
@@ -42,7 +42,7 @@
         );
       }
       else {
-        toastr.warning('Todos os campos devem estar preenchidos e validados.');
+        toaster.pop('warning', '', 'Todos os campos devem estar preenchidos e validados.');
         form.submitted = true;
       }
     }
