@@ -58,7 +58,7 @@
       }
 
       if(mensagem) {
-        toaster.pop('error', '', message);
+        toaster.pop('error', '', mensagem);
       }
 
       // !!Important Must use promise api's q.reject()
