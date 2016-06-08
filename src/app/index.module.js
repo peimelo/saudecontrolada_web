@@ -17,6 +17,7 @@
        * 3rd Party modules
        */
       'angular-confirm',
+      'angular-flot',
       'angular-loading-bar',
       'datePicker',
       'googlechart',
