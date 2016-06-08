@@ -19,6 +19,7 @@
       'angular-confirm',
       'angular-flot',
       'angular-loading-bar',
+      'blockUI',
       'datePicker',
       'googlechart',
       'ncy-angular-breadcrumb',

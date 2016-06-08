@@ -6,11 +6,17 @@
     .config(config);
 
   /** @ngInject */
-  function config(gravatarServiceProvider, $httpProvider, $logProvider, moment) {
+  function config(blockUIConfig, gravatarServiceProvider, $httpProvider,
+                  $logProvider, moment) {
+    blockUIConfigTemplate();
     enabledLog();
     gravatarConfig();
     httpProviderConfig();
     momentConfig();
+
+    function blockUIConfigTemplate() {
+      blockUIConfig.templateUrl = 'angular-block-ui/angular-block-ui.ng.html';
+    }
 
     function enabledLog() {
       $logProvider.debugEnabled(true);

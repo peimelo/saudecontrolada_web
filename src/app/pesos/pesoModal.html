@@ -17,7 +17,6 @@
                  ng-class="{ 'has-error': form.date.$invalid && form.submitted }">
               <label for="date" class="control-label">{{ 'DATE' | translate }} *</label>
               <input id="date"
-                     autofocus
                      class="form-control"
                      change-date
                      name="date"
@@ -42,6 +41,7 @@
               {{ 'HEIGHT' | translate }} *
             </label>
             <input id="height"
+                   autofocus
                    class="form-control"
                    max="2.50"
                    min="0.48"
