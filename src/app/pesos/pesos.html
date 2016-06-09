@@ -49,9 +49,12 @@
             </div>
             <div class="ibox-content">
               <!-- CHART -->
-              <div google-chart
-                   chart="vm.chartObject"
-                   ng-if="vm.showMode.chart"></div>
+              <div class="flot-chart" ng-if="vm.showMode.chart">
+                <div flot class="flot-chart-content"
+                     dataset="vm.flotData"
+                     options="vm.flotOptions">
+                </div>
+              </div>
 
               <!-- TABLE -->
               <div class="table-responsive" ng-if="vm.showMode.table">
