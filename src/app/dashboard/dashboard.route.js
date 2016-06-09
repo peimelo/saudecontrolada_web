@@ -17,7 +17,7 @@
           pageTitle: 'DASHBOARD',
           permissions: {
             only: ['logged'],
-            redirectTo: 'login'
+            redirectTo: 'accredit.login'
           }
         },
         ncyBreadcrumb: {

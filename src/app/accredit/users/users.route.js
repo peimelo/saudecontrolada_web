@@ -17,7 +17,7 @@
           pageTitle: 'USERS',
           permissions: {
             only: ['logged'],
-            redirectTo: 'login'
+            redirectTo: 'accredit.login'
           }
         },
         ncyBreadcrumb: {
@@ -34,7 +34,7 @@
           pageTitle: 'PROFILE',
           permissions: {
             only: ['logged'],
-            redirectTo: 'login'
+            redirectTo: 'accredit.login'
           }
         },
         ncyBreadcrumb: {

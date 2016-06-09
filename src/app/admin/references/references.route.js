@@ -16,7 +16,7 @@
         pageTitle: 'REFERENCES',
         permissions: {
           only: ['logged'],
-          redirectTo: 'login'
+          redirectTo: 'accredit.login'
         }
       },
       ncyBreadcrumb: {

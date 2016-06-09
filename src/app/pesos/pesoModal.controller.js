@@ -37,7 +37,7 @@
 
     function closeWithSuccess(response) {
       toaster.pop('success', '', response.message);
-      $uibModalInstance.close(response);
+      $uibModalInstance.close(response.reg);
     }
 
     function submit(form) {

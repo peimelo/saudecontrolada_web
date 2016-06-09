@@ -6,27 +6,28 @@
     .controller('PesosController', PesosController);
 
   /** @ngInject */
-  function PesosController(moment, PesosResource, toaster, $uibModal) {
+  function PesosController(moment, PesosResource, $timeout,
+                           toaster, $uibModal) {
     var vm = this;
 
-    vm.chartObject = {
-      data: {
-        cols: [
-          { id: 't', label: 'Data', type: 'string' },
-          { id: 's', label: 'Peso', type: 'number' }
-        ],
-        rows: []
-      },
-      options: {
-        hAxis: {
-          title: 'Data'
-        },
-        vAxis: {
-          title: 'Peso (kg)'
-        }
-      },
-      type: 'LineChart'
-    };
+    // vm.chartObject = {
+    //   data: {
+    //     cols: [
+    //       { id: 't', label: 'Data', type: 'string' },
+    //       { id: 's', label: 'Peso', type: 'number' }
+    //     ],
+    //     rows: []
+    //   },
+    //   options: {
+    //     hAxis: {
+    //       title: 'Data'
+    //     },
+    //     vAxis: {
+    //       title: 'Peso (kg)'
+    //     }
+    //   },
+    //   type: 'LineChart'
+    // };
 
     vm.flotData = [{ label: 'Peso', data: [] }];
 
@@ -56,6 +57,7 @@
 
     vm.openModal = openModal;
     vm.pagination = { currentPage: 1 };
+    vm.pesoId = null;
     vm.pesos = [];
     vm.query = query;
     vm.remove = remove;
@@ -70,15 +72,15 @@
     function getChart() {
       var qtde = vm.pesos.length;
       var flotChart = [];
-      var googleChart = [];
+      // var googleChart = [];
 
       for (var i = qtde - 1; i >= 0; i--) {
-        googleChart.push({
-          c:[
-            { v: moment(vm.pesos[i].data).format('L') },
-            { v: vm.pesos[i].valor }
-          ]
-        });
+        // googleChart.push({
+        //   c:[
+        //     { v: moment(vm.pesos[i].data).format('L') },
+        //     { v: vm.pesos[i].valor }
+        //   ]
+        // });
 
         flotChart.push([
           moment(vm.pesos[i].data).toDate().getTime(),
@@ -86,7 +88,7 @@
         ]);
       }
 
-      vm.chartObject.data.rows = googleChart;
+      // vm.chartObject.data.rows = googleChart;
       vm.flotData[0].data = flotChart;
     }
 
@@ -105,8 +107,12 @@
       });
 
       modalInstance.result.then(
-        function() {
+        function(peso) {
           query();
+          vm.pesoId = peso.id;
+          $timeout(function() {
+            vm.pesoId = null;
+          }, 5000);
         }
       );
     }
