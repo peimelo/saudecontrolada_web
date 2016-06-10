@@ -37,8 +37,8 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
   padding-top: 0px !important;
 }
 
-.updated {
-  background-color: #FFF8AA !important;
+body.modal-open {
+  overflow: visible;
 }
 
 /**
