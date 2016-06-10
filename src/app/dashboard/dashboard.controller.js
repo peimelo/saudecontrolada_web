@@ -6,7 +6,7 @@
     .controller('DashboardController', DashboardController);
 
   /** @ngInject */
-  function DashboardController(moment, PesosResource) {
+  function DashboardController(DashboardsResource, moment, PesosResource) {
     var vm = this;
 
     vm.chartObject = {
@@ -58,9 +58,9 @@
     activate();
 
     function activate() {
-      PesosResource.query({ page: 1 },
+      DashboardsResource.get({ id: 0 },
         function(response) {
-          pesos = response.pesos;
+          pesos = response.weights;
           getChart();
         }
       );
@@ -90,4 +90,3 @@
     }
   }
 })();
-
