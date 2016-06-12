@@ -1,38 +1,44 @@
-<hr/>
+<div class="hr-line-dashed"></div>
+
 <p ng-if="!$state.is('accredit.forgot')">
-  <a ui-sref="accredit.forgot">Esqueceu a senha?</a>
+  <a ui-sref="accredit.forgot">{{ 'LINKS_FORGOT' | translate }}</a>
 </p>
 
 <p ng-if="!$state.is('accredit.resentAccountActivation')">
   <a ui-sref="accredit.resentAccountActivation">
-    Não recebeu instruções de ativação?
+    {{ 'LINKS_ACTIVATION' | translate }}
   </a>
 </p>
 
 <p>
   <a ui-sref="home">
-    Voltar para o Início
+    {{ 'LINKS_HOME' | translate }}
   </a>
 </p>
 
-<span ng-if="!$state.is('accredit.login')">
-  <p class="text-muted text-center">
-    Já tem uma conta?
-  </p>
-  <p>
-    <a class="btn btn-white btn-block" ui-sref="accredit.login">
-      <i class="fa fa-sign-in fa-lg"></i> Entrar
-    </a>
-  </p>
-</span>
+<div class="hr-line-dashed"></div>
 
-<span ng-if="!$state.is('accredit.signup')">
-  <p class="text-muted text-center">
-    Não tem uma conta?
-  </p>
-  <p>
-    <a class="btn btn-white btn-block" ui-sref="accredit.signup">
-      <i class="fa fa-user-plus fa-lg"></i> Criar uma conta
-    </a>
-  </p>
-</span>
+<div class="row">
+  <div class="col-sm-6" ng-if="!$state.is('accredit.login')">
+    <p class="text-muted text-center">
+      {{ 'LINKS_HAVE_ACCOUNT' | translate }}
+    </p>
+    <p>
+      <a class="btn btn-white btn-block" ui-sref="accredit.login">
+        <i class="fa fa-sign-in fa-lg"></i>
+        {{ 'LINKS_SIGNIN' | translate }}
+      </a>
+    </p>
+  </div>
+  <div class="col-sm-6" ng-if="!$state.is('accredit.signup')">
+    <p class="text-muted text-center">
+      {{ 'LINKS_NOT_HAVE_ACCOUNT' | translate }}
+    </p>
+    <p>
+      <a class="btn btn-white btn-block" ui-sref="accredit.signup">
+        <i class="fa fa-user-plus fa-lg"></i>
+        {{ 'LINKS_CREATE_ACCOUNT' | translate }}
+      </a>
+    </p>
+  </div>
+</div>

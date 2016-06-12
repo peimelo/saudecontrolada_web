@@ -42,9 +42,10 @@
 
     function submit(isValid) {
       if (isValid) {
-        vm.user.$update(function(response) {
+        UsersResource.update({ id: 0, user: vm.user },
+        function(response) {
           assignUser(response.user);
-          toaster.pop('success', '', response.message);
+          toaster.pop('success', 'Usuário', response.meta);
         });
       }
       else {

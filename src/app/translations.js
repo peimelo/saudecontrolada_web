@@ -11,6 +11,7 @@
       .translations('en', {
         ACTIONS: 'Actions',
         ADMIN: 'Administration',
+        APP: 'Saúde Controlada',
         CHANGING: 'Changing',
         CONFIRMATION: 'Confirmation',
         DASHBOARD: 'Dashboard',
@@ -25,6 +26,7 @@
         PREVIOUS: 'Previous',
         PROFILE: 'Profile',
         REFERENCES: 'References',
+        SEND: 'Send',
         UNITS: 'Units',
         USERS: 'Users',
         VALUE: 'Value',
@@ -33,6 +35,7 @@
       .translations('pt-BR', {
         ACTIONS: 'Ações',
         ADMIN: 'Administração',
+        APP: 'Saúde Controlada',
         CHANGING: 'Alterando',
         CONFIRMATION: 'Confirmação',
         DASHBOARD: 'Painel',
@@ -47,10 +50,20 @@
         PREVIOUS: 'Anterior',
         PROFILE: 'Perfil',
         REFERENCES: 'Referências',
+        SEND: 'Enviar',
         UNITS: 'Unidades',
         USERS: 'Usuários',
         VALUE: 'Valor',
-        WEIGHTS: 'Pesos'
+        WEIGHTS: 'Pesos',
+
+        // links.html
+        LINKS_ACTIVATION: 'Não recebeu instruções de ativação?',
+        LINKS_CREATE_ACCOUNT: 'Criar uma conta',
+        LINKS_FORGOT: 'Esqueceu a senha?',
+        LINKS_HAVE_ACCOUNT: 'Já tem uma conta?',
+        LINKS_HOME: 'Voltar para a página inicial',
+        LINKS_NOT_HAVE_ACCOUNT: 'Não tem uma conta?',
+        LINKS_SIGNIN: 'Entrar'
       });
 
     $translateProvider.preferredLanguage('pt-BR');

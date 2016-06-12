@@ -23,6 +23,7 @@
       'datePicker',
       'googlechart',
       'ncy-angular-breadcrumb',
+      'oitozero.ngSweetAlert',
       'pascalprecht.translate',
       'permission',
       'toaster',

@@ -6,7 +6,7 @@
     .controller('UserNewController', UserNewController);
 
   /** @ngInject */
-  function UserNewController($state, toaster, UsersResource) {
+  function UserNewController($state, SweetAlert, toaster, UsersResource) {
     var vm = this;
 
     vm.clearServerError = clearServerError;
@@ -27,8 +27,13 @@
         UsersResource.save({ user: vm.user },
           function(response) {
             vm.user = {};
-            $state.go('home');
-            toaster.pop('success', '', response.message);
+            $state.go('accredit.login');
+
+            SweetAlert.swal({
+              title: response.title,
+              text: response.message,
+              type: "success"
+            });
           },
           function(error) {
             form.submitted = true;

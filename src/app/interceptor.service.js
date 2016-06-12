@@ -28,37 +28,41 @@
     }
 
     function responseError(response) {
-      var mensagem = '';
+      var message = '', title = '';
 
       switch(response.status) {
+      case -1:
+        message = 'Não foi possível se conectar com o servidor. Tente novamente mais tarde.';
+        break;
       case 401:
-        mensagem = 'Existe mais de uma sessão com o mesmo login ou você não entrou.';
+        message = 'Existe mais de uma sessão com o mesmo login ou você não entrou.';
         $rootScope.authenticationToken = null;
         $location.path('/login');
         break;
       case 403:
-        mensagem = 'Você não tem permissão para acessar essa funcionalidade.';
+        message = 'Você não tem permissão para acessar essa funcionalidade.';
         break;
       case 404:
-        mensagem = 'O dado solicitado não foi encontrado.';
+        message = 'O dado solicitado não foi encontrado.';
         break;
       case 405:
-        mensagem = 'Método não implementado.';
+        message = 'Método não implementado.';
         break;
       case 422:
-       mensagem = response.data.message ? response.data.message : 'Por favor, corrija os erros encontrados.';
+       message = response.data.message ? response.data.message : 'Por favor, corrija os erros encontrados.';
        break;
       case 500:
       case 503:
-        mensagem = 'O serviço está indisponível. Tente novamente mais tarde.';
+        title = 'Serviço indisponível';
+        message = 'Nos desculpe, tente novamente mais tarde.';
         break;
       default:
-        mensagem = 'Erro inesperado. Favor entrar em contato com o administrador do sistema informando o código de erro: ' + response.status;
+        message = 'Erro inesperado. Favor entrar em contato com o administrador do sistema informando o código de erro: ' + response.status;
         break;
       }
 
-      if(mensagem) {
-        toaster.pop('error', '', mensagem);
+      if(message) {
+        toaster.pop('error', title, message);
       }
 
       // !!Important Must use promise api's q.reject()

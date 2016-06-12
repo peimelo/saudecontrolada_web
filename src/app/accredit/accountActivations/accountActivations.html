@@ -1,4 +1,8 @@
-<form class="m-t" role="form" name="form" ng-submit="vm.submit(form)" novalidate>
+<form class="m-t animated fadeIn"
+      role="form"
+      name="form"
+      ng-submit="vm.submit(form)"
+      novalidate>
     <!-- EMAIL -->
     <div class="form-group"
          ng-class="{ 'has-error': form.email.$invalid && form.submitted }">
@@ -19,6 +23,6 @@
     </div>
 
   <button type="submit" class="btn btn-primary block full-width m-b">
-    Enviar
+    {{ 'SEND' | translate }}
   </button>
 </form>

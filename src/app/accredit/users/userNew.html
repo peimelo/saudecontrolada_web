@@ -1,10 +1,13 @@
-<form name="form" class="m-t" ng-submit="vm.submit(form)" role="form" novalidate>
-  <!-- NAME -->
-  <div class="form-group"
+<form name="form"
+      class="m-t animated fadeIn"
+      ng-submit="vm.submit(form)"
+      novalidate
+      role="form">
+
+  <div form-input
        ng-class="{ 'has-error': form.name.$invalid && form.submitted }">
     <input id="name"
            autofocus
-           class="form-control"
            name="name"
            ng-change="vm.clearServerError(form, 'name')"
            ng-maxlength="255"
@@ -12,19 +15,11 @@
            placeholder="Nome"
            required
            type="text">
-    <div class="help-block"
-         ng-if="form.name.$invalid && form.submitted"
-         ng-messages="form.name.$error">
-      <div ng-messages-include="app/components/messages.html"></div>
-      <div ng-message="server">{{vm.formErrors.name}}</div>
-    </div>
   </div>
 
-  <!-- EMAIL -->
-  <div class="form-group"
+  <div form-input
        ng-class="{ 'has-error': form.email.$invalid && form.submitted }">
     <input id="email"
-           class="form-control"
            name="email"
            ng-change="vm.clearServerError(form, 'email')"
            ng-maxlength="255"
@@ -33,15 +28,8 @@
            placeholder="E-mail"
            required
            type="email">
-    <div class="help-block"
-         ng-if="form.email.$invalid && form.submitted"
-         ng-messages="form.email.$error">
-      <div ng-messages-include="app/components/messages.html"></div>
-      <div ng-message="server">{{vm.formErrors.email}}</div>
-    </div>
   </div>
 
-  <!-- GENDER -->
   <div class="form-group"
        ng-class="{ 'has-error': form.gender.$invalid && form.submitted }">
     <label class="font-noraml" >Sexo:</label>
@@ -75,32 +63,22 @@
     </div>
   </div>
 
-  <!-- DATE OF BIRTH -->
-  <div class="form-group"
+  <div form-input
        ng-class="{ 'has-error': form.date_of_birth.$invalid && form.submitted }">
     <label class="font-noraml" for="date_of_birth">Data de Nascimento</label>
     <input id="date_of_birth"
            change-date
-           class="form-control"
            name="date_of_birth"
            ng-change="vm.clearServerError(form, 'date_of_birth')"
            ng-model="vm.user.date_of_birth"
            required
            type="text"
            ui-mask="99/99/9999">
-    <div class="help-block"
-         ng-if="form.date_of_birth.$invalid && form.submitted"
-         ng-messages="form.date_of_birth.$error">
-      <div ng-messages-include="app/components/messages.html"></div>
-      <div ng-message="server">{{vm.formErrors.date_of_birth}}</div>
-    </div>
   </div>
 
-  <!-- PASSWORD -->
-  <div class="form-group"
+  <div form-input
        ng-class="{ 'has-error': form.password.$invalid && form.submitted }">
     <input id="password"
-           class="form-control"
            name="password"
            ng-change="vm.clearServerError(form, 'password')"
            ng-maxlength="128"
@@ -109,18 +87,11 @@
            placeholder="Senha"
            required
            type="password">
-    <div class="help-block"
-         ng-if="form.password.$invalid && form.submitted"
-         ng-messages="form.password.$error">
-      <div ng-messages-include="app/components/messages.html"></div>
-      <div ng-message="server">{{vm.formErrors.password}}</div>
-    </div>
     <span class="text-muted">
       Mínimo de 8 caracteres (letras, números ou símbolos).
     </span>
   </div>
 
-  <!-- CONFIRM PASSWORD -->
   <div class="form-group"
        ng-class="{ 'has-error': form.password_confirmation.$invalid && form.submitted }">
     <input id="password_confirmation"
@@ -138,12 +109,12 @@
          ng-if="form.password_confirmation.$invalid && form.submitted"
          ng-messages="form.password_confirmation.$error">
       <div ng-messages-include="app/components/messages.html"></div>
-      <div ng-message="server">{{vm.formErrors.password_confirmation}}</div>
+      <div ng-message="server">{{ vm.formErrors.password_confirmation }}</div>
       <div ng-message="validator">Esse campo deve ser igual a senha.</div>
     </div>
   </div>
 
   <button type="submit" class="btn btn-primary block full-width m-b">
-    Enviar
+    {{ 'SEND' | translate }}
   </button>
 </form>

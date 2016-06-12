@@ -45,6 +45,12 @@
           <span class="nav-label">{{ 'WEIGHTS' | translate }}</span>
         </a>
       </li>
+      <li ui-sref-active="active">
+        <a ui-sref="results">
+          <i class="fa fa-balance-scale"></i>
+          <span class="nav-label">{{ 'RESULTS' | translate }}</span>
+        </a>
+      </li>
       <li ng-class="{ active: $state.includes('admin') }">
         <a href="">
           <i class="fa fa-cog"></i>

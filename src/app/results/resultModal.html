@@ -1,0 +1,96 @@
+<script type="text/ng-template" id="resultModal.html">
+  <form name="form" role="form" novalidate ng-submit="vm.submit(form)">
+    <div class="modal-header">
+      <h3 class="modal-title">
+        <span ng-if="!vm.peso">{{ 'INCLUDING' | translate }}</span>
+        <span ng-if="vm.peso">{{ 'CHANGING' | translate }}</span>
+        | {{ $state.current.data.pageTitle | translate }}
+      </h3>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+
+        <div class="col-sm-4">
+          <div class="form-group" id="data_3">
+            <div class="input-group date"
+                 ng-class="{ 'has-error': form.date.$invalid && form.submitted }">
+              <label for="date" class="control-label">{{ 'DATE' | translate }} *</label>
+              <input id="date"
+                     class="form-control"
+                     change-date
+                     name="date"
+                     ng-model="vm.peso.data"
+                     required
+                     type="text"
+                     ui-mask="99/99/9999">
+              <div class="help-block"
+                   ng-if="form.date.$invalid && form.submitted"
+                   ng-messages="form.date.$error">
+                <div ng-messages-include="app/components/messages.html"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+
+          <div class="input-group date"
+               ng-class="{ 'has-error': form.height.$invalid && form.submitted }">
+            <label for="height" class="control-label">
+              {{ 'HEIGHT' | translate }} *
+            </label>
+            <input id="height"
+                   autofocus
+                   class="form-control"
+                   max="2.50"
+                   min="0.48"
+                   name="height"
+                   ng-model="vm.peso.altura"
+                   required
+                   type="text"
+                   ui-number-mask="2">
+            <div class="help-block"
+                 ng-if="form.height.$invalid && form.submitted"
+                 ng-messages="form.height.$error">
+              <div ng-messages-include="app/components/messages.html"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+
+          <div class="input-group date"
+               ng-class="{ 'has-error': form.value.$invalid && form.submitted }">
+            <label for="value" class="control-label">
+              {{ 'VALUE' | translate }} *
+            </label>
+            <input id="value"
+                   class="form-control"
+                   max="400"
+                   min="3.35"
+                   name="value"
+                   ng-model="vm.peso.valor"
+                   required
+                   type="text"
+                   ui-number-mask="2">
+            <div class="help-block"
+                 ng-if="form.value.$invalid && form.submitted"
+                 ng-messages="form.value.$error">
+              <div ng-messages-include="app/components/messages.html"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="submit">
+        <i class="fa fa-check"></i> Salvar
+      </button>
+      <button class="btn btn-default" type="button" ng-click="vm.cancel()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</script>
