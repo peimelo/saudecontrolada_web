@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function PasswordResetsController(PasswordResetsResource, $state,
-    $stateParams, toaster) {
+    $stateParams, SweetAlert, toaster) {
     var vm = this;
 
     var params = null;
@@ -32,7 +32,12 @@
 
         newPassword.$save(function(response) {
           $state.go('accredit.login');
-          toaster.pop('success', '', response.message);
+
+          SweetAlert.swal({
+            text: response.message,
+            title: response.title,
+            type: "success"
+          });
         });
       }
       else {
@@ -47,7 +52,12 @@
 
         newPassword.$update(params, function(response) {
           $state.go('accredit.login');
-          toaster.pop('success', '', response.message);
+
+          SweetAlert.swal({
+            text: response.message,
+            title: response.title,
+            type: "success"
+          });
         });
       }
       else {

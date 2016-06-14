@@ -6,10 +6,11 @@
     .controller('UserEditController', UserEditController);
 
   /** @ngInject */
-  function UserEditController(sessionService, $state, toaster,
+  function UserEditController(sessionService, $state, SweetAlert, toaster,
                               UsersResource) {
     var vm = this;
 
+    vm.cancel = cancel;
     vm.destroy = destroy;
     vm.submit = submit;
     vm.unhappy = false;
@@ -31,11 +32,22 @@
       sessionService.user = angular.copy(user);
     }
 
+    function cancel() {
+      vm.user = angular.copy(sessionService.user);
+    }
+
     function destroy() {
       if (vm.unhappy) {
-        vm.user.$delete(function(response) {
-          $state.go('home');
-          toaster.pop('success', '', response.message);
+        UsersResource.delete({ id: 0 },
+          function(response) {
+            sessionService.logout();
+            $state.go('accredit.login');
+
+            SweetAlert.swal({
+              title: response.title,
+              text: response.message,
+              type: "success"
+            });
         });
       }
     }

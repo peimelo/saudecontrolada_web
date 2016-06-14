@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function AccountActivationsController(ActivationsResource, $state,
-    $stateParams, toaster) {
+    $stateParams, SweetAlert, toaster) {
     var vm = this;
 
     vm.submit = submit;
@@ -17,15 +17,19 @@
 
     function activate() {
       if ($state.is('confirmAccountActivation')) {
-        var data = { id: $stateParams.id, email: $stateParams.email };
+        var account = { id: $stateParams.id, email: $stateParams.email };
 
-        ActivationsResource.get(data,
+        ActivationsResource.get(account,
           function(response) {
-            toaster.pop('success', '', response.message);
+            $state.go('accredit.login');
+
+            SweetAlert.swal({
+              text: response.message,
+              title: response.title,
+              type: "success"
+            });
           }
         );
-
-        $state.go('accredit.login');
       }
     }
 
@@ -34,8 +38,13 @@
         var newActivation = new ActivationsResource(vm.user);
 
         newActivation.$save(function (response) {
-          toaster.pop('note', '', response.message);
           $state.go('accredit.login');
+
+          SweetAlert.swal({
+            text: response.message,
+            title: response.title,
+            type: "success"
+          });
         });
       }
       else {

@@ -28,13 +28,7 @@
     }
 
     function logout() {
-      return $http.delete(api + '/0')
-        .then(responseCallback, responseCallback);
-
-      function responseCallback(response) {
-        setAuthentication(null);
-        return response.data;
-      }
+      setAuthentication(null);
     }
 
     function setAuthentication(userParam) {

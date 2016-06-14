@@ -12,7 +12,7 @@
            ng-change="vm.clearServerError(form, 'name')"
            ng-maxlength="255"
            ng-model="vm.user.name"
-           placeholder="Nome"
+           placeholder="{{ 'NAME' | translate }}"
            required
            type="text">
   </div>
@@ -32,7 +32,7 @@
 
   <div class="form-group"
        ng-class="{ 'has-error': form.gender.$invalid && form.submitted }">
-    <label class="font-noraml" >Sexo:</label>
+    <label class="font-noraml" >{{ 'GENDER' | translate }}:</label>
     <div class="radio-inline">
       <label>
         <input name="gender"
@@ -41,7 +41,7 @@
                ng-required="!vm.user.gender"
                type="radio"
                value="Masculino">
-        <span class="font-noraml">Masculino</span>
+        <span class="font-noraml">{{ 'MALE' | translate }}</span>
       </label>
     </div>
     <div class="radio-inline">
@@ -52,7 +52,7 @@
                ng-required="!vm.user.gender"
                type="radio"
                value="Feminino">
-        <span class="font-noraml">Feminino</span>
+        <span class="font-noraml">{{ 'FEMALE' | translate }}</span>
       </label>
     </div>
     <div class="help-block"
@@ -65,7 +65,9 @@
 
   <div form-input
        ng-class="{ 'has-error': form.date_of_birth.$invalid && form.submitted }">
-    <label class="font-noraml" for="date_of_birth">Data de Nascimento</label>
+    <label class="font-noraml" for="date_of_birth">
+      {{ 'DATE_BIRTH' | translate }}
+    </label>
     <input id="date_of_birth"
            change-date
            name="date_of_birth"
@@ -84,11 +86,11 @@
            ng-maxlength="128"
            ng-minlength="8"
            ng-model="vm.user.password"
-           placeholder="Senha"
+           placeholder="{{ 'PASSWORD' | translate }}"
            required
            type="password">
     <span class="text-muted">
-      Mínimo de 8 caracteres (letras, números ou símbolos).
+      {{ 'PASSWORD_INSTRUCTIONS' | translate }}
     </span>
   </div>
 
@@ -100,7 +102,7 @@
            ng-change="vm.clearServerError(form, 'password_confirmation')"
            ng-maxlength="128"
            ng-model="vm.user.password_confirmation"
-           placeholder="Confirmar a senha"
+           placeholder="{{ 'PASSWORD_CONFIRMATION' | translate }}"
            required="required"
            type="password"
            ui-validate=" '$value==vm.user.password' "
@@ -110,7 +112,9 @@
          ng-messages="form.password_confirmation.$error">
       <div ng-messages-include="app/components/messages.html"></div>
       <div ng-message="server">{{ vm.formErrors.password_confirmation }}</div>
-      <div ng-message="validator">Esse campo deve ser igual a senha.</div>
+      <div ng-message="validator">
+        {{ 'PASSWORD_CONFIRMATION_VALIDATOR' | translate }}
+      </div>
     </div>
   </div>
 

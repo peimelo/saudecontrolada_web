@@ -44,9 +44,8 @@
     }
 
     function logout() {
-      sessionService.logout().then(function() {
-        $state.go('home');
-      });
+      sessionService.logout();
+      $state.go('home');
     }
   }
 })();

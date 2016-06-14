@@ -17,7 +17,7 @@
             redirectTo: 'home'
           },
           specialClass: 'gray-bg',
-          subTitle: 'Para você ter uma vida saudável e tranquila.'
+          subTitle: 'Digite seu e-mail e você receberá instruções para redefiní-la.'
         },
         views: {
           '': {
