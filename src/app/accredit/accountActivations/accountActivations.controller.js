@@ -19,7 +19,7 @@
       if ($state.is('confirmAccountActivation')) {
         var account = { id: $stateParams.id, email: $stateParams.email };
 
-        ActivationsResource.get(account,
+        ActivationsResource.update(account,
           function(response) {
             $state.go('accredit.login');
 

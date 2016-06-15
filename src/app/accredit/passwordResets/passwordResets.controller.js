@@ -26,9 +26,7 @@
 
     function forgot(form) {
       if (form.$valid) {
-        var newPassword = new PasswordResetsResource({
-          password_reset: vm.user
-        });
+        var newPassword = new PasswordResetsResource(vm.user);
 
         newPassword.$save(function(response) {
           $state.go('accredit.login');
