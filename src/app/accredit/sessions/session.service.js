@@ -18,7 +18,7 @@
     return service;
 
     function login(user) {
-      return $http.post(api, { login: user })
+      return $http.post(api, user)
         .then(successCallback);
 
       function successCallback(response) {

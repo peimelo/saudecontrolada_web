@@ -10,10 +10,7 @@
     var urlBase = '/api/account_activations/:id';
 
     return $resource(urlBase, { id: '@id' }, {
-      get: {
-        url: urlBase + '/edit',
-        method: 'GET'
-      }
+      update: { method: 'PUT' }
     });
   }
 })();

@@ -28,6 +28,9 @@
               title: response.title,
               type: "success"
             });
+          },
+          function() {
+            $state.go('accredit.login');
           }
         );
       }

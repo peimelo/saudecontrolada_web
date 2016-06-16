@@ -46,7 +46,7 @@
 
     function resetPassword(form) {
       if (form.$valid) {
-        var newPassword = new PasswordResetsResource({ user: vm.user });
+        var newPassword = new PasswordResetsResource(vm.user);
 
         newPassword.$update(params, function(response) {
           $state.go('accredit.login');
