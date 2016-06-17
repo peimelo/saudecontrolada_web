@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function ActivationsResource($resource) {
-    var urlBase = '/api/account_activations/:id';
+    var urlBase = '/api/confirmations/:id';
 
     return $resource(urlBase, { id: '@id' }, {
       update: { method: 'PUT' }
