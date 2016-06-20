@@ -3,10 +3,10 @@
 
   angular
     .module('app')
-    .controller('AccountActivationsController', AccountActivationsController);
+    .controller('ConfirmationController', ConfirmationController);
 
   /** @ngInject */
-  function AccountActivationsController(ActivationsResource, $state,
+  function ConfirmationController(ConfirmationResource, $state,
     $stateParams, SweetAlert, toaster) {
     var vm = this;
 
@@ -16,10 +16,10 @@
     activate();
 
     function activate() {
-      if ($state.is('confirmAccountActivation')) {
-        var account = { id: $stateParams.id, email: $stateParams.email };
+      if ($state.is('confirmation')) {
+        var token = { token: $stateParams.token };
 
-        ActivationsResource.update(account,
+        ConfirmationResource.update(token,
           function(response) {
             $state.go('accredit.login');
 
@@ -38,7 +38,7 @@
 
     function submit(form) {
       if (form.$valid) {
-        var newActivation = new ActivationsResource(vm.user);
+        var newActivation = new ConfirmationResource(vm.user);
 
         newActivation.$save(function (response) {
           $state.go('accredit.login');

@@ -23,7 +23,7 @@
           '': {
             controller: 'PasswordResetsController',
             controllerAs: 'vm',
-            templateUrl: 'app/accredit/passwordResets/forgot.html',
+            templateUrl: 'app/accredit/passwords/forgot.html',
           },
           'footer': {
             templateUrl: 'app/accredit/footer.html'
@@ -48,7 +48,7 @@
           '': {
             controller: 'PasswordResetsController',
             controllerAs: 'vm',
-            templateUrl: 'app/accredit/passwordResets/passwordReset.html',
+            templateUrl: 'app/accredit/passwords/passwordReset.html',
           },
           'footer': {
             templateUrl: 'app/accredit/footer.html'

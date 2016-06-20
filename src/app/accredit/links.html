@@ -1,11 +1,11 @@
 <div class="hr-line-dashed"></div>
 
-<p ng-if="!$state.is('accredit.forgot')">
+<p ng-hide="$state.is('accredit.forgot') || $state.is('accredit.signup')">
   <a ui-sref="accredit.forgot">{{ 'LINKS_FORGOT' | translate }}</a>
 </p>
 
-<p ng-if="!$state.is('accredit.resentAccountActivation')">
-  <a ui-sref="accredit.resentAccountActivation">
+<p ng-hide="$state.is('accredit.resentConfirmation')">
+  <a ui-sref="accredit.resentConfirmation">
     {{ 'LINKS_ACTIVATION' | translate }}
   </a>
 </p>
@@ -19,7 +19,7 @@
 <div class="hr-line-dashed"></div>
 
 <div class="row">
-  <div class="col-sm-6" ng-if="!$state.is('accredit.login')">
+  <div class="col-sm-6" ng-hide="$state.is('accredit.login')">
     <p class="text-muted text-center">
       {{ 'LINKS_HAVE_ACCOUNT' | translate }}
     </p>
@@ -30,7 +30,7 @@
       </a>
     </p>
   </div>
-  <div class="col-sm-6" ng-if="!$state.is('accredit.signup')">
+  <div class="col-sm-6" ng-hide="$state.is('accredit.signup')">
     <p class="text-muted text-center">
       {{ 'LINKS_NOT_HAVE_ACCOUNT' | translate }}
     </p>

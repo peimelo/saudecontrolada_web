@@ -8,22 +8,22 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('confirmAccountActivation', {
-        url: '/account_activations/:id?email',
-        controller: 'AccountActivationsController'
+      .state('confirmation', {
+        url: '/confirmations/:token',
+        controller: 'ConfirmationController'
       })
-      .state('accredit.resentAccountActivation', {
-        url: '/account_activations',
+      .state('accredit.resentConfirmation', {
+        url: '/confirmations',
         data: {
-          pageTitle: 'Ativar minha conta',
+          pageTitle: 'Confirmar meu e-mail',
           specialClass: 'gray-bg',
-          subTitle: 'Digite seu e-mail e você receberá instruções para ativá-la.'
+          subTitle: 'Digite seu e-mail e você receberá instruções para confirmá-lo.'
         },
         views: {
           '': {
-            controller: 'AccountActivationsController',
+            controller: 'ConfirmationController',
             controllerAs: 'vm',
-            templateUrl: 'app/accredit/accountActivations/accountActivations.html'
+            templateUrl: 'app/accredit/confirmations/confirmations.html'
           },
           'footer': {
             templateUrl: 'app/accredit/footer.html'

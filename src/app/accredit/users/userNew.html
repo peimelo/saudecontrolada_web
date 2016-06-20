@@ -78,29 +78,44 @@
            ui-mask="99/99/9999">
   </div>
 
+  <script type="text/ng-template" id="myPopoverTemplate.html">
+    <div>trtrtrtr</div>
+    <div class="form-group">
+      <label>Popup Title:</label>
+    </div>
+  </script>
+
   <div form-input
        ng-class="{ 'has-error': form.password.$invalid && form.submitted }">
+    <label class="font-noraml" for="password">
+      {{ 'PASSWORD' | translate }}
+    </label>
+    <a href=""
+       popover-placement="right"
+       uib-popover-html="vm.passwordRules">
+    <i class="fa fa-info-circle"></i>
+    </a>
     <input id="password"
+           autocomplete="off"
            name="password"
            ng-change="vm.clearServerError(form, 'password')"
-           ng-maxlength="128"
+           ng-maxlength="72"
            ng-minlength="8"
            ng-model="vm.user.password"
+           ng-pattern="/^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).{7,30})$/"
            placeholder="{{ 'PASSWORD' | translate }}"
            required
            type="password">
-    <span class="text-muted">
-      {{ 'PASSWORD_INSTRUCTIONS' | translate }}
-    </span>
   </div>
 
   <div class="form-group"
        ng-class="{ 'has-error': form.password_confirmation.$invalid && form.submitted }">
     <input id="password_confirmation"
+           autocomplete="off"
            class="form-control"
            name="password_confirmation"
            ng-change="vm.clearServerError(form, 'password_confirmation')"
-           ng-maxlength="128"
+           ng-maxlength="72"
            ng-model="vm.user.password_confirmation"
            placeholder="{{ 'PASSWORD_CONFIRMATION' | translate }}"
            required="required"

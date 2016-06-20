@@ -32,6 +32,7 @@
         PREVIOUS: 'Previous',
         PROFILE: 'Profile',
         REFERENCES: 'References',
+        RESULTS: 'Results',
         SEND: 'Send',
         UNITS: 'Units',
         USERS: 'Users',
@@ -60,10 +61,10 @@
         PASSWORD: 'Senha',
         PASSWORD_CONFIRMATION: 'Confirmar a senha',
         PASSWORD_CONFIRMATION_VALIDATOR: 'Esse campo deve ser igual a senha.',
-        PASSWORD_INSTRUCTIONS: 'Mínimo de 8 caracteres (letras, números ou símbolos).',
         PREVIOUS: 'Anterior',
         PROFILE: 'Perfil',
         REFERENCES: 'Referências',
+        RESULTS: 'Resultados',
         SEND: 'Enviar',
         UNITS: 'Unidades',
         USERS: 'Usuários',
@@ -71,7 +72,7 @@
         WEIGHTS: 'Pesos',
 
         // links.html
-        LINKS_ACTIVATION: 'Não recebeu instruções de ativação?',
+        LINKS_ACTIVATION: 'Não recebeu instruções de confirmação?',
         LINKS_CREATE_ACCOUNT: 'Criar uma conta',
         LINKS_FORGOT: 'Esqueceu a senha?',
         LINKS_HAVE_ACCOUNT: 'Já tem uma conta?',
