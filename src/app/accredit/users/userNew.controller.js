@@ -6,7 +6,7 @@
     .controller('UserNewController', UserNewController);
 
   /** @ngInject */
-  function UserNewController($sce, $state, SweetAlert, toaster, UsersResource) {
+  function UserNewController($sce, serverValidateService, $state, SweetAlert, toaster, UsersResource, $scope) {
     var vm = this;
 
     vm.clearServerError = clearServerError;
@@ -48,13 +48,18 @@
             });
           },
           function(error) {
-            form.submitted = true;
-            if (error.status === 422) {
-              angular.forEach(error.data, function (errors, field) {
-                form[field].$setValidity('server', false);
-                vm.formErrors[field] = errors.join(', ');
-              });
-            }
+            serverValidateService.validate(error, vm.formErrors, form);
+            // vm.serverErrors = error.data;
+            // $scope.serverErrors = error.data;
+            // form.submitted = true;
+            // if (error.status === 422) {
+            //   angular.forEach(error.data, function (errors, field) {
+            //     form[field].$setValidity('server', false);
+            //     vm.formErrors[field] = errors.join(', ');
+            //   });
+            //   $scope.serverErrors = error.data;
+
+            // }
           }
         );
       }

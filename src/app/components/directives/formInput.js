@@ -22,7 +22,6 @@
     }
 
     /**
-     *
      * <div class="help-block"
      *   ng-if="form.email.$invalid && form.submitted"
      *   ng-messages="form.email.$error">

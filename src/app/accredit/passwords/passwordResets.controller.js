@@ -6,13 +6,14 @@
     .controller('PasswordResetsController', PasswordResetsController);
 
   /** @ngInject */
-  function PasswordResetsController(PasswordResetsResource, $state,
-    $stateParams, SweetAlert, toaster) {
+  function PasswordResetsController(PasswordResetsResource,
+    serverValidateService, $state, $stateParams, SweetAlert, toaster) {
     var vm = this;
 
     var params = null;
 
     vm.forgot = forgot;
+    vm.formErrors = {};
     vm.resetPassword = resetPassword;
     vm.user = {};
 
@@ -48,15 +49,20 @@
       if (form.$valid) {
         var newPassword = new PasswordResetsResource(vm.user);
 
-        newPassword.$update(params, function(response) {
-          $state.go('accredit.login');
-
-          SweetAlert.swal({
-            text: response.message,
-            title: response.title,
-            type: "success"
-          });
-        });
+        newPassword.$update(params,
+          function(response) {
+            $state.go('accredit.login');
+  
+            SweetAlert.swal({
+              text: response.message,
+              title: response.title,
+              type: "success"
+            });
+          },
+          function(error) {
+            serverValidateService.validate(error, vm.formErrors, form);
+          }
+        );
       }
       else {
         form.submitted = true;
