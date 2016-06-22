@@ -8,3 +8,5 @@ dist/
 src/img/
 src/app/patterns/
 src/app/SCSS/
+
+coverage/

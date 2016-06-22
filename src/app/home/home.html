@@ -27,21 +27,9 @@
 
 <section id="features" class="container services">
   <div class="row">
-    <div class="col-sm-3">
-      <h2>Responsivo</h2>
-      <p>Significa que você pode acessar do seu computador, tablet ou celular.</p>
-    </div>
-    <div class="col-sm-3">
-      <h2>Controle de Peso</h2>
-      <p>Controle a evolução do seu peso, o peso ideal e o IMC.</p>
-    </div>
-    <div class="col-sm-3">
-      <h2>Resultados de Exames</h2>
-      <p>Todos os seus resultados em um só lugar e com gráficos.</p>
-    </div>
-    <div class="col-sm-3">
-      <h2>Gratuito</h2>
-      <p>Você não precisa pagar nada. Queremos ajudar você a cuidar da sua saúde.</p>
+    <div class="col-sm-3" ng-repeat="presentation in vm.presentations">
+      <h2>{{ presentation.title }}</h2>
+      <p>{{ presentation.text }}</p>
     </div>
   </div>
 </section>

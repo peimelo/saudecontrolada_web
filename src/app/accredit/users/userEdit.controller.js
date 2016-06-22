@@ -6,8 +6,8 @@
     .controller('UserEditController', UserEditController);
 
   /** @ngInject */
-  function UserEditController(sessionService, $state, SweetAlert, toaster,
-                              UsersResource) {
+  function UserEditController(serverValidateService, sessionService, $state,
+    SweetAlert, toaster, UsersResource) {
     var vm = this;
 
     vm.cancel = cancel;
@@ -32,8 +32,9 @@
       sessionService.user = angular.copy(user);
     }
 
-    function cancel() {
+    function cancel(form) {
       vm.user = angular.copy(sessionService.user);
+      form.submitted = false;
     }
 
     function destroy() {
@@ -52,15 +53,23 @@
       }
     }
 
-    function submit(isValid) {
-      if (isValid) {
+    function submit(form) {
+      if (form.$valid) {
+        vm.formErrors = {};
+
         UsersResource.update({ id: 0, user: vm.user },
-        function(response) {
-          assignUser(response.user);
-          toaster.pop('success', 'Usuário', response.meta);
-        });
+          function(response) {
+            assignUser(response.user);
+            form.submitted = false;
+            toaster.pop('success', 'Usuário', response.meta);
+          },
+          function(error) {
+            serverValidateService.validate(error, vm.formErrors, form);
+          }
+        );
       }
       else {
+        form.submitted = true;
         toaster.pop('warning', '', 'Todos os campos devem estar preenchidos e validados.');
       }
     }

@@ -49,7 +49,8 @@
         message = 'Método não implementado.';
         break;
       case 422:
-       message = response.data.message ? response.data.message : 'Por favor, corrija os erros encontrados.';
+       message = response.data.message ?
+         response.data.message : 'Por favor, corrija o(s) erro(s) encontrado(s).';
        break;
       case 500:
       case 503:

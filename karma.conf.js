@@ -48,6 +48,7 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-angular-filesort',
       'karma-jasmine',
+      'karma-coverage',
       'karma-ng-html2js-preprocessor'
     ],
 

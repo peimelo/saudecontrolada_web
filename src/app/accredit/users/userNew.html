@@ -59,7 +59,7 @@
          ng-if="form.gender.$invalid && form.submitted"
          ng-messages="form.gender.$error">
       <div ng-messages-include="app/components/messages.html"></div>
-      <div ng-message="server">{{vm.formErrors.gender}}</div>
+      <div ng-message="server">{{ vm.formErrors.gender }}</div>
     </div>
   </div>
 
@@ -94,6 +94,7 @@
            name="password"
            ng-change="vm.clearServerError(form, 'password')"
            ng-maxlength="72"
+           ng-minlength="8"
            ng-model="vm.user.password"
            ng-pattern="/^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).{8,72})$/"
            placeholder="{{ 'PASSWORD' | translate }}"
@@ -107,10 +108,8 @@
            autocomplete="off"
            name="password_confirmation"
            ng-change="vm.clearServerError(form, 'password_confirmation')"
-           ng-maxlength="72"
            ng-model="vm.user.password_confirmation"
            placeholder="{{ 'PASSWORD_CONFIRMATION' | translate }}"
-           required="required"
            type="password"
            ui-validate=" '$value==vm.user.password' "
            ui-validate-watch=" 'vm.user.password' ">
