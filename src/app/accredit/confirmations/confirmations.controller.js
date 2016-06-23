@@ -6,8 +6,8 @@
     .controller('ConfirmationController', ConfirmationController);
 
   /** @ngInject */
-  function ConfirmationController(ConfirmationResource, $state,
-    $stateParams, SweetAlert, toaster) {
+  function ConfirmationController(ConfirmationResource, serverValidateService,
+    $state, $stateParams, SweetAlert, toaster) {
     var vm = this;
 
     vm.submit = submit;
@@ -29,8 +29,9 @@
               type: "success"
             });
           },
-          function() {
+          function(error) {
             $state.go('accredit.login');
+            serverValidateService.validate(error, null, null);
           }
         );
       }

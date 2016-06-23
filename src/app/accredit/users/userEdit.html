@@ -99,7 +99,7 @@
 
                 <div class="hr-line-dashed"></div>
 
-                <p><i>Deixe em branco se você não quiser alterá-la.</i></p>
+                <p><i>Deixe em branco se não quiser alterar a senha.</i></p>
 
                 <div form-input
                      ng-class="{ 'has-error': form.password.$invalid && form.submitted }">
@@ -137,7 +137,7 @@
 
                 <div class="hr-line-dashed"></div>
 
-                <p><i>Precisamos da sua senha atual para confirmar as alterações.</i></p>
+                <p><i>Precisamos da sua senha atual para salvar as alterações.</i></p>
 
                 <div form-input
                      ng-class="{ 'has-error': form.current_password.$invalid && form.submitted }">
@@ -151,7 +151,6 @@
                          ng-maxlength="72"
                          ng-minlength="8"
                          ng-model="vm.user.current_password"
-                         ng-pattern="/^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).{8,72})$/"
                          required
                          type="password">
                 </div>
