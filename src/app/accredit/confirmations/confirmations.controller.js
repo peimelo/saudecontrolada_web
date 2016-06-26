@@ -6,8 +6,8 @@
     .controller('ConfirmationController', ConfirmationController);
 
   /** @ngInject */
-  function ConfirmationController(ConfirmationResource, serverValidateService,
-    $state, $stateParams, SweetAlert, toaster) {
+  function ConfirmationController(ConfirmationResource, formErrorService,
+    serverValidateService, $state, $stateParams, SweetAlert) {
     var vm = this;
 
     vm.submit = submit;
@@ -31,7 +31,7 @@
           },
           function(error) {
             $state.go('accredit.login');
-            serverValidateService.validate(error, null, null);
+            serverValidateService.addOtherErrorsInAlert(error);
           }
         );
       }
@@ -52,8 +52,7 @@
         });
       }
       else {
-        toaster.pop('warning', '', 'Por favor, preencha o e-mail.');
-        form.submitted = true;
+        formErrorService.showMessage(form);
       }
     }
   }

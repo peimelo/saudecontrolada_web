@@ -6,11 +6,12 @@
     .controller('UnitModalController', UnitModalController);
 
   /** @ngInject */
-  function UnitModalController(toaster, $uibModalInstance, unit,
-                               UnitsResource) {
+  function UnitModalController(formErrorService, serverValidateService, toaster,
+                               $uibModalInstance, unit, UnitsResource) {
     var vm = this;
 
     vm.cancel = cancel;
+    vm.formErrors = {};
     vm.submit = submit;
     vm.unit = unit;
 
@@ -45,13 +46,18 @@
         else {
           var newUnit = new UnitsResource(vm.unit);
 
-          newUnit.$save(function(response) {
-            closeWithSuccess(response);
-          });
+          newUnit.$save(
+            function(response) {
+              closeWithSuccess(response);
+            },
+            function(error) {
+              serverValidateService.validate(error, vm.formErrors, form);
+            }
+          );
         }
       }
       else {
-        form.submitted = true;
+        formErrorService.showMessage(form);
       }
     }
   }

@@ -10,23 +10,18 @@
     </div>
 
     <div class="modal-body">
-      <div class="input-group"
+      <div form-input
            ng-class="{ 'has-error': form.name.$invalid && form.submitted }">
-        <label for="height" class="control-label">
+        <label for="height">
           {{ 'NAME' | translate }} *
         </label>
         <input id="height"
                autofocus
-               class="form-control"
+               clear-server-error
                name="name"
                ng-model="vm.reference.name"
                required
                type="text">
-        <div class="help-block"
-             ng-if="form.name.$invalid && form.submitted"
-             ng-messages="form.name.$error">
-          <div ng-messages-include="app/components/messages.html"></div>
-        </div>
       </div>
     </div>
 

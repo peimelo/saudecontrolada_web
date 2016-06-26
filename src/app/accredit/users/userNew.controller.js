@@ -6,8 +6,8 @@
     .controller('UserNewController', UserNewController);
 
   /** @ngInject */
-  function UserNewController($sce, serverValidateService, $state, SweetAlert,
-    toaster, UsersResource) {
+  function UserNewController(formErrorService, $sce, serverValidateService,
+    $state, SweetAlert, UsersResource) {
     var vm = this;
 
     vm.clearServerError = clearServerError;
@@ -50,23 +50,11 @@
           },
           function(error) {
             serverValidateService.validate(error, vm.formErrors, form);
-            // vm.serverErrors = error.data;
-            // $scope.serverErrors = error.data;
-            // form.submitted = true;
-            // if (error.status === 422) {
-            //   angular.forEach(error.data, function (errors, field) {
-            //     form[field].$setValidity('server', false);
-            //     vm.formErrors[field] = errors.join(', ');
-            //   });
-            //   $scope.serverErrors = error.data;
-
-            // }
           }
         );
       }
       else {
-        form.submitted = true;
-        toaster.pop('warning', '', 'Todos os campos devem estar preenchidos e validados.');
+        formErrorService.showMessage(form);
       }
     }
   }

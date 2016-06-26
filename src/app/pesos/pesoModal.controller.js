@@ -6,7 +6,8 @@
     .controller('PesoModalController', PesoModalController);
 
   /** @ngInject */
-  function PesoModalController(moment, peso, PesosResource, toaster, $uibModalInstance) {
+  function PesoModalController(moment, peso, PesosResource, toaster,
+                               $uibModalInstance) {
     var vm = this;
 
     vm.cancel = cancel;

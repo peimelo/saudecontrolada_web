@@ -6,8 +6,8 @@
     .controller('PasswordResetsController', PasswordResetsController);
 
   /** @ngInject */
-  function PasswordResetsController(PasswordResetsResource,
-    serverValidateService, $state, $stateParams, SweetAlert, toaster) {
+  function PasswordResetsController(formErrorService, PasswordResetsResource,
+    serverValidateService, $state, $stateParams, SweetAlert) {
     var vm = this;
 
     var params = null;
@@ -40,8 +40,7 @@
         });
       }
       else {
-        toaster.pop('warning', '', 'Por favor, preencha o e-mail.');
-        form.submitted = true;
+        formErrorService.showMessage(form);
       }
     }
 
@@ -52,7 +51,7 @@
         newPassword.$update(params,
           function(response) {
             $state.go('accredit.login');
-  
+
             SweetAlert.swal({
               text: response.message,
               title: response.title,
@@ -65,8 +64,7 @@
         );
       }
       else {
-        form.submitted = true;
-        toaster.pop('warning', '', 'Todos os campos devem estar preenchidos e validados.');
+        formErrorService.showMessage(form);
       }
     }
   }

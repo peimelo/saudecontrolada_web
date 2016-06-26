@@ -35,9 +35,9 @@
         message = 'Não foi possível se conectar com o servidor. Tente novamente mais tarde.';
         break;
       case 401:
-        message = 'Existe mais de uma sessão com o mesmo login ou você não entrou.';
         $rootScope.authenticationToken = null;
         $location.path('/login');
+        message = 'Existe mais de uma sessão com o mesmo login ou você não entrou.';
         break;
       case 403:
         message = 'Você não tem permissão para acessar essa funcionalidade.';
@@ -49,8 +49,8 @@
         message = 'Método não implementado.';
         break;
       case 422:
-       message = response.data.message ?
-         response.data.message : 'Por favor, corrija o(s) erro(s) encontrado(s).';
+        message = response.data.message ?
+          response.data.message : 'Por favor, corrija o(s) erro(s) encontrado(s).';
        break;
       case 500:
       case 503:
@@ -58,7 +58,9 @@
         message = 'Nos desculpe, tente novamente mais tarde.';
         break;
       default:
-        message = 'Erro inesperado. Favor entrar em contato com o administrador do sistema informando o código de erro: ' + response.status;
+        title = 'Erro inesperado';
+        message = 'Favor entrar em contato com o administrador do sistema informando o código: '
+          + response.status;
         break;
       }
 

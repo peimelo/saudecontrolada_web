@@ -6,8 +6,8 @@
     .controller('UserEditController', UserEditController);
 
   /** @ngInject */
-  function UserEditController(serverValidateService, sessionService, $state,
-    SweetAlert, toaster, UsersResource) {
+  function UserEditController(formErrorService, serverValidateService,
+    sessionService, $state, SweetAlert, toaster, UsersResource) {
     var vm = this;
 
     vm.cancel = cancel;
@@ -15,7 +15,6 @@
     vm.submit = submit;
     vm.unhappy = false;
     vm.user = sessionService.user;
-    vm.title = 'Minha Conta';
 
     activate();
 
@@ -69,8 +68,7 @@
         );
       }
       else {
-        form.submitted = true;
-        toaster.pop('warning', '', 'Todos os campos devem estar preenchidos e validados.');
+        formErrorService.showMessage(form);
       }
     }
   }
