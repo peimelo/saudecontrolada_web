@@ -46,6 +46,8 @@
 
     function resetPassword(form) {
       if (form.$valid) {
+        vm.formErrors = {};
+
         var newPassword = new PasswordResetsResource(vm.user);
 
         newPassword.$update(params,
