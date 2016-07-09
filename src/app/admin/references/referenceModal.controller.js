@@ -38,6 +38,8 @@
 
     function submit(form) {
       if (form.$valid) {
+        vm.formErrors = {};
+
         if (vm.reference.id) {
           vm.reference.$update(function(response) {
             closeWithSuccess(response);

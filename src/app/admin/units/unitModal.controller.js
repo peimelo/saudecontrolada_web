@@ -38,6 +38,8 @@
 
     function submit(form) {
       if (form.$valid) {
+        vm.formErrors = {};
+
         if (vm.unit.id) {
           vm.unit.$update(function(response) {
             closeWithSuccess(response);

@@ -10,6 +10,7 @@
     serverValidateService, sessionService, $state) {
     var vm = this;
 
+    vm.formErrors = {};
     vm.submit = submit;
     vm.user = {};
 
@@ -23,6 +24,8 @@
 
     function submit(form) {
       if (form.$valid) {
+        vm.formErrors = {};
+
         sessionService.login(vm.user).then(
           function() {
             vm.user = {};
