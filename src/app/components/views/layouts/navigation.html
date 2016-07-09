@@ -29,7 +29,10 @@
         </div>
 
         <div class="logo-element">
-          <i class="fa fa-heartbeat"></i>
+          <img alt="main.sessionService.user.name"
+               class="img-circle"
+               gravatar-src-once="main.sessionService.user.email"
+               title="{{ main.sessionService.user.name }}" />
         </div>
       </li>
 
@@ -45,7 +48,7 @@
           <span class="nav-label">{{ 'WEIGHTS' | translate }}</span>
         </a>
       </li>
-      <li ui-sref-active="active">
+      <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
         <a ui-sref="results">
           <i class="fa fa-file-text-o"></i>
           <span class="nav-label">{{ 'RESULTS' | translate }}</span>
@@ -86,6 +89,12 @@
             </a>
           </li>
         </ul>
+      </li>
+      <li ui-sref-active="active">
+        <a href="" ng-click="main.contactModal()">
+          <i class="fa fa fa-bullhorn"></i>
+          <span class="nav-label">Contato</span>
+        </a>
       </li>
     </ul>
   </div>

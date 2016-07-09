@@ -6,17 +6,26 @@
     .controller('UserEditController', UserEditController);
 
   /** @ngInject */
-  function UserEditController(formErrorService, serverValidateService,
+  function UserEditController(formErrorService, $sce, serverValidateService,
     sessionService, $state, SweetAlert, toaster, UsersResource) {
     var vm = this;
 
     vm.cancel = cancel;
-    vm.destroy = destroy;
-    vm.destroy_account_password = '';
+    vm.cancelAccount = cancelAccount;
     vm.formErrors = {};
+    vm.passwordRules = $sce.trustAsHtml(
+      'Para sua segurança, a senha deve ter no mínimo 8 caracteres com pelo menos: <br /> \
+      <ul> \
+        <li>1 letra maiúscula,</li> \
+        <li>1 letra minúscula,</li> \
+        <li>1 número,</li> \
+        <li>e 1 símbolo.</li>\
+      </ul>\
+      Símbolos incluem: <br />\
+      `~!@#$%^&*()-_=+[]{}\\|;:\'",.<>/?'
+    );
     vm.submit = submit;
     vm.unhappy = false;
-    vm.unhappyChange = unhappyChange;
     vm.user = sessionService.user;
 
     activate();
@@ -39,30 +48,23 @@
       form.submitted = false;
     }
 
-    function destroy(form) {
-      if (form.$valid) {
-        vm.formErrors = {};
+    function cancelAccount() {
+      if (vm.unhappy) {
+        UsersResource.delete({ id: 0 },
+          function (response) {
+            sessionService.logout();
+            $state.go('accredit.login');
 
-        if (vm.unhappy) {
-          UsersResource.delete({ id: 0, current_password: vm.destroy_account_password },
-            function (response) {
-              sessionService.logout();
-              $state.go('accredit.login');
-
-              SweetAlert.swal({
-                title: response.title,
-                text: response.message,
-                type: "success"
-              });
-            },
-            function(error) {
-              serverValidateService.validate(error, vm.formErrors, form);
-            }
-          );
-        }
-      }
-      else {
-        formErrorService.showMessage(form);
+            SweetAlert.swal({
+              title: response.title,
+              text: response.message,
+              type: "success"
+            });
+          },
+          function(error) {
+            serverValidateService.validate(error, vm.formErrors, form);
+          }
+        );
       }
     }
 
@@ -83,13 +85,6 @@
       }
       else {
         formErrorService.showMessage(form);
-      }
-    }
-
-    function unhappyChange(form) {
-      if (!vm.unhappy) {
-        form.submitted = false;
-        vm.destroy_account_password = '';
       }
     }
   }

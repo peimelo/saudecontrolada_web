@@ -109,7 +109,7 @@
                   <a href=""
                      popover-placement="right"
                      uib-popover-html="vm.passwordRules">
-                    <i class="fa fa-info-circle"></i>
+                    &nbsp;<i class="fa fa-info-circle"></i>
                   </a>
                   <input id="password"
                          autocomplete="off"
@@ -200,48 +200,29 @@
         </div>
 
         <div class="ibox-content">
-          <form ng-submit="vm.destroy(form_destroy)" role="form" name="form_destroy" novalidate>
-            <div class="checkbox checkbox-circle">
-              <label>
-                <p>
-                  <input icheck
-                         type="checkbox"
-                         ng-change="vm.unhappyChange(form_destroy)"
-                         ng-model="vm.unhappy">
-                  <i class="fa fa-frown-o"></i> Não estou contente.
-                </p>
-                <p>
-                  Entendo que, ao clicar nesta caixa de seleção, confirmo que
-                  desejo encerrar minha conta e todos meus dados serão apagados
-                  definitivamente.
-                </p>
-              </label>
-            </div>
+          <div class="checkbox checkbox-circle">
+            <label>
+              <p>
+                <input icheck
+                       type="checkbox"
+                       ng-model="vm.unhappy">
+                <i class="fa fa-frown-o"></i> Não estou contente.
+              </p>
+              <p>
+                Entendo que, ao clicar nesta caixa de seleção, confirmo que
+                desejo encerrar minha conta e todos meus dados serão apagados
+                definitivamente.
+              </p>
+            </label>
+          </div>
 
-            <p><i>Precisamos da sua senha atual para excluir sua conta.</i></p>
-
-            <div form-input
-                 ng-class="{ 'has-error': form_destroy.destroy_account_password.$invalid && form_destroy.submitted }">
-              <label for="destroy_account_password">
-                Senha atual *
-              </label>
-              <input id="destroy_account_password"
-                     autocomplete="off"
-                     clear-server-error
-                     name="destroy_account_password"
-                     ng-disabled="!vm.unhappy"
-                     ng-maxlength="72"
-                     ng-model="vm.destroy_account_password"
-                     required
-                     type="password">
-            </div>
-
-            <button type="submit"
-                    class="btn btn-danger"
-                    ng-disabled="!vm.unhappy">
-              Excluir minha conta
-            </button>
-          </form>
+          <a href class="btn btn-danger"
+             ng-click="vm.cancelAccount()"
+             ng-disabled="!vm.unhappy"
+             confirm-if="vm.unhappy"
+             confirm="Tem certeza que deseja excluir sua conta e todos os dados contidos nela?">
+            Excluir minha conta ...
+          </a>
         </div>
       </div>
     </div>

@@ -6,28 +6,30 @@
     .controller('HomeController', HomeController);
 
   /** @ngInject */
-  function HomeController() {
+  function HomeController($uibModal) {
     var vm = this;
+
+    vm.contactModal = contactModal;
 
     vm.presentations = [
       {
         title: 'Responsivo',
-        text: 'Significa que você pode acessar do seu computador, tablet ou celular.' 
+        text: 'Significa que você pode acessar do seu computador, tablet ou celular.'
       },
       {
         title: 'Controle de Peso',
-        text: 'Controle a evolução do seu peso, o peso ideal e o IMC.' 
+        text: 'Controle a evolução do seu peso, o peso ideal e o IMC.'
       },
       {
         title: 'Resultados de Exames',
-        text: 'Todos os seus resultados em um só lugar e com gráficos.' 
+        text: 'Todos os seus resultados em um só lugar e com gráficos.'
       },
       {
         title: 'Gratuito',
-        text: 'Você não precisa pagar nada. Queremos ajudar você a cuidar da sua saúde.' 
+        text: 'Você não precisa pagar nada. Queremos ajudar você a cuidar da sua saúde.'
       }
     ];
-    
+
     vm.slides = [
       {
         id: 1,
@@ -40,5 +42,16 @@
         class: 'header-back two'
       }
     ];
+
+    function contactModal() {
+      $uibModal.open({
+        animation: true,
+        controller: 'ContactModalController',
+        controllerAs: 'vm',
+        size: 'lg',
+        templateUrl: 'contactModal.html',
+        windowClass: 'center-modal'
+      });
+    }
   }
 })();

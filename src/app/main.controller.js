@@ -6,12 +6,13 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(sessionService, $state, $translate) {
+  function MainController(sessionService, $state, $translate, $uibModal) {
     var vm = this;
 
     vm.alerts = [];
     vm.changeLanguage = changeLanguage;
     vm.closeAlert = closeAlert;
+    vm.contactModal = contactModal;
     vm.language = {};
     vm.languages = [
       {
@@ -41,6 +42,17 @@
 
     function closeAlert(index) {
       vm.alerts.splice(index, 1);
+    }
+
+    function contactModal() {
+      $uibModal.open({
+        animation: true,
+        controller: 'ContactModalController',
+        controllerAs: 'vm',
+        size: 'lg',
+        templateUrl: 'contactModal.html',
+        windowClass: 'center-modal'
+      });
     }
 
     function logout() {
