@@ -34,7 +34,7 @@ function browserSyncInit(baseDir, browser) {
    * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.9.0/README.md
    */
   // server.middleware = proxyMiddleware('/users', {target: 'http://jsonplaceholder.typicode.com', changeOrigin: true});
-  server.middleware = proxyMiddleware('/api', { target: 'http://127.0.0.1:3030' });
+  server.middleware = proxyMiddleware('/api', { target: 'http://127.0.0.1:3000' });
   
   browserSync.instance = browserSync.init({
     startPath: '/',
