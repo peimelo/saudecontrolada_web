@@ -30,6 +30,7 @@
         OPTIONS: 'Options',
         PASSWORD: 'Password',
         PASSWORD_CONFIRMATION: 'Password confirmation',
+        PASSWORD_CONFIRMATION_VALIDATOR: 'This field must match the password.',
         PREVIOUS: 'Previous',
         PROFILE: 'Profile',
         REFERENCES: 'References',
@@ -38,7 +39,16 @@
         UNITS: 'Units',
         USERS: 'Users',
         VALUE: 'Value',
-        WEIGHTS: 'Weights'
+        WEIGHTS: 'Weights',
+
+        // links.html
+        LINKS_ACTIVATION: 'Did not receive confirmation instructions?',
+        LINKS_CREATE_ACCOUNT: 'Create an account',
+        LINKS_FORGOT: 'Forgot password?',
+        LINKS_HAVE_ACCOUNT: 'Already have an account?',
+        LINKS_HOME: 'Back to the home page',
+        LINKS_NOT_HAVE_ACCOUNT: 'Do not have an account?',
+        LINKS_SIGNIN: 'Sign in'
       })
       .translations('pt-BR', {
         ACTIONS: 'Ações',
