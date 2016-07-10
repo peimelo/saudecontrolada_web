@@ -3,11 +3,11 @@
 
   angular
     .module('app')
-    .factory('PesosResource', PesosResource);
+    .factory('WeightsResource', WeightsResource);
 
   /** @ngInject */
-  function PesosResource($resource) {
-    return $resource('/api/pesos/:id', { id: '@id' }, {
+  function WeightsResource($resource) {
+    return $resource('/api/weights/:id', { id: '@id' }, {
       query: { isArray: false },
       update: { method: 'PUT' }
     });

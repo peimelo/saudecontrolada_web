@@ -1,9 +1,8 @@
-<script type="text/ng-template" id="pesoModal.html">
+<script type="text/ng-template" id="weightModal.html">
   <form name="form" role="form" novalidate ng-submit="vm.submit(form)">
     <div class="modal-header">
       <h3 class="modal-title">
-        <span ng-if="!vm.peso">{{ 'INCLUDING' | translate }}</span>
-        <span ng-if="vm.peso">{{ 'CHANGING' | translate }}</span>
+        {{ vm.title | translate }}
         | {{ $state.current.data.pageTitle | translate }}
       </h3>
     </div>
@@ -20,7 +19,7 @@
                      class="form-control"
                      change-date
                      name="date"
-                     ng-model="vm.peso.data"
+                     ng-model="vm.weight.date"
                      required
                      type="text"
                      ui-mask="99/99/9999">
@@ -46,7 +45,7 @@
                    max="2.50"
                    min="0.48"
                    name="height"
-                   ng-model="vm.peso.altura"
+                   ng-model="vm.weight.height"
                    required
                    type="text"
                    ui-number-mask="2">
@@ -70,7 +69,7 @@
                    max="400"
                    min="3.35"
                    name="value"
-                   ng-model="vm.peso.valor"
+                   ng-model="vm.weight.value"
                    required
                    type="text"
                    ui-number-mask="2">

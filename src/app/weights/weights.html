@@ -70,23 +70,23 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr ng-repeat="peso in vm.pesos" ng-class="{'success': peso.id == vm.pesoId}">
+                  <tr ng-repeat="weight in vm.weights" ng-class="{'success': weight.id == vm.weightId}">
                     <td width="100">
-                      <a href="" class="btn btn-white" ng-click="vm.openModal(peso)">
+                      <a href="" class="btn btn-white" ng-click="vm.openModal(weight)">
                         <i class="fa fa-pencil"></i>
                       </a>
                       <a href=""
                          class="btn btn-danger"
-                         confirm="Tem certeza que deseja excluir o peso do dia {{ peso.data | date: 'dd/MM/yyyy' }}?"
-                         ng-click="vm.remove(peso)">
+                         confirm="Tem certeza que deseja excluir o peso do dia {{ weight.data | date: 'dd/MM/yyyy' }}?"
+                         ng-click="vm.remove(weight)">
                         <i class="fa fa-trash-o"></i>
                       </a>
                     </td>
-                    <td>{{ peso.data | date:'dd/MM/yyyy' }}</td>
-                    <td>{{ peso.altura | number }}</td>
-                    <td>{{ peso.valor | number }}</td>
-                    <td>{{ peso.minimum | number }} ~ {{ peso.maximum | number }}</td>
-                    <td ng-bind-html="peso.imc | situacaoImcFilter"></td>
+                    <td>{{ weight.date | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ weight.height | number }}</td>
+                    <td>{{ weight.value | number }}</td>
+                    <td>{{ weight.minimum | number }} ~ {{ weight.maximum | number }}</td>
+                    <td ng-bind-html="weight.imc | situacaoImcFilter"></td>
                   </tr>
                   </tbody>
                 </table>
@@ -115,4 +115,4 @@
 </div>
 <!-- End wrapper-->
 
-<div ng-include="'app/pesos/pesoModal.html'"></div>
+<div ng-include="'app/weights/weightModal.html'"></div>

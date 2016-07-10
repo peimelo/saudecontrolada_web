@@ -3,32 +3,32 @@
 
   angular
     .module('app')
-    .controller('PesoModalController', PesoModalController);
+    .controller('WeightModalController', WeightModalController);
 
   /** @ngInject */
-  function PesoModalController(moment, peso, PesosResource, toaster,
+  function WeightModalController(moment, weight, WeightsResource, toaster,
                                $uibModalInstance) {
     var vm = this;
 
     vm.cancel = cancel;
-    vm.peso = peso;
+    vm.weight = weight;
     vm.submit = submit;
     vm.title = '';
 
     activate();
 
     function activate() {
-      if(peso) {
-        vm.title = 'Alterando';
-        PesosResource.get({ id: peso.id },
+      if(weight) {
+        vm.title = 'CHANGING';
+        WeightsResource.get({ id: weight.id },
           function(response) {
-            vm.peso = response;
+            vm.weight = response;
           }
         );
       }
       else {
-        vm.peso = { data: moment().format('YYYY-MM-DD') };
-        vm.title = 'Incluindo';
+        vm.weight = { date: moment().format('YYYY-MM-DD') };
+        vm.title = 'INCLUDING';
       }
     }
 
@@ -43,15 +43,15 @@
 
     function submit(form) {
       if (form.$valid) {
-        if (vm.peso.id) {
-          vm.peso.$update(function(response) {
+        if (vm.weight.id) {
+          vm.weight.$update(function(response) {
             closeWithSuccess(response);
           });
         }
         else {
-          var newPeso = new PesosResource(vm.peso);
+          var newWeight = new WeightsResource(vm.weight);
 
-          newPeso.$save(function(response) {
+          newWeight.$save(function(response) {
             closeWithSuccess(response);
           });
         }

@@ -3,34 +3,13 @@
 
   angular
     .module('app')
-    .controller('PesosController', PesosController);
+    .controller('WeightsController', WeightsController);
 
   /** @ngInject */
-  function PesosController(moment, PesosResource, $timeout,
+  function WeightsController(moment, WeightsResource, $timeout,
                            toaster, $uibModal) {
     var vm = this;
-
-    // vm.chartObject = {
-    //   data: {
-    //     cols: [
-    //       { id: 't', label: 'Data', type: 'string' },
-    //       { id: 's', label: 'Peso', type: 'number' }
-    //     ],
-    //     rows: []
-    //   },
-    //   options: {
-    //     hAxis: {
-    //       title: 'Data'
-    //     },
-    //     vAxis: {
-    //       title: 'Peso (kg)'
-    //     }
-    //   },
-    //   type: 'LineChart'
-    // };
-
     vm.flotData = [{ label: 'Peso', data: [] }];
-
     vm.flotOptions = {
       xaxis: {
         mode: "time",
@@ -54,11 +33,10 @@
         onHover: function (flotItem, $tooltipEl) {}
       }
     };
-
     vm.openModal = openModal;
     vm.pagination = { currentPage: 1 };
-    vm.pesoId = null;
-    vm.pesos = [];
+    vm.weightId = null;
+    vm.weights = [];
     vm.query = query;
     vm.remove = remove;
     vm.showMode = { chart: true, table: true };
@@ -70,65 +48,56 @@
     }
 
     function getChart() {
-      var qtde = vm.pesos.length;
+      var qtde = vm.weights.length;
       var flotChart = [];
-      // var googleChart = [];
 
       for (var i = qtde - 1; i >= 0; i--) {
-        // googleChart.push({
-        //   c:[
-        //     { v: moment(vm.pesos[i].data).format('L') },
-        //     { v: vm.pesos[i].valor }
-        //   ]
-        // });
-
         flotChart.push([
-          moment(vm.pesos[i].data).toDate().getTime(),
-          vm.pesos[i].valor
+          moment(vm.weights[i].date).toDate().getTime(),
+          vm.weights[i].value
         ]);
       }
 
-      // vm.chartObject.data.rows = googleChart;
       vm.flotData[0].data = flotChart;
     }
 
-    function openModal(pesoGrid) {
+    function openModal(weightGrid) {
       var modalInstance = $uibModal.open({
         animation: true,
-        controller: 'PesoModalController',
+        controller: 'WeightModalController',
         controllerAs: 'vm',
         resolve: {
-          peso: function() {
-            return pesoGrid;
+          weight: function() {
+            return weightGrid;
           }
         },
-        templateUrl: 'pesoModal.html',
+        templateUrl: 'weightModal.html',
         windowClass: 'center-modal'
       });
 
       modalInstance.result.then(
-        function(peso) {
+        function(weight) {
           query();
-          vm.pesoId = peso.id;
+          vm.weightId = weight.id;
           $timeout(function() {
-            vm.pesoId = null;
+            vm.weightId = null;
           }, 5000);
         }
       );
     }
 
     function query() {
-      PesosResource.query({ page: vm.pagination.currentPage },
+      WeightsResource.query({ page: vm.pagination.currentPage },
         function(response) {
-          vm.pesos = response.pesos;
+          vm.weights = response.weights;
           vm.pagination = response.meta;
           getChart();
         }
       );
     }
 
-    function remove(peso) {
-      PesosResource.delete({ id: peso.id },
+    function remove(weight) {
+      WeightsResource.delete({ id: weight.id },
         function(response) {
           toaster.pop('success', '', response.message);
           query();

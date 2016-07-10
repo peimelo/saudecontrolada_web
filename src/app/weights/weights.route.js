@@ -8,9 +8,9 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('pesos', {
-      url: '/pesos',
-      controller: 'PesosController',
+      .state('weights', {
+      url: '/weights',
+      controller: 'WeightsController',
       controllerAs: 'vm',
       data: {
         pageTitle: 'WEIGHTS',
@@ -23,7 +23,7 @@
         label: 'Pesos',
         parent: 'home'
       },
-      templateUrl: 'app/pesos/pesos.html'
+      templateUrl: 'app/weights/weights.html'
     });
   }
 })();

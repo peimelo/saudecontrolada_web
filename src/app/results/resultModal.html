@@ -2,8 +2,6 @@
   <form name="form" role="form" novalidate ng-submit="vm.submit(form)">
     <div class="modal-header">
       <h3 class="modal-title">
-        <span ng-if="!vm.peso">{{ 'INCLUDING' | translate }}</span>
-        <span ng-if="vm.peso">{{ 'CHANGING' | translate }}</span>
         | {{ $state.current.data.pageTitle | translate }}
       </h3>
     </div>
@@ -46,7 +44,7 @@
                    max="2.50"
                    min="0.48"
                    name="height"
-                   ng-model="vm.peso.altura"
+                   ng-model="vm.weight.altura"
                    required
                    type="text"
                    ui-number-mask="2">
@@ -70,7 +68,7 @@
                    max="400"
                    min="3.35"
                    name="value"
-                   ng-model="vm.peso.valor"
+                   ng-model="vm.weight.valor"
                    required
                    type="text"
                    ui-number-mask="2">
