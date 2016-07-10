@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function PasswordResetsResource($resource) {
-    return $resource('/api/passwords/:id', { id: '@id' }, {
+    return $resource('/api/passwords/:token', { token: '@token' }, {
       update: {
         method: 'PUT'
       }

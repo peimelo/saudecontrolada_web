@@ -21,7 +21,7 @@
 
     function activate() {
       if ($state.is('accredit.passwordReset')) {
-        params = { id: $stateParams.id, email: $stateParams.email };
+        params = { token: $stateParams.token };
       }
     }
 

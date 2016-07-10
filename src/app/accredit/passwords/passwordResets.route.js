@@ -34,7 +34,7 @@
         }
       })
       .state('accredit.passwordReset', {
-        url: '/password_resets/:id?email',
+        url: '/passwords/:token',
         data: {
           pageTitle: 'Redefinir minha senha',
           specialClass: 'gray-bg',
