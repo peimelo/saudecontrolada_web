@@ -6,24 +6,13 @@
     .controller('UserEditController', UserEditController);
 
   /** @ngInject */
-  function UserEditController(formErrorService, $sce, serverValidateService,
+  function UserEditController(formErrorService, serverValidateService,
     sessionService, $state, SweetAlert, toaster, UsersResource) {
     var vm = this;
 
     vm.cancel = cancel;
     vm.cancelAccount = cancelAccount;
     vm.formErrors = {};
-    vm.passwordRules = $sce.trustAsHtml(
-      'Para sua segurança, a senha deve ter no mínimo 8 caracteres com pelo menos: <br /> \
-      <ul> \
-        <li>1 letra maiúscula,</li> \
-        <li>1 letra minúscula,</li> \
-        <li>1 número,</li> \
-        <li>e 1 símbolo.</li>\
-      </ul>\
-      Símbolos incluem: <br />\
-      `~!@#$%^&*()-_=+[]{}\\|;:\'",.<>/?'
-    );
     vm.submit = submit;
     vm.unhappy = false;
     vm.user = sessionService.user;

@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(sessionService, $state, $translate, $uibModal) {
+  function MainController($sce, sessionService, $state, $translate, $uibModal) {
     var vm = this;
 
     vm.alerts = [];
@@ -27,6 +27,17 @@
       }
     ];
     vm.logout = logout;
+    vm.passwordRules = $sce.trustAsHtml(
+      'Para sua segurança, a senha deve ter no mínimo 8 caracteres com pelo menos: <br /> \
+      <ul> \
+        <li>1 letra maiúscula,</li> \
+        <li>1 letra minúscula,</li> \
+        <li>1 número,</li> \
+        <li>e 1 símbolo.</li>\
+      </ul>\
+      Símbolos incluem: <br />\
+      `~!@#$%^&*()-_=+[]{}\\|;:\'",.<>/?'
+    );
     vm.sessionService = sessionService;
 
     activate();
