@@ -14,12 +14,13 @@
         <div class="col-sm-6">
           <div form-input
                ng-class="{ 'has-error': form.name.$invalid && form.submitted }">
-            <label for="name">Nome *</label>
+            <label for="name">{{ 'NAME' | translate }} *</label>
             <input id="name"
                    autofocus
                    name="name"
                    ng-maxlength="255"
                    ng-model="vm.contact.name"
+                   placeholder="{{ 'NAME' | translate }}"
                    required
                    type="text">
           </div>
