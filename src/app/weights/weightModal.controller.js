@@ -6,8 +6,8 @@
     .controller('WeightModalController', WeightModalController);
 
   /** @ngInject */
-  function WeightModalController(moment, weight, WeightsResource, toaster,
-                               $uibModalInstance) {
+  function WeightModalController(moment, sessionService, weight,
+                                 WeightsResource, toaster, $uibModalInstance) {
     var vm = this;
 
     vm.cancel = cancel;
@@ -18,7 +18,7 @@
     activate();
 
     function activate() {
-      if(weight) {
+      if (weight) {
         vm.title = 'CHANGING';
         WeightsResource.get({ id: weight.id },
           function(response) {
@@ -27,7 +27,10 @@
         );
       }
       else {
-        vm.weight = { date: moment().format('YYYY-MM-DD') };
+        vm.weight = {
+          date: moment().format('YYYY-MM-DD'),
+          height: sessionService.user.height
+        };
         vm.title = 'INCLUDING';
       }
     }
