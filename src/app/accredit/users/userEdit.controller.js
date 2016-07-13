@@ -6,8 +6,9 @@
     .controller('UserEditController', UserEditController);
 
   /** @ngInject */
-  function UserEditController(formErrorService, serverValidateService,
-    sessionService, $state, SweetAlert, toaster, UsersResource) {
+  function UserEditController(formErrorService, localStorageService,
+    serverValidateService, sessionService, $state, SweetAlert, toaster,
+    UsersResource) {
     var vm = this;
 
     vm.cancel = cancel;
@@ -30,6 +31,9 @@
     function assignUser(user) {
       vm.user = user;
       sessionService.user = angular.copy(user);
+
+      delete vm.user['admin'];
+      localStorageService.add(sessionService.USERKEY, vm.user)
     }
 
     function cancel(form) {
