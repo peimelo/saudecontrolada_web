@@ -17,12 +17,12 @@
               <label for="date" class="control-label">{{ 'DATE' | translate }} *</label>
               <input id="date"
                      class="form-control"
-                     change-date
+                     change-date-hour
                      name="date"
                      ng-model="vm.weight.date"
                      required
                      type="text"
-                     ui-mask="99/99/9999">
+                     ui-mask="99/99/9999 99:99">
               <div class="help-block"
                    ng-if="form.date.$invalid && form.submitted"
                    ng-messages="form.date.$error">
@@ -40,7 +40,6 @@
               {{ 'HEIGHT' | translate }} *
             </label>
             <input id="height"
-                   autofocus
                    class="form-control"
                    max="2.50"
                    min="0.48"
@@ -65,6 +64,7 @@
               {{ 'VALUE' | translate }} *
             </label>
             <input id="value"
+                   autofocus
                    class="form-control"
                    max="400"
                    min="3.35"

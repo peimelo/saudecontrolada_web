@@ -13,7 +13,9 @@
     vm.flotOptions = {
       xaxis: {
         mode: "time",
-        minTickSize: [1, "month"]
+        minTickSize: [1, "day"]
+        // min: (new Date(2016, 6, 12)).getTime(),
+        // max: (new Date(2016, 6, 13)).getTime()
       },
       colors: ["#1ab394"],
       grid: {
@@ -26,7 +28,7 @@
       tooltip: true,
       tooltipOpts: {
         content: function(label, xval, yval) {
-          var content = "%s em " + moment(xval).format('L') + ' = ' + yval;
+          var content = "%s em " + moment(xval).utcOffset(0).format('DD/MM/YYYY HH:mm') + ' = ' + yval;
           return content;
         },
         xDateFormat: "%y-%0m-%0d",
@@ -53,7 +55,7 @@
 
       for (var i = qtde - 1; i >= 0; i--) {
         flotChart.push([
-          moment(vm.weights[i].date).toDate().getTime(),
+          moment(vm.weights[i].date).utcOffset(0).valueOf(),
           vm.weights[i].value
         ]);
       }

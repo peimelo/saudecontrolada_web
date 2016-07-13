@@ -20,17 +20,10 @@
     function activate() {
       if (weight) {
         vm.title = 'CHANGING';
-        WeightsResource.get({ id: weight.id },
-          function(response) {
-            vm.weight = response;
-          }
-        );
+        getWeight();
       }
       else {
-        vm.weight = {
-          date: moment().format('YYYY-MM-DD'),
-          height: sessionService.user.height
-        };
+        newWeight();
         vm.title = 'INCLUDING';
       }
     }
@@ -42,6 +35,21 @@
     function closeWithSuccess(response) {
       toaster.pop('success', '', response.message);
       $uibModalInstance.close(response.reg);
+    }
+
+    function getWeight() {
+      WeightsResource.get({ id: weight.id },
+        function(response) {
+          vm.weight = response;
+        }
+      );
+    }
+
+    function newWeight() {
+      vm.weight = {
+        date: moment().format('YYYY-MM-DD HH:mm'),
+        height: sessionService.user.height
+      };
     }
 
     function submit(form) {

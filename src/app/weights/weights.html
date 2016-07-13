@@ -82,7 +82,7 @@
                         <i class="fa fa-trash-o"></i>
                       </a>
                     </td>
-                    <td>{{ weight.date | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ weight.date | formatDateTime }}</td>
                     <td>{{ weight.height | number }}</td>
                     <td>{{ weight.value | number }}</td>
                     <td>{{ weight.minimum | number }} ~ {{ weight.maximum | number }}</td>
