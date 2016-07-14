@@ -6,11 +6,12 @@
     .controller('WeightModalController', WeightModalController);
 
   /** @ngInject */
-  function WeightModalController(moment, sessionService, weight,
+  function WeightModalController(moment, serverValidateService, sessionService, weight,
                                  WeightsResource, toaster, $uibModalInstance) {
     var vm = this;
 
     vm.cancel = cancel;
+    vm.formErrors = {};
     vm.weight = weight;
     vm.submit = submit;
     vm.title = '';
@@ -55,16 +56,26 @@
     function submit(form) {
       if (form.$valid) {
         if (vm.weight.id) {
-          vm.weight.$update(function(response) {
-            closeWithSuccess(response);
-          });
+          vm.weight.$update(
+            function(response) {
+              closeWithSuccess(response);
+            },
+            function(error) {
+              serverValidateService.validate(error, vm.formErrors, form);
+            }
+          );
         }
         else {
           var newWeight = new WeightsResource(vm.weight);
 
-          newWeight.$save(function(response) {
-            closeWithSuccess(response);
-          });
+          newWeight.$save(
+            function(response) {
+              closeWithSuccess(response);
+            },
+            function(error) {
+              serverValidateService.validate(error, vm.formErrors, form);
+            }
+          );
         }
       }
       else {

@@ -14,8 +14,6 @@
       xaxis: {
         mode: "time",
         minTickSize: [1, "day"]
-        // min: (new Date(2016, 6, 12)).getTime(),
-        // max: (new Date(2016, 6, 13)).getTime()
       },
       colors: ["#1ab394"],
       grid: {

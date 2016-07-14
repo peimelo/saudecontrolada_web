@@ -12,22 +12,18 @@
 
         <div class="col-sm-4">
           <div class="form-group" id="data_3">
-            <div class="input-group date"
+            <div form-input
                  ng-class="{ 'has-error': form.date.$invalid && form.submitted }">
-              <label for="date" class="control-label">{{ 'DATE' | translate }} *</label>
+              <label for="date">{{ 'DATE' | translate }} *</label>
               <input id="date"
                      class="form-control"
+                     clear-server-error
                      change-date-hour
                      name="date"
                      ng-model="vm.weight.date"
                      required
                      type="text"
                      ui-mask="99/99/9999 99:99">
-              <div class="help-block"
-                   ng-if="form.date.$invalid && form.submitted"
-                   ng-messages="form.date.$error">
-                <div ng-messages-include="app/components/messages.html"></div>
-              </div>
             </div>
           </div>
         </div>

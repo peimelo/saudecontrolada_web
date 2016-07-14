@@ -3,17 +3,17 @@
 
   angular
     .module('app')
+    .constant('USERKEY', 'utoken')
     .factory('sessionService', sessionService);
 
   /** @ngInject */
-  function sessionService($http, localStorageService, $rootScope) {
+  function sessionService($http, localStorageService, $rootScope, USERKEY) {
     var api = '/api/sessions';
 
     var service = {
       login: login,
       logout: logout,
-      user: null,
-      USERKEY: 'utoken'
+      user: null
     };
 
     active();
@@ -21,7 +21,7 @@
     return service;
 
     function active() {
-      var localUser = localStorageService.get(service.USERKEY);
+      var localUser = localStorageService.get(USERKEY);
       if (localUser) {
         delete localUser['admin'];
         setAuthentication(localUser);
@@ -36,14 +36,14 @@
         setAuthentication(angular.copy(response.data));
 
         delete response.data['admin'];
-        localStorageService.add(service.USERKEY, response.data);
+        localStorageService.add(USERKEY, response.data);
 
         return service.user;
       }
     }
 
     function logout() {
-      localStorageService.remove(service.USERKEY);
+      localStorageService.remove(USERKEY);
       setAuthentication(null);
     }
 
