@@ -29,7 +29,10 @@
     <p class="browsehappy">Você está usando um navegador <strong>desatualizado</strong>. Por favor <a href="http://browsehappy.com/">atualize seu navegador</a> para melhorar sua experiência.</p>
     <![endif]-->
 
-    <toaster-container toaster-options="{'position-class': 'toast-top-center'}">
+    <toaster-container toaster-options="{
+      'close-button': 'true',
+      'position-class': 'toast-top-center'
+    }">
     </toaster-container>
 
     <div ui-view></div>
