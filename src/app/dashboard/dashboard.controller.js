@@ -18,14 +18,33 @@
         mode: "time",
         minTickSize: [1, "month"]
       },
-      colors: ["#ffffff"],
+      colors: ["#1ab394"],
+      // colors: ["#ffffff"],
       grid: {
+        // color: "transparent",
         color: "#999999",
         hoverable: true,
         clickable: true,
         tickColor: "#D4D4D4",
         borderWidth: 0
       },
+      // series: {
+      //   lines: {
+      //     show: false,
+      //     fill: true
+      //   },
+      //   splines: {
+      //     show: true,
+      //     tension: 0.4,
+      //     lineWidth: 1,
+      //     fill: 0.4
+      //   },
+      //   points: {
+      //     radius: 0,
+      //     show: true
+      //   },
+      //   shadowSize: 2
+      // },
       tooltip: true,
       tooltipOpts: {
         content: function(label, xval, yval) {
