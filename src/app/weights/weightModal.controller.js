@@ -6,11 +6,12 @@
     .controller('WeightModalController', WeightModalController);
 
   /** @ngInject */
-  function WeightModalController(moment, weight, WeightsResource, toaster,
-                               $uibModalInstance) {
+  function WeightModalController(moment, serverValidateService, sessionService, weight,
+                                 WeightsResource, toaster, $uibModalInstance) {
     var vm = this;
 
     vm.cancel = cancel;
+    vm.formErrors = {};
     vm.weight = weight;
     vm.submit = submit;
     vm.title = '';
@@ -18,16 +19,12 @@
     activate();
 
     function activate() {
-      if(weight) {
+      if (weight) {
         vm.title = 'CHANGING';
-        WeightsResource.get({ id: weight.id },
-          function(response) {
-            vm.weight = response;
-          }
-        );
+        getWeight();
       }
       else {
-        vm.weight = { date: moment().format('YYYY-MM-DD') };
+        newWeight();
         vm.title = 'INCLUDING';
       }
     }
@@ -41,19 +38,44 @@
       $uibModalInstance.close(response.reg);
     }
 
+    function getWeight() {
+      WeightsResource.get({ id: weight.id },
+        function(response) {
+          vm.weight = response;
+        }
+      );
+    }
+
+    function newWeight() {
+      vm.weight = {
+        date: moment().format('YYYY-MM-DD HH:mm'),
+        height: sessionService.user.height
+      };
+    }
+
     function submit(form) {
       if (form.$valid) {
         if (vm.weight.id) {
-          vm.weight.$update(function(response) {
-            closeWithSuccess(response);
-          });
+          vm.weight.$update(
+            function(response) {
+              closeWithSuccess(response);
+            },
+            function(error) {
+              serverValidateService.validate(error, vm.formErrors, form);
+            }
+          );
         }
         else {
           var newWeight = new WeightsResource(vm.weight);
 
-          newWeight.$save(function(response) {
-            closeWithSuccess(response);
-          });
+          newWeight.$save(
+            function(response) {
+              closeWithSuccess(response);
+            },
+            function(error) {
+              serverValidateService.validate(error, vm.formErrors, form);
+            }
+          );
         }
       }
       else {
