@@ -18,20 +18,35 @@
     return service;
 
     function add(key, value) {
-      value = angular.toJson(value);
-      store.setItem(key, value);
+      try {
+        value = angular.toJson(value);
+        store.setItem(key, value);
+      }
+      catch (error) {
+        return false;
+      }
     }
 
     function get(key) {
-      var value = store.getItem(key);
-      if (value) {
-        value = angular.fromJson(value);
+      try {
+        var value = store.getItem(key);
+        if (value) {
+          value = angular.fromJson(value);
+        }
+        return value;
       }
-      return value;
+      catch (error) {
+        return false;
+      }
     }
 
     function remove(key) {
-      store.removeItem(key);
+      try {
+        store.removeItem(key);
+      }
+      catch (error) {
+        return false;
+      }
     }
   }
 })();

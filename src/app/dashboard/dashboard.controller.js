@@ -9,10 +9,8 @@
   function DashboardController(DashboardsResource, moment) {
     var vm = this;
 
-    var weights = [];
-
+    vm.average;
     vm.flotData = [{ label: 'Peso', data: [] }];
-
     vm.flotOptions = {
       xaxis: {
         mode: "time",
@@ -55,6 +53,13 @@
         onHover: function (flotItem, $tooltipEl) {}
       }
     };
+    vm.getImc = getImc;
+    vm.getWeight = getWeight;
+    vm.maximum = {};
+    vm.minimum = {};
+    vm.range = 0;
+    vm.recent = {};
+    var weights = [];
 
     activate();
 
@@ -62,16 +67,41 @@
       DashboardsResource.get({ id: 0 },
         function(response) {
           weights = response.weights;
-          getChart();
+          getWeight(0);
         }
       );
     }
 
-    function getChart() {
-      var qtde = weights.length;
-      var flotChart = [];
+    function consolidated(size) {
+      vm.average = 0;
+      vm.maximum = { value: 0 };
+      vm.minimum = { value: 1000 };
+      vm.size = getSize(size);
+      vm.recent = vm.size ? weights[0] : {};
+      var value;
 
-      for (var i = qtde - 1; i >= 0; i--) {
+      for (var i = vm.size - 1; i >= 0; i--) {
+        value = parseFloat(weights[i].value);
+
+        vm.average += value;
+
+        if (value > vm.maximum.value) {
+          vm.maximum = weights[i];
+        }
+
+        if (value < vm.minimum.value) {
+          vm.minimum = weights[i];
+        }
+      }
+
+      vm.average = (vm.average / vm.size);
+    }
+
+    function getChart(size) {
+      var flotChart = [];
+      var size = getSize(size);;
+
+      for (var i = size - 1; i >= 0; i--) {
         flotChart.push([
           moment(weights[i].date).toDate().getTime(),
           weights[i].value
@@ -79,6 +109,32 @@
       }
 
       vm.flotData[0].data = flotChart;
+    }
+
+    function getImc() {
+      if (vm.recent) {
+        return vm.recent.value / (vm.recent.height * vm.recent.height);
+      }
+    }
+
+    function getSize(size) {
+      if (size) {
+        if (size > weights.length) {
+          return weights.length;
+        }
+        else {
+          return size;
+        }
+      }
+      else {
+        return weights.length;
+      }
+    }
+
+    function getWeight(size) {
+      vm.range = size;
+      consolidated(size);
+      getChart(size);
     }
   }
 })();

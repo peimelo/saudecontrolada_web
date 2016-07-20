@@ -10,7 +10,7 @@
   </nav>
 </div>
 
-<uib-carousel active="active" interval="5000" no-wrap="noWrapSlides">
+<uib-carousel active="active" interval="main.interval">
   <uib-slide ng-repeat="slide in vm.slides track by slide.id" index="$index">
     <div class="container">
       <div class="carousel-caption blank">
@@ -45,7 +45,7 @@
     </div>
     <div class="row">
       <div class="col-lg-12 text-center">
-        <a href="" ng-click="vm.contactModal()" class="btn btn-primary">
+        <a href="" ng-click="main.contactModal()" class="btn btn-primary">
           Enviar um contato
         </a>
       </div>
