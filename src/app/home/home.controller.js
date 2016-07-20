@@ -6,10 +6,8 @@
     .controller('HomeController', HomeController);
 
   /** @ngInject */
-  function HomeController($uibModal) {
+  function HomeController() {
     var vm = this;
-
-    vm.contactModal = contactModal;
 
     vm.presentations = [
       {
@@ -42,16 +40,5 @@
         class: 'header-back two'
       }
     ];
-
-    function contactModal() {
-      $uibModal.open({
-        animation: true,
-        controller: 'ContactModalController',
-        controllerAs: 'vm',
-        size: 'lg',
-        templateUrl: 'contactModal.html',
-        windowClass: 'center-modal'
-      });
-    }
   }
 })();
