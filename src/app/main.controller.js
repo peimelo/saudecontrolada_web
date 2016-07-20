@@ -13,6 +13,7 @@
     vm.changeLanguage = changeLanguage;
     vm.closeAlert = closeAlert;
     vm.contactModal = contactModal;
+    vm.interval = 5000;
     vm.language = {};
     vm.languages = [
       {
@@ -56,13 +57,23 @@
     }
 
     function contactModal() {
-      $uibModal.open({
+      vm.interval = 0;
+
+      var modalInstance = $uibModal.open({
         animation: true,
         controller: 'ContactModalController',
         controllerAs: 'vm',
         size: 'lg',
         templateUrl: 'contactModal.html',
         windowClass: 'center-modal'
+      });
+
+      modalInstance.result.then(
+        function () {
+          vm.interval = 5000;
+        },
+        function () {
+          vm.interval = 5000;
       });
     }
 
