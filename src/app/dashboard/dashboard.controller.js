@@ -57,6 +57,7 @@
     vm.getWeight = getWeight;
     vm.maximum = {};
     vm.minimum = {};
+    vm.old = {};
     vm.range = 0;
     vm.recent = {};
     var weights = [];
@@ -77,6 +78,7 @@
       vm.maximum = { value: 0 };
       vm.minimum = { value: 1000 };
       vm.size = getSize(size);
+      vm.old = vm.size ? weights[vm.size-1] : {};
       vm.recent = vm.size ? weights[0] : {};
       var value;
 
