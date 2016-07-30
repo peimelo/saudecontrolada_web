@@ -13,8 +13,12 @@
     vm.flotData = [{ label: 'Peso', data: [] }];
     vm.flotOptions = {
       xaxis: {
+        // dayNames: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+        minTickSize: [1, "month"],
         mode: "time",
-        minTickSize: [1, "month"]
+        monthNames: [
+          'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+        ]
       },
       colors: ["#1ab394"],
       // colors: ["#ffffff"],
@@ -57,6 +61,7 @@
     vm.getWeight = getWeight;
     vm.maximum = {};
     vm.minimum = {};
+    vm.old = {};
     vm.range = 0;
     vm.recent = {};
     var weights = [];
@@ -77,6 +82,7 @@
       vm.maximum = { value: 0 };
       vm.minimum = { value: 1000 };
       vm.size = getSize(size);
+      vm.old = vm.size ? weights[vm.size-1] : {};
       vm.recent = vm.size ? weights[0] : {};
       var value;
 
