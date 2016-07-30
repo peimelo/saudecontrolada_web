@@ -13,8 +13,12 @@
     vm.flotData = [{ label: 'Peso', data: [] }];
     vm.flotOptions = {
       xaxis: {
+        // dayNames: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+        minTickSize: [1, "month"],
         mode: "time",
-        minTickSize: [1, "month"]
+        monthNames: [
+          'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+        ]
       },
       colors: ["#1ab394"],
       // colors: ["#ffffff"],
