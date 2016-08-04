@@ -3,8 +3,9 @@
 
     <div class="modal-header">
       <h3 class="modal-title">
-        <span ng-if="!vm.reference">{{ 'INCLUDING' | translate }}</span>
-        <span ng-if="vm.reference">{{ 'CHANGING' | translate }}</span>
+        <span>
+          {{ vm.reference.id | iif : 'CHANGING' : 'INCLUDING' | translate }}
+        </span>
         | {{ $state.current.data.pageTitle | translate }}
       </h3>
     </div>
