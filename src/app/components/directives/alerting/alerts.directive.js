@@ -10,7 +10,9 @@
     var directive = {
       restrict: 'AE',
       templateUrl: 'app/components/directives/alerting/alerts.html',
-      scope: true,
+      scope: {
+        timeout: '@'
+      },
       link: linkFunc
     };
 
@@ -18,10 +20,12 @@
 
     /** @ngInject */
     function linkFunc(scope) {
-      scope.currentAlerts = alertingService.currentAlerts;
+      scope.alertingService = alertingService;
+      scope.dismiss = angular.isUndefined(scope.timeout) ?
+        null : parseInt(scope.timeout);
 
       scope.closeAlert = function(index) {
-        scope.currentAlerts.splice(index, 1);
+        scope.getAlerts().splice(index, 1);
       };
     }
   }

@@ -12,8 +12,10 @@
 
     var service = {
       addDanger: addDanger,
+      addInfo: addInfo,
       addSuccess: addSuccess,
-      currentAlerts: currentAlerts
+      clearAll: clearAll,
+      getAlerts: getAlerts
     };
 
     return service;
@@ -26,8 +28,20 @@
       addAlert(alertTypes[0], message);
     }
 
+    function addInfo(message) {
+      addAlert(alertTypes[1], message);
+    }
+
     function addSuccess(message) {
       addAlert(alertTypes[2], message);
+    }
+
+    function clearAll() {
+      currentAlerts = [];
+    }
+
+    function getAlerts() {
+      return currentAlerts;
     }
   }
 })();
