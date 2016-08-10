@@ -14,7 +14,7 @@
     vm.flotOptions = {
       xaxis: {
         // dayNames: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
-        minTickSize: [1, "month"],
+        minTickSize: [1, "hour"],
         mode: "time",
         monthNames: [
           'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
