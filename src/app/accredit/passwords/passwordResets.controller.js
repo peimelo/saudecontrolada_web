@@ -29,15 +29,20 @@
       if (form.$valid) {
         var newPassword = new PasswordResetsResource(vm.user);
 
-        newPassword.$save(function(response) {
-          $state.go('accredit.login');
+        newPassword.$save(
+          function(response) {
+            $state.go('accredit.login');
 
-          SweetAlert.swal({
-            text: response.message,
-            title: response.title,
-            type: "success"
-          });
-        });
+            SweetAlert.swal({
+              text: response.message,
+              title: response.title,
+              type: "success"
+            });
+          },
+          function(error) {
+            serverValidateService.validate(error, vm.formErrors, form);
+          }
+        );
       }
       else {
         formErrorService.showMessage(form);

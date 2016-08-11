@@ -4,11 +4,11 @@
       ng-submit="vm.forgot(form)"
       novalidate>
   <!-- EMAIL -->
-  <div class="form-group"
+  <div form-input
        ng-class="{ 'has-error': form.email.$invalid && form.submitted }">
     <input id="email"
            autofocus
-           class="form-control"
+           clear-server-error
            name="email"
            ng-maxlength="255"
            ng-model="vm.user.email"
@@ -16,11 +16,6 @@
            placeholder="E-mail"
            required
            type="email">
-    <div class="help-block"
-         ng-if="form.email.$invalid && form.submitted"
-         ng-messages="form.email.$error">
-      <div ng-messages-include="app/components/messages.html"></div>
-    </div>
   </div>
 
   <button type="submit" class="btn btn-primary block full-width m-b">

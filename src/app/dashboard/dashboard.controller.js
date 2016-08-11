@@ -9,12 +9,12 @@
   function DashboardController(DashboardsResource, moment) {
     var vm = this;
 
-    vm.average;
+    vm.average = 0;
     vm.flotData = [{ label: 'Peso', data: [] }];
     vm.flotOptions = {
       xaxis: {
         // dayNames: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
-        minTickSize: [1, "month"],
+        minTickSize: [1, "hour"],
         mode: "time",
         monthNames: [
           'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
@@ -50,8 +50,7 @@
       tooltip: true,
       tooltipOpts: {
         content: function(label, xval, yval) {
-          var content = "%s em " + moment(xval).format('L') + ' = ' + yval;
-          return content;
+          return "%s em " + moment(xval).format('L') + ' = ' + yval;
         },
         xDateFormat: "%y-%0m-%0d",
         onHover: function (flotItem, $tooltipEl) {}
@@ -64,14 +63,14 @@
     vm.old = {};
     vm.range = 0;
     vm.recent = {};
-    var weights = [];
+    vm.weights = [];
 
     activate();
 
     function activate() {
       DashboardsResource.get({ id: 0 },
         function(response) {
-          weights = response.weights;
+          vm.weights = response.weights;
           getWeight(0);
         }
       );
@@ -82,21 +81,21 @@
       vm.maximum = { value: 0 };
       vm.minimum = { value: 1000 };
       vm.size = getSize(size);
-      vm.old = vm.size ? weights[vm.size-1] : {};
-      vm.recent = vm.size ? weights[0] : {};
+      vm.old = vm.size ? vm.weights[vm.size-1] : {};
+      vm.recent = vm.size ? vm.weights[0] : {};
       var value;
 
       for (var i = vm.size - 1; i >= 0; i--) {
-        value = parseFloat(weights[i].value);
+        value = parseFloat(vm.weights[i].value);
 
         vm.average += value;
 
         if (value > vm.maximum.value) {
-          vm.maximum = weights[i];
+          vm.maximum = vm.weights[i];
         }
 
         if (value < vm.minimum.value) {
-          vm.minimum = weights[i];
+          vm.minimum = vm.weights[i];
         }
       }
 
@@ -105,12 +104,12 @@
 
     function getChart(size) {
       var flotChart = [];
-      var size = getSize(size);;
+      var size = getSize(size);
 
       for (var i = size - 1; i >= 0; i--) {
         flotChart.push([
-          moment(weights[i].date).toDate().getTime(),
-          weights[i].value
+          moment(vm.weights[i].date).toDate().getTime(),
+          vm.weights[i].value
         ]);
       }
 
@@ -125,15 +124,15 @@
 
     function getSize(size) {
       if (size) {
-        if (size > weights.length) {
-          return weights.length;
+        if (size > vm.weights.length) {
+          return vm.weights.length;
         }
         else {
           return size;
         }
       }
       else {
-        return weights.length;
+        return vm.weights.length;
       }
     }
 

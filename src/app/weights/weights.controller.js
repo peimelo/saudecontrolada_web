@@ -6,14 +6,15 @@
     .controller('WeightsController', WeightsController);
 
   /** @ngInject */
-  function WeightsController(moment, WeightsResource, $timeout,
-                           toaster, $uibModal) {
+  function WeightsController(moment, WeightsResource, $timeout, toaster,
+                             $uibModal) {
     var vm = this;
+    vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
     vm.flotData = [{ label: 'Peso', data: [] }];
     vm.flotOptions = {
       xaxis: {
         // dayNames: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
-        minTickSize: [1, "day"],
+        minTickSize: [1, "hour"],
         mode: "time",
         monthNames: [
           'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'

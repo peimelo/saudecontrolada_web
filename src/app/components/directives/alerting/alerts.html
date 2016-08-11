@@ -1,5 +1,6 @@
-<uib-alert ng-repeat="alert in currentAlerts"
-           dismiss-on-timeout="5000"
+<uib-alert ng-repeat="alert in alertingService.getAlerts()"
+           dismiss-on-timeout="{{ dismiss }}"
            type="{{ alert.type }}"
-           close="closeAlert($index)">{{ alert.message }}
+           close="closeAlert($index)">
+  {{ alert.message }}
 </uib-alert>

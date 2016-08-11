@@ -32,7 +32,8 @@
                 <i class="fa fa-file-o"></i> {{ 'INCLUDE' | translate }}
               </a>
 
-              <div class="btn-group pull-right">
+              <div class="btn-group pull-right"
+                   ng-if="vm.weights.length">
                 <label class="btn btn-default"
                        ng-model="vm.showMode.chart"
                        uib-btn-checkbox>
@@ -46,8 +47,13 @@
               </div>
             </div>
             <div class="ibox-content">
+              <uib-alert type="info" ng-if="!vm.weights.length">
+                {{ vm.alert.message }}
+              </uib-alert>
+
               <!-- CHART -->
-              <div class="flot-chart" ng-if="vm.showMode.chart">
+              <div class="flot-chart"
+                   ng-if="vm.showMode.chart && vm.weights.length">
                 <div flot class="flot-chart-content"
                      dataset="vm.flotData"
                      options="vm.flotOptions">
@@ -55,11 +61,12 @@
               </div>
 
               <div class="hr-line-dashed"
-                   ng-if="vm.showMode.chart && vm.showMode.table">
+                   ng-if="vm.showMode.chart && vm.showMode.table && vm.weights.length">
               </div>
 
               <!-- TABLE -->
-              <div class="table-responsive" ng-if="vm.showMode.table">
+              <div class="table-responsive"
+                   ng-if="vm.showMode.table && vm.weights.length">
                 <table class="table table-striped table-bordered table-hover dataTables-example"
                        datatable="ng"
                        dt-options="dtOptions">
