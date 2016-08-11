@@ -22,7 +22,11 @@
       </div>
     </div>
     <div class="wrapper wrapper-content animated fadeInRight">
-      <div class="row">
+      <uib-alert type="info" ng-if="!vm.weights.length">
+        Cadastre algum registro em "Pesos" para que o painel seja exibido.
+      </uib-alert>
+
+      <div class="row" ng-show="vm.weights.length">
         <div class="col-lg-12">
           <div class="ibox float-e-margins">
             <div class="ibox-title">
