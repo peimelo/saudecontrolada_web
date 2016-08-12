@@ -6,17 +6,19 @@
     .controller('ResultsController', ResultsController);
 
   /** @ngInject */
-  function ResultsController(moment, ResultsResource, $timeout,
+  function ResultsController(moment, ResultsResource, $state, $timeout,
                            toaster, $uibModal) {
     var vm = this;
 
-    // vm.openModal = openModal;
+    vm.getResult = getResult;
     vm.pagination = { currentPage: 1 };
     vm.resultId = null;
+    vm.result = {};
     vm.results = [];
     vm.query = query;
     vm.remove = remove;
     vm.showMode = { chart: true, table: true };
+    vm.io = 'oi';
 
     activate();
 
@@ -24,30 +26,13 @@
       query();
     }
 
-    // function openModal(resultGrid) {
-    //   var modalInstance = $uibModal.open({
-    //     animation: true,
-    //     controller: 'ResultModalController',
-    //     controllerAs: 'vm',
-    //     resolve: {
-    //       result: function() {
-    //         return resultGrid;
-    //       }
-    //     },
-    //     templateUrl: 'resultModal.html',
-    //     windowClass: 'center-modal'
-    //   });
-    //
-    //   modalInstance.result.then(
-    //     function(result) {
-    //       query();
-    //       vm.resultId = result.id;
-    //       $timeout(function() {
-    //         vm.resultId = null;
-    //       }, 5000);
-    //     }
-    //   );
-    // }
+    function getResult(result) {
+      ResultsResource.get({ id: result.id },
+        function(response) {
+          vm.result = response;
+        }
+      );
+    }
 
     function query() {
       ResultsResource.query({ page: vm.pagination.currentPage },
