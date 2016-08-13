@@ -6,32 +6,18 @@
     .controller('ResultsController', ResultsController);
 
   /** @ngInject */
-  function ResultsController(moment, ResultsResource, $state, $timeout,
-                           toaster, $uibModal) {
+  function ResultsController(ResultsResource, $stateParams, toaster) {
     var vm = this;
 
-    vm.getResult = getResult;
-    vm.pagination = { currentPage: 1 };
-    vm.resultId = null;
-    vm.result = {};
+    vm.pagination = { currentPage: ($stateParams.page || 1) };
     vm.results = [];
     vm.query = query;
     vm.remove = remove;
-    vm.showMode = { chart: true, table: true };
-    vm.io = 'oi';
 
     activate();
 
     function activate() {
       query();
-    }
-
-    function getResult(result) {
-      ResultsResource.get({ id: result.id },
-        function(response) {
-          vm.result = response;
-        }
-      );
     }
 
     function query() {
@@ -44,12 +30,12 @@
     }
 
     function remove(result) {
-      // ResultsResource.delete({ id: result.id },
-      //   function(response) {
-      //     toaster.pop('success', '', response.message);
-      //     query();
-      //   }
-      // );
+      ResultsResource.delete({ id: result.id },
+        function(response) {
+          toaster.pop('success', '', response.message);
+          query();
+        }
+      );
     }
   }
 })();

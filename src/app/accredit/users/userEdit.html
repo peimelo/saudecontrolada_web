@@ -22,7 +22,7 @@
 
                 <div form-input
                      ng-class="{ 'has-error': form.name.$invalid && form.submitted }">
-                  <label for="name">Nome *</label>
+                  <label for="name">{{ 'NAME' | translate }} *</label>
                   <input id="name"
                          autofocus
                          name="name"
@@ -154,13 +154,15 @@
                          type="password">
                 </div>
 
+                <div class="hr-line-dashed"></div>
+
                 <button type="submit" class="btn btn-primary">
-                  Salvar
+                  {{ 'SAVE' | translate }}
                 </button>
                 <button class="btn btn-default"
                         type="button"
                         ng-click="vm.cancel(form)">
-                  Cancelar
+                  {{ 'CANCEL' | translate }}
                 </button>
               </form>
             </div>

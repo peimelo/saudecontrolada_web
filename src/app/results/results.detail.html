@@ -2,7 +2,7 @@
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-10">
     <h2>
-      <i class="fa fa-cog"></i>
+      <i class="fa fa-file-text-o"></i>
       {{ $state.current.data.pageTitle | translate }}
     </h2>
 
@@ -15,67 +15,62 @@
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>Excluir minha conta</h5>
+          <h5>
+            <span>
+              {{ vm.result.id | iif : 'CHANGING' : 'INCLUDING' | translate }}
+            </span>
+            | {{ $state.current.data.pageTitle | translate }}
+          </h5>
         </div>
+
         <form name="form" role="form" novalidate ng-submit="vm.submit(form)">
 
           <div class="ibox-content">
             <div class="row">
               <div class="col-sm-4">
-                <div class="form-group" id="data_3">
+                <div class="form-group">
                   <div form-input
                        ng-class="{ 'has-error': form.date.$invalid && form.submitted }">
                     <label for="date">{{ 'DATE' | translate }} *</label>
                     <input id="date"
+                           autofocus
                            class="form-control"
                            clear-server-error
-                           change-date-hour
+                           change-date
                            name="date"
                            ng-model="vm.result.date"
                            required
                            type="text"
-                           ui-mask="99/99/9999 99:99">
+                           ui-mask="99/99/9999">
                   </div>
                 </div>
               </div>
 
               <div class="col-sm-8">
-                <div class="input-group date"
-                     ng-class="{ 'has-error': form.height.$invalid && form.submitted }">
-                  <label for="height" class="control-label">
-                    {{ 'HEIGHT' | translate }} *
+                <div form-input
+                     ng-class="{ 'has-error': form.description.$invalid && form.submitted }">
+                  <label for="description">
+                    {{ 'DESCRIPTION' | translate }} *
                   </label>
-                  <input id="height"
+                  <input id="description"
                          class="form-control"
-                         max="2.50"
-                         min="0.48"
-                         name="height"
+                         name="description"
                          ng-model="vm.result.description"
                          required
                          type="text">
-                  <div class="help-block"
-                       ng-if="form.height.$invalid && form.submitted"
-                       ng-messages="form.height.$error">
-                    <div
-                      ng-messages-include="app/components/messages.html"></div>
-                  </div>
                 </div>
               </div>
-
-
             </div>
 
             <div class="hr-line-dashed"></div>
-            <div class="row">
 
-              <div class="form-group">
-                <div class="col-sm-4">
-                  <button class="btn btn-primary" type="submit">Save changes
-                  <button class="btn btn-white" type="submit" ui-sref="results.list">Cancel</button>
-                  </button>
-                </div>
-              </div>
-            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fa fa-check"></i> {{ 'SAVE' | translate }}
+            </button>
+            <a class="btn btn-default"
+               ui-sref="results.list({page: vm.page})">
+              {{ 'BACK' | translate }}
+            </a>
           </div>
         </form>
       </div>

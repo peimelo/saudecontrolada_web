@@ -10,38 +10,45 @@
     $stateProvider
       .state('results', {
         abstract: true,
-        controller: 'ResultsController',
-        controllerAs: 'vm',
-        url: '/results',
         templateUrl: 'app/components/views/layouts/content.html'
       })
       .state('results.list', {
-        url: '',
+        url: '/results',
+        controller: 'ResultsController',
+        controllerAs: 'vm',
         data: {
-          pageTitle: 'RESULTS',
+          pageTitle: 'TESTS_RESULTS',
           permissions: {
             only: ['logged'],
             redirectTo: 'accredit.login'
           }
         },
         ncyBreadcrumb: {
-          label: 'Results',
+          label: 'Resultado de Exames',
           parent: 'home'
+        },
+        params: {
+          page: null,
         },
         templateUrl: 'app/results/results.list.html'
       })
       .state('results.detail', {
         url: '/:id',
+        controller: 'ResultsDetailController',
+        controllerAs: 'vm',
         data: {
-          pageTitle: 'RESULTS',
+          pageTitle: 'TESTS_RESULTS',
           permissions: {
             only: ['logged'],
             redirectTo: 'accredit.login'
           }
         },
         ncyBreadcrumb: {
-          label: 'Results',
-          parent: 'home'
+          label: 'Detalhe',
+          parent: 'results.list'
+        },
+        params: {
+          page: null,
         },
         templateUrl: 'app/results/results.detail.html'
       });
