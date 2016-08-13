@@ -28,7 +28,7 @@
           label: 'Results',
           parent: 'home'
         },
-        templateUrl: 'app/results/results.html'
+        templateUrl: 'app/results/results.list.html'
       })
       .state('results.detail', {
         url: '/:id',
@@ -43,7 +43,7 @@
           label: 'Results',
           parent: 'home'
         },
-        templateUrl: 'app/results/editResult.html'
+        templateUrl: 'app/results/results.detail.html'
       });
   }
 })();
