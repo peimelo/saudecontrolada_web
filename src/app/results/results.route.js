@@ -28,12 +28,11 @@
           parent: 'home'
         },
         params: {
-          page: null,
+          page: null
         },
         templateUrl: 'app/results/results.list.html'
       })
       .state('results.detail', {
-        url: '/:id',
         controller: 'ResultsDetailController',
         controllerAs: 'vm',
         data: {
@@ -48,7 +47,8 @@
           parent: 'results.list'
         },
         params: {
-          page: null,
+          id: null,
+          page: null
         },
         templateUrl: 'app/results/results.detail.html'
       });
