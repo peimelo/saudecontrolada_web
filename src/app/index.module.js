@@ -30,6 +30,7 @@
       'ui.gravatar',
       'ui.mask',
       'ui.router',
+      'ui.select',
       'ui.utils.masks',
       'ui.validate'
     ]);
