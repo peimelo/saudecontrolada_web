@@ -99,8 +99,7 @@
               <thead>
               <tr>
                 <th>{{ 'ACTIONS' | translate }}</th>
-                <th>{{ 'EXAM' | translate }} <i class="fa fa-sort-desc"></i>
-                </th>
+                <th>{{ 'EXAM' | translate }} <i class="fa fa-sort-asc"></i></th>
                 <th>{{ 'VALUE' | translate }}</th>
               </tr>
               </thead>
@@ -113,8 +112,8 @@
                   </a>
                   <a href=""
                      class="btn btn-danger"
-                     confirm="Tem certeza que deseja excluir o resultado de exames do dia {{ result.date | date: 'dd/MM/yyyy' }}?"
-                     ng-click="vm.remove(result)">
+                     confirm="Tem certeza que deseja excluir o exame {{ examResult.exam.name }}?"
+                     ng-click="vm.remove(examResult)">
                     <i class="fa fa-trash-o"></i>
                   </a>
                 </td>
