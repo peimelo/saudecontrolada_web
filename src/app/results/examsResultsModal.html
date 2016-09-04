@@ -1,0 +1,74 @@
+<script type="text/ng-template" id="examsResultsModal.html">
+  <form name="form" role="form" novalidate ng-submit="vm.submit(form)">
+    <div class="modal-header">
+      <h3 class="modal-title">
+        {{ vm.title | translate }}
+        | {{ $state.current.data.pageTitle | translate }}
+      </h3>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+
+        <div class="col-sm-8">
+
+          <div class="form-group"
+               ng-class="{ 'has-error': form.height.$invalid && form.submitted }">
+            <label for="height" class="control-label">
+              {{ 'EXAM' | translate }} *
+            </label>
+
+            <ui-select ng-model="vm.examResult.exam"
+                       theme="bootstrap"
+                       title="Escolha um exame">
+              <ui-select-match placeholder="Selecione ou procure um exame na lista...">
+                {{$select.selected.name}}
+              </ui-select-match>
+              <ui-select-choices repeat="exam in vm.exams | filter: $select.search">
+                <div ng-bind-html="exam.name | highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
+
+            <div class="help-block"
+                 ng-if="form.height.$invalid && form.submitted"
+                 ng-messages="form.height.$error">
+              <div ng-messages-include="app/components/messages.html"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+
+          <div class="input-group"
+               ng-class="{ 'has-error': form.value.$invalid && form.submitted }">
+            <label for="value" class="control-label">
+              {{ 'VALUE' | translate }} *
+            </label>
+            <input id="value"
+                   autofocus
+                   class="form-control"
+                   name="value"
+                   ng-model="vm.examResult.value"
+                   required
+                   type="text"
+                   ui-number-mask="2">
+            <div class="help-block"
+                 ng-if="form.value.$invalid && form.submitted"
+                 ng-messages="form.value.$error">
+              <div ng-messages-include="app/components/messages.html"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="submit">
+        <i class="fa fa-check"></i> {{ 'SAVE' | translate }}
+      </button>
+      <button class="btn btn-default" type="button" ng-click="vm.cancel()">
+        {{ 'CANCEL' | translate }}
+      </button>
+    </div>
+  </form>
+</script>

@@ -6,12 +6,13 @@
     .controller('ResultsDetailController', ResultsDetailController);
 
   /** @ngInject */
-  function ResultsDetailController(formErrorService, ExamsResultsResource, ResultsResource,
-                             serverValidateService, $stateParams, toaster) {
+  function ResultsDetailController(formErrorService, ExamsResultsResource, examsService, ResultsResource,
+                             serverValidateService, $stateParams, toaster, $uibModal) {
     var vm = this;
 
     vm.formErrors = {};
     vm.page = $stateParams.page || 1;
+    vm.openModal = openModal;
     vm.result = {};
     vm.remove = remove;
     vm.submit = submit;
@@ -19,6 +20,7 @@
     activate();
 
     function activate() {
+      examsService.getExams();
       if ($stateParams.id) {
         getResult($stateParams);
       }
@@ -28,6 +30,30 @@
       ResultsResource.get({ id: param.id },
         function(response) {
           vm.result = response;
+        }
+      );
+    }
+
+    function openModal(examResultGrid) {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        controller: 'ExamsResultsModalController',
+        controllerAs: 'vm',
+        resolve: {
+          examResult: examResultGrid,
+          resultId: vm.result.id
+        },
+        templateUrl: 'examsResultsModal.html',
+        windowClass: 'center-modal'
+      });
+
+      modalInstance.result.then(
+        function(examResult) {
+          query();
+          vm.examResultId = examResult.id;
+          $timeout(function() {
+            vm.examResultId = null;
+          }, 5000);
         }
       );
     }

@@ -107,7 +107,7 @@
               <tr ng-repeat="examResult in vm.result.exam_result">
                 <td width="100">
                   <a class="btn btn-white"
-                     ui-sref="results.detail({id: result.id, page: vm.pagination.currentPage})">
+                     href="" ng-click="vm.openModal(examResult)">
                     <i class="fa fa-pencil"></i>
                   </a>
                   <a href=""
@@ -129,3 +129,4 @@
   </div>
 </div>
 
+<div ng-include="'app/results/examsResultsModal.html'"></div>
