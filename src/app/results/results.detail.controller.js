@@ -21,6 +21,7 @@
 
     function activate() {
       examsService.getExams();
+
       if ($stateParams.id) {
         getResult($stateParams);
       }
@@ -49,7 +50,7 @@
 
       modalInstance.result.then(
         function(examResult) {
-          query();
+          getResult({ id: examResult.result_id });
           vm.examResultId = examResult.id;
           $timeout(function() {
             vm.examResultId = null;

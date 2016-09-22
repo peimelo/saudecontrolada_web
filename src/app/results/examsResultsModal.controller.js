@@ -6,7 +6,7 @@
     .controller('ExamsResultsModalController', ExamsResultsModalController);
 
   /** @ngInject */
-  function ExamsResultsModalController(moment, serverValidateService, sessionService, examResult,
+  function ExamsResultsModalController(serverValidateService, examResult,
                                        examsService,
                                        ExamsResultsResource, resultId, toaster, $uibModalInstance) {
     var vm = this;
@@ -23,12 +23,12 @@
 
     function activate() {
       vm.exams = examsService.getExams();
+
       if (examResult) {
         vm.title = 'CHANGING';
-        getWeight();
+        getExamsResults();
       }
       else {
-        newWeight();
         vm.title = 'INCLUDING';
       }
     }
@@ -42,7 +42,7 @@
       $uibModalInstance.close(response.reg);
     }
 
-    function getWeight() {
+    function getExamsResults() {
       ExamsResultsResource.get({ id: examResult.id, result_id: vm.resultId },
         function(response) {
           vm.examResult = response;
@@ -50,17 +50,13 @@
       );
     }
 
-    function newWeight() {
-      vm.examResult = {
-        date: moment().format('YYYY-MM-DD HH:mm'),
-        height: sessionService.user.height
-      };
-    }
-
     function submit(form) {
       if (form.$valid) {
         if (vm.examResult.id) {
-          vm.examResult.$update(
+          // var newExamsResults = new ExamsResultsResource(vm.examResult);
+
+          ExamsResultsResource.update(
+            { id: vm.examResult.id, result_id: vm.resultId, exam_result: vm.examResult },
             function(response) {
               closeWithSuccess(response);
             },
@@ -70,9 +66,9 @@
           );
         }
         else {
-          var newWeight = new ExamsResultsResource(vm.examResult);
+          var newExamsResults = new ExamsResultsResource(vm.examResult);
 
-          newWeight.$save(
+          newExamsResults.$save(
             function(response) {
               closeWithSuccess(response);
             },
