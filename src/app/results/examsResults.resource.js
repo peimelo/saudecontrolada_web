@@ -7,9 +7,12 @@
 
   /** @ngInject */
   function ExamsResultsResource($resource) {
-    return $resource('/api/exams_results/:id', { id: '@id' }, {
-      query: { isArray: false },
-      update: { method: 'PUT' }
-    });
+    return $resource('/api/results/:result_id/exams_results/:id',
+      { id: '@id', result_id: '@result_id' },
+      {
+        query: { isArray: false },
+        update: { method: 'PUT' }
+      }
+    );
   }
 })();

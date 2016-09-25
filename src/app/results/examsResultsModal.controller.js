@@ -46,6 +46,7 @@
       ExamsResultsResource.get({ id: examResult.id, result_id: vm.resultId },
         function(response) {
           vm.examResult = response;
+          vm.examResult.exam_id = response.exam.id;
         }
       );
     }
@@ -66,6 +67,7 @@
           );
         }
         else {
+          vm.examResult.result_id = vm.resultId;
           var newExamsResults = new ExamsResultsResource(vm.examResult);
 
           newExamsResults.$save(

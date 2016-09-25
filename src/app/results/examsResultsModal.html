@@ -14,20 +14,26 @@
 
           <div class="form-group"
                ng-class="{ 'has-error': form.height.$invalid && form.submitted }">
-            <label for="height" class="control-label">
+            <label for="examSelect" class="control-label">
               {{ 'EXAM' | translate }} *
             </label>
 
-            <ui-select ng-model="vm.examResult.exam"
-                       theme="bootstrap"
-                       title="Escolha um exame">
-              <ui-select-match placeholder="Selecione ou procure um exame na lista...">
-                {{$select.selected.name}}
-              </ui-select-match>
-              <ui-select-choices repeat="exam in vm.exams | filter: $select.search">
-                <div ng-bind-html="exam.name | highlight: $select.search"></div>
-              </ui-select-choices>
-            </ui-select>
+            <!--<ui-select ng-model="vm.examResult.exam"-->
+                       <!--theme="bootstrap"-->
+                       <!--title="Escolha um exame">-->
+              <!--<ui-select-match placeholder="Selecione ou procure um exame na lista...">-->
+                <!--{{$select.selected.name}}-->
+              <!--</ui-select-match>-->
+              <!--<ui-select-choices repeat="exam in vm.exams | filter: $select.search">-->
+                <!--<div ng-bind-html="exam.name | highlight: $select.search"></div>-->
+              <!--</ui-select-choices>-->
+            <!--</ui-select>-->
+
+            <select id="examSelect"
+                    class="form-control"
+                    ng-model="vm.examResult.exam_id"
+            ng-options="exam.id as exam.name for exam in vm.exams">
+            </select>
 
             <div class="help-block"
                  ng-if="form.height.$invalid && form.submitted"

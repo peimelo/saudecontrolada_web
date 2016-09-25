@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function ResultsDetailController(formErrorService, ExamsResultsResource, examsService, ResultsResource,
-                             serverValidateService, $stateParams, toaster, $uibModal) {
+                             serverValidateService, $stateParams, $timeout, toaster, $uibModal) {
     var vm = this;
 
     vm.formErrors = {};
