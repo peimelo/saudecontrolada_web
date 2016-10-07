@@ -25,7 +25,7 @@
         null : parseInt(scope.timeout);
 
       scope.closeAlert = function(index) {
-        scope.getAlerts().splice(index, 1);
+        scope.alertingService.getAlerts().splice(index, 1);
       };
     }
   }
