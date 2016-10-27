@@ -47,9 +47,9 @@
               </div>
             </div>
             <div class="ibox-content">
-              <uib-alert type="info" ng-if="!vm.weights.length">
+              <div uib-alert ng-class="'alert-info'" ng-if="!vm.weights.length">
                 {{ vm.alert.message }}
-              </uib-alert>
+              </div>
 
               <!-- CHART -->
               <div class="flot-chart"
@@ -103,14 +103,14 @@
                 </table>
               </div>
 
-              <uib-pagination total-items="vm.pagination.totalItems"
-                              ng-model="vm.pagination.currentPage"
-                              ng-change="vm.query()"
-                              ng-if="vm.pagination.totalItems && (vm.showMode.chart || vm.showMode.table)"
-                              max-size="5"
-                              class="pagination-sm"
-                              items-per-page="vm.pagination.itemsPerPage">
-              </uib-pagination>
+              <ul uib-pagination total-items="vm.pagination.totalItems"
+                                 ng-model="vm.pagination.currentPage"
+                                 ng-change="vm.query()"
+                                 ng-if="vm.pagination.totalItems && (vm.showMode.chart || vm.showMode.table)"
+                                 max-size="5"
+                                 class="pagination-sm"
+                                 items-per-page="vm.pagination.itemsPerPage">
+              </ul>
             </div>
           </div>
         </div>

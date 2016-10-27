@@ -10,8 +10,8 @@
   </nav>
 </div>
 
-<uib-carousel active="active" interval="main.interval">
-  <uib-slide ng-repeat="slide in vm.slides track by slide.id" index="$index">
+<div uib-carousel active="active" interval="main.interval">
+  <div uib-slide ng-repeat="slide in vm.slides track by slide.id" index="$index">
     <div class="container">
       <div class="carousel-caption blank">
         <h1>{{ 'APP' | translate }}</h1>
@@ -22,8 +22,8 @@
       </div>
     </div>
     <div class="{{ slide.class }}"></div>
-  </uib-slide>
-</uib-carousel>
+  </div>
+</div>
 
 <section id="features" class="container services">
   <div class="row">

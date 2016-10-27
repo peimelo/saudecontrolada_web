@@ -98,8 +98,10 @@
            ng-model="vm.user.password"
            ng-pattern="/^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).{8,72})$/"
            placeholder="{{ 'PASSWORD' | translate }}"
+           popover-trigger="'focus'"
            required
-           type="password">
+           type="password"
+           uib-popover-html="main.passwordRules">
   </div>
 
   <div form-input
