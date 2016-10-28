@@ -57,7 +57,11 @@
           // var newExamsResults = new ExamsResultsResource(vm.examResult);
 
           ExamsResultsResource.update(
-            { id: vm.examResult.id, result_id: vm.resultId, exam_result: vm.examResult },
+            {
+              id: vm.examResult.id,
+              result_id: vm.resultId,
+              value: vm.examResult.value
+            },
             function(response) {
               closeWithSuccess(response);
             },
