@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -9,20 +9,20 @@
   function routeConfig($stateProvider) {
     $stateProvider
       .state('admin.units', {
-      url: '/units',
-      controller: 'UnitsController',
-      controllerAs: 'vm',
-      data: {
-        pageTitle: 'UNITS',
-        permissions: {
-          only: ['logged'],
-          redirectTo: 'accredit.login'
-        }
-      },
-      ncyBreadcrumb: {
-        label: 'Units'
-      },
-      templateUrl: 'app/admin/units/units.html'
-    });
+        url: '/units',
+        controller: 'UnitsController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'UNITS',
+          permissions: {
+            only: ['logged'],
+            redirectTo: 'accredit.login'
+          }
+        },
+        ncyBreadcrumb: {
+          label: 'Units'
+        },
+        templateUrl: 'app/admin/units/units.html'
+      });
   }
 })();

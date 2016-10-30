@@ -19,7 +19,7 @@
             </span>
           </a>
 
-          <ul uib-dropdown-menu class="animated fadeInRight m-t-xs">
+          <ul uib-dropdown-menu class="m-t-xs">
             <li><a ui-sref="admin.userEdit">{{ 'PROFILE' | translate }}</a></li>
             <li class="divider"></li>
             <li>
@@ -48,8 +48,8 @@
           <span class="nav-label">{{ 'WEIGHTS' | translate }}</span>
         </a>
       </li>
-      <li ui-sref-active="active">
-        <a ui-sref="results">
+      <li ng-class="{ active: $state.includes('results') }">
+        <a ui-sref="results.list">
           <i class="fa fa-file-text-o"></i>
           <span class="nav-label">{{ 'RESULTS' | translate }}</span>
         </a>
