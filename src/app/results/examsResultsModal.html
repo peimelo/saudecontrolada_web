@@ -13,7 +13,7 @@
         <div class="col-sm-8">
 
           <div class="form-group"
-               ng-class="{ 'has-error': form.height.$invalid && form.submitted }">
+               ng-class="{ 'has-error': form.exam_id.$invalid && form.submitted }">
             <label for="examSelect" class="control-label">
               {{ 'EXAM' | translate }} *
             </label>
@@ -30,15 +30,18 @@
             <!--</ui-select>-->
 
             <select id="examSelect"
+                    autofocus
                     class="form-control"
+                    clear-server-error
+                    name="exam_id"
                     ng-model="vm.examResult.exam_id"
                     ng-options="exam.id as exam.name for exam in vm.exams">
             </select>
-
             <div class="help-block"
-                 ng-if="form.height.$invalid && form.submitted"
-                 ng-messages="form.height.$error">
+                 ng-if="form.exam_id.$invalid && form.submitted"
+                 ng-messages="form.exam_id.$error">
               <div ng-messages-include="app/components/messages.html"></div>
+              <div ng-message="server">{{ vm.formErrors.exam_id }}</div>
             </div>
           </div>
         </div>
@@ -51,7 +54,6 @@
               {{ 'VALUE' | translate }} *
             </label>
             <input id="value"
-                   autofocus
                    class="form-control"
                    name="value"
                    ng-model="vm.examResult.value"

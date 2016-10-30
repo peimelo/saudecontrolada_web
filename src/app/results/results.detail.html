@@ -81,15 +81,14 @@
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>
-            <span>
-              {{ vm.result.id | iif : 'CHANGING' : 'INCLUDING' | translate }}
-            </span>
-            | {{ $state.current.data.pageTitle | translate }}
-          </h5>
-          <a href="" class="btn btn-primary pull-right" ng-click="vm.openModal()">
-            <i class="fa fa-file-o"></i> {{ 'INCLUDE' | translate }}
-          </a>
+          {{ $state.current.data.pageTitle | translate }}
+          <span class="badge badge-info">{{ vm.pagination.totalItems }}</span>
+
+          <div class="btn-group pull-right">
+            <a href="" class="btn btn-warning" ng-click="vm.openModal()">
+              <i class="fa fa-file-o"></i> {{ 'INCLUDE' | translate }}
+            </a>
+          </div>
         </div>
 
         <div class="ibox-content">
@@ -107,7 +106,7 @@
               </tr>
               </thead>
               <tbody>
-              <tr ng-repeat="examResult in vm.result.exam_result">
+              <tr ng-repeat="examResult in vm.examResults">
                 <td width="100">
                   <a class="btn btn-white"
                      href="" ng-click="vm.openModal(examResult)">
@@ -126,6 +125,15 @@
               </tbody>
             </table>
           </div>
+
+          <ul uib-pagination total-items="vm.pagination.totalItems"
+              ng-model="vm.pagination.currentPage"
+              ng-change="vm.getResult(vm.result)"
+              ng-if="vm.pagination.totalItems"
+              max-size="5"
+              class="pagination-sm"
+              items-per-page="vm.pagination.itemsPerPage">
+          </ul>
         </div>
       </div>
     </div>

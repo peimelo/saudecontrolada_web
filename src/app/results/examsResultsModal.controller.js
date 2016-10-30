@@ -13,7 +13,7 @@
 
     vm.cancel = cancel;
     vm.formErrors = {};
-    vm.examResult = examResult;
+    vm.examResult = angular.copy(examResult);
     vm.exams = [];
     vm.resultId = resultId;
     vm.submit = submit;
@@ -26,7 +26,8 @@
 
       if (examResult) {
         vm.title = 'CHANGING';
-        getExamsResults();
+        // getExamsResults();
+        vm.examResult.exam_id = vm.examResult.exam.id;
       }
       else {
         vm.title = 'INCLUDING';
@@ -59,6 +60,7 @@
           ExamsResultsResource.update(
             {
               id: vm.examResult.id,
+              exam_id: vm.examResult.exam_id,
               result_id: vm.resultId,
               value: vm.examResult.value
             },

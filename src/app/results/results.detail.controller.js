@@ -11,7 +11,10 @@
     var vm = this;
 
     vm.formErrors = {};
+    vm.examResult = [];
+    vm.getResult = getResult;
     vm.page = $stateParams.page || 1;
+    vm.pagination = { currentPage: 1 };
     vm.openModal = openModal;
     vm.result = {};
     vm.remove = remove;
@@ -31,6 +34,13 @@
       ResultsResource.get({ id: param.id },
         function(response) {
           vm.result = response;
+
+          ExamsResultsResource.get({ result_id: vm.result.id, page: vm.pagination.currentPage },
+            function(response) {
+              vm.examResults = response.exam_results;
+              vm.pagination = response.meta;
+            }
+          );
         }
       );
     }
@@ -51,6 +61,7 @@
       modalInstance.result.then(
         function(examResult) {
           getResult({ id: examResult.result_id });
+
           vm.examResultId = examResult.id;
           $timeout(function() {
             vm.examResultId = null;
@@ -85,6 +96,7 @@
 
           newResult.$save(
             function(response) {
+              vm.result = response.reg;
               toaster.pop('success', '', response.message);
             },
             function(error) {
