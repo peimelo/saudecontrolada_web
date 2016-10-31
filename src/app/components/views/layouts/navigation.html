@@ -49,10 +49,27 @@
         </a>
       </li>
       <li ng-class="{ active: $state.includes('results') }">
-        <a ui-sref="results.list">
+        <a href="">
           <i class="fa fa-file-text-o"></i>
           <span class="nav-label">{{ 'RESULTS' | translate }}</span>
+          <span class="fa arrow"></span>
         </a>
+
+        <ul class="nav nav-second-level collapse"
+            ng-class="{ in: $state.includes('results') }">
+          <li ui-sref-active="active">
+            <a ui-sref="results.list">
+              <i class="fa fa-file-text-o"></i>
+              {{ 'ENTRIES' | translate }}
+            </a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="results.graphics">
+              <i class="fa fa-line-chart"></i>
+              {{ 'GRAPHICS' | translate }}
+            </a>
+          </li>
+        </ul>
       </li>
       <li ng-class="{ active: $state.includes('admin') }">
         <a href="">
@@ -63,7 +80,6 @@
 
         <ul class="nav nav-second-level collapse"
             ng-class="{ in: $state.includes('admin') }">
-
           <li ui-sref-active="active">
             <a ui-sref="admin.userEdit">
               <i class="fa fa-user"></i>
