@@ -33,6 +33,7 @@
         templateUrl: 'app/results/results.list.html'
       })
       .state('results.detail', {
+        url: '/results_detail/:id',
         controller: 'ResultsDetailController',
         controllerAs: 'vm',
         data: {
