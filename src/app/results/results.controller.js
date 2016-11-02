@@ -9,8 +9,9 @@
   function ResultsController(ResultsResource, $stateParams, toaster) {
     var vm = this;
 
+    vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
     vm.pagination = { currentPage: ($stateParams.page || 1) };
-    vm.results = [];
+    vm.results = [''];
     vm.query = query;
     vm.remove = remove;
 
