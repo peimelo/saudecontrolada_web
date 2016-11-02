@@ -63,7 +63,7 @@
     vm.old = {};
     vm.range = 0;
     vm.recent = {};
-    vm.weights = [];
+    vm.weights = [''];
 
     activate();
 

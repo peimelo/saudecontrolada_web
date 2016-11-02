@@ -27,7 +27,7 @@
       if (examResult) {
         vm.title = 'CHANGING';
         // getExamsResults();
-        vm.examResult.exam_id = vm.examResult.exam.id;
+        // vm.examResult.exam = vm.examResult.exam;
       }
       else {
         vm.title = 'INCLUDING';
@@ -60,7 +60,7 @@
           ExamsResultsResource.update(
             {
               id: vm.examResult.id,
-              exam_id: vm.examResult.exam_id,
+              exam_id: vm.examResult.exam.id,
               result_id: vm.resultId,
               value: vm.examResult.value
             },
@@ -74,7 +74,13 @@
         }
         else {
           vm.examResult.result_id = vm.resultId;
-          var newExamsResults = new ExamsResultsResource(vm.examResult);
+          var newExamsResults = new ExamsResultsResource(
+            {
+              exam_id: vm.examResult.exam.id,
+              result_id: vm.resultId,
+              value: vm.examResult.value
+            }
+          );
 
           newExamsResults.$save(
             function(response) {

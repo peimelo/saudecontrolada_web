@@ -17,26 +17,19 @@
             <label for="examSelect" class="control-label">
               {{ 'EXAM' | translate }} *
             </label>
-
-            <!--<ui-select ng-model="vm.examResult.exam"-->
-                       <!--theme="bootstrap"-->
-                       <!--title="Escolha um exame">-->
-              <!--<ui-select-match placeholder="Selecione ou procure um exame na lista...">-->
-                <!--{{$select.selected.name}}-->
-              <!--</ui-select-match>-->
-              <!--<ui-select-choices repeat="exam in vm.exams | filter: $select.search">-->
-                <!--<div ng-bind-html="exam.name | highlight: $select.search"></div>-->
-              <!--</ui-select-choices>-->
-            <!--</ui-select>-->
-
-            <select id="examSelect"
-                    autofocus
-                    class="form-control"
-                    clear-server-error
-                    name="exam_id"
-                    ng-model="vm.examResult.exam_id"
-                    ng-options="exam.id as exam.name for exam in vm.exams">
-            </select>
+            <ui-select id="examSelect"
+                       clear-server-error
+                       name="exam_id"
+                       ng-model="vm.examResult.exam"
+                       theme="bootstrap"
+                       title="Escolha um exame">
+              <ui-select-match placeholder="Selecione ou procure um exame na lista...">
+                {{$select.selected.name}}
+              </ui-select-match>
+              <ui-select-choices repeat="exam in vm.exams | filter: $select.search">
+                <div ng-bind-html="exam.name | highlight: $select.search"></div>
+              </ui-select-choices>
+            </ui-select>
             <div class="help-block"
                  ng-if="form.exam_id.$invalid && form.submitted"
                  ng-messages="form.exam_id.$error">
@@ -45,14 +38,17 @@
             </div>
           </div>
         </div>
-
         <div class="col-sm-4">
 
           <div class="input-group"
                ng-class="{ 'has-error': form.value.$invalid && form.submitted }">
             <label for="value" class="control-label">
-              {{ 'VALUE' | translate }} *
+              {{ 'VALUE' | translate }}
             </label>
+            <label for="value" class="control-label" ng-if="vm.examResult.exam.unit">
+              &nbsp;{{ 'IN' | translate }}&nbsp;{{ vm.examResult.exam.unit.name }}
+            </label>
+            <label for="value" class="control-label">&nbsp;*</label>
             <input id="value"
                    class="form-control"
                    name="value"

@@ -41,7 +41,7 @@
     vm.openModal = openModal;
     vm.pagination = { currentPage: 1 };
     vm.weightId = null;
-    vm.weights = [];
+    vm.weights = [''];
     vm.query = query;
     vm.remove = remove;
     vm.showMode = { chart: true, table: true };

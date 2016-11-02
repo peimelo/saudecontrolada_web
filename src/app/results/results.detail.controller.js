@@ -10,8 +10,9 @@
                              serverValidateService, $stateParams, $timeout, toaster, $uibModal) {
     var vm = this;
 
+    vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
     vm.formErrors = {};
-    vm.examResult = [];
+    vm.examResult = [''];
     vm.getResult = getResult;
     vm.page = $stateParams.page || 1;
     vm.pagination = { currentPage: 1 };
