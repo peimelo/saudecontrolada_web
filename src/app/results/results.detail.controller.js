@@ -12,7 +12,7 @@
 
     vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
     vm.formErrors = {};
-    vm.examResult = [''];
+    vm.examResults = [''];
     vm.getResult = getResult;
     vm.page = $stateParams.page || 1;
     vm.pagination = { currentPage: 1 };
@@ -28,6 +28,9 @@
 
       if ($stateParams.id) {
         getResult($stateParams);
+      }
+      else {
+        vm.examResults = [];
       }
     }
 
