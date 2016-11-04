@@ -14,7 +14,15 @@
   <div uib-slide ng-repeat="slide in vm.slides track by slide.id" index="$index">
     <div class="container">
       <div class="carousel-caption blank">
-        <h1>{{ 'APP' | translate }}</h1>
+        <h1>
+          {{ 'APP' | translate }}
+          <a href="https://github.com/peimelo/saudecontrolada/releases"
+             target="_blank">
+            <img src="https://badge.fury.io/gh/peimelo%2Fsaudecontrolada.svg"
+                 alt="GitHub version"
+                 height="18">
+          </a>
+        </h1>
         <p>{{ slide.text }}</p>
       </div>
       <div class="carousel-image wow zoomIn" ng-if="slide.id == 1">
