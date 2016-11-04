@@ -58,6 +58,7 @@
           examResult: examResultGrid,
           resultId: vm.result.id
         },
+        size: 'lg',
         templateUrl: 'examsResultsModal.html',
         windowClass: 'center-modal'
       });
