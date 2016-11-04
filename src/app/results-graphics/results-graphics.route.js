@@ -9,7 +9,7 @@
   function routeConfig($stateProvider) {
     $stateProvider
       .state('results.graphics', {
-        url: '/results_graphics',
+        url: '/graphics',
         controller: 'ResultsGraphicsController',
         controllerAs: 'vm',
         data: {
