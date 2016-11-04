@@ -50,7 +50,7 @@
       tooltip: true,
       tooltipOpts: {
         content: function(label, xval, yval) {
-          return "%s em " + moment(xval).format('L') + ' = ' + yval;
+          return "%s em " + moment(xval).utcOffset(0).format('DD/MM/YYYY HH:mm') + ' = ' + yval;
         },
         xDateFormat: "%y-%0m-%0d",
         onHover: function (flotItem, $tooltipEl) {}
