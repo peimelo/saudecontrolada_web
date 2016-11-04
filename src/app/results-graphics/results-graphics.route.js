@@ -13,7 +13,7 @@
         controller: 'ResultsGraphicsController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Gráficos dos Resultados de Exames',
+          pageTitle: 'Gráficos de Exames',
           permissions: {
             only: ['logged'],
             redirectTo: 'accredit.login'
