@@ -6,7 +6,7 @@
     .controller('WeightsController', WeightsController);
 
   /** @ngInject */
-  function WeightsController(moment, WeightsResource, $timeout, toaster,
+  function WeightsController(moment, numberFilter, WeightsResource, $timeout, toaster,
                              $uibModal) {
     var vm = this;
     vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
@@ -31,7 +31,7 @@
       tooltip: true,
       tooltipOpts: {
         content: function(label, xval, yval) {
-          var content = "%s em " + moment(xval).utcOffset(0).format('DD/MM/YYYY HH:mm') + ' = ' + yval;
+          var content = "%s em " + moment(xval).utcOffset(0).format('DD/MM/YYYY HH:mm') + ' = ' + numberFilter(yval);
           return content;
         },
         xDateFormat: "%y-%0m-%0d",

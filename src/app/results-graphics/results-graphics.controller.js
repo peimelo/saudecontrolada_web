@@ -6,7 +6,7 @@
     .controller('ResultsGraphicsController', ResultsGraphicsController);
 
   /** @ngInject */
-  function ResultsGraphicsController(ResultsGraphicsResource, $stateParams, toaster) {
+  function ResultsGraphicsController(numberFilter, ResultsGraphicsResource, $stateParams) {
     var vm = this;
 
     vm.exam = {};
@@ -32,7 +32,7 @@
       tooltip: true,
       tooltipOpts: {
         content: function(label, xval, yval) {
-          var content = "%s em " + moment(xval).utcOffset(0).format('DD/MM/YYYY HH:mm') + ' = ' + yval;
+          var content = "%s em " + moment(xval).utcOffset(0).format('DD/MM/YYYY HH:mm') + ' = ' + numberFilter(yval);
           return content;
         },
         xDateFormat: "%y-%0m-%0d",
