@@ -18,6 +18,7 @@
     vm.pagination = { currentPage: 1 };
     vm.openModal = openModal;
     vm.result = {};
+    vm.examResultId = null;
     vm.remove = remove;
     vm.submit = submit;
 

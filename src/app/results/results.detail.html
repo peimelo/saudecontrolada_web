@@ -109,7 +109,7 @@
               </tr>
               </thead>
               <tbody>
-              <tr ng-repeat="examResult in vm.examResults">
+              <tr ng-repeat="examResult in vm.examResults" ng-class="{'success': examResult.id == vm.examResultId}">
                 <td width="100">
                   <a class="btn btn-white"
                      href="" ng-click="vm.openModal(examResult)">
