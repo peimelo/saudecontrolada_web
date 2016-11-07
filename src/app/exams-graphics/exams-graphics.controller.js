@@ -3,10 +3,10 @@
 
   angular
     .module('app')
-    .controller('ResultsGraphicsController', ResultsGraphicsController);
+    .controller('ExamsGraphicsController', ExamsGraphicsController);
 
   /** @ngInject */
-  function ResultsGraphicsController(numberFilter, ResultsGraphicsResource, $stateParams) {
+  function ExamsGraphicsController(numberFilter, ExamsGraphicsResource, $stateParams) {
     var vm = this;
 
     vm.exam = {};
@@ -66,7 +66,7 @@
     function getGraphic(result) {
       vm.exam = result;
 
-      ResultsGraphicsResource.get({ id: result.exam_id },
+      ExamsGraphicsResource.get({ id: result.exam_id },
         function(response) {
           getChart(response.exam_results);
         }
@@ -74,7 +74,7 @@
     }
 
     function query() {
-      ResultsGraphicsResource.query({ page: vm.pagination.currentPage },
+      ExamsGraphicsResource.query({ page: vm.pagination.currentPage },
         function(response) {
           vm.resultsGraphics = response.exam_results;
           vm.pagination = response.meta;

@@ -8,9 +8,13 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('results.graphics', {
-        url: '/graphics',
-        controller: 'ResultsGraphicsController',
+      .state('exams_graphics', {
+        abstract: true,
+        templateUrl: 'app/components/views/layouts/content.html',
+        url: '/exams_graphics'
+      })
+      .state('exams_graphics.list', {
+        controller: 'ExamsGraphicsController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'Gráficos de Exames',
@@ -26,7 +30,8 @@
         params: {
           page: null
         },
-        templateUrl: 'app/results-graphics/results-graphics.list.html'
+        templateUrl: 'app/exams-graphics/exams-graphics.list.html',
+        url: ''
       });
   }
 })();
