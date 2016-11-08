@@ -51,6 +51,11 @@
           id: null,
           page: null
         },
+        resolve: {
+          exams:  function(examsService) {
+            return examsService.getExams();
+          }
+        },
         templateUrl: 'app/results/results.detail.html',
         url: '/:id'
       });

@@ -6,7 +6,7 @@
     .controller('ResultsDetailController', ResultsDetailController);
 
   /** @ngInject */
-  function ResultsDetailController(formErrorService, ExamsResultsResource, examsService, ResultsResource,
+  function ResultsDetailController(formErrorService, ExamsResultsResource, ResultsResource,
                              serverValidateService, $stateParams, $timeout, toaster, $uibModal) {
     var vm = this;
 
@@ -25,8 +25,6 @@
     activate();
 
     function activate() {
-      examsService.getExams();
-
       if ($stateParams.id) {
         getResult($stateParams);
       }

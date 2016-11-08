@@ -32,7 +32,7 @@
       tooltip: true,
       tooltipOpts: {
         content: function(label, xval, yval) {
-          var content = "%s em " + moment(xval).utcOffset(0).format('DD/MM/YYYY HH:mm') + ' = ' + numberFilter(yval);
+          var content = "%s em " + moment(xval).utcOffset(0).format('DD/MM/YYYY') + ' = ' + numberFilter(yval);
           return content;
         },
         xDateFormat: "%y-%0m-%0d",
