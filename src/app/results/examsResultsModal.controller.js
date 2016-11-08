@@ -26,8 +26,6 @@
 
       if (examResult) {
         vm.title = 'CHANGING';
-        // getExamsResults();
-        // vm.examResult.exam = vm.examResult.exam;
       }
       else {
         vm.title = 'INCLUDING';
@@ -43,20 +41,9 @@
       $uibModalInstance.close(response.reg);
     }
 
-    function getExamsResults() {
-      ExamsResultsResource.get({ id: examResult.id, result_id: vm.resultId },
-        function(response) {
-          vm.examResult = response;
-          vm.examResult.exam_id = response.exam.id;
-        }
-      );
-    }
-
     function submit(form) {
       if (form.$valid) {
         if (vm.examResult.id) {
-          // var newExamsResults = new ExamsResultsResource(vm.examResult);
-
           ExamsResultsResource.update(
             {
               id: vm.examResult.id,

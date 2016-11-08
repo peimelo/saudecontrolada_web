@@ -104,7 +104,7 @@
         RESULTS: 'Resultados',
         SAVE: 'Salvar',
         SEND: 'Enviar',
-        TESTS_RESULTS: 'Resultado de Exames',
+        TESTS_RESULTS: 'Resultados de Exames',
         TOTAL: 'Total',
         UNITS: 'Unidades',
         USERS: 'Usuários',

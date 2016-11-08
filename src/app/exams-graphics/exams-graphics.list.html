@@ -6,8 +6,6 @@
       {{ $state.current.data.pageTitle | translate }}
       <span class="badge badge-info">{{ vm.pagination.totalItems }}</span>
     </h2>
-
-    <div ncy-breadcrumb></div>
   </div>
 </div>
 
@@ -17,6 +15,11 @@
       <div class="ibox float-e-margins">
         <div class="ibox-content">
           <h3 ng-if="vm.flotData[0].data.length">
+            <a class="btn btn-warning"
+               ng-click="vm.flotData[0].data = []">
+              {{ 'BACK' | translate }}
+            </a>
+            &nbsp;|&nbsp;
             {{ vm.exam.name }}
             <span class="badge badge-info">{{ vm.exam.total }}</span>
           </h3>
@@ -32,12 +35,6 @@
           <div class="hr-line-dashed"
                ng-if="vm.flotData[0].data.length">
           </div>
-
-          <a class="btn btn-warning"
-             ng-if="vm.flotData[0].data.length"
-             ng-click="vm.flotData[0].data = []">
-            {{ 'BACK' | translate }}
-          </a>
 
           <!-- TABLE -->
           <div class="table-responsive" ng-if="!vm.flotData[0].data.length">

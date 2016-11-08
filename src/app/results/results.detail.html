@@ -5,8 +5,6 @@
       <i class="fa fa-file-text-o"></i>
       {{ $state.current.data.pageTitle | translate }}
     </h2>
-
-    <div ncy-breadcrumb></div>
   </div>
 </div>
 
@@ -77,7 +75,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" ng-if="vm.result.id">
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
@@ -111,7 +109,7 @@
               </tr>
               </thead>
               <tbody>
-              <tr ng-repeat="examResult in vm.examResults">
+              <tr ng-repeat="examResult in vm.examResults" ng-class="{'success': examResult.id == vm.examResultId}">
                 <td width="100">
                   <a class="btn btn-white"
                      href="" ng-click="vm.openModal(examResult)">

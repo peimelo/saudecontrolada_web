@@ -3,10 +3,10 @@
 
   angular
     .module('app')
-    .controller('ResultsGraphicsController', ResultsGraphicsController);
+    .controller('ExamsGraphicsController', ExamsGraphicsController);
 
   /** @ngInject */
-  function ResultsGraphicsController(ResultsGraphicsResource, $stateParams, toaster) {
+  function ExamsGraphicsController(numberFilter, ExamsGraphicsResource, $stateParams) {
     var vm = this;
 
     vm.exam = {};
@@ -32,7 +32,7 @@
       tooltip: true,
       tooltipOpts: {
         content: function(label, xval, yval) {
-          var content = "%s em " + moment(xval).utcOffset(0).format('DD/MM/YYYY HH:mm') + ' = ' + yval;
+          var content = "%s em " + moment(xval).utcOffset(0).format('DD/MM/YYYY') + ' = ' + numberFilter(yval);
           return content;
         },
         xDateFormat: "%y-%0m-%0d",
@@ -66,7 +66,7 @@
     function getGraphic(result) {
       vm.exam = result;
 
-      ResultsGraphicsResource.get({ id: result.exam_id },
+      ExamsGraphicsResource.get({ id: result.exam_id },
         function(response) {
           getChart(response.exam_results);
         }
@@ -74,7 +74,7 @@
     }
 
     function query() {
-      ResultsGraphicsResource.query({ page: vm.pagination.currentPage },
+      ExamsGraphicsResource.query({ page: vm.pagination.currentPage },
         function(response) {
           vm.resultsGraphics = response.exam_results;
           vm.pagination = response.meta;

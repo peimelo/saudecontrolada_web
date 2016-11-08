@@ -10,10 +10,10 @@
     $stateProvider
       .state('results', {
         abstract: true,
-        templateUrl: 'app/components/views/layouts/content.html'
+        templateUrl: 'app/components/views/layouts/content.html',
+        url: '/results'
       })
       .state('results.list', {
-        url: '/results',
         controller: 'ResultsController',
         controllerAs: 'vm',
         data: {
@@ -30,10 +30,10 @@
         params: {
           page: null
         },
-        templateUrl: 'app/results/results.list.html'
+        templateUrl: 'app/results/results.list.html',
+        url: ''
       })
       .state('results.detail', {
-        url: '/results_detail/:id',
         controller: 'ResultsDetailController',
         controllerAs: 'vm',
         data: {
@@ -51,7 +51,13 @@
           id: null,
           page: null
         },
-        templateUrl: 'app/results/results.detail.html'
+        resolve: {
+          exams:  function(examsService) {
+            return examsService.getExams();
+          }
+        },
+        templateUrl: 'app/results/results.detail.html',
+        url: '/:id'
       });
   }
 })();
