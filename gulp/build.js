@@ -4,6 +4,8 @@ var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
 
+var replace = require('gulp-replace');
+
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
@@ -92,6 +94,15 @@ gulp.task('other', function () {
 
 gulp.task('clean', function () {
   return $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
+});
+
+gulp.task('s3-assets', function(){
+  gulp.src([path.join(conf.paths.dist, '/index.html')])
+    .pipe(replace('href=styles/app', 'href=https://s3.amazonaws.com/saudeassets/styles/app'))
+    .pipe(replace('href=styles/vendor', 'href=https://s3.amazonaws.com/saudeassets/styles/vendor'))
+    .pipe(replace('src=scripts/app', 'src=https://s3.amazonaws.com/saudeassets/scripts/app'))
+    .pipe(replace('src=scripts/vendor', 'src=https://s3.amazonaws.com/saudeassets/scripts/vendor'))
+    .pipe(gulp.dest(conf.paths.dist));
 });
 
 gulp.task('build', ['html', 'fonts', 'other']);
