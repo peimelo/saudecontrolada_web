@@ -6,28 +6,30 @@
     .controller('ResultsDetailController', ResultsDetailController);
 
   /** @ngInject */
-  function ResultsDetailController(formErrorService, ExamsResultsResource, examsService, ResultsResource,
+  function ResultsDetailController(formErrorService, ExamsResultsResource, ResultsResource,
                              serverValidateService, $stateParams, $timeout, toaster, $uibModal) {
     var vm = this;
 
     vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
     vm.formErrors = {};
-    vm.examResult = [''];
+    vm.examResults = [''];
     vm.getResult = getResult;
     vm.page = $stateParams.page || 1;
     vm.pagination = { currentPage: 1 };
     vm.openModal = openModal;
     vm.result = {};
+    vm.examResultId = null;
     vm.remove = remove;
     vm.submit = submit;
 
     activate();
 
     function activate() {
-      examsService.getExams();
-
       if ($stateParams.id) {
         getResult($stateParams);
+      }
+      else {
+        vm.examResults = [];
       }
     }
 
@@ -55,6 +57,7 @@
           examResult: examResultGrid,
           resultId: vm.result.id
         },
+        size: 'lg',
         templateUrl: 'examsResultsModal.html',
         windowClass: 'center-modal'
       });

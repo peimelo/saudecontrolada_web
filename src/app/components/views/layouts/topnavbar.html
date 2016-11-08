@@ -4,13 +4,15 @@
 
     <div class="navbar-header">
       <span minimaliza-sidebar></span>
-      <a class="navbar-brand" ui-sref="home">
+      <a class="navbar-brand hidden-xs" ui-sref="home">
         <i class="fa fa-heartbeat"></i> {{ 'APP' | translate }}
+      </a>
+      <a class="navbar-brand visible-xs" ui-sref="home">
+        <i class="fa fa-heartbeat"></i> SC
       </a>
     </div>
 
-    <ul class="nav navbar-top-links navbar-right">
-
+    <ul class="nav navbar-top-links navbar-right pull-right">
       <li uib-dropdown>
         <a class="count-info" href uib-dropdown-toggle>
           <img ng-src="{{ main.language.flag }}"

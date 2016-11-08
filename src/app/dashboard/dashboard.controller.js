@@ -6,7 +6,7 @@
     .controller('DashboardController', DashboardController);
 
   /** @ngInject */
-  function DashboardController(DashboardsResource, moment) {
+  function DashboardController(DashboardsResource, moment, numberFilter) {
     var vm = this;
 
     vm.average = 0;
@@ -50,7 +50,7 @@
       tooltip: true,
       tooltipOpts: {
         content: function(label, xval, yval) {
-          return "%s em " + moment(xval).format('L') + ' = ' + yval;
+          return "%s em " + moment(xval).utcOffset(0).format('DD/MM/YYYY HH:mm') + ' = ' + numberFilter(yval);
         },
         xDateFormat: "%y-%0m-%0d",
         onHover: function (flotItem, $tooltipEl) {}

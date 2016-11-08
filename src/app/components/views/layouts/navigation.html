@@ -4,7 +4,7 @@
       <li class="nav-header">
 
         <div class="profile-element" uib-dropdown>
-          <img alt="main.sessionService.user.name"
+          <img alt=""
                class="img-circle"
                gravatar-src-once="main.sessionService.user.email"/>
 
@@ -42,35 +42,38 @@
           <span class="nav-label">{{ 'DASHBOARD' | translate }}</span>
         </a>
       </li>
+
       <li ui-sref-active="active">
-        <a ui-sref="weights">
+        <a ui-sref="weights.list">
           <i class="fa fa-balance-scale"></i>
           <span class="nav-label">{{ 'WEIGHTS' | translate }}</span>
         </a>
       </li>
-      <li ng-class="{ active: $state.includes('results') }">
+
+      <li ng-class="{ active: $state.includes('results') || $state.includes('exams_graphics') }">
         <a href="">
-          <i class="fa fa-file-text-o"></i>
-          <span class="nav-label">{{ 'RESULTS' | translate }}</span>
+          <i class="fa fa-flask"></i>
+          <span class="nav-label">{{ 'EXAMS' | translate }}</span>
           <span class="fa arrow"></span>
         </a>
 
         <ul class="nav nav-second-level collapse"
-            ng-class="{ in: $state.includes('results') }">
+            ng-class="{ in: $state.includes('results') || $state.includes('exams_graphics') }">
           <li ui-sref-active="active">
             <a ui-sref="results.list">
               <i class="fa fa-file-text-o"></i>
-              {{ 'ENTRIES' | translate }}
+              {{ 'RESULTS' | translate }}
             </a>
           </li>
           <li ui-sref-active="active">
-            <a ui-sref="results.graphics">
+            <a ui-sref="exams_graphics.list">
               <i class="fa fa-line-chart"></i>
               {{ 'GRAPHICS' | translate }}
             </a>
           </li>
         </ul>
       </li>
+
       <li ng-class="{ active: $state.includes('admin') }">
         <a href="">
           <i class="fa fa-cog"></i>
