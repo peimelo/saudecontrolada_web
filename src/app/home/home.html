@@ -16,17 +16,12 @@
       <div class="carousel-caption blank">
         <h1>
           {{ 'APP' | translate }}
-          <a href="https://github.com/peimelo/saudecontrolada/releases"
-             target="_blank">
-            <img src="https://badge.fury.io/gh/peimelo%2Fsaudecontrolada.svg"
-                 alt=""
-                 height="18">
-          </a>
         </h1>
         <p>{{ slide.text }}</p>
-      </div>
-      <div class="carousel-image wow zoomIn" ng-if="slide.id == 1">
-        <img src="../img/landing/laptop.png" alt="laptop"/>
+        <a href="https://github.com/peimelo/saudecontrolada/releases"
+           target="_blank">
+          <span class="badge badge-info">v1.6.1</span>
+        </a>
       </div>
     </div>
     <div class="{{ slide.class }}"></div>
@@ -42,13 +37,13 @@
   </div>
 </section>
 
-<section id="contact" class="gray-section contact">
+<section id="contact" class="gray-section">
   <div class="container">
     <div class="row m-b-lg">
       <div class="col-lg-12 text-center">
         <div class="navy-line"></div>
         <h1>
-          Entre em Contato para:
+          Entre em Contato para:<br />
           <acme-malarkey extra-values="['dúvida', 'sugestão', 'crítica', 'elogio', 'etc...']">
           </acme-malarkey>
         </h1>

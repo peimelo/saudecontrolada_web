@@ -41,6 +41,14 @@ body.modal-open {
   overflow: visible;
 }
 
+.logo-name-small {
+  color: #e6e6e6;
+  font-size: 80px;
+  font-weight: 800;
+  letter-spacing: -10px;
+  margin-bottom: 0;
+}
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

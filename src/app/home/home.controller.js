@@ -31,12 +31,7 @@
     vm.slides = [
       {
         id: 1,
-        text: 'Um sistema feito para ajudá-lo a cuidar da sua saúde.',
-        class: 'header-back one'
-      },
-      {
-        id: 2,
-        text: 'Para você ter uma vida saudável e tranquila.',
+        text: 'Para ajudá-lo a cuidar da saúde.',
         class: 'header-back two'
       }
     ];
