@@ -12,30 +12,20 @@
 
         <div class="col-sm-8">
 
-          <div class="form-group"
+          <div form-input
                ng-class="{ 'has-error': form.exam_id.$invalid && form.submitted }">
-            <label for="examSelect" class="control-label">
+            <label for="exam_id">
               {{ 'EXAM' | translate }} *
             </label>
-            <ui-select id="examSelect"
-                       clear-server-error
-                       name="exam_id"
-                       ng-model="vm.examResult.exam"
-                       theme="bootstrap"
-                       title="Escolha um exame">
-              <ui-select-match placeholder="Selecione ou procure um exame na lista...">
-                {{$select.selected.name}}
-              </ui-select-match>
-              <ui-select-choices repeat="exam in vm.exams | filter: $select.search">
-                <div ng-bind-html="exam.name | highlight: $select.search"></div>
-              </ui-select-choices>
-            </ui-select>
-            <div class="help-block"
-                 ng-if="form.exam_id.$invalid && form.submitted"
-                 ng-messages="form.exam_id.$error">
-              <div ng-messages-include="app/components/messages.html"></div>
-              <div ng-message="server">{{ vm.formErrors.exam_id }}</div>
-            </div>
+            <input id="exam_id"
+                   autofocus
+                   clear-server-error
+                   name="exam_id"
+                   ng-model="vm.examResult.exam"
+                   placeholder="Escreva o nome do exame"
+                   required
+                   type="text"
+                   uib-typeahead="exam as exam.name for exam in vm.exams | filter:$viewValue | limitTo:8">
           </div>
         </div>
         <div class="col-sm-4">
