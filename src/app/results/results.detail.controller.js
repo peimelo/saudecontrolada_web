@@ -37,13 +37,16 @@
       ResultsResource.get({ id: param.id },
         function(response) {
           vm.result = response;
+          getExamsResults();
+        }
+      );
+    }
 
-          ExamsResultsResource.get({ result_id: vm.result.id, page: vm.pagination.currentPage },
-            function(response) {
-              vm.examResults = response.exam_results;
-              vm.pagination = response.meta;
-            }
-          );
+    function getExamsResults() {
+      ExamsResultsResource.get({ result_id: vm.result.id, page: vm.pagination.currentPage },
+        function(response) {
+          vm.examResults = response.exam_results;
+          vm.pagination = response.meta;
         }
       );
     }

@@ -13,19 +13,7 @@
     vm.cancel = cancel;
     vm.formErrors = {};
     vm.submit = submit;
-    vm.unit = unit;
-
-    activate();
-
-    function activate() {
-      if(unit) {
-        UnitsResource.get({ id: unit.id },
-          function(response) {
-            vm.unit = response;
-          }
-        );
-      }
-    }
+    vm.unit = angular.copy(unit);
 
     function cancel() {
       $uibModalInstance.dismiss('cancel');
@@ -41,9 +29,11 @@
         vm.formErrors = {};
 
         if (vm.unit.id) {
-          vm.unit.$update(function(response) {
-            closeWithSuccess(response);
-          });
+          UnitsResource.update(vm.unit,
+            function(response) {
+              closeWithSuccess(response);
+            }
+          );
         }
         else {
           var newUnit = new UnitsResource(vm.unit);

@@ -13,19 +13,7 @@
     vm.cancel = cancel;
     vm.formErrors = {};
     vm.submit = submit;
-    vm.reference = reference;
-
-    activate();
-
-    function activate() {
-      if(reference) {
-        ReferencesResource.get({ id: reference.id },
-          function(response) {
-            vm.reference = response;
-          }
-        );
-      }
-    }
+    vm.reference = angular.copy(reference);
 
     function cancel() {
       $uibModalInstance.dismiss('cancel');
@@ -41,9 +29,11 @@
         vm.formErrors = {};
 
         if (vm.reference.id) {
-          vm.reference.$update(function(response) {
-            closeWithSuccess(response);
-          });
+          ReferencesResource.update(vm.reference,
+            function(response) {
+              closeWithSuccess(response);
+            }
+          );
         }
         else {
           var newReference = new ReferencesResource(vm.reference);

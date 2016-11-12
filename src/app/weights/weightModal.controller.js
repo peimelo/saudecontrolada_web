@@ -12,20 +12,14 @@
 
     vm.cancel = cancel;
     vm.formErrors = {};
-    vm.weight = weight;
+    vm.weight = angular.copy(weight);
     vm.submit = submit;
-    vm.title = '';
 
     activate();
 
     function activate() {
-      if (weight) {
-        vm.title = 'CHANGING';
-        getWeight();
-      }
-      else {
+      if (!weight) {
         newWeight();
-        vm.title = 'INCLUDING';
       }
     }
 
@@ -38,14 +32,6 @@
       $uibModalInstance.close(response.reg);
     }
 
-    function getWeight() {
-      WeightsResource.get({ id: weight.id },
-        function(response) {
-          vm.weight = response;
-        }
-      );
-    }
-
     function newWeight() {
       vm.weight = {
         date: moment().format('YYYY-MM-DD HH:mm'),
@@ -56,7 +42,7 @@
     function submit(form) {
       if (form.$valid) {
         if (vm.weight.id) {
-          vm.weight.$update(
+          WeightsResource.update(vm.weight,
             function(response) {
               closeWithSuccess(response);
             },

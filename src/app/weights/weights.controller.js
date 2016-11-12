@@ -72,9 +72,7 @@
         controller: 'WeightModalController',
         controllerAs: 'vm',
         resolve: {
-          weight: function() {
-            return weightGrid;
-          }
+          weight: weightGrid
         },
         templateUrl: 'weightModal.html',
         windowClass: 'center-modal'

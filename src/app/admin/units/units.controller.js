@@ -27,9 +27,7 @@
         controller: 'UnitModalController',
         controllerAs: 'vm',
         resolve: {
-          unit: function() {
-            return unitGrid;
-          }
+          unit: unitGrid
         },
         size: 'sm',
         templateUrl: 'unitModal.html',

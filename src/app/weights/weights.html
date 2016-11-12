@@ -76,7 +76,7 @@
                   </a>&nbsp;
                   <a href=""
                      class="btn btn-danger"
-                     confirm="Tem certeza que deseja excluir o peso do dia {{ weight.data | date: 'dd/MM/yyyy' }}?"
+                     confirm="Tem certeza que deseja excluir o peso do dia {{ weight.date | formatDateTime }}?"
                      ng-click="vm.remove(weight)">
                     <i class="fa fa-trash-o"></i>
                   </a>

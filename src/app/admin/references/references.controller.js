@@ -27,9 +27,7 @@
         controller: 'ReferenceModalController',
         controllerAs: 'vm',
         resolve: {
-          reference: function() {
-            return referenceGrid;
-          }
+          reference: referenceGrid
         },
         size: 'sm',
         templateUrl: 'referenceModal.html',
