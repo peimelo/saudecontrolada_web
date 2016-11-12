@@ -13,11 +13,11 @@
     vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
     vm.formErrors = {};
     vm.examResults = [''];
-    vm.getResult = getResult;
+    vm.getExamsResults = getExamsResults;
     vm.page = $stateParams.page || 1;
     vm.pagination = { currentPage: 1 };
     vm.openModal = openModal;
-    vm.result = {};
+    vm.result = $stateParams.result;
     vm.examResultId = null;
     vm.remove = remove;
     vm.submit = submit;
@@ -25,25 +25,20 @@
     activate();
 
     function activate() {
-      if ($stateParams.id) {
-        getResult($stateParams);
+      if ($stateParams.result) {
+        getExamsResults();
       }
       else {
         vm.examResults = [];
       }
     }
 
-    function getResult(param) {
-      ResultsResource.get({ id: param.id },
-        function(response) {
-          vm.result = response;
-          getExamsResults();
-        }
-      );
-    }
-
     function getExamsResults() {
-      ExamsResultsResource.get({ result_id: vm.result.id, page: vm.pagination.currentPage },
+      ExamsResultsResource.get(
+        {
+          result_id: vm.result.id,
+          page: vm.pagination.currentPage
+        },
         function(response) {
           vm.examResults = response.exam_results;
           vm.pagination = response.meta;
@@ -67,7 +62,7 @@
 
       modalInstance.result.then(
         function(examResult) {
-          getResult({ id: examResult.result_id });
+          getExamsResults();
 
           vm.examResultId = examResult.id;
           $timeout(function() {
@@ -81,7 +76,7 @@
       ExamsResultsResource.delete({ id: examResult.id, result_id: vm.result.id },
         function(response) {
           toaster.pop('success', '', response.message);
-          getResult(vm.result);
+          getExamsResults();
         }
       );
     }
@@ -93,7 +88,7 @@
         if (vm.result.id) {
           ResultsResource.update({ id: vm.result.id }, vm.result,
             function(response) {
-              getResult(vm.result);
+              vm.result = response.reg;
               toaster.pop('success', '', response.message);
             }
           );

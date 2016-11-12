@@ -49,7 +49,8 @@
         },
         params: {
           id: null,
-          page: null
+          page: null,
+          result: null
         },
         resolve: {
           exams:  function(examsService) {
