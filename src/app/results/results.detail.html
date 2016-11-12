@@ -91,12 +91,13 @@
 
         </div>
 
-        <div class="ibox-content">
+        <div class="ibox-content" block-ui block-ui-pattern="/exams_results/">
           <div uib-alert ng-class="'alert-info'" ng-if="!vm.examResults.length">
             {{ vm.alert.message }}
           </div>
 
-          <div class="table-responsive" ng-if="vm.examResults.length">
+          <div class="table-responsive"
+               ng-if="vm.examResults.length">
             <table
               class="table table-striped table-bordered table-hover dataTables-example"
               datatable="ng"
