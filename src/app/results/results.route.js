@@ -48,6 +48,7 @@
           parent: 'results.list'
         },
         params: {
+          id: null,
           page: null,
           result: null
         },

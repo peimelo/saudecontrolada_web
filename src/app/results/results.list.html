@@ -41,7 +41,7 @@
               <tr ng-repeat="result in vm.results">
                 <td width="100">
                   <a class="btn btn-white"
-                     ui-sref="results.detail({page: vm.pagination.currentPage, result: result})">
+                     ui-sref="results.detail({id: result.id, page: vm.pagination.currentPage, result: result})">
                     <i class="fa fa-pencil"></i>
                   </a>&nbsp;
                   <a href=""
