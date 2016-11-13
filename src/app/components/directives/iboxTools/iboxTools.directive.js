@@ -22,14 +22,14 @@
     function NavbarController($element) {
       var vm = this;
 
-      vm.closebox = closebox;
+      // vm.closebox = closebox;
       vm.showhide = showhide;
 
       // Function for close ibox
-      function closebox() {
-        var ibox = $element.closest('div.ibox');
-        ibox.remove();
-      }
+      // function closebox() {
+      //   var ibox = $element.closest('div.ibox');
+      //   ibox.remove();
+      // }
 
       // Function for collapse ibox
       function showhide() {

@@ -3,13 +3,14 @@
 
   angular
     .module('app')
-    .controller('ExamsGraphicsController', ExamsGraphicsController);
+    .controller('ExamsGraphicsDetailController', ExamsGraphicsDetailController);
 
   /** @ngInject */
-  function ExamsGraphicsController(numberFilter, ExamsGraphicsResource, $stateParams) {
+  function ExamsGraphicsDetailController(numberFilter, ExamsGraphicsResource, $stateParams) {
     var vm = this;
 
-    vm.exam = {};
+    vm.exam = $stateParams.exam;
+    vm.examsResults = [];
     vm.getGraphic = getGraphic;
     vm.flotData = [{ label: 'Valor', data: [] }];
     vm.flotOptions = {
@@ -41,12 +42,11 @@
     };
     vm.pagination = { currentPage: ($stateParams.page || 1) };
     vm.resultsGraphics = [];
-    vm.query = query;
 
     activate();
 
     function activate() {
-      query();
+      getGraphic();
     }
 
     function getChart(graphicValues) {
@@ -63,21 +63,11 @@
       vm.flotData[0].data = flotChart;
     }
 
-    function getGraphic(result) {
-      vm.exam = result;
-
-      ExamsGraphicsResource.get({ id: result.exam_id },
+    function getGraphic() {
+      ExamsGraphicsResource.get({ id: vm.exam.exam_id },
         function(response) {
+          vm.examsResults = response.exam_results;
           getChart(response.exam_results);
-        }
-      );
-    }
-
-    function query() {
-      ExamsGraphicsResource.query({ page: vm.pagination.currentPage },
-        function(response) {
-          vm.resultsGraphics = response.exam_results;
-          vm.pagination = response.meta;
         }
       );
     }

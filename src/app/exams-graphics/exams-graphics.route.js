@@ -14,7 +14,7 @@
         url: '/exams_graphics'
       })
       .state('exams_graphics.list', {
-        controller: 'ExamsGraphicsController',
+        controller: 'ExamsGraphicsListController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'Gráficos de Exames',
@@ -32,6 +32,29 @@
         },
         templateUrl: 'app/exams-graphics/exams-graphics.list.html',
         url: ''
+      })
+      .state('exams_graphics.detail', {
+        controller: 'ExamsGraphicsDetailController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'TESTS_RESULTS',
+          permissions: {
+            only: ['logged'],
+            redirectTo: 'accredit.login'
+          }
+        },
+        params: {
+          id: null,
+          exam: null,
+          page: null
+        },
+        resolve: {
+          exams:  function(examsService) {
+            return examsService.getExams();
+          }
+        },
+        templateUrl: 'app/exams-graphics/exams-graphics.detail.html',
+        url: '/:id'
       });
   }
 })();
