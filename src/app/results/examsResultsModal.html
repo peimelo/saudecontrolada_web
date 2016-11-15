@@ -36,9 +36,9 @@
               {{ 'VALUE' | translate }}
             </label>
             <label for="value" class="control-label" ng-if="vm.examResult.exam.unit">
-              &nbsp;{{ 'IN' | translate }}&nbsp;{{ vm.examResult.exam.unit.name }}
+              {{ 'IN' | translate }}&nbsp;{{ vm.examResult.exam.unit.name }}
             </label>
-            <label for="value" class="control-label">&nbsp;*</label>
+            <label for="value" class="control-label">*</label>
             <input id="value"
                    class="form-control"
                    name="value"

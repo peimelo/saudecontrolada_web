@@ -2,6 +2,11 @@
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-10">
     <h2>
+      <a class="btn btn-sm btn-warning"
+         title="{{ 'BACK' | translate }}"
+         ui-sref="exams_graphics.list({page: vm.page})">
+        <i class="fa fa-chevron-left"></i>
+      </a>
       <i class="fa fa-line-chart"></i>
       {{ $state.current.data.pageTitle | translate }}
     </h2>
@@ -9,29 +14,21 @@
 </div>
 
 <div class="wrapper wrapper-content" block-ui block-ui-pattern="/exams_graphics/">
+  <!-- CHART -->
   <div class="row">
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <h5>
             <i class="fa fa-line-chart"></i>
-            {{ $state.current.data.pageTitle | translate }}
-            <span class="badge badge-info">{{ vm.pagination.totalItems }}</span>
+            {{ 'GRAPHIC' | translate }}
+            &nbsp;|&nbsp;
+            {{ vm.exam.name }}
+            <span class="badge badge-info">{{ vm.examsResults.length }}</span>
           </h5>
           <div ibox-tools></div>
         </div>
         <div class="ibox-content">
-          <h3>
-            <a class="btn btn-warning"
-               ng-click="vm.flotData[0].data = []">
-              {{ 'BACK' | translate }}
-            </a>
-            &nbsp;|&nbsp;
-            {{ vm.exam.name }}
-            <span class="badge badge-info">{{ vm.exam.total }}</span>
-          </h3>
-
-          <!-- CHART -->
           <div class="flot-chart">
             <div flot class="flot-chart-content"
                  dataset="vm.flotData"
@@ -43,28 +40,21 @@
     </div>
   </div>
 
+  <!-- RESULTS -->
   <div class="row">
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <h5>
-            <i class="fa fa-list-alt"></i>
-            {{ $state.current.data.pageTitle | translate }}
-            <span class="badge badge-info">{{ vm.pagination.totalItems }}</span>
+            <i class="fa fa-file-text-o"></i>
+            {{ 'RESULTS' | translate }}
+            &nbsp;|&nbsp;
+            {{ vm.exam.name }}
+            <span class="badge badge-info">{{ vm.examsResults.length }}</span>
           </h5>
           <div ibox-tools></div>
         </div>
         <div class="ibox-content">
-          <h3 ng-if="vm.flotData[0].data.length">
-            <a class="btn btn-warning"
-               ng-click="vm.flotData[0].data = []">
-              {{ 'BACK' | translate }}
-            </a>
-            &nbsp;|&nbsp;
-            {{ vm.exam.name }}
-            <span class="badge badge-info">{{ vm.exam.total }}</span>
-          </h3>
-
           <!-- TABLE -->
           <div class="table-responsive">
             <table
@@ -73,35 +63,76 @@
               dt-options="dtOptions">
               <thead>
               <tr>
-                <th>{{ 'ACTIONS' | translate }}</th>
                 <th>{{ 'DATE' | translate }} <i class="fa fa-sort-desc"></i></th>
                 <th>{{ 'DESCRIPTION' | translate }}</th>
-                <th>{{ 'VALUE' | translate }}</th>
+                <th>
+                  {{ 'VALUE' | translate }}
+                  <span ng-if="vm.exam.unit">
+                    {{ 'IN' | translate }}&nbsp;{{ vm.exam.unit.name }}
+                  </span>
+                </th>
               </tr>
               </thead>
               <tbody>
-              <tr ng-repeat="examResult in vm.examsResults">
-                <td width="50">
-                  <a class="btn btn-white" ng-click="vm.openModal(examResult)">
-                    <i class="fa fa-pencil"></i>
-                  </a>
-                </td>
+              <tr ng-repeat="examResult in vm.examsResults | orderBy:'-date'"
+                  ng-class="{'danger': examResult.value < vm.exam.valor_referencia.valor_inferior || examResult.value > vm.exam.valor_referencia.valor_superior}">
                 <td>{{ examResult.date | date:'dd/MM/yyyy' }}</td>
                 <td>{{ examResult.description }}</td>
-                <td>{{ examResult.value | number }}&nbsp;{{ examResult.exam.unit.name }}</td>
+                <td>
+                  {{ examResult.value | number }}&nbsp;{{ examResult.exam.unit.name }}
+                </td>
               </tr>
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          <ul uib-pagination total-items="vm.pagination.totalItems"
-              ng-model="vm.pagination.currentPage"
-              ng-change="vm.query()"
-              ng-if="vm.pagination.totalItems && !vm.flotData[0].data.length"
-              max-size="5"
-              class="pagination-sm"
-              items-per-page="vm.pagination.itemsPerPage">
-          </ul>
+  <!-- REFERENCES -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>
+            <i class="fa fa-book"></i>
+            {{ 'REFERENCES' | translate }}
+            &nbsp;|&nbsp;
+            {{ vm.exam.name }}
+          </h5>
+          <div ibox-tools></div>
+        </div>
+        <div class="ibox-content">
+          <!-- TABLE -->
+          <div class="table-responsive">
+            <table
+              class="table table-striped table-bordered table-hover dataTables-example"
+              datatable="ng"
+              dt-options="dtOptions">
+              <thead>
+              <tr>
+                <th>{{ 'REFERENCE' | translate }}</th>
+                <th>{{ 'GENDER' | translate }}</th>
+                <th>{{ 'MINIMUM_AGE' | translate }}</th>
+                <th>{{ 'MAXIMUM_AGE' | translate }}</th>
+                <th>{{ 'MINIMUM_VALUE' | translate }}</th>
+                <th>{{ 'MAXIMUM_VALUE' | translate }}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="valor in vm.exam.valor"
+                  ng-class="{'success': valor.id == vm.exam.valor_referencia.id}">
+                <td>{{ valor.reference.name }}</td>
+                <td>{{ valor.gender | genderFilter }}</td>
+                <td>{{ valor.idade_inferior | number }}</td>
+                <td>{{ valor.idade_superior | number }}</td>
+                <td>{{ valor.valor_inferior | number }}</td>
+                <td>{{ valor.valor_superior | number }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

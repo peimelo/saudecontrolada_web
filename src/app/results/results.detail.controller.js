@@ -12,21 +12,26 @@
 
     vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
     vm.formErrors = {};
+    vm.examResultId = null;
     vm.examResults = [''];
     vm.getExamsResults = getExamsResults;
     vm.page = $stateParams.page || 1;
     vm.pagination = { currentPage: 1 };
     vm.openModal = openModal;
     vm.result = $stateParams.result;
-    vm.examResultId = null;
     vm.remove = remove;
     vm.submit = submit;
 
     activate();
 
     function activate() {
-      if ($stateParams.result) {
-        getExamsResults();
+      if ($stateParams.id) {
+        ResultsResource.get({ id: $stateParams.id },
+          function(response) {
+            vm.result = response;
+            getExamsResults();
+          }
+        )
       }
       else {
         vm.examResults = [];

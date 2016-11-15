@@ -59,13 +59,13 @@
 
         <ul class="nav nav-second-level collapse"
             ng-class="{ in: $state.includes('results') || $state.includes('exams_graphics') }">
-          <li ui-sref-active="active">
+          <li ng-class="{ active: $state.includes('results')}">
             <a ui-sref="results.list">
               <i class="fa fa-file-text-o"></i>
               {{ 'RESULTS' | translate }}
             </a>
           </li>
-          <li ui-sref-active="active">
+          <li ng-class="{ active: $state.includes('exams_graphics')}">
             <a ui-sref="exams_graphics.list">
               <i class="fa fa-line-chart"></i>
               {{ 'GRAPHICS' | translate }}

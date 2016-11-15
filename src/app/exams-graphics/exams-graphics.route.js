@@ -37,7 +37,7 @@
         controller: 'ExamsGraphicsDetailController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'TESTS_RESULTS',
+          pageTitle: 'Gráficos de Exames',
           permissions: {
             only: ['logged'],
             redirectTo: 'accredit.login'
