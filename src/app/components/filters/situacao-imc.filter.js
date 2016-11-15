@@ -5,6 +5,7 @@
     .module('app')
     .filter('situacaoImcFilter', situacaoImcFilter);
 
+  /** @ngInject */
   function situacaoImcFilter() {
     return function(input) {
       if(input <= 18.49) {

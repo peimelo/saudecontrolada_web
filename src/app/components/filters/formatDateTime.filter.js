@@ -5,6 +5,7 @@
     .module('app')
     .filter('formatDateTime', formatDateTime);
 
+  /** @ngInject */
   function formatDateTime(moment) {
     return function(input) {
       return input ?
