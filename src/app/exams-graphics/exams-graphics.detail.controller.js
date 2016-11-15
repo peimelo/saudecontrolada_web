@@ -10,6 +10,7 @@
                                          numberFilter, $stateParams, $uibModal) {
     var vm = this;
 
+    vm.badExamResult = badExamResult;
     vm.exam = $stateParams.exam;
     vm.examsResults = [];
     vm.flotData = [{ label: 'Valor', data: [] }];
@@ -53,6 +54,13 @@
           getGraphic();
         }
       );
+    }
+
+    function badExamResult(examResult) {
+      var value = parseFloat(examResult.value);
+
+      return (value < parseFloat(vm.exam.valor_referencia.valor_inferior)) ||
+        (value > parseFloat(vm.exam.valor_referencia.valor_superior));
     }
 
     function getChart(graphicValues) {

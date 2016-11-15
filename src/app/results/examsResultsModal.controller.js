@@ -43,6 +43,15 @@
 
     function submit(form) {
       if (form.$valid) {
+        if (!angular.isObject(vm.examResult.exam)) {
+          toaster.pop(
+            'error',
+            '',
+            'Escreva o nome do Exame e selecione nas opções disponíveis. Se não existir, envie-nos um Contato para inserí-lo.'
+          );
+          return;
+        }
+
         if (vm.examResult.id) {
           ExamsResultsResource.update(
             {
