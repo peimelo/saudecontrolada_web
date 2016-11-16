@@ -102,7 +102,7 @@ gulp.task('s3-assets', function(){
     .pipe(replace('href=styles/vendor', 'href=https://s3.amazonaws.com/saudeassets/styles/vendor'))
     .pipe(replace('src=scripts/app', 'src=https://s3.amazonaws.com/saudeassets/scripts/app'))
     .pipe(replace('src=scripts/vendor', 'src=https://s3.amazonaws.com/saudeassets/scripts/vendor'))
-    .pipe(gulp.dest(conf.paths.dist));
+    .pipe(gulp.dest('../saudecontrolada/public'));
 });
 
 gulp.task('build', ['html', 'fonts', 'other']);
