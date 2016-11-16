@@ -13,26 +13,78 @@
   </div>
 </div>
 
-<div class="wrapper wrapper-content" block-ui block-ui-pattern="/exams_graphics/">
-  <!-- CHART -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <h5>
-            <i class="fa fa-line-chart"></i>
-            {{ 'GRAPHIC' | translate }}
-            &nbsp;|&nbsp;
-            {{ vm.exam.name }}
-            <span class="badge badge-info">{{ vm.examsResults.length }}</span>
-          </h5>
-          <div ibox-tools></div>
+<div class="wrapper wrapper-content">
+  <div block-ui block-ui-pattern="/exams_graphics/">
+    <!-- CHART -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>
+              <i class="fa fa-line-chart"></i>
+              {{ 'GRAPHIC' | translate }}
+              &nbsp;|&nbsp;
+              {{ vm.exam.name }}
+              <span class="badge badge-info">{{ vm.examsResults.length }}</span>
+            </h5>
+            <div ibox-tools></div>
+          </div>
+          <div class="ibox-content">
+            <div class="flot-chart">
+              <div flot class="flot-chart-content"
+                   dataset="vm.flotData"
+                   options="vm.flotOptions">
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="ibox-content">
-          <div class="flot-chart">
-            <div flot class="flot-chart-content"
-                 dataset="vm.flotData"
-                 options="vm.flotOptions">
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>
+              <i class="fa fa-file-text-o"></i>
+              {{ 'RESULTS' | translate }}
+              &nbsp;|&nbsp;
+              {{ vm.exam.name }}
+              <span class="badge badge-info">{{ vm.examsResults.length }}</span>
+            </h5>
+            <div ibox-tools></div>
+          </div>
+          <div class="ibox-content">
+            <!-- TABLE -->
+            <div class="table-responsive">
+              <table
+                class="table table-bordered table-hover dataTables-example"
+                datatable="ng"
+                dt-options="dtOptions">
+                <thead>
+                <tr>
+                  <th>{{ 'DATE' | translate }} <i class="fa fa-sort-desc"></i></th>
+                  <th>{{ 'DESCRIPTION' | translate }}</th>
+                  <th>
+                    {{ 'VALUE' | translate }}
+                    <span ng-if="vm.exam.unit">
+                      {{ 'IN' | translate }}&nbsp;{{ vm.exam.unit.name }}
+                    </span>
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="examResult in vm.examsResults | orderBy:'-date'"
+                    ng-class="{'danger': vm.badExamResult(examResult)}">
+                  <td>{{ examResult.date | date:'dd/MM/yyyy' }}</td>
+                  <td>{{ examResult.description }}</td>
+                  <td>
+                    {{ examResult.value | number }}&nbsp;{{ examResult.exam.unit.name }}
+                  </td>
+                </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -40,58 +92,8 @@
     </div>
   </div>
 
-  <!-- RESULTS -->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <h5>
-            <i class="fa fa-file-text-o"></i>
-            {{ 'RESULTS' | translate }}
-            &nbsp;|&nbsp;
-            {{ vm.exam.name }}
-            <span class="badge badge-info">{{ vm.examsResults.length }}</span>
-          </h5>
-          <div ibox-tools></div>
-        </div>
-        <div class="ibox-content">
-          <!-- TABLE -->
-          <div class="table-responsive">
-            <table
-              class="table table-bordered table-hover dataTables-example"
-              datatable="ng"
-              dt-options="dtOptions">
-              <thead>
-              <tr>
-                <th>{{ 'DATE' | translate }} <i class="fa fa-sort-desc"></i></th>
-                <th>{{ 'DESCRIPTION' | translate }}</th>
-                <th>
-                  {{ 'VALUE' | translate }}
-                  <span ng-if="vm.exam.unit">
-                    {{ 'IN' | translate }}&nbsp;{{ vm.exam.unit.name }}
-                  </span>
-                </th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr ng-repeat="examResult in vm.examsResults | orderBy:'-date'"
-                  ng-class="{'danger': vm.badExamResult(examResult)}">
-                <td>{{ examResult.date | date:'dd/MM/yyyy' }}</td>
-                <td>{{ examResult.description }}</td>
-                <td>
-                  {{ examResult.value | number }}&nbsp;{{ examResult.exam.unit.name }}
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- REFERENCES -->
-  <div class="row">
+  <div class="row" block-ui block-ui-pattern="/exams/">
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
