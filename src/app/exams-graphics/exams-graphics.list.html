@@ -53,20 +53,18 @@
               <tr>
                 <th>{{ 'ACTIONS' | translate }}</th>
                 <th>{{ 'EXAM' | translate }} <i class="fa fa-sort-asc"></i></th>
-                <th>{{ 'TOTAL' | translate }}</th>
               </tr>
               </thead>
               <tbody>
               <tr ng-repeat="exam in vm.resultsGraphics">
-                <td width="50">
+                <td width="90">
                   <a class="btn btn-white"
                      ui-sref="exams_graphics.detail({id: exam.exam_id, page: vm.pagination.currentPage, exam: exam})">
-                     <!--ng-click="vm.getGraphic(result)">-->
                     <i class="fa fa-line-chart"></i>
+                    <span class="badge badge-inverse">{{ exam.total }}</span>
                   </a>
                 </td>
                 <td>{{ exam.name }}</td>
-                <td>{{ exam.total }}</td>
               </tr>
               </tbody>
             </table>
