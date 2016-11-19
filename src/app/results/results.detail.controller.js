@@ -6,8 +6,8 @@
     .controller('ResultsDetailController', ResultsDetailController);
 
   /** @ngInject */
-  function ResultsDetailController(formErrorService, ExamsResultsResource, ResultsResource,
-                             serverValidateService, $stateParams, $timeout, toaster, $uibModal) {
+  function ResultsDetailController($document, formErrorService, ExamsResultsResource, ResultsResource,
+                             serverValidateService, $state, $stateParams, $timeout, toaster, $uibModal) {
     var vm = this;
 
     vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
@@ -21,6 +21,8 @@
     vm.result = $stateParams.result;
     vm.remove = remove;
     vm.submit = submit;
+
+    $document.on('keydown', onKeydown);
 
     activate();
 
@@ -49,6 +51,15 @@
           vm.pagination = response.meta;
         }
       );
+    }
+
+    function onKeydown($event) {
+      $event.stopImmediatePropagation();
+
+      if ($state.current.name === 'results.detail' && $event.which === 78 &&
+        $event.target.id === 'page-top') {
+        openModal();
+      }
     }
 
     function openModal(examResultGrid) {
