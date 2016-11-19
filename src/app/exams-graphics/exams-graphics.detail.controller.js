@@ -10,7 +10,6 @@
                                          numberFilter, $stateParams, $uibModal) {
     var vm = this;
 
-    vm.badExamResult = badExamResult;
     vm.exam = $stateParams.exam;
     vm.examsResults = [];
     vm.flotData = [{ label: 'Valor', data: [] }];
@@ -44,6 +43,7 @@
     // vm.openModal = openModal;
     vm.page = $stateParams.page || 1;
     vm.resultsGraphics = [];
+    vm.valueStatus = valueStatus;
 
     activate();
 
@@ -54,13 +54,6 @@
           getGraphic();
         }
       );
-    }
-
-    function badExamResult(examResult) {
-      var value = parseFloat(examResult.value);
-
-      return (value < parseFloat(vm.exam.valor_referencia.valor_inferior)) ||
-        (value > parseFloat(vm.exam.valor_referencia.valor_superior));
     }
 
     function getChart(graphicValues) {
@@ -135,6 +128,19 @@
           }, 5000);
         }
       );
+    }
+
+    function valueStatus(examResult) {
+      var value = parseFloat(examResult.value);
+
+      if (value < parseFloat(vm.exam.valor_referencia.valor_inferior)) {
+        return -1;
+      }
+      else if (value > parseFloat(vm.exam.valor_referencia.valor_superior)) {
+        return 1;
+      }
+
+      return 0;
     }
   }
 })();

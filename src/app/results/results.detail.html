@@ -105,8 +105,8 @@
               <thead>
               <tr>
                 <th>{{ 'ACTIONS' | translate }}</th>
-                <th>{{ 'EXAM' | translate }} <i class="fa fa-sort-asc"></i></th>
                 <th>{{ 'VALUE' | translate }}</th>
+                <th>{{ 'EXAM' | translate }} <i class="fa fa-sort-asc"></i></th>
               </tr>
               </thead>
               <tbody>
@@ -123,8 +123,8 @@
                     <i class="fa fa-trash-o"></i>
                   </a>
                 </td>
-                <td>{{ examResult.exam.name }}</td>
                 <td>{{ examResult.value | number }}&nbsp;{{ examResult.exam.unit.name }}</td>
+                <td>{{ examResult.exam.name }}</td>
               </tr>
               </tbody>
             </table>
