@@ -17,19 +17,11 @@
     vm.exams = [];
     vm.resultId = resultId;
     vm.submit = submit;
-    vm.title = '';
 
     activate();
 
     function activate() {
       vm.exams = examsService.getExams();
-
-      if (examResult) {
-        vm.title = 'CHANGING';
-      }
-      else {
-        vm.title = 'INCLUDING';
-      }
     }
 
     function cancel() {
