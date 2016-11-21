@@ -7,7 +7,6 @@
        * Angular modules
        */
       'ngAnimate',
-      'ngCookies',
       'ngMessages',
       'ngTouch',
       'ngSanitize',
@@ -20,8 +19,8 @@
       'angular-flot',
       'blockUI',
       'datePicker',
-      'googlechart',
-      'ncy-angular-breadcrumb',
+      // 'googlechart',
+      // 'ncy-angular-breadcrumb',
       'oitozero.ngSweetAlert',
       'pascalprecht.translate',
       'permission',

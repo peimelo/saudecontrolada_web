@@ -83,6 +83,12 @@
 
         <ul class="nav nav-second-level collapse"
             ng-class="{ in: $state.includes('admin') }">
+          <li ui-sref-active="active" ng-if="main.sessionService.user.admin">
+            <a ui-sref="admin.exams">
+              <i class="fa fa-flask"></i>
+              {{ 'EXAMS' | translate }}
+            </a>
+          </li>
           <li ui-sref-active="active">
             <a ui-sref="admin.userEdit">
               <i class="fa fa-user"></i>
