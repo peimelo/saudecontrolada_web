@@ -68,6 +68,7 @@
         controller: 'ExamsResultsModalController',
         controllerAs: 'vm',
         resolve: {
+          examReadOnly: false,
           examResult: examResultGrid,
           resultId: vm.result.id
         },

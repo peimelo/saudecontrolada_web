@@ -7,10 +7,11 @@
 
   /** @ngInject */
   function ExamsGraphicsDetailController(ExamsGraphicsResource, examsService,
-                                         numberFilter, $stateParams, $uibModal) {
+                                         numberFilter, $stateParams, $timeout, $uibModal) {
     var vm = this;
 
     vm.exam = $stateParams.exam;
+    vm.examResultId = null;
     vm.examsResults = [];
     vm.flotData = [{ label: 'Valor', data: [] }];
     vm.flotOptions = {
@@ -40,7 +41,7 @@
         onHover: function (flotItem, $tooltipEl) {}
       }
     };
-    // vm.openModal = openModal;
+    vm.openModal = openModal;
     vm.page = $stateParams.page || 1;
     vm.resultsGraphics = [];
     vm.valueStatus = valueStatus;
@@ -54,6 +55,13 @@
           getGraphic();
         }
       );
+    }
+
+    function clearFloatData() {
+      var qtde = vm.flotData.length;
+      for (var i = qtde; i > 1; i--) {
+        vm.flotData.pop();
+      }
     }
 
     function getChart(graphicValues) {
@@ -85,6 +93,8 @@
         }
       }
 
+      clearFloatData();
+
       vm.flotData[0].data = flotChart;
 
       if (hasMaximo) {
@@ -110,8 +120,17 @@
         controller: 'ExamsResultsModalController',
         controllerAs: 'vm',
         resolve: {
-          examResult: examResultGrid,
-          resultId: vm.result.id
+          examReadOnly: true,
+          examResult: {
+            id: examResultGrid.id,
+            exam: {
+              id: vm.exam.id,
+              name: vm.exam.name,
+              unit: vm.exam.unit
+            },
+            value: examResultGrid.value
+          },
+          resultId: examResultGrid.result_id
         },
         size: 'lg',
         templateUrl: 'examsResultsModal.html',

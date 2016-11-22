@@ -6,13 +6,14 @@
     .controller('ExamsResultsModalController', ExamsResultsModalController);
 
   /** @ngInject */
-  function ExamsResultsModalController(serverValidateService, examResult,
-                                       examsService,
-                                       ExamsResultsResource, resultId, toaster, $uibModalInstance) {
+  function ExamsResultsModalController(examReadOnly, examResult, examsService,
+                                       ExamsResultsResource, resultId, serverValidateService,
+                                       toaster, $uibModalInstance) {
     var vm = this;
 
     vm.cancel = cancel;
     vm.formErrors = {};
+    vm.examReadOnly = examReadOnly;
     vm.examResult = angular.copy(examResult);
     vm.exams = [];
     vm.resultId = resultId;
