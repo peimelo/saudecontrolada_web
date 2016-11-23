@@ -8,8 +8,7 @@
   /** @ngInject */
   function DashboardsResource($resource) {
     return $resource('/api/dashboards/:id', { id: '@id' }, {
-      query: { isArray: false },
-      update: { method: 'PUT' }
+      query: { isArray: false }
     });
   }
 })();

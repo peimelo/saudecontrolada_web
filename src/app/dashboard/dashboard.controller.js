@@ -68,7 +68,7 @@
     activate();
 
     function activate() {
-      DashboardsResource.get({ id: 0 },
+      DashboardsResource.query({},
         function(response) {
           vm.weights = response.weights;
           getWeight(0);
