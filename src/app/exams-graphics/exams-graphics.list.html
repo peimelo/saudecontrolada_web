@@ -1,25 +1,10 @@
 <!-- Main view  -->
-<div class="row wrapper border-bottom white-bg page-heading">
-  <div class="col-lg-10">
-    <h2>
-      <i class="fa fa-line-chart"></i>
-      {{ $state.current.data.pageTitle | translate }}
-    </h2>
-  </div>
-</div>
+<page-title total="vm.pagination.totalItems"></page-title>
 
 <div class="wrapper wrapper-content" block-ui block-ui-pattern="/exams_graphics/">
   <div class="row">
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <h5>
-            <i class="fa fa-line-chart"></i>
-            {{ $state.current.data.pageTitle | translate }}
-            <span class="badge badge-info">{{ vm.pagination.totalItems }}</span>
-          </h5>
-          <div ibox-tools></div>
-        </div>
         <div class="ibox-content">
           <h3 ng-if="vm.flotData[0].data.length">
             <a class="btn btn-warning"

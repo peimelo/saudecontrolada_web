@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app')
+    .module('app.weights')
     .controller('WeightsController', WeightsController);
 
   /** @ngInject */

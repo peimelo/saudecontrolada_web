@@ -14,6 +14,7 @@
         controller: 'UsersController',
         controllerAs: 'vm',
         data: {
+          pageIcon: 'fa fa-users',
           pageTitle: 'USERS',
           permissions: {
             only: ['logged'],
@@ -31,6 +32,7 @@
         controller: 'UserEditController',
         controllerAs: 'vm',
         data: {
+          pageIcon: 'fa fa-cog',
           pageTitle: 'PROFILE',
           permissions: {
             only: ['logged'],

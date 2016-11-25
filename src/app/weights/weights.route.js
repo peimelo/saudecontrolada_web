@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app')
+    .module('app.weights')
     .config(routeConfig);
 
   /** @ngInject */
@@ -17,6 +17,7 @@
         controller: 'WeightsController',
         controllerAs: 'vm',
         data: {
+          pageIcon: 'fa fa-balance-scale',
           pageTitle: 'WEIGHTS',
           permissions: {
             only: ['logged'],

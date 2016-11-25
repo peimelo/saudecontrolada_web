@@ -19,8 +19,6 @@
       'angular-flot',
       'blockUI',
       'datePicker',
-      // 'googlechart',
-      // 'ncy-angular-breadcrumb',
       'oitozero.ngSweetAlert',
       'pascalprecht.translate',
       'permission',
@@ -31,7 +29,16 @@
       'ui.router',
       'ui.select',
       'ui.utils.masks',
-      'ui.validate'
-    ]);
+      'ui.validate',
 
+      /*
+       * Our reusable cross app code modules
+       */
+      'pageTitle',
+
+      /*
+       * Feature areas
+       */
+      'app.weights'
+    ]);
 })();

@@ -13,6 +13,7 @@
         controller: 'ExamsController',
         controllerAs: 'vm',
         data: {
+          pageIcon: 'fa fa-flask',
           pageTitle: 'EXAMS',
           permissions: {
             only: ['logged'],

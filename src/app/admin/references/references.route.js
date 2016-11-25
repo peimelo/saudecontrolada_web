@@ -13,6 +13,7 @@
       controller: 'ReferencesController',
       controllerAs: 'vm',
       data: {
+        pageIcon: 'fa fa-book',
         pageTitle: 'REFERENCES',
         permissions: {
           only: ['logged'],

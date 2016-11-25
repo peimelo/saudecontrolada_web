@@ -13,6 +13,7 @@
         controller: 'UnitsController',
         controllerAs: 'vm',
         data: {
+          pageIcon: 'fa fa-superscript',
           pageTitle: 'UNITS',
           permissions: {
             only: ['logged'],

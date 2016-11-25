@@ -17,6 +17,7 @@
         controller: 'ResultsController',
         controllerAs: 'vm',
         data: {
+          pageIcon: 'fa fa-file-text-o',
           pageTitle: 'TESTS_RESULTS',
           permissions: {
             only: ['logged'],
@@ -37,6 +38,7 @@
         controller: 'ResultsDetailController',
         controllerAs: 'vm',
         data: {
+          pageIcon: 'fa fa-file-text-o',
           pageTitle: 'TESTS_RESULTS',
           permissions: {
             only: ['logged'],

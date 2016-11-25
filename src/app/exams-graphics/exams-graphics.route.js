@@ -17,6 +17,7 @@
         controller: 'ExamsGraphicsListController',
         controllerAs: 'vm',
         data: {
+          pageIcon: 'fa fa-line-chart',
           pageTitle: 'Gráficos de Exames',
           permissions: {
             only: ['logged'],
