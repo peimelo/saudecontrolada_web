@@ -32,6 +32,9 @@
           UnitsResource.update(vm.unit,
             function(response) {
               closeWithSuccess(response);
+            },
+            function(error) {
+              serverValidateService.validate(error, vm.formErrors, form);
             }
           );
         }

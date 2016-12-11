@@ -107,6 +107,9 @@
             function(response) {
               vm.result = response.reg;
               toaster.pop('success', '', response.message);
+            },
+            function(error) {
+              serverValidateService.validate(error, vm.formErrors, form);
             }
           );
         }

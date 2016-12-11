@@ -32,6 +32,9 @@
           ReferencesResource.update(vm.reference,
             function(response) {
               closeWithSuccess(response);
+            },
+            function(error) {
+              serverValidateService.validate(error, vm.formErrors, form);
             }
           );
         }
