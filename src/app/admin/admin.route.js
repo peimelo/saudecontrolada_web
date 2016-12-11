@@ -11,11 +11,7 @@
       .state('admin', {
         abstract: true,
         url: "/admin",
-        templateUrl: "app/components/views/layouts/content.html",
-        ncyBreadcrumb: {
-          label: 'Admin',
-          parent: 'home'
-        }
+        templateUrl: "app/components/views/layouts/content.html"
       })
   }
 })();

@@ -10,7 +10,6 @@
     $stateProvider
       .state('admin.users', {
         url: '/users',
-        templateUrl: 'app/accredit/users/users.html',
         controller: 'UsersController',
         controllerAs: 'vm',
         data: {
@@ -21,14 +20,10 @@
             redirectTo: 'accredit.login'
           }
         },
-        ncyBreadcrumb: {
-          label: 'Users',
-          parent: 'home'
-        }
+        templateUrl: 'app/accredit/users/users.html'
       })
       .state('admin.userEdit', {
         url: '/userEdit',
-        templateUrl: 'app/accredit/users/userEdit.html',
         controller: 'UserEditController',
         controllerAs: 'vm',
         data: {
@@ -39,9 +34,7 @@
             redirectTo: 'accredit.login'
           }
         },
-        ncyBreadcrumb: {
-          label: 'Perfil'
-        }
+        templateUrl: 'app/accredit/users/userEdit.html'
       })
       .state('accredit.signup', {
         url: '/signup',
