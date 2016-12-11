@@ -6,11 +6,11 @@
     .controller('ExamsController', ExamsController);
 
   /** @ngInject */
-  function ExamsController(toaster, ExamsResource, $uibModal) {
+  function ExamsController(toaster, ExamsResource, $stateParams, $uibModal) {
     var vm = this;
 
     vm.openModal = openModal;
-    vm.pagination = { currentPage: 1 };
+    vm.pagination = { currentPage: ($stateParams.page || 1) };
     vm.query = query;
     vm.exams = [];
     vm.remove = remove;

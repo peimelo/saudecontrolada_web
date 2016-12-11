@@ -6,7 +6,7 @@
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <a href="" class="btn btn-success" ng-click="vm.openModal()">
+          <a ui-sref="admin.examsDetail" class="btn btn-success">
             <i class="fa fa-file-o"></i> {{ 'INCLUDE' | translate }}
           </a>
         </div>
@@ -27,12 +27,12 @@
               <tr ng-repeat="exam in vm.exams">
                 <td width="100">
                   <a href="" class="btn btn-white"
-                     ng-click="vm.openModal(exam)">
+                     ui-sref="admin.examsDetail({id: exam.id, page: vm.pagination.currentPage, exam: exam})">
                     <i class="fa fa-pencil"></i>
                   </a>&nbsp;
                   <a href=""
                      class="btn btn-danger"
-                     confirm="Tem certeza que deseja excluir a unidade {{ exam.name }}?"
+                     confirm="Tem certeza que deseja excluir o exame {{ exam.name }}?"
                      ng-click="vm.remove(exam)">
                     <i class="fa fa-trash-o"></i>
                   </a>
