@@ -10,12 +10,6 @@
     $stateProvider
       .state('results', {
         abstract: true,
-        templateUrl: 'app/components/views/layouts/content.html',
-        url: '/results'
-      })
-      .state('results.list', {
-        controller: 'ResultsController',
-        controllerAs: 'vm',
         data: {
           pageIcon: 'fa fa-file-text-o',
           pageTitle: 'TESTS_RESULTS',
@@ -24,10 +18,12 @@
             redirectTo: 'accredit.login'
           }
         },
-        ncyBreadcrumb: {
-          label: 'Resultado de Exames',
-          parent: 'home'
-        },
+        templateUrl: 'app/components/views/layouts/content.html',
+        url: '/results'
+      })
+      .state('results.list', {
+        controller: 'ResultsController',
+        controllerAs: 'vm',
         params: {
           page: null
         },
@@ -37,18 +33,6 @@
       .state('results.detail', {
         controller: 'ResultsDetailController',
         controllerAs: 'vm',
-        data: {
-          pageIcon: 'fa fa-file-text-o',
-          pageTitle: 'TESTS_RESULTS',
-          permissions: {
-            only: ['logged'],
-            redirectTo: 'accredit.login'
-          }
-        },
-        ncyBreadcrumb: {
-          label: 'Detalhe',
-          parent: 'results.list'
-        },
         params: {
           id: null,
           page: null,

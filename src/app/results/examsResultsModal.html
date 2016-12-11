@@ -9,9 +9,8 @@
 
     <div class="modal-body">
       <div class="row">
-
+        <!-- exam -->
         <div class="col-sm-8">
-
           <div form-input
                ng-class="{ 'has-error': form.exam_id.$invalid && form.submitted }">
             <label for="exam_id">
@@ -29,8 +28,9 @@
                    uib-typeahead="exam as exam.name for exam in vm.exams | filter:$viewValue | limitTo:8">
           </div>
         </div>
-        <div class="col-sm-4">
 
+        <!-- value -->
+        <div class="col-sm-4">
           <div class="form-group"
                ng-class="{ 'has-error': form.value.$invalid && form.submitted }">
             <label for="value" class="control-label">
@@ -40,6 +40,7 @@
               {{ 'IN' | translate }}&nbsp;{{ vm.examResult.exam.unit.name }}
             </label>
             <label for="value" class="control-label">*</label>
+
             <input id="value"
                    class="form-control"
                    name="value"
@@ -54,13 +55,17 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
+
+    <!-- buttons -->
     <div class="modal-footer">
+      <!-- save -->
       <button class="btn btn-primary" type="submit">
         <i class="fa fa-check"></i> {{ 'SAVE' | translate }}
       </button>
+
+      <!-- cancel -->
       <button class="btn btn-warning" type="button" ng-click="vm.cancel()">
         {{ 'CANCEL' | translate }}
       </button>
