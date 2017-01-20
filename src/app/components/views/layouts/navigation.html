@@ -4,7 +4,7 @@
       <li class="nav-header">
 
         <div class="profile-element" uib-dropdown>
-          <img alt=""
+          <img alt="{{ main.sessionService.user.name }}"
                class="img-circle"
                gravatar-src-once="main.sessionService.user.email"/>
 
@@ -29,7 +29,7 @@
         </div>
 
         <div class="logo-element">
-          <img alt="main.sessionService.user.name"
+          <img alt="{{ main.sessionService.user.name }}"
                class="img-circle"
                gravatar-src-once="main.sessionService.user.email"
                title="{{ main.sessionService.user.name }}" />
