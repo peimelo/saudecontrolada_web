@@ -59,7 +59,9 @@
         UNIT: 'Unit',
         UNITS: 'Units',
         USERS: 'Users',
+        VALID: 'Valid',
         VALUE: 'Value',
+        VALUES: 'Values',
         WEIGHTS: 'Weights',
 
         // links.html
@@ -122,7 +124,9 @@
         UNIT: 'Unidade',
         UNITS: 'Unidades',
         USERS: 'Usuários',
+        VALID: 'Válido',
         VALUE: 'Valor',
+        VALUES: 'Valores',
         WEIGHTS: 'Pesos',
 
         // links.html

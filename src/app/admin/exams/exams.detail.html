@@ -7,6 +7,7 @@
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <h5>
+            <i class="fa {{ $state.current.data.pageIcon }}"></i>
             <span>
               {{ vm.exam.id | iif : 'CHANGING' : 'INCLUDING' | translate }}
             </span>
@@ -71,8 +72,9 @@
       <div class="ibox float-e-margins">
         <div class="ibox-title">
           <h5>
-            {{ 'EXAMS' | translate }}
-            <span class="badge badge-info">{{ vm.pagination.totalItems }}</span>
+            <i class="fa {{ $state.current.data.pageDetailIcon }}"></i>
+            {{ 'VALUES' | translate }}
+            <span class="badge badge-info">{{ vm.exam.valor.length }}</span>
           </h5>&nbsp;|&nbsp;
           <div class="btn-group btn-group-sm">
             <a href="" class="btn btn-success" ng-click="vm.openModal()">
@@ -82,7 +84,7 @@
 
         </div>
 
-        <div class="ibox-content" block-ui block-ui-pattern="/exams_exams/">
+        <div class="ibox-content" block-ui block-ui-pattern="/exams/">
           <div uib-alert ng-class="'alert-info'" ng-if="!vm.exam.valor.length">
             {{ vm.alert.message }}
           </div>
@@ -102,6 +104,7 @@
                 <th>{{ 'GENDER' | translate }}</th>
                 <th>{{ 'MINIMUM_AGE' | translate }}</th>
                 <th>{{ 'MAXIMUM_AGE' | translate }}</th>
+                <th>{{ 'VALID' | translate }}</th>
               </tr>
               </thead>
               <tbody>
@@ -114,7 +117,7 @@
                   </a>&nbsp;
                   <a href=""
                      class="btn btn-danger"
-                     confirm="Tem certeza que deseja excluir o exame {{ valor.exam.name }}?"
+                     confirm="Tem certeza que deseja excluir o valor {{ valor.reference.name }}?"
                      ng-click="vm.remove(valor)">
                     <i class="fa fa-trash-o"></i>
                   </a>
@@ -125,6 +128,7 @@
                 <td>{{ valor.gender | genderFilter }}</td>
                 <td>{{ valor.idade_inferior | number }}</td>
                 <td>{{ valor.idade_superior | number }}</td>
+                <td ng-bind-html="valor.valido | trueFalseFilter"></td>
               </tr>
               </tbody>
             </table>

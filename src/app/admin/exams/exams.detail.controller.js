@@ -8,7 +8,7 @@
   /** @ngInject */
   function ExamsDetailController(formErrorService, ExamsResource,
                                  serverValidateService, $stateParams, $timeout,
-                                 toaster, $uibModal, units) {
+                                 toaster, $uibModal, units, ValoresResource) {
     var vm = this;
 
     vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
@@ -20,53 +20,59 @@
     vm.remove = remove;
     vm.submit = submit;
     vm.units = units;
+    vm.valorId = null;
 
     activate();
 
     function activate() {
       if ($stateParams.id) {
-        ExamsResource.get({ id: $stateParams.id },
-          function(response) {
-            vm.exam = response.exam;
-            if (vm.exam.unit) {
-              vm.exam.unit_id = vm.exam.unit.id;
-            }
-          }
-        )
+        getExams($stateParams.id);
       }
       else {
         vm.examResults = [];
       }
     }
 
-    function openModal(examResultGrid) {
-      var modalInstance = $uibModal.open({
-        animation: true,
-        controller: 'ExamsResultsModalController',
-        controllerAs: 'vm',
-        resolve: {
-          examReadOnly: false,
-          examResult: examResultGrid,
-          resultId: vm.exam.id
-        },
-        size: 'lg',
-        templateUrl: 'examsResultsModal.html',
-        windowClass: 'center-modal'
-      });
-
-      modalInstance.result.then(
-        function(examResult) {
-          vm.examResultId = examResult.id;
-          $timeout(function() {
-            vm.examResultId = null;
-          }, 5000);
+    function getExams(id) {
+      ExamsResource.get({ id: id },
+        function(response) {
+          vm.exam = response.exam;
+          if (vm.exam.unit) {
+            vm.exam.unit_id = vm.exam.unit.id;
+          }
         }
       );
     }
 
-    function remove(examResult) {
-      ExamsExamsResource.delete({ id: examResult.id, result_id: vm.exam.id },
+    function openModal(valorGrid) {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        controller: 'ValoresModalController',
+        controllerAs: 'vm',
+        resolve: {
+          examId: vm.exam.id,
+          valor: valorGrid
+        },
+        size: 'lg',
+        templateUrl: 'valores-modal.html',
+        windowClass: 'center-modal'
+      });
+
+      modalInstance.result.then(
+        function(valor) {
+          vm.valorId = valor.id;
+          $timeout(function() {
+            vm.valorId = null;
+          }, 5000);
+          getExams(vm.exam.id);
+        }
+      );
+    }
+
+    function remove(valor) {
+      ValoresResource.delete({ id: valor.id, exam_id: vm.exam.id },
         function(response) {
+          getExams(vm.exam.id);
           toaster.pop('success', '', response.message);
         }
       );
@@ -79,7 +85,7 @@
         if (vm.exam.id) {
           ExamsResource.update({ id: vm.exam.id }, vm.exam,
             function(response) {
-              vm.exam = response.reg;
+              getExams(response.reg.id);
               toaster.pop('success', '', response.message);
             },
             function(error) {

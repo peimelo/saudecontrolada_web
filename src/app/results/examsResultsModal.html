@@ -2,8 +2,9 @@
   <form name="form" role="form" novalidate ng-submit="vm.submit(form)">
     <div class="modal-header">
       <h3 class="modal-title">
+        <i class="fa {{ $state.current.data.pageDetailIcon }}"></i>
         {{ vm.examResult.id | iif : 'CHANGING' : 'INCLUDING' | translate }}
-        | {{ $state.current.data.pageTitle | translate }}
+        | {{ $state.current.data.pageDetailTitle | translate }}
       </h3>
     </div>
 

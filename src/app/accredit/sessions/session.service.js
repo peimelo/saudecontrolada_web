@@ -7,8 +7,8 @@
     .factory('sessionService', sessionService);
 
   /** @ngInject */
-  function sessionService($http, examsService, localStorageService, $rootScope,
-                          unitsService, USERKEY) {
+  function sessionService($http, examsService, localStorageService, referencesService,
+                          $rootScope, unitsService, USERKEY) {
     var api = '/api/sessions';
 
     var service = {
@@ -40,6 +40,7 @@
         localStorageService.add(USERKEY, response.data);
 
         examsService.clearExams();
+        referencesService.clearReferences();
         unitsService.clearUnits();
 
         return service.user;

@@ -29,6 +29,8 @@
         controller: 'ExamsDetailController',
         controllerAs: 'vm',
         data: {
+          pageDetailIcon: 'fa fa-list-ol',
+          pageDetailTitle: 'VALUES',
           pageIcon: 'fa fa-flask',
           pageTitle: 'EXAMS',
           permissions: {
@@ -42,6 +44,9 @@
           exam: null
         },
         resolve: {
+          references:  function(referencesService) {
+            return referencesService.getAll();
+          },
           units:  function(unitsService) {
             return unitsService.getUnits();
           }

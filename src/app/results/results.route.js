@@ -33,6 +33,10 @@
       .state('results.detail', {
         controller: 'ResultsDetailController',
         controllerAs: 'vm',
+        data: {
+          pageDetailIcon: 'fa fa-flask',
+          pageDetailTitle: 'EXAMS',
+        },
         params: {
           id: null,
           page: null,
