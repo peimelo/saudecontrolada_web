@@ -1,0 +1,98 @@
+<!-- Main view  -->
+<page-title total="$ctrl.pagination.totalItems"></page-title>
+
+<div class="wrapper wrapper-content" block-ui block-ui-pattern="/weights/">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <a href="" class="btn btn-success" ng-click="$ctrl.openModal()">
+            <i class="fa fa-file-o"></i> {{ 'INCLUDE' | translate }}
+          </a>
+
+          <div class="btn-group pull-right"
+               ng-if="$ctrl.weights.length">
+            <label class="btn btn-default"
+                   ng-model="$ctrl.showMode.chart"
+                   uib-btn-checkbox>
+              <i class="fa fa-line-chart"></i>
+            </label>
+            <label class="btn btn-default"
+                   ng-model="$ctrl.showMode.table"
+                   uib-btn-checkbox>
+              <i class="fa fa-list-alt"></i>
+            </label>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div uib-alert ng-class="'alert-info'" ng-if="!$ctrl.weights.length">
+            {{ $ctrl.alert.message }}
+          </div>
+
+          <!-- CHART -->
+          <div class="flot-chart"
+               ng-if="$ctrl.showMode.chart && $ctrl.weights.length">
+            <div flot class="flot-chart-content"
+                 dataset="$ctrl.flotData"
+                 options="$ctrl.flotOptions">
+            </div>
+          </div>
+
+          <div class="hr-line-dashed"
+               ng-if="$ctrl.showMode.chart && $ctrl.showMode.table && $ctrl.weights.length">
+          </div>
+
+          <!-- TABLE -->
+          <div class="table-responsive"
+               ng-if="$ctrl.showMode.table && $ctrl.weights.length">
+            <table class="table table-striped table-bordered table-hover dataTables-example"
+                   datatable="ng"
+                   dt-options="dtOptions">
+              <thead>
+              <tr>
+                <th>{{ 'ACTIONS' | translate }}</th>
+                <th>{{ 'DATE' | translate }} <i class="fa fa-sort-desc"></i></th>
+                <th>{{ 'HEIGHT' | translate }} (m)</th>
+                <th>{{ 'VALUE' | translate }} (kg)</th>
+                <th>Peso Ideal (kg)</th>
+                <th>Situação</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="weight in $ctrl.weights" ng-class="{'success': weight.id == $ctrl.weightId}">
+                <td width="100">
+                  <a href="" class="btn btn-white" ng-click="$ctrl.openModal(weight)">
+                    <i class="fa fa-pencil"></i>
+                  </a>&nbsp;
+                  <a href=""
+                     class="btn btn-danger"
+                     confirm="Tem certeza que deseja excluir o peso do dia {{ weight.date | formatDateTime }}?"
+                     ng-click="$ctrl.remove(weight)">
+                    <i class="fa fa-trash-o"></i>
+                  </a>
+                </td>
+                <td>{{ weight.date | formatDateTime }}</td>
+                <td>{{ weight.height | number }}</td>
+                <td>{{ weight.value | number }}</td>
+                <td>{{ weight.minimum | number }} ~ {{ weight.maximum | number }}</td>
+                <td ng-bind-html="weight.imc | situacaoImcFilter"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <ul uib-pagination total-items="$ctrl.pagination.totalItems"
+              ng-model="$ctrl.pagination.currentPage"
+              ng-change="$ctrl.query()"
+              ng-if="$ctrl.pagination.totalItems && ($ctrl.showMode.chart || $ctrl.showMode.table)"
+              max-size="5"
+              class="pagination-sm"
+              items-per-page="$ctrl.pagination.itemsPerPage">
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div ng-include="'app/weight-list/weightModal.html'"></div>
