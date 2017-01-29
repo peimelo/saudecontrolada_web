@@ -22,9 +22,9 @@
                    clear-server-error
                    name="reference_id"
                    ng-model="vm.valor.reference"
-                   placeholder="Escreva o nome da Referência"
+                   placeholder="[Autocomplemento] Escreva o nome da Referência"
                    type="text"
-                   uib-typeahead="reference as reference.name for reference in vm.references | filter:$viewValue | limitTo:8">
+                   uib-typeahead="reference as reference.name for reference in vm.references | filter:$viewValue | limitTo:20">
           </div>
         </div>
 
@@ -177,6 +177,13 @@
       <button class="btn btn-warning" type="button" ng-click="vm.cancel()">
         {{ 'CANCEL' | translate }}
       </button>
+
+      <div class="checkbox" ng-if="!vm.examResult.id">
+        <label>
+          <input type="checkbox" ng-model="vm.continueIncluding">
+          {{ 'CONTINUE_INCLUDING' | translate }}
+        </label>
+      </div>
     </div>
   </form>
 </script>

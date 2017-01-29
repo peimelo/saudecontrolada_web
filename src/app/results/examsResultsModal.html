@@ -23,10 +23,10 @@
                    name="exam_id"
                    ng-disabled="vm.examReadOnly"
                    ng-model="vm.examResult.exam"
-                   placeholder="Escreva o nome do Exame"
+                   placeholder="[Autocomplemento] Escreva o nome do Exame"
                    required
                    type="text"
-                   uib-typeahead="exam as exam.name for exam in vm.exams | filter:$viewValue | limitTo:8">
+                   uib-typeahead="exam as exam.name for exam in vm.exams | filter:$viewValue | limitTo:20">
           </div>
         </div>
 
@@ -70,6 +70,13 @@
       <button class="btn btn-warning" type="button" ng-click="vm.cancel()">
         {{ 'CANCEL' | translate }}
       </button>
+
+      <div class="checkbox" ng-if="!vm.examResult.id">
+        <label>
+          <input type="checkbox" ng-model="vm.continueIncluding">
+          {{ 'CONTINUE_INCLUDING' | translate }}
+        </label>
+      </div>
     </div>
   </form>
 </script>
