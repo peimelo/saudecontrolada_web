@@ -6,11 +6,12 @@
     .controller('ValoresModalController', ValoresModalController);
 
   /** @ngInject */
-  function ValoresModalController(examId, referencesService, serverValidateService,
+  function ValoresModalController(continueIncluding, examId, referencesService, serverValidateService,
                                   toaster, $uibModalInstance, valor, ValoresResource) {
     var vm = this;
 
     vm.cancel = cancel;
+    vm.continueIncluding = continueIncluding;
     vm.formErrors = {};
     vm.examId = examId;
     vm.references = [];
@@ -32,6 +33,7 @@
 
     function closeWithSuccess(response) {
       toaster.pop('success', '', response.message);
+      response.reg.continueIncluding = vm.continueIncluding;
       $uibModalInstance.close(response.reg);
     }
 

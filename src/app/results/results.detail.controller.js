@@ -11,6 +11,7 @@
     var vm = this;
 
     vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
+    vm.continueIncluding = false;
     vm.formErrors = {};
     vm.examResultId = null;
     vm.examResults = [''];
@@ -21,8 +22,6 @@
     vm.result = $stateParams.result;
     vm.remove = remove;
     vm.submit = submit;
-
-    // $document.on('keydown', onKeydown);
 
     activate();
 
@@ -53,21 +52,13 @@
       );
     }
 
-    // function onKeydown($event) {
-    //   $event.stopImmediatePropagation();
-    //
-    //   if ($state.current.name === 'results.detail' && $event.which === 78 &&
-    //     $event.target.id === 'page-top') {
-    //     openModal();
-    //   }
-    // }
-
     function openModal(examResultGrid) {
       var modalInstance = $uibModal.open({
         animation: true,
         controller: 'ExamsResultsModalController',
         controllerAs: 'vm',
         resolve: {
+          continueIncluding: vm.continueIncluding,
           examReadOnly: false,
           examResult: examResultGrid,
           resultId: vm.result.id
@@ -85,6 +76,14 @@
           $timeout(function() {
             vm.examResultId = null;
           }, 5000);
+
+          vm.continueIncluding = examResult.continueIncluding;
+          if (vm.continueIncluding) {
+            openModal();
+          }
+        },
+        function() {
+          vm.continueIncluding = false;
         }
       );
     }

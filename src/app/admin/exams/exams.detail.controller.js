@@ -12,6 +12,7 @@
     var vm = this;
 
     vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
+    vm.continueIncluding = false;
     vm.formErrors = {};
     vm.page = $stateParams.page || 1;
     vm.pagination = { currentPage: 1 };
@@ -50,6 +51,7 @@
         controller: 'ValoresModalController',
         controllerAs: 'vm',
         resolve: {
+          continueIncluding: vm.continueIncluding,
           examId: vm.exam.id,
           valor: valorGrid
         },
@@ -65,8 +67,17 @@
             vm.valorId = null;
           }, 5000);
           getExams(vm.exam.id);
+
+          vm.continueIncluding = valor.continueIncluding;
+          if (vm.continueIncluding) {
+            openModal();
+          }
+        },
+        function() {
+          vm.continueIncluding = false;
         }
       );
+
     }
 
     function remove(valor) {
