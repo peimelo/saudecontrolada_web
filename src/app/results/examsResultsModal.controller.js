@@ -6,12 +6,13 @@
     .controller('ExamsResultsModalController', ExamsResultsModalController);
 
   /** @ngInject */
-  function ExamsResultsModalController(examReadOnly, examResult, examsService,
+  function ExamsResultsModalController(continueIncluding, examReadOnly, examResult, examsService,
                                        ExamsResultsResource, resultId, serverValidateService,
                                        toaster, $uibModalInstance) {
     var vm = this;
 
     vm.cancel = cancel;
+    vm.continueIncluding = continueIncluding;
     vm.formErrors = {};
     vm.examReadOnly = examReadOnly;
     vm.examResult = angular.copy(examResult);
@@ -23,6 +24,10 @@
 
     function activate() {
       vm.exams = examsService.getExams();
+
+      if (!vm.examResult) {
+        vm.examResult = { value: 0 };
+      }
     }
 
     function cancel() {
@@ -31,6 +36,7 @@
 
     function closeWithSuccess(response) {
       toaster.pop('success', '', response.message);
+      response.reg.continueIncluding = vm.continueIncluding;
       $uibModalInstance.close(response.reg);
     }
 

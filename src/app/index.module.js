@@ -19,6 +19,7 @@
       'angular-flot',
       'blockUI',
       'datePicker',
+      'focus-if',
       'oitozero.ngSweetAlert',
       'pascalprecht.translate',
       'permission',

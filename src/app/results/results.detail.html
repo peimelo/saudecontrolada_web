@@ -25,7 +25,7 @@
                        ng-class="{ 'has-error': form.date.$invalid && form.submitted }">
                     <label for="date">{{ 'DATE' | translate }} *</label>
                     <input id="date"
-                           autofocus
+                           focus-if
                            class="form-control"
                            clear-server-error
                            change-date
