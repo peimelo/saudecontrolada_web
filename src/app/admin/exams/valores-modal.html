@@ -66,101 +66,69 @@
       <div class="row">
         <!-- valor_inferior -->
         <div class="col-sm-3">
-          <div class="form-group"
+          <div form-input
                ng-class="{ 'has-error': form.valor_inferior.$invalid && form.submitted }">
-            <label for="valor_inferior" class="control-label">
+            <label for="valor_inferior">
               {{ 'MINIMUM_VALUE' | translate }}
-            </label>
-            <label for="valor_inferior" class="control-label" ng-if="vm.examResult.exam.unit">
-              {{ 'IN' | translate }}&nbsp;{{ vm.examResult.exam.unit.name }}
             </label>
 
             <input id="valor_inferior"
-                   class="form-control"
+                   clear-server-error
                    name="valor_inferior"
                    ng-model="vm.valor.valor_inferior"
                    type="text"
                    ui-number-mask="2">
-            <div class="help-block"
-                 ng-if="form.valor_inferior.$invalid && form.submitted"
-                 ng-messages="form.valor_inferior.$error">
-              <div ng-messages-include="app/components/messages.html"></div>
-            </div>
           </div>
         </div>
 
         <!-- valor_superior -->
         <div class="col-sm-3">
-          <div class="form-group"
+          <div form-input
                ng-class="{ 'has-error': form.valor_superior.$invalid && form.submitted }">
-            <label for="valor_superior" class="control-label">
+            <label for="valor_superior">
               {{ 'MAXIMUM_VALUE' | translate }}
-            </label>
-            <label for="valor_superior" class="control-label" ng-if="vm.examResult.exam.unit">
-              {{ 'IN' | translate }}&nbsp;{{ vm.examResult.exam.unit.name }}
             </label>
 
             <input id="valor_superior"
-                   class="form-control"
+                   clear-server-error
                    name="valor_superior"
                    ng-model="vm.valor.valor_superior"
                    type="text"
                    ui-number-mask="2">
-            <div class="help-block"
-                 ng-if="form.valor_superior.$invalid && form.submitted"
-                 ng-messages="form.valor_superior.$error">
-              <div ng-messages-include="app/components/messages.html"></div>
-            </div>
           </div>
         </div>
 
         <!-- idade_inferior -->
         <div class="col-sm-3">
-          <div class="form-group"
+          <div form-input
                ng-class="{ 'has-error': form.idade_inferior.$invalid && form.submitted }">
-            <label for="idade_inferior" class="control-label">
+            <label for="idade_inferior">
               {{ 'MINIMUM_AGE' | translate }}
-            </label>
-            <label for="idade_inferior" class="control-label" ng-if="vm.examResult.exam.unit">
-              {{ 'IN' | translate }}&nbsp;{{ vm.examResult.exam.unit.name }}
             </label>
 
             <input id="idade_inferior"
-                   class="form-control"
+                   clear-server-error
                    name="idade_inferior"
                    ng-model="vm.valor.idade_inferior"
                    type="text"
                    ui-number-mask="2">
-            <div class="help-block"
-                 ng-if="form.idade_inferior.$invalid && form.submitted"
-                 ng-messages="form.idade_inferior.$error">
-              <div ng-messages-include="app/components/messages.html"></div>
-            </div>
           </div>
         </div>
 
         <!-- idade_superior -->
         <div class="col-sm-3">
-          <div class="form-group"
+          <div form-input
                ng-class="{ 'has-error': form.idade_superior.$invalid && form.submitted }">
-            <label for="idade_superior" class="control-label">
+            <label for="idade_superior">
               {{ 'MAXIMUM_AGE' | translate }}
-            </label>
-            <label for="idade_superior" class="control-label" ng-if="vm.examResult.exam.unit">
-              {{ 'IN' | translate }}&nbsp;{{ vm.examResult.exam.unit.name }}
             </label>
 
             <input id="idade_superior"
-                   class="form-control"
+                   clear-server-error
                    name="idade_superior"
                    ng-model="vm.valor.idade_superior"
                    type="text"
                    ui-number-mask="2">
-            <div class="help-block"
-                 ng-if="form.idade_superior.$invalid && form.submitted"
-                 ng-messages="form.idade_superior.$error">
-              <div ng-messages-include="app/components/messages.html"></div>
-            </div>
           </div>
         </div>
       </div>
