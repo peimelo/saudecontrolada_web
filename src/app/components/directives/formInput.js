@@ -28,7 +28,7 @@
      *     <div ng-messages-include="app/components/messages.html"></div>
      *     <div ng-message="server">{{vm.formErrors.email}}</div>
      * </div>
-    
+
      * @param form
      * @param element
      * @param name
@@ -47,7 +47,7 @@
     }
 
     function setupDom(element) {
-      var input = element.querySelector('input');
+      var input = element.querySelector('input') || element.querySelector('select');
       var type = input.getAttribute('type');
       var name = input.getAttribute('name');
       if (type !== 'checkbox' && type !== 'radio') {

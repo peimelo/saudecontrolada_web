@@ -3,7 +3,7 @@
     <div class="modal-header">
       <h3 class="modal-title">
         <i class="fa {{ $state.current.data.pageDetailIcon }}"></i>
-        {{ vm.examResult.id | iif : 'CHANGING' : 'INCLUDING' | translate }}
+        {{ vm.valor.id | iif : 'CHANGING' : 'INCLUDING' | translate }}
         | {{ $state.current.data.pageDetailTitle | translate }}
       </h3>
     </div>
@@ -146,7 +146,7 @@
         {{ 'CANCEL' | translate }}
       </button>
 
-      <div class="checkbox" ng-if="!vm.examResult.id">
+      <div class="checkbox" ng-if="!vm.valor.id">
         <label>
           <input type="checkbox" ng-model="vm.continueIncluding">
           {{ 'CONTINUE_INCLUDING' | translate }}

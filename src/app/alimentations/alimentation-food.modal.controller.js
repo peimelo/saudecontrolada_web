@@ -3,35 +3,29 @@
 
   angular
     .module('app')
-    .controller('ExamsResultsModalController', ExamsResultsModalController);
+    .controller('AlimentationFoodModalController', AlimentationFoodModalController);
 
   /** @ngInject */
-  function ExamsResultsModalController(continueIncluding, examReadOnly, examResult, examsService,
-                                       ExamsResultsResource, resultId, serverValidateService,
+  function AlimentationFoodModalController(alimentationFood, continueIncluding, foodService,
+                                       AlimentationFoodResource, alimentationId, serverValidateService,
                                        toaster, $uibModalInstance) {
     var vm = this;
 
+    vm.alimentationId = alimentationId;
+    vm.alimentationFood = angular.copy(alimentationFood);
     vm.cancel = cancel;
     vm.continueIncluding = continueIncluding;
+    vm.foods = [];
     vm.formErrors = {};
-    vm.examReadOnly = examReadOnly;
-    vm.examResult = angular.copy(examResult);
-    vm.exams = [];
-    vm.resultId = resultId;
     vm.submit = submit;
-    vm.validExam = validExam;
-
-    function validExam() {
-      return typeof(vm.examResult.exam) === 'integer';
-    }
 
     activate();
 
     function activate() {
-      vm.exams = examsService.getExams();
+      vm.foods = foodService.getAll();
 
-      if (!vm.examResult) {
-        vm.examResult = { value: 0 };
+      if (!vm.alimentationFood) {
+        vm.alimentationFood = { value: 0 };
       }
     }
 
@@ -47,22 +41,22 @@
 
     function submit(form) {
       if (form.$valid) {
-        if (!angular.isObject(vm.examResult.exam)) {
+        if (!angular.isObject(vm.alimentationFood.food)) {
           toaster.pop(
             'error',
             '',
-            'Escreva o nome do Exame e selecione nas opções disponíveis. Se não existir, envie-nos um Contato para inserí-lo.'
+            'Escreva o nome do Alimento e selecione nas opções disponíveis. Se não existir, envie-nos um Contato para inserí-lo.'
           );
           return;
         }
 
-        if (vm.examResult.id) {
-          ExamsResultsResource.update(
+        if (vm.alimentationFood.id) {
+          AlimentationFoodResource.update(
             {
-              id: vm.examResult.id,
-              exam_id: vm.examResult.exam.id,
-              result_id: vm.resultId,
-              value: vm.examResult.value
+              id: vm.alimentationFood.id,
+              alimentation_id: vm.alimentationId,
+              food_id: vm.alimentationFood.food.id,
+              value: vm.alimentationFood.value
             },
             function(response) {
               closeWithSuccess(response);
@@ -73,16 +67,16 @@
           );
         }
         else {
-          vm.examResult.result_id = vm.resultId;
-          var newExamsResults = new ExamsResultsResource(
+          vm.alimentationFood.alimentation_id = vm.alimentationId;
+          var newAlimentationFood = new AlimentationFoodResource(
             {
-              exam_id: vm.examResult.exam.id,
-              result_id: vm.resultId,
-              value: vm.examResult.value
+              alimentation_id: vm.alimentationId,
+              food_id: vm.alimentationFood.food.id,
+              value: vm.alimentationFood.value
             }
           );
 
-          newExamsResults.$save(
+          newAlimentationFood.$save(
             function(response) {
               closeWithSuccess(response);
             },

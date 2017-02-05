@@ -13,17 +13,23 @@
     vm.exam = $stateParams.exam;
     vm.examResultId = null;
     vm.examsResults = [];
-    vm.flotData = [{ label: 'Valor', data: [] }];
+    vm.flotData = [];
     vm.flotOptions = {
       xaxis: {
         // dayNames: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
-        minTickSize: [1, "hour"],
+        minTickSize: [1, "day"],
         mode: "time",
         monthNames: [
           'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
         ]
       },
-      colors: ["#1ab394", "#B31204", "#E67F00"],
+      // series: [
+      //   { lines: { show: true }, points: { show: true } },
+      //   { lines: { show: true }, points: { show: false } },
+      //   { lines: { show: true }, points: { show: false } }
+      // ],
+      legend: {noColumns: 3},
+      // colors: ["#B31204", "#E67F00", "#1ab394"],
       grid: {
         color: "#999999",
         hoverable: true,
@@ -59,7 +65,7 @@
 
     function clearFloatData() {
       var qtde = vm.flotData.length;
-      for (var i = qtde; i > 1; i--) {
+      for (var i = qtde-1; i >= 0; i--) {
         vm.flotData.pop();
       }
     }
@@ -95,14 +101,25 @@
 
       clearFloatData();
 
-      vm.flotData[0].data = flotChart;
 
       if (hasMaximo) {
-        vm.flotData.push({ label: 'Máximo', data: maximo});
+        vm.flotData.push({ label: 'Máximo', data: maximo, color: "#B31204"});
       }
       if (hasMinimo) {
-        vm.flotData.push({ label: 'Mínimo', data: minimo});
+        vm.flotData.push({ label: 'Mínimo', data: minimo, color: "#E67F00"});
       }
+
+      vm.flotData.push({
+        label: 'Meu Valor',
+        data: flotChart,
+        color: "#1ab394",
+        lines: { show: true },
+        points: { show: true }
+      });
+      // colors: ["#B31204", "#E67F00", "#1ab394"],
+
+      // vm.flotData = [{ label: 'Meu Valor', data: [], lines: { show: true }, points: { show: true } }];
+
     }
 
     function getGraphic() {
@@ -120,6 +137,7 @@
         controller: 'ExamsResultsModalController',
         controllerAs: 'vm',
         resolve: {
+          continueIncluding: false,
           examReadOnly: true,
           examResult: {
             id: examResultGrid.id,
