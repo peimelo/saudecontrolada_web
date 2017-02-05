@@ -10,7 +10,7 @@
                              $uibModal) {
     var vm = this;
     vm.alert = { message: 'Nenhum registro cadastrado. Clique em "Incluir".' };
-    vm.flotData = [{ label: 'Peso', data: [] }];
+    vm.flotData = [{ label: 'Meu Peso', data: [] }];
     vm.flotOptions = {
       xaxis: {
         // dayNames: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
@@ -27,6 +27,10 @@
         clickable: true,
         tickColor: "#D4D4D4",
         borderWidth: 0
+      },
+      series: {
+        lines: { show: true },
+        points: { show: true }
       },
       tooltip: true,
       tooltipOpts: {

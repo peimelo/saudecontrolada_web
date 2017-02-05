@@ -35,7 +35,7 @@
         controllerAs: 'vm',
         data: {
           pageDetailIcon: 'fa fa-flask',
-          pageDetailTitle: 'EXAMS',
+          pageDetailTitle: 'EXAMS'
         },
         params: {
           id: null,

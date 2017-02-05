@@ -10,7 +10,7 @@
     var vm = this;
 
     vm.average = 0;
-    vm.flotData = [{ label: 'Peso', data: [] }];
+    vm.flotData = [{ label: 'Meu Peso', data: [] }];
     vm.flotOptions = {
       xaxis: {
         // dayNames: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
@@ -30,23 +30,23 @@
         tickColor: "#D4D4D4",
         borderWidth: 0
       },
-      // series: {
-      //   lines: {
-      //     show: false,
+      series: {
+        lines: {
+          show: true
       //     fill: true
-      //   },
+        },
       //   splines: {
       //     show: true,
       //     tension: 0.4,
       //     lineWidth: 1,
       //     fill: 0.4
       //   },
-      //   points: {
-      //     radius: 0,
-      //     show: true
-      //   },
+        points: {
+          // radius: 2,
+          show: true
+        }
       //   shadowSize: 2
-      // },
+      },
       tooltip: true,
       tooltipOpts: {
         content: function(label, xval, yval) {

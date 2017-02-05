@@ -11,7 +11,7 @@
     <div class="modal-body">
       <div class="row">
         <!-- exam -->
-        <div class="col-sm-9 col-xs-12">
+        <div class="col-sm-9">
           <div form-input
                ng-class="{ 'has-error': form.exam_id.$invalid && form.submitted }">
             <label for="exam_id">
@@ -31,15 +31,20 @@
         </div>
 
         <!-- value -->
-        <div class="col-sm-2 col-xs-9">
+        <div class="col-sm-3">
           <div class="form-group"
                ng-class="{ 'has-error': form.value.$invalid && form.submitted }">
             <label for="value" class="control-label">
-              {{ 'VALUE' | translate }} *
+              {{ 'VALUE' | translate }}
             </label>
+            <label for="value" class="control-label" ng-if="vm.examResult.exam.unit">
+              {{ 'IN' | translate }}&nbsp;<span class="label label-danger">{{ vm.examResult.exam.unit.name }}</span>
+            </label>
+            <label for="value" class="control-label">*</label>
 
             <input id="value"
                    class="form-control"
+                   focus-if="vm.examReadOnly || (!vm.examResult.id && vm.examResult.exam.name)"
                    name="value"
                    ng-model="vm.examResult.value"
                    required
@@ -50,16 +55,6 @@
                  ng-messages="form.value.$error">
               <div ng-messages-include="app/components/messages.html"></div>
             </div>
-          </div>
-        </div>
-
-        <!-- value -->
-        <div class="col-sm-1 col-xs-3">
-          <div class="form-group">
-            <br><br>
-            <label for="value" class="control-label" ng-if="vm.examResult.exam.unit">
-              {{ vm.examResult.exam.unit.name }}
-            </label>
           </div>
         </div>
       </div>

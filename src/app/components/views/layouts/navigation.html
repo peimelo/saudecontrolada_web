@@ -36,6 +36,7 @@
         </div>
       </li>
 
+      <!-- dashboard -->
       <li ui-sref-active="active">
         <a ui-sref="dashboard">
           <i class="fa fa-dashboard"></i>
@@ -43,13 +44,15 @@
         </a>
       </li>
 
+      <!-- alimentation -->
       <li ui-sref-active="active">
-        <a ui-sref="weights.list">
-          <i class="fa fa-balance-scale"></i>
-          <span class="nav-label">{{ 'WEIGHTS' | translate }}</span>
+        <a ui-sref="alimentation.list">
+          <i class="fa fa-cutlery"></i>
+          <span class="nav-label">{{ 'ALIMENTATION' | translate }}</span>
         </a>
       </li>
 
+      <!-- results -->
       <li ng-class="{ active: $state.includes('results') || $state.includes('exams_graphics') }">
         <a href="">
           <i class="fa fa-flask"></i>
@@ -74,6 +77,15 @@
         </ul>
       </li>
 
+      <!-- weights -->
+      <li ui-sref-active="active">
+        <a ui-sref="weights.list">
+          <i class="fa fa-balance-scale"></i>
+          <span class="nav-label">{{ 'WEIGHTS' | translate }}</span>
+        </a>
+      </li>
+
+      <!-- menu admin -->
       <li ng-class="{ active: $state.includes('admin') }">
         <a href="">
           <i class="fa fa-cog"></i>
