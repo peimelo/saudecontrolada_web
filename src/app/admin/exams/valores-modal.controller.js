@@ -22,6 +22,7 @@
 
     function activate() {
       vm.references = referencesService.getAll();
+
       if (!vm.valor.reference) {
         vm.valor.reference = null;
       }

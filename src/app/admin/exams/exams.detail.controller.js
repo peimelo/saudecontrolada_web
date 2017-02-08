@@ -27,14 +27,14 @@
 
     function activate() {
       if ($stateParams.id) {
-        getExams($stateParams.id);
+        getExam($stateParams.id);
       }
       else {
         vm.examResults = [];
       }
     }
 
-    function getExams(id) {
+    function getExam(id) {
       ExamsResource.get({ id: id },
         function(response) {
           vm.exam = response.exam;
@@ -66,7 +66,7 @@
           $timeout(function() {
             vm.valorId = null;
           }, 5000);
-          getExams(vm.exam.id);
+          getExam(vm.exam.id);
 
           vm.continueIncluding = valor.continueIncluding;
           if (vm.continueIncluding) {
@@ -83,7 +83,7 @@
     function remove(valor) {
       ValoresResource.delete({ id: valor.id, exam_id: vm.exam.id },
         function(response) {
-          getExams(vm.exam.id);
+          getExam(vm.exam.id);
           toaster.pop('success', '', response.message);
         }
       );
@@ -96,7 +96,7 @@
         if (vm.exam.id) {
           ExamsResource.update({ id: vm.exam.id }, vm.exam,
             function(response) {
-              getExams(response.reg.id);
+              getExam(response.reg.id);
               toaster.pop('success', '', response.message);
             },
             function(error) {
