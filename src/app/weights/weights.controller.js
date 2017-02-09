@@ -97,7 +97,7 @@
       WeightsResource.query({ page: vm.pagination.currentPage },
         function(response) {
           vm.weights = response.data;
-          // vm.pagination = response.meta;
+          vm.pagination = response.meta;
           getChart();
         }
       );
