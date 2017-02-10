@@ -94,7 +94,12 @@
     }
 
     function query() {
-      WeightsResource.query({ page: vm.pagination.currentPage },
+      WeightsResource.query(
+        {
+          sort: 'date',
+          dir: 'desc',
+          page: vm.pagination.currentPage
+        },
         function(response) {
           vm.weights = response.data;
           vm.pagination = response.meta;

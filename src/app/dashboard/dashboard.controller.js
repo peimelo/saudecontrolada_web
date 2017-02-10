@@ -68,7 +68,12 @@
     activate();
 
     function activate() {
-      DashboardsResource.query({},
+      DashboardsResource.query(
+        {
+          fields: 'date,value',
+          sort: 'date',
+          dir: 'desc'
+        },
         function(response) {
           vm.weights = response.weights;
           getWeight(0);

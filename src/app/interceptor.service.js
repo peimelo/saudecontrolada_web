@@ -34,6 +34,10 @@
       case -1:
         message = 'Não foi possível se conectar com o servidor. Tente novamente mais tarde.';
         break;
+      case 400:
+        message = response.data.error.message ?
+          response.data.error.message : 'Solicitação inválida.';
+        break;
       case 401:
         $rootScope.authenticationToken = null;
         $location.path('/login');
