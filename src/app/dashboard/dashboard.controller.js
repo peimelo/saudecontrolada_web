@@ -72,7 +72,9 @@
         {
           fields: 'date,value',
           sort: 'date',
-          dir: 'desc'
+          dir: 'desc',
+          page: 1,
+          per: 100
         },
         function(response) {
           vm.weights = response.weights;
