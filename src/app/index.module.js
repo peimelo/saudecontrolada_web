@@ -36,6 +36,7 @@
        * Our reusable cross app code modules
        */
       'pageTitle',
+      'scNavbar',
 
       /*
        * Feature areas

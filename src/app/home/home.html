@@ -1,14 +1,16 @@
-<div class="navbar-wrapper">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header page-scroll">
-        <a class="navbar-brand" ui-sref="accredit.login">
-          {{ 'LINKS_SIGNIN' | translate }}
-        </a>
-      </div>
-    </div>
-  </nav>
-</div>
+<sc-navbar></sc-navbar>
+
+<!--<div class="navbar-wrapper">-->
+  <!--<nav class="navbar navbar-default navbar-fixed-top" role="navigation">-->
+    <!--<div class="container">-->
+      <!--<div class="navbar-header page-scroll">-->
+        <!--<a class="navbar-brand" ui-sref="accredit.login">-->
+          <!--{{ 'LINKS_SIGNIN' | translate }}-->
+        <!--</a>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</nav>-->
+<!--</div>-->
 
 <div uib-carousel active="active" interval="main.interval">
   <div uib-slide ng-repeat="slide in vm.slides track by slide.id" index="$index">
