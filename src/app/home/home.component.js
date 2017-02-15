@@ -9,7 +9,7 @@
     });
 
   /** @ngInject */
-  function HomeController() {
+  function HomeController(VERSION) {
     var ctrl = this;
 
     ctrl.presentations = [
@@ -30,5 +30,7 @@
         class: 'header-back two'
       }
     ];
+
+    ctrl.version = VERSION;
   }
 })();
