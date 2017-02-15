@@ -2,5 +2,5 @@
   'use strict';
 
   angular
-    .module('scNavbar', []);
+    .module('app.home', []);
 })();

@@ -9,14 +9,10 @@
   function routeConfig($stateProvider) {
     $stateProvider
       .state('home', {
-        url: '/',
-        templateUrl: 'app/home/home.html',
-        controller: 'HomeController',
-        controllerAs: 'vm',
         data: { specialClass: 'landing-page' },
-        ncyBreadcrumb: {
-          label: 'Home'
-        }
+        ncyBreadcrumb: { label: 'Home' },
+        template: '<home></home>',
+        url: '/'
       });
   }
 })();

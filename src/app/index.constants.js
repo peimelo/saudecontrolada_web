@@ -13,5 +13,6 @@
       nextText: 'Próximo',
       lastText: 'Último',
       rotate: false
-    });
+    })
+    .constant('VERSION', 'v1.11.0');
 })();

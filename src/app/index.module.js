@@ -23,6 +23,7 @@
       'oitozero.ngSweetAlert',
       'pascalprecht.translate',
       'permission',
+      'scComponents',
       'toaster',
       'ui.bootstrap',
       'ui.gravatar',
@@ -30,17 +31,17 @@
       'ui.router',
       'ui.select',
       'ui.utils.masks',
-      'ui.validate',
 
+      'ui.validate',
       /*
        * Our reusable cross app code modules
        */
       'pageTitle',
-      'scNavbar',
 
       /*
        * Feature areas
        */
+      'app.home',
       'app.weights'
     ]);
 })();

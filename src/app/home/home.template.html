@@ -1,19 +1,13 @@
 <sc-navbar></sc-navbar>
 
-<!--<div class="navbar-wrapper">-->
-  <!--<nav class="navbar navbar-default navbar-fixed-top" role="navigation">-->
-    <!--<div class="container">-->
-      <!--<div class="navbar-header page-scroll">-->
-        <!--<a class="navbar-brand" ui-sref="accredit.login">-->
-          <!--{{ 'LINKS_SIGNIN' | translate }}-->
-        <!--</a>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</nav>-->
-<!--</div>-->
+<div class="container">
+
+  <sc-jumbotron></sc-jumbotron>
+
+</div> <!-- /container -->
 
 <div uib-carousel active="active" interval="main.interval">
-  <div uib-slide ng-repeat="slide in vm.slides track by slide.id" index="$index">
+  <div uib-slide ng-repeat="slide in $ctrl.slides track by slide.id" index="$index">
     <div class="container">
       <div class="carousel-caption blank">
         <h1>
@@ -32,7 +26,7 @@
 
 <section id="features" class="container services">
   <div class="row">
-    <div class="col-sm-4" ng-repeat="presentation in vm.presentations">
+    <div class="col-sm-4" ng-repeat="presentation in $ctrl.presentations">
       <h2>{{ presentation.title }}</h2>
       <p>{{ presentation.text }}</p>
     </div>
@@ -105,55 +99,3 @@
     </div>
   </div>
 </section>
-
-<!-- Local script for menu handle -->
-<!-- It can be also directive -->
-
-<script>
-  $(document).ready(function () {
-    // Page scrolling feature
-    $('a.page-scroll').bind('click', function(event) {
-      var link = $(this);
-      $('html, body').stop().animate({
-        scrollTop: $(link.attr('href')).offset().top - 50
-      }, 500);
-      event.preventDefault();
-      if($('body').hasClass('body-small')) {
-        $('#navbar').collapse('toggle');
-      }
-    });
-
-    // Activate WOW.js plugin for animation on scrol
-    new WOW().init();
-  });
-
-  var cbpAnimatedHeader = (function() {
-    var docElem = document.documentElement,
-      header = document.querySelector( '.navbar-default' ),
-      didScroll = false,
-      changeHeaderOn = 200;
-    function init() {
-      window.addEventListener( 'scroll', function( event ) {
-        if( !didScroll ) {
-          didScroll = true;
-          setTimeout( scrollPage, 250 );
-        }
-      }, false );
-    }
-    function scrollPage() {
-      var sy = scrollY();
-      if ( sy >= changeHeaderOn ) {
-        $(header).addClass('navbar-scroll')
-      }
-      else {
-        $(header).removeClass('navbar-scroll')
-      }
-      didScroll = false;
-    }
-    function scrollY() {
-      return window.pageYOffset || docElem.scrollTop;
-    }
-    init();
-
-  })();
-</script>

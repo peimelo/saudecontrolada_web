@@ -2,14 +2,17 @@
   'use strict';
 
   angular
-    .module('app')
-    .controller('HomeController', HomeController);
+    .module('app.home')
+    .component('home', {
+      controller: HomeController,
+      templateUrl: 'app/home/home.template.html'
+    });
 
   /** @ngInject */
   function HomeController() {
-    var vm = this;
+    var ctrl = this;
 
-    vm.presentations = [
+    ctrl.presentations = [
       {
         title: 'Gratuito',
         text: 'Você não precisa pagar nada. Queremos ajudar você a cuidar da sua saúde.'
@@ -20,7 +23,7 @@
       }
     ];
 
-    vm.slides = [
+    ctrl.slides = [
       {
         id: 1,
         text: 'Para ajudá-lo a cuidar da saúde.',
