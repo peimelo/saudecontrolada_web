@@ -52,7 +52,7 @@
           );
         }
         else {
-          var newWeight = new WeightsResource(vm.weight);
+          var newWeight = new WeightsResource({ data: vm.weight });
 
           newWeight.$save(
             function(response) {
