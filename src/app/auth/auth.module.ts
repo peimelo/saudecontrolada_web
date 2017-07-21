@@ -9,8 +9,8 @@ import { AuthService } from './auth.service';
 @NgModule({
   imports: [
     CommonModule,
-    AngularMaterialModule,
-    FormsModule
+    FormsModule,
+    AngularMaterialModule
   ],
   declarations: [
     SigninComponent,

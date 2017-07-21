@@ -1,6 +1,8 @@
-<form (ngSubmit)="onSignin(f)" #f="ngForm">
+<form (ngSubmit)="onSignin(f.form.value)" #f="ngForm">
   <md-card>
-    <md-card-title>Sign in</md-card-title>
+    <md-card-title-group>
+      <md-card-title>Sign in</md-card-title>
+    </md-card-title-group>
 
     <md-card-content>
       <table class="example-full-width" cellspacing="0">
@@ -16,6 +18,8 @@
                 ngModel>
             </md-input-container>
           </td>
+        </tr>
+        <tr>
           <td>
             <md-input-container class="example-full-width">
               <input
@@ -35,5 +39,8 @@
       <button md-button>Entrar</button>
     </md-card-actions>
 
+    <md-card-footer>
+      <md-progress-bar mode="indeterminate"></md-progress-bar>
+    </md-card-footer>
   </md-card>
 </form>
