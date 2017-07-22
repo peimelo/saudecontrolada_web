@@ -7,17 +7,17 @@ import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { combineReducers } from '@ngrx/store';
 
-// import * as fromAuth from '../auth/auth.reducer';
+import * as fromAuth from '../auth/auth.reducer';
 import * as fromUser from '../user/user.reducer';
 
 export interface State {
-  // auth: fromAuth.State;
+  auth: fromAuth.State;
   router: fromRouter.RouterState;
   user: fromUser.State;
 }
 
 const reducers = {
-  // auth: fromAuth.reducer,
+  auth: fromAuth.reducer,
   router: fromRouter.routerReducer,
   user: fromUser.reducer
 };
@@ -32,12 +32,6 @@ export function reducer(state: any, action: any) {
     return developmentReducer(state, action);
   }
 }
-
-/**
- * Auth Reducers
- */
-// export const getAuthState = (state: State) => state.auth;
-// export const getLoading   = createSelector(getAuthState, fromAuth.getLoading);
 
 /**
  * Layout Reducers

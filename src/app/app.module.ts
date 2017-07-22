@@ -1,20 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { Angular2TokenService } from 'angular2-token';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RouterStoreModule } from '@ngrx/router-store';
-import { EffectsModule } from '@ngrx/effects';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { AngularMaterialModule } from './shared/angular-material.module';
 import { CoreModule } from './core/core.module';
-
 import { reducer } from './reducers/index';
-import { AuthEffects } from './auth/auth.effects';
 
 @NgModule({
   declarations: [
@@ -29,10 +27,9 @@ import { AuthEffects } from './auth/auth.effects';
     CoreModule,
     StoreModule.provideStore(reducer),
     RouterStoreModule.connectRouter(),
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
-    EffectsModule.run(AuthEffects)
+    StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
-  providers: [],
+  providers: [Angular2TokenService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

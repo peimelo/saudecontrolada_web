@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import { SignInData } from 'angular2-token';
 
 import * as AuthActions from '../auth.actions';
+import { AuthService } from '../auth.service';
 import * as fromRoot from '../../reducers';
 
 @Component({
@@ -10,13 +14,24 @@ import * as fromRoot from '../../reducers';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent {
+  error$: Observable<string>;
+  loading$: Observable<boolean>;
+  signInData: SignInData = <SignInData>{};
 
-  constructor(private store$: Store<fromRoot.State>) { }
+  constructor(private authService: AuthService,
+              private store: Store<fromRoot.State>,
+              private router: Router) {
 
-  onSignin(form: any) {
-    const email = form.email;
-    const password = form.password;
+    this.error$ = this.authService.error$();
+    this.loading$ = this.authService.loading$();
 
-    this.store$.dispatch(new AuthActions.LoginAction({ email, password }));
+    this.authService.isAuthenticated$()
+      .subscribe((isAuthenticated: boolean) => {
+        if (isAuthenticated) { this.router.navigate(['/']); }
+      });
+  }
+
+  onSignin() {
+    this.store.dispatch(new AuthActions.LoginAction(this.signInData));
   }
 }

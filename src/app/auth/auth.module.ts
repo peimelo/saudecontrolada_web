@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SigninComponent } from './signin/signin.component';
-import { AngularMaterialModule } from '../shared/angular-material.module';
-import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+
+import { AuthEffects } from './auth.effects';
 import { AuthService } from './auth.service';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { AngularMaterialModule } from '../shared/angular-material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    EffectsModule.run(AuthEffects)
   ],
   declarations: [
     SigninComponent,

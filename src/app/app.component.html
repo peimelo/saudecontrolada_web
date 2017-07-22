@@ -1,29 +1,8 @@
-<md-toolbar color="primary">
-  <!--<a-->
-    <!--md-button-->
-    <!--md-icon-button-->
-    <!--routerLink="/">-->
-    <!--<md-icon>favorite</md-icon>-->
-  <!--</a>-->
-  <span>Saúde Controlada</span>
-
-  <span class="fill-space"></span>
-
-  <!--<a-->
-    <!--md-button-->
-    <!--md-icon-button-->
-    <!--mdTooltip="Criar um conta"-->
-    <!--routerLink="/signup">-->
-    <!--<md-icon>person_add</md-icon>-->
-  <!--</a>-->
-
-  <a
-    md-button
-    mdTooltip="Entrar"
-    routerLink="/signin">
-    Entrar
-  </a>
-</md-toolbar>
+<app-toolbar
+  [isAuthenticated]="isAuthenticated$ | async"
+  (signOut)="onSignOut()"
+>
+</app-toolbar>
 
 <br>
 

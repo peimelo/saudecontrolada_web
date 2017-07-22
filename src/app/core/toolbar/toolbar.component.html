@@ -1,0 +1,40 @@
+<md-toolbar color="primary">
+  <span>SIGR</span>
+  <span class="fill-space"></span>
+
+  <!--<a-->
+  <!--md-button-->
+  <!--md-icon-button-->
+  <!--mdTooltip="Criar um conta"-->
+  <!--routerLink="/signup">-->
+  <!--<md-icon>person_add</md-icon>-->
+  <!--</a>-->
+
+  <a
+    *ngIf="!isAuthenticated"
+    md-button
+    mdTooltip="Entrar"
+    routerLink="/signin"
+  >
+    Entrar
+  </a>
+
+  <button
+    *ngIf="isAuthenticated"
+    md-icon-button
+    mdTooltip="{{ email }}"
+    [mdTooltipPosition]="position"
+    [mdMenuTriggerFor]="menu"
+  >
+    <md-icon>account_circle</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <button
+      md-menu-item
+      (click)="signOut.emit()"
+    >
+      Sair
+    </button>
+  </md-menu>
+
+</md-toolbar>

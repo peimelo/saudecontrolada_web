@@ -1,7 +1,8 @@
-<form (ngSubmit)="onSignin(f.form.value)" #f="ngForm">
+<form (ngSubmit)="onSignin()" #f="ngForm">
   <md-card>
     <md-card-title-group>
       <md-card-title>Sign in</md-card-title>
+      <md-card-subtitle>{{ error$ | async }}</md-card-subtitle>
     </md-card-title-group>
 
     <md-card-content>
@@ -15,7 +16,7 @@
                 required
                 type="email"
                 name="email"
-                ngModel>
+                [(ngModel)]="signInData.email">
             </md-input-container>
           </td>
         </tr>
@@ -28,7 +29,7 @@
                 required
                 type="password"
                 name="password"
-                ngModel>
+                [(ngModel)]="signInData.password">
             </md-input-container>
           </td>
         </tr>
@@ -40,7 +41,11 @@
     </md-card-actions>
 
     <md-card-footer>
-      <md-progress-bar mode="indeterminate"></md-progress-bar>
+      <md-progress-bar
+        mode="indeterminate"
+        *ngIf="loading$ | async"
+      >
+      </md-progress-bar>
     </md-card-footer>
   </md-card>
 </form>
