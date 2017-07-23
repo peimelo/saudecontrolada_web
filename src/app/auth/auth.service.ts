@@ -38,7 +38,6 @@ export class AuthService {
   login(credentials?: SignInData) {
     return this._tokenService.signIn(credentials)
       .map((response: Response) => response.json().data || {});
-      // .map((response: Response) => response);
   }
 
   logout() {
@@ -59,12 +58,5 @@ export class AuthService {
 //     "expiry":1501891764,
 //     "last_token":"$2a$10$6agCwirQKW.WmigiBTKY2.0X6aQu4FPBM3Ix5wUY.Gso52jbgzBHe",
 //     "updated_at":"2017-07-21T21:09:24.565-03:00"
-//   },
-//   "TJsSWugmKVcxDVzxlfJuUg":
-//   {
-//     "token":"$2a$10$3PP0p0HC3e8C9x.3SCER5u3nWn6UGClqv6YsiiifIe/8z.hevYzCq",
-//     "expiry":1501891818,
-//     "last_token":"$2a$10$DB2Ea934VOUaq7o44UsUz.3oxrRGtDHQtuon4Dn.g6/KCjuLDwCj2",
-//     "updated_at":"2017-07-21T21:10:18.432-03:00"
 //   }
 // }

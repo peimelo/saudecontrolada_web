@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Angular2TokenService } from 'angular2-token';
 import { AuthService } from './auth/auth.service';
 import { Observable } from 'rxjs/Observable';
@@ -17,10 +18,11 @@ export class AppComponent implements OnInit {
   isAuthenticated$: Observable<boolean>;
 
   constructor(private authService: AuthService,
+              private router: Router,
               private store: Store<fromRoot.State>,
               private _tokenService: Angular2TokenService) {
 
-    this._tokenService.init();
+    this._tokenService.init({ apiBase: '/api' });
     this.isAuthenticated$ = this.authService.isAuthenticated$();
   }
 
@@ -33,5 +35,6 @@ export class AppComponent implements OnInit {
 
   onSignOut() {
     this.store.dispatch(new AuthActions.LogoutAction());
+    this.router.navigate(['/']);
   }
 }

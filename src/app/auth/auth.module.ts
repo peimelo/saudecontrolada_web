@@ -5,8 +5,8 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { AuthEffects } from './auth.effects';
 import { AuthService } from './auth.service';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { AngularMaterialModule } from '../shared/angular-material.module';
 
 @NgModule({

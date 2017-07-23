@@ -4,9 +4,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { SignInData } from 'angular2-token';
 
-import * as AuthActions from '../auth.actions';
-import { AuthService } from '../auth.service';
-import * as fromRoot from '../../reducers';
+import * as AuthActions from '../../auth.actions';
+import { AuthService } from '../../auth.service';
+import * as fromRoot from '../../../reducers';
 
 @Component({
   selector: 'app-signin',
@@ -27,7 +27,7 @@ export class SigninComponent {
 
     this.authService.isAuthenticated$()
       .subscribe((isAuthenticated: boolean) => {
-        if (isAuthenticated) { this.router.navigate(['/']); }
+        if (isAuthenticated) { this.router.navigate(['/dashboard']); }
       });
   }
 
