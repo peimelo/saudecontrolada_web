@@ -1,4 +1,5 @@
 import * as DashboardActions from './dashboard.actions';
+import * as AuthActions from '../auth/auth.actions';
 import { Dashboard } from './dashboard.model';
 
 export interface State {
@@ -19,7 +20,8 @@ const initialState: State = {
   }
 };
 
-export function reducer(state = initialState, action: DashboardActions.Actions): State {
+export function reducer(state = initialState, action: DashboardActions.Actions |
+  AuthActions.Actions): State {
 
   switch (action.type) {
     case DashboardActions.LOAD: {
@@ -43,6 +45,10 @@ export function reducer(state = initialState, action: DashboardActions.Actions):
         loading: false,
         data
       });
+    }
+
+    case AuthActions.LOGOUT_SUCCESS: {
+      return initialState;
     }
 
     default: {
