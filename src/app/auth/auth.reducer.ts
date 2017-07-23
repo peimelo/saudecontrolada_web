@@ -59,7 +59,6 @@ export function reducer(state = initialState, action: AuthActions.Actions): Stat
   }
 }
 
-export const getCurrent         = (state: State) => state.current;
 export const getError           = (state: State) => state.error;
 export const getIsAuthenticated = (state: State) => (state.current && state.current.id ? true : false);
 export const getLoading         = (state: State) => state.loading;

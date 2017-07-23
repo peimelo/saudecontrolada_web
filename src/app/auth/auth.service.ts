@@ -50,13 +50,3 @@ export class AuthService {
       .map((response: Response) => response);
   }
 }
-
-// {
-//   "fxQKTn3VA5WBfjvqO6gYGw":
-//   {
-//     "token":"$2a$10$jW2.liW8eN.5t65bEzRmK.iEIwpwJ/k27/J5NOV0cjJjQS1lhliUu",
-//     "expiry":1501891764,
-//     "last_token":"$2a$10$6agCwirQKW.WmigiBTKY2.0X6aQu4FPBM3Ix5wUY.Gso52jbgzBHe",
-//     "updated_at":"2017-07-21T21:09:24.565-03:00"
-//   }
-// }

@@ -1,26 +1,23 @@
 import { ActionReducer } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
-import { environment } from '../environments/environment';
 import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { combineReducers } from '@ngrx/store';
 
 import * as fromAuth from './auth/auth.reducer';
 import * as fromDashboard from './dashboard/dashboard.reducer';
-import * as fromUser from './user/user.reducer';
+import { environment } from '../environments/environment';
 
 export interface State {
   auth: fromAuth.State;
   dashboard: fromDashboard.State;
   router: fromRouter.RouterState;
-  user: fromUser.State;
 }
 
 const reducers = {
   auth: fromAuth.reducer,
   dashboard: fromDashboard.reducer,
-  router: fromRouter.routerReducer,
-  user: fromUser.reducer
+  router: fromRouter.routerReducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -33,9 +30,3 @@ export function reducer(state: any, action: any) {
     return developmentReducer(state, action);
   }
 }
-
-/**
- * Layout Reducers
- */
-// export const getLayoutState = (state: State) => state.layout;
-// export const getShowSidenav = createSelector(getLayoutState, fromLayout.getShowSidenav);
