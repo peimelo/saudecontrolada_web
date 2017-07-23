@@ -6,13 +6,13 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
 import * as AuthActions from './auth/auth.actions';
-import * as fromRoot from './reducers';
+import * as fromRoot from './app.reducers';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
   isAuthenticated$: Observable<boolean>;

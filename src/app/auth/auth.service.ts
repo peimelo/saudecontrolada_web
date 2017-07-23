@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { Angular2TokenService, SignInData } from 'angular2-token';
 
 import * as AuthReducer from './auth.reducer';
-import * as fromRoot from '../reducers';
+import * as fromRoot from '../app.reducers';
 
 /**
  * Selectors

@@ -28,6 +28,15 @@ export function reducer(state = initialState, action: DashboardActions.Actions):
       });
     }
 
+    case DashboardActions.LOAD_CHART: {
+      const weights = [action.payload];
+      return Object.assign({}, state, {
+        charts: {
+          weights
+        }
+      });
+    }
+
     case DashboardActions.LOAD_SUCCESS: {
       const data = action.payload;
       return Object.assign({}, state, {
@@ -42,4 +51,5 @@ export function reducer(state = initialState, action: DashboardActions.Actions):
   }
 }
 
-export const getWeights = (state: State) => state.data.weights;
+export const getWeights      = (state: State) => state.data.weights;
+export const getWeightsChart = (state: State) => state.charts.weights;

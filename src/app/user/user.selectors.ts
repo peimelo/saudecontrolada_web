@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { State } from '../reducers/index';
+import { State } from '../app.reducers';
 import * as UserReducer from './user.reducer'
 
 /**

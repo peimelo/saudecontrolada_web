@@ -1,24 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DashboardEffects } from './dashboard.effects';
 import { DashboardService } from './dashboard.service';
 import { AngularMaterialModule } from '../shared/angular-material.module';
-import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     AngularMaterialModule,
-    EffectsModule.run(DashboardEffects),
-    NgxChartsModule
+    SharedModule,
+    EffectsModule.run(DashboardEffects)
   ],
   declarations: [
-    DashboardComponent,
-    LineChartComponent
+    DashboardComponent
   ],
   providers: [DashboardService]
 })

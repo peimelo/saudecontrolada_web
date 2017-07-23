@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -6,12 +6,13 @@ import { SignInData } from 'angular2-token';
 
 import * as AuthActions from '../../auth.actions';
 import { AuthService } from '../../auth.service';
-import * as fromRoot from '../../../reducers';
+import * as fromRoot from '../../../app.reducers';
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  styleUrls: ['./signin.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SigninComponent {
   error$: Observable<string>;

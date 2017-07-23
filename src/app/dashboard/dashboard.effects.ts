@@ -20,11 +20,29 @@ export class DashboardEffects {
   @Effect()
   load$: Observable<Action> = this.actions$
     .ofType(DashboardActions.LOAD)
-    .map(toPayload)
     .switchMap(() => {
 
       return this.dashboardService.getDashboard()
         .map((dashboard) => new DashboardActions.LoadSuccessAction(dashboard));
+        // .catch((error) => {
+        //   const message = error.status === 401 ?
+        //     error.json().errors[0] :
+        //     'Erro na conexão com o servidor.';
+        //
+        //   return of(new DashboardActions.LoginFailureAction(message));
+        // });
+    });
+
+  @Effect()
+  loadSuccess$: any = this.actions$
+    .ofType(DashboardActions.LOAD_SUCCESS)
+    .map(toPayload)
+    .switchMap((dashboard) => {
+
+      return this.dashboardService.getWeightsChart(dashboard.weights)
+        .map((weightsChart) => {
+          return new DashboardActions.LoadChartAction(weightsChart)
+        });
         // .catch((error) => {
         //   const message = error.status === 401 ?
         //     error.json().errors[0] :

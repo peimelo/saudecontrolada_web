@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { AngularMaterialModule } from './shared/angular-material.module';
 import { CoreModule } from './core/core.module';
-import { reducer } from './reducers/index';
+import { reducer } from './app.reducers';
 import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
