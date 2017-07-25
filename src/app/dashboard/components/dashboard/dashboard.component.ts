@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import * as DashboardActions from '../../dashboard.actions';
-import { Weight } from '../../dashboard.model';
 import { DashboardService } from '../../dashboard.service';
 import * as fromRoot from '../../../app.reducers';
 
@@ -21,15 +20,12 @@ import * as fromRoot from '../../../app.reducers';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
-  weights$: Observable<Weight[]>;
   weightsChart$: Observable<any>;
 
   constructor(private dashboardService: DashboardService,
               private store: Store<fromRoot.State>) {
 
     this.store.dispatch(new DashboardActions.LoadAction());
-
-    this.weights$ = this.dashboardService.weights$();
     this.weightsChart$ = this.dashboardService.weightsChart$();
   }
 }

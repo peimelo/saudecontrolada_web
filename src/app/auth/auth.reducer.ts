@@ -26,14 +26,14 @@ const initialState: State = {
 export function reducer(state = initialState, action: AuthActions.Actions): State {
 
   switch (action.type) {
-    case AuthActions.LOGIN: {
+    case AuthActions.SIGN_IN: {
       return Object.assign({}, state, {
         error: '',
         loading: true
       });
     }
 
-    case AuthActions.LOGIN_FAILURE: {
+    case AuthActions.SIGN_IN_FAILURE: {
       const error = action.payload;
       return Object.assign({}, state, {
         error,
@@ -41,7 +41,7 @@ export function reducer(state = initialState, action: AuthActions.Actions): Stat
       });
     }
 
-    case AuthActions.LOGIN_SUCCESS: {
+    case AuthActions.SIGN_IN_SUCCESS: {
       const current = action.payload;
       return Object.assign({}, state, {
         loading: false,
@@ -49,7 +49,7 @@ export function reducer(state = initialState, action: AuthActions.Actions): Stat
       });
     }
 
-    case AuthActions.LOGOUT_SUCCESS: {
+    case AuthActions.SIGN_OUT_SUCCESS: {
       return initialState;
     }
 
@@ -59,6 +59,6 @@ export function reducer(state = initialState, action: AuthActions.Actions): Stat
   }
 }
 
-export const getError           = (state: State) => state.error;
-export const getIsAuthenticated = (state: State) => (state.current && state.current.id ? true : false);
-export const getLoading         = (state: State) => state.loading;
+export const errorSelector           = (state: State) => state.error;
+export const isAuthenticatedSelector = (state: State) => (state.current && state.current.id ? true : false);
+export const loadingSelector         = (state: State) => state.loading;

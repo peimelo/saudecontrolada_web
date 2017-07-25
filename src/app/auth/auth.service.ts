@@ -3,7 +3,10 @@ import { Response } from '@angular/http';
 import { Store } from '@ngrx/store';
 import { createSelector } from 'reselect';
 import { Observable } from 'rxjs/Observable';
-import { Angular2TokenService, SignInData } from 'angular2-token';
+import {
+  Angular2TokenService, ResetPasswordData,
+  SignInData
+} from 'angular2-token';
 
 import * as AuthReducer from './auth.reducer';
 import * as fromRoot from '../app.reducers';
@@ -11,10 +14,10 @@ import * as fromRoot from '../app.reducers';
 /**
  * Selectors
  */
-export const getAuthState       = (state: fromRoot.State) => state.auth;
-export const getError           = createSelector(getAuthState, AuthReducer.getError);
-export const getIsAuthenticated = createSelector(getAuthState, AuthReducer.getIsAuthenticated);
-export const getLoading         = createSelector(getAuthState, AuthReducer.getLoading);
+export const authState = (state: fromRoot.State) => state.auth;
+export const errorSelector           = createSelector(authState, AuthReducer.errorSelector);
+export const isAuthenticatedSelector = createSelector(authState, AuthReducer.isAuthenticatedSelector);
+export const loadingSelector         = createSelector(authState, AuthReducer.loadingSelector);
 
 @Injectable()
 export class AuthService {
@@ -24,23 +27,28 @@ export class AuthService {
   }
 
   error$(): Observable<string> {
-    return this.store.select(getError);
+    return this.store.select(errorSelector);
   }
 
   isAuthenticated$(): Observable<boolean> {
-    return this.store.select(getIsAuthenticated);
+    return this.store.select(isAuthenticatedSelector);
   }
 
   loading$(): Observable<boolean> {
-    return this.store.select(getLoading);
+    return this.store.select(loadingSelector);
   }
 
-  login(credentials?: SignInData) {
+  resetPassword(email: ResetPasswordData) {
+    return this._tokenService.resetPassword(email)
+      .map((response: Response) => response);
+  }
+
+  signIn(credentials: SignInData) {
     return this._tokenService.signIn(credentials)
       .map((response: Response) => response.json().data || {});
   }
 
-  logout() {
+  signOut() {
     return this._tokenService.signOut()
       .map((response: Response) => response);
   }

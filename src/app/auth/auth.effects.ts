@@ -21,30 +21,50 @@ export class AuthEffects {
   }
 
   @Effect()
-  login$: Observable<Action> = this.actions$
-    .ofType(AuthActions.LOGIN)
+  signIn$: Observable<Action> = this.actions$
+    .ofType(AuthActions.SIGN_IN)
     .map(toPayload)
     .switchMap((credentials) => {
 
-      return this.authService.login(credentials)
-        .map((user: User) => new AuthActions.LoginSuccessAction(user))
+      return this.authService.signIn(credentials)
+        .map((user: User) => new AuthActions.SignInSuccessAction(user))
         .catch((error) => {
           const message = error.status === 401 ?
             error.json().errors[0] :
             'Erro na conexão com o servidor.';
 
-          return of(new AuthActions.LoginFailureAction(message));
+          return of(new AuthActions.SignInFailureAction(message));
         });
     });
 
   @Effect()
-  logout$: Observable<Action> = this.actions$
-    .ofType(AuthActions.LOGOUT)
+  signOut$: Observable<Action> = this.actions$
+    .ofType(AuthActions.SIGN_OUT)
     .switchMap(() => {
 
-      return this.authService.logout()
-        .map(() => new AuthActions.LogoutSuccessAction())
-        .catch(() => of(new AuthActions.LogoutSuccessAction()));
+      return this.authService.signOut()
+        .map(() => new AuthActions.SignOutSuccessAction())
+        .catch(() => of(new AuthActions.SignOutSuccessAction()));
+    });
+
+  @Effect()
+  resetPassword$: Observable<Action> = this.actions$
+    .ofType(AuthActions.RESET_PASSWORD)
+    .map(toPayload)
+    .switchMap((email) => {
+
+      return this.authService.resetPassword(email)
+        .map((res) => {
+          console.log(res);
+          return new AuthActions.SignInFailureAction('')
+        })
+        .catch((error) => {
+          const message = error.status === 401 ?
+            error.json().errors[0] :
+            'Erro na conexão com o servidor.';
+
+          return of(new AuthActions.SignInFailureAction(message));
+        });
     });
 
   @Effect()
@@ -55,8 +75,8 @@ export class AuthEffects {
       return this.authService.validateToken()
         .map(() => {
           const user = this._tokenService.currentUserData;
-          return new AuthActions.LoginSuccessAction(user)
+          return new AuthActions.SignInSuccessAction(user)
         })
-        .catch(() => of(new AuthActions.LogoutSuccessAction()));
+        .catch(() => of(new AuthActions.SignOutSuccessAction()));
     });
 }

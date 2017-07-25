@@ -7,15 +7,13 @@ import { Angular2TokenService } from 'angular2-token';
 import * as moment from 'moment/moment';
 
 import * as DashboardReducer from './dashboard.reducer';
-import { Weight } from './dashboard.model';
 import * as fromRoot from '../app.reducers';
 
 /**
  * Selectors
  */
-export const getDashboardState = (state: fromRoot.State) => state.dashboard;
-export const getWeights        = createSelector(getDashboardState, DashboardReducer.getWeights);
-export const getWeightsChart   = createSelector(getDashboardState, DashboardReducer.getWeightsChart);
+export const dashboardState = (state: fromRoot.State) => state.dashboard;
+export const weightsChartSelector = createSelector(dashboardState, DashboardReducer.weightsChartSelector);
 
 @Injectable()
 export class DashboardService {
@@ -45,11 +43,7 @@ export class DashboardService {
     return [weightsChart];
   }
 
-  weights$(): Observable<Weight[]> {
-    return this.store.select(getWeights);
-  }
-
   weightsChart$(): Observable<any> {
-    return this.store.select(getWeightsChart);
+    return this.store.select(weightsChartSelector);
   }
 }

@@ -47,7 +47,7 @@ export function reducer(state = initialState, action: DashboardActions.Actions |
       });
     }
 
-    case AuthActions.LOGOUT_SUCCESS: {
+    case AuthActions.SIGN_OUT_SUCCESS: {
       return initialState;
     }
 
@@ -57,5 +57,4 @@ export function reducer(state = initialState, action: DashboardActions.Actions |
   }
 }
 
-export const getWeights      = (state: State) => state.data.weights;
-export const getWeightsChart = (state: State) => state.charts.weights;
+export const weightsChartSelector = (state: State) => state.charts.weights;

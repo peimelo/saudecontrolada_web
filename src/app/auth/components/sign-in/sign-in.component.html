@@ -1,0 +1,42 @@
+<form (ngSubmit)="onSignIn()" #f="ngForm">
+  <md-card>
+    <md-card-title>Entrar</md-card-title>
+
+    <md-card-content>
+      <p>{{ error$ | async }}</p>
+      <md-input-container class="example-full-width">
+        <input
+          mdInput
+          placeholder="E-mail"
+          required
+          type="email"
+          name="email"
+          [(ngModel)]="signInData.email">
+      </md-input-container>
+
+      <md-input-container class="example-full-width">
+        <input
+          mdInput
+          placeholder="Senha"
+          required
+          type="password"
+          name="password"
+          [(ngModel)]="signInData.password">
+      </md-input-container>
+
+      <a md-button routerLink="/recover">Esqueceu-se da senha?</a>
+    </md-card-content>
+
+    <md-card-actions>
+      <button md-raised-button color="primary">Entrar</button>
+    </md-card-actions>
+
+    <md-card-footer>
+      <md-progress-bar
+        mode="indeterminate"
+        *ngIf="loading$ | async"
+      >
+      </md-progress-bar>
+    </md-card-footer>
+  </md-card>
+</form>

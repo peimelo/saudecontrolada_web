@@ -2,22 +2,22 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { SignInData } from 'angular2-token';
+import { ResetPasswordData } from 'angular2-token';
 
 import * as AuthActions from '../../auth.actions';
 import { AuthService } from '../../auth.service';
 import * as fromRoot from '../../../app.reducers';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss'],
+  selector: 'app-recover',
+  templateUrl: './recover.component.html',
+  styleUrls: ['./recover.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SigninComponent {
+export class RecoverComponent {
   error$: Observable<string>;
   loading$: Observable<boolean>;
-  signInData: SignInData = <SignInData>{};
+  resetPasswordData: ResetPasswordData = <ResetPasswordData>{};
 
   constructor(private authService: AuthService,
               private store: Store<fromRoot.State>,
@@ -32,7 +32,7 @@ export class SigninComponent {
       });
   }
 
-  onSignin() {
-    this.store.dispatch(new AuthActions.LoginAction(this.signInData));
+  onSignIn() {
+    this.store.dispatch(new AuthActions.ResetPasswordAction(this.resetPasswordData));
   }
 }

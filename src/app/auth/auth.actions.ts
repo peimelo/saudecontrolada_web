@@ -1,37 +1,46 @@
 import { Action } from '@ngrx/store';
-import { SignInData } from 'angular2-token';
+import { ResetPasswordData, SignInData } from 'angular2-token';
 
-export const LOGIN                  = '[Auth] Login';
-export const LOGIN_FAILURE          = '[Auth] Login Failure';
-export const LOGIN_SUCCESS          = '[Auth] Login Success';
-export const LOGOUT                 = '[Auth] Logout';
-export const LOGOUT_SUCCESS         = '[Auth] Logout Success';
+export const RESET_PASSWORD         = '[Auth] Reset Password';
+export const RESET_PASSWORD_FAILURE = '[Auth] Reset Password Failure';
+export const RESET_PASSWORD_SUCCESS = '[Auth] Reset Password Success';
+export const SIGN_IN                = '[Auth] Sign in';
+export const SIGN_IN_FAILURE        = '[Auth] Sign in Failure';
+export const SIGN_IN_SUCCESS        = '[Auth] Sign in Success';
+export const SIGN_OUT               = '[Auth] Sign Out';
+export const SIGN_OUT_SUCCESS       = '[Auth] Sign Out Success';
 export const VALIDATE_TOKEN         = '[Auth] Validate Token';
 
-export class LoginAction implements Action {
-  readonly type = LOGIN;
+export class ResetPasswordAction implements Action {
+  readonly type = RESET_PASSWORD;
+
+  constructor(public payload: ResetPasswordData) { }
+}
+
+export class SignInAction implements Action {
+  readonly type = SIGN_IN;
 
   constructor(public payload: SignInData) { }
 }
 
-export class LoginFailureAction implements Action {
-  readonly type = LOGIN_FAILURE;
+export class SignInFailureAction implements Action {
+  readonly type = SIGN_IN_FAILURE;
 
   constructor(public payload: string) { }
 }
 
-export class LoginSuccessAction implements Action {
-  readonly type = LOGIN_SUCCESS;
+export class SignInSuccessAction implements Action {
+  readonly type = SIGN_IN_SUCCESS;
 
   constructor(public payload: any) { }
 }
 
-export class LogoutAction implements Action {
-  readonly type = LOGOUT;
+export class SignOutAction implements Action {
+  readonly type = SIGN_OUT;
 }
 
-export class LogoutSuccessAction implements Action {
-  readonly type = LOGOUT_SUCCESS;
+export class SignOutSuccessAction implements Action {
+  readonly type = SIGN_OUT_SUCCESS;
 }
 
 export class ValidateTokenAction implements Action {
@@ -39,9 +48,9 @@ export class ValidateTokenAction implements Action {
 }
 
 export type Actions
-  = LoginAction
-  | LoginFailureAction
-  | LoginSuccessAction
-  | LogoutAction
-  | LogoutSuccessAction
+  = SignInAction
+  | SignInFailureAction
+  | SignInSuccessAction
+  | SignOutAction
+  | SignOutSuccessAction
   | ValidateTokenAction;

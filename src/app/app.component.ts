@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
   }
 
   onSignOut() {
-    this.store.dispatch(new AuthActions.LogoutAction());
+    this.store.dispatch(new AuthActions.SignOutAction());
     this.router.navigate(['/']);
   }
 }
