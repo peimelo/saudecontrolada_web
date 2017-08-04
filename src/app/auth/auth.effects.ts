@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, toPayload } from '@ngrx/effects';
-import { Angular2TokenService } from 'angular2-token';
+import {Angular2TokenService, RegisterData, SignInData} from 'angular2-token';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
@@ -21,10 +21,30 @@ export class AuthEffects {
   }
 
   @Effect()
+  resetPassword$: Observable<Action> = this.actions$
+    .ofType(AuthActions.RESET_PASSWORD)
+    .map(toPayload)
+    .switchMap((email) => {
+
+      return this.authService.resetPassword(email)
+        .map((res) => {
+          console.log(res);
+          return new AuthActions.SignInFailureAction('')
+        })
+        .catch((error) => {
+          const message = error.status === 401 ?
+            error.json().errors[0] :
+            'Erro na conexão com o servidor.';
+
+          return of(new AuthActions.SignInFailureAction(message));
+        });
+    });
+
+  @Effect()
   signIn$: Observable<Action> = this.actions$
     .ofType(AuthActions.SIGN_IN)
     .map(toPayload)
-    .switchMap((credentials) => {
+    .switchMap((credentials: SignInData) => {
 
       return this.authService.signIn(credentials)
         .map((user: User) => new AuthActions.SignInSuccessAction(user))
@@ -48,22 +68,22 @@ export class AuthEffects {
     });
 
   @Effect()
-  resetPassword$: Observable<Action> = this.actions$
-    .ofType(AuthActions.RESET_PASSWORD)
+  signUp$: Observable<Action> = this.actions$
+    .ofType(AuthActions.SIGN_UP)
     .map(toPayload)
-    .switchMap((email) => {
+    .switchMap((credentials: RegisterData) => {
 
-      return this.authService.resetPassword(email)
-        .map((res) => {
-          console.log(res);
-          return new AuthActions.SignInFailureAction('')
+      return this.authService.signUp(credentials)
+        .map((user) => {
+          console.log(user);
+          return new AuthActions.SignUpSuccessAction(user)
         })
         .catch((error) => {
-          const message = error.status === 401 ?
-            error.json().errors[0] :
+          const message = error.status === 422 ?
+            error.json().errors['full_messages'][0] :
             'Erro na conexão com o servidor.';
-
-          return of(new AuthActions.SignInFailureAction(message));
+// console.log(error);
+          return of(new AuthActions.SignUpFailureAction(message));
         });
     });
 

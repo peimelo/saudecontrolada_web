@@ -1,6 +1,6 @@
-<form (ngSubmit)="onSubmit()" #signInForm="ngForm">
+<form (ngSubmit)="onSubmit()" #registerForm="ngForm">
   <md-card>
-    <md-card-title>Entrar</md-card-title>
+    <md-card-title>Criar uma conta</md-card-title>
 
     <md-card-content>
       <p style="color:red;">{{ error$ | async }}</p>
@@ -12,9 +12,9 @@
           required
           type="email"
           name="email"
-          [(ngModel)]="signInData.email">
+          [(ngModel)]="registerData.email">
       </md-input-container>
-
+{{ registerData.email }}
       <md-input-container class="example-full-width">
         <input
           mdInput
@@ -22,22 +22,31 @@
           required
           type="password"
           name="password"
-          [(ngModel)]="signInData.password">
+          [(ngModel)]="registerData.password">
       </md-input-container>
 
-      <a md-button routerLink="/recover">Esqueceu-se da senha?</a>
+      <md-input-container class="example-full-width">
+        <input
+          mdInput
+          placeholder="Confirmar Senha"
+          required
+          type="password"
+          name="password"
+          [(ngModel)]="registerData.passwordConfirmation">
+      </md-input-container>
+
     </md-card-content>
 
     <md-card-actions>
       <button
         md-raised-button
         color="primary"
-        [disabled]="!signInForm.form.valid"
+        [disabled]="!registerForm.form.valid"
       >
-        Entrar
+        Criar
       </button>
 
-      <a md-button routerLink="/sign-up">Criar uma conta?</a>
+      <a md-button routerLink="/sign-in">Já tenho uma conta</a>
     </md-card-actions>
 
     <md-card-footer>

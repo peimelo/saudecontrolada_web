@@ -1,22 +1,35 @@
 import { Action } from '@ngrx/store';
-import { ResetPasswordData, SignInData } from 'angular2-token';
+import {RegisterData, ResetPasswordData, SignInData} from 'angular2-token';
 
 export const RESET_PASSWORD         = '[Auth] Reset Password';
 export const RESET_PASSWORD_FAILURE = '[Auth] Reset Password Failure';
 export const RESET_PASSWORD_SUCCESS = '[Auth] Reset Password Success';
-export const SIGN_IN                = '[Auth] Sign in';
-export const SIGN_IN_FAILURE        = '[Auth] Sign in Failure';
-export const SIGN_IN_SUCCESS        = '[Auth] Sign in Success';
+
+export const SIGN_IN                = '[Auth] Sign In';
+export const SIGN_IN_FAILURE        = '[Auth] Sign In Failure';
+export const SIGN_IN_SUCCESS        = '[Auth] Sign In Success';
+
 export const SIGN_OUT               = '[Auth] Sign Out';
 export const SIGN_OUT_SUCCESS       = '[Auth] Sign Out Success';
+
+export const SIGN_UP                = '[Auth] Sign Up';
+export const SIGN_UP_FAILURE        = '[Auth] Sign Up Failure';
+export const SIGN_UP_SUCCESS        = '[Auth] Sign Up Success';
+
 export const VALIDATE_TOKEN         = '[Auth] Validate Token';
 
+/**
+ * Actions
+ */
+
+/* Register */
 export class ResetPasswordAction implements Action {
   readonly type = RESET_PASSWORD;
 
   constructor(public payload: ResetPasswordData) { }
 }
 
+/* Sign In */
 export class SignInAction implements Action {
   readonly type = SIGN_IN;
 
@@ -35,6 +48,7 @@ export class SignInSuccessAction implements Action {
   constructor(public payload: any) { }
 }
 
+/* Sign Out*/
 export class SignOutAction implements Action {
   readonly type = SIGN_OUT;
 }
@@ -43,6 +57,26 @@ export class SignOutSuccessAction implements Action {
   readonly type = SIGN_OUT_SUCCESS;
 }
 
+/* Sign Up*/
+export class SignUpAction implements Action {
+  readonly type = SIGN_UP;
+
+  constructor(public payload: RegisterData) { }
+}
+
+export class SignUpFailureAction implements Action {
+  readonly type = SIGN_UP_FAILURE;
+
+  constructor(public payload: string) { }
+}
+
+export class SignUpSuccessAction implements Action {
+  readonly type = SIGN_UP_SUCCESS;
+
+  constructor(public payload: any) { }
+}
+
+/* Validate Token */
 export class ValidateTokenAction implements Action {
   readonly type = VALIDATE_TOKEN;
 }
@@ -53,4 +87,7 @@ export type Actions
   | SignInSuccessAction
   | SignOutAction
   | SignOutSuccessAction
+  | SignUpAction
+  | SignUpFailureAction
+  | SignUpSuccessAction
   | ValidateTokenAction;

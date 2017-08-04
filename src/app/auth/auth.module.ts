@@ -5,8 +5,8 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { AuthEffects } from './auth.effects';
 import { AuthService } from './auth.service';
-import { SigninComponent } from './components/sign-in/sign-in.component';
-import { SignupComponent } from './components/signup/signup.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AngularMaterialModule } from '../shared/angular-material.module';
 import { RecoverComponent } from './components/recover/recover.component';
 import { AppRoutingModule } from '../app-routing.module';
@@ -21,8 +21,8 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   declarations: [
     RecoverComponent,
-    SigninComponent,
-    SignupComponent
+    SignInComponent,
+    SignUpComponent
   ],
   providers: [
     AuthService

@@ -53,6 +53,29 @@ export function reducer(state = initialState, action: AuthActions.Actions): Stat
       return initialState;
     }
 
+    case AuthActions.SIGN_UP: {
+      return Object.assign({}, state, {
+        error: '',
+        loading: true
+      });
+    }
+
+    case AuthActions.SIGN_UP_FAILURE: {
+      const error = action.payload;
+      return Object.assign({}, state, {
+        error,
+        loading: false
+      });
+    }
+
+    case AuthActions.SIGN_UP_SUCCESS: {
+      const current = action.payload;
+      return Object.assign({}, state, {
+        loading: false,
+        current,
+      });
+    }
+
     default: {
       return state;
     }

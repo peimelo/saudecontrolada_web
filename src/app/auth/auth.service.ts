@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
+import {Http, Response} from '@angular/http';
 import { Store } from '@ngrx/store';
 import { createSelector } from 'reselect';
 import { Observable } from 'rxjs/Observable';
 import {
-  Angular2TokenService, ResetPasswordData,
+  Angular2TokenService, RegisterData, ResetPasswordData,
   SignInData
 } from 'angular2-token';
 
@@ -22,7 +22,8 @@ export const loadingSelector         = createSelector(authState, AuthReducer.loa
 @Injectable()
 export class AuthService {
 
-  constructor(private store: Store<fromRoot.State>,
+  constructor(private http: Http,
+              private store: Store<fromRoot.State>,
               private _tokenService: Angular2TokenService) {
   }
 
@@ -53,8 +54,31 @@ export class AuthService {
       .map((response: Response) => response);
   }
 
+  // signUp(credentials: RegisterData) {
+  //   return this._tokenService.registerAccount(credentials)
+  //     .map((response: Response) => response.json().data || {});
+  // }
+
+  signUp(registerData: RegisterData) {
+    const registerDataToBackend = {
+      email: registerData.email,
+      password: registerData.password,
+      password_confirmation: registerData.passwordConfirmation
+    };
+
+    return this.http.post('/api/auth', registerDataToBackend)
+      .map((response: Response) => response.json() || {});
+      // .catch(this._handleError);
+  }
+
   validateToken() {
     return this._tokenService.validateToken()
       .map((response: Response) => response);
+  }
+
+  private _handleError (error: Response) {
+    console.error(error);
+    return error.json().errors || 'Server error';
+    // return Observable.throw(error.json().error || 'Server error');
   }
 }
