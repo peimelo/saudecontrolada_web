@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {NgForm} from "@angular/forms";
 import { Store } from '@ngrx/store';
@@ -15,7 +15,7 @@ import * as fromRoot from '../../../app.reducers';
   styleUrls: ['./sign-in.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignInComponent {
+export class SignInComponent implements OnInit {
   error$: Observable<string>;
   loading$: Observable<boolean>;
   signInData: SignInData = <SignInData>{};
@@ -31,6 +31,10 @@ export class SignInComponent {
       .subscribe((isAuthenticated: boolean) => {
         if (isAuthenticated) { this.router.navigate(['/dashboard']); }
       });
+  }
+
+  ngOnInit() {
+    this.store.dispatch(new AuthActions.ClearErrorAction());
   }
 
   onSubmit(form: NgForm) {

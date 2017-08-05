@@ -26,6 +26,12 @@ const initialState: State = {
 export function reducer(state = initialState, action: AuthActions.Actions): State {
 
   switch (action.type) {
+    case AuthActions.CLEAR_ERROR: {
+      return Object.assign({}, state, {
+        error: ''
+      });
+    }
+
     case AuthActions.SIGN_IN: {
       return Object.assign({}, state, {
         error: '',

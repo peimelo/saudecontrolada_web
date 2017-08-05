@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {RegisterData} from "angular2-token";
 import {Observable} from "rxjs/Observable";
 import {Router} from "@angular/router";
@@ -12,7 +12,8 @@ import * as fromRoot from '../../../app.reducers';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  styleUrls: ['./sign-up.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignUpComponent implements OnInit {
   error$: Observable<string>;
@@ -33,6 +34,7 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.dispatch(new AuthActions.ClearErrorAction());
   }
 
   onSubmit(form: NgForm) {

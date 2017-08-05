@@ -1,6 +1,8 @@
 import { Action } from '@ngrx/store';
 import {RegisterData, ResetPasswordData, SignInData} from 'angular2-token';
 
+export const CLEAR_ERROR            = '[Auth] Clear Error';
+
 export const RESET_PASSWORD         = '[Auth] Reset Password';
 export const RESET_PASSWORD_FAILURE = '[Auth] Reset Password Failure';
 export const RESET_PASSWORD_SUCCESS = '[Auth] Reset Password Success';
@@ -21,14 +23,16 @@ export const VALIDATE_TOKEN         = '[Auth] Validate Token';
 /**
  * Actions
  */
-// Register
+export class ClearErrorAction implements Action {
+  readonly type = CLEAR_ERROR;
+}
+
 export class ResetPasswordAction implements Action {
   readonly type = RESET_PASSWORD;
 
   constructor(public payload: ResetPasswordData) { }
 }
 
-// Sign In
 export class SignInAction implements Action {
   readonly type = SIGN_IN;
 
@@ -47,7 +51,6 @@ export class SignInSuccessAction implements Action {
   constructor(public payload: any) { }
 }
 
-// Sign Out
 export class SignOutAction implements Action {
   readonly type = SIGN_OUT;
 }
@@ -56,7 +59,6 @@ export class SignOutSuccessAction implements Action {
   readonly type = SIGN_OUT_SUCCESS;
 }
 
-// Sign Up
 export class SignUpAction implements Action {
   readonly type = SIGN_UP;
 
@@ -75,13 +77,13 @@ export class SignUpSuccessAction implements Action {
   constructor(public payload: any) { }
 }
 
-// Validate Token
 export class ValidateTokenAction implements Action {
   readonly type = VALIDATE_TOKEN;
 }
 
 export type Actions
-  = SignInAction
+  = ClearErrorAction
+  | SignInAction
   | SignInFailureAction
   | SignInSuccessAction
   | SignOutAction
