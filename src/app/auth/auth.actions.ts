@@ -21,15 +21,14 @@ export const VALIDATE_TOKEN         = '[Auth] Validate Token';
 /**
  * Actions
  */
-
-/* Register */
+// Register
 export class ResetPasswordAction implements Action {
   readonly type = RESET_PASSWORD;
 
   constructor(public payload: ResetPasswordData) { }
 }
 
-/* Sign In */
+// Sign In
 export class SignInAction implements Action {
   readonly type = SIGN_IN;
 
@@ -48,7 +47,7 @@ export class SignInSuccessAction implements Action {
   constructor(public payload: any) { }
 }
 
-/* Sign Out*/
+// Sign Out
 export class SignOutAction implements Action {
   readonly type = SIGN_OUT;
 }
@@ -57,7 +56,7 @@ export class SignOutSuccessAction implements Action {
   readonly type = SIGN_OUT_SUCCESS;
 }
 
-/* Sign Up*/
+// Sign Up
 export class SignUpAction implements Action {
   readonly type = SIGN_UP;
 
@@ -76,7 +75,7 @@ export class SignUpSuccessAction implements Action {
   constructor(public payload: any) { }
 }
 
-/* Validate Token */
+// Validate Token
 export class ValidateTokenAction implements Action {
   readonly type = VALIDATE_TOKEN;
 }

@@ -3,6 +3,7 @@ import {RegisterData} from "angular2-token";
 import {Observable} from "rxjs/Observable";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
+import {NgForm} from "@angular/forms";
 
 import {AuthService} from "../../auth.service";
 import * as AuthActions from '../../auth.actions';
@@ -34,7 +35,12 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    this.registerData = {
+      email: form.value.email,
+      password: form.value.password,
+      passwordConfirmation: form.value.passwordConfirmation
+    };
     this.store.dispatch(new AuthActions.SignUpAction(this.registerData));
   }
 }

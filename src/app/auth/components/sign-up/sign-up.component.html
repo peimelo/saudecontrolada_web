@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+<form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
   <md-card>
     <md-card-title>Criar uma conta</md-card-title>
 
@@ -12,9 +12,9 @@
           required
           type="email"
           name="email"
-          [(ngModel)]="registerData.email">
+          ngModel>
       </md-input-container>
-{{ registerData.email }}
+
       <md-input-container class="example-full-width">
         <input
           mdInput
@@ -22,7 +22,7 @@
           required
           type="password"
           name="password"
-          [(ngModel)]="registerData.password">
+          ngModel>
       </md-input-container>
 
       <md-input-container class="example-full-width">
@@ -31,8 +31,8 @@
           placeholder="Confirmar Senha"
           required
           type="password"
-          name="password"
-          [(ngModel)]="registerData.passwordConfirmation">
+          name="passwordConfirmation"
+          ngModel>
       </md-input-container>
 
     </md-card-content>

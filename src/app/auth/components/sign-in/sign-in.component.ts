@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import {NgForm} from "@angular/forms";
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { SignInData } from 'angular2-token';
@@ -32,7 +33,11 @@ export class SignInComponent {
       });
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    this.signInData = {
+      email: form.value.email,
+      password: form.value.password
+    };
     this.store.dispatch(new AuthActions.SignInAction(this.signInData));
   }
 }
