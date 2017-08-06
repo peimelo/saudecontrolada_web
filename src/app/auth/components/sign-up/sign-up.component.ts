@@ -6,7 +6,7 @@ import {Store} from "@ngrx/store";
 import {NgForm} from "@angular/forms";
 
 import {AuthService} from "../../auth.service";
-import * as AuthActions from '../../auth.actions';
+import { ClearErrorAction, SignUpAction } from '../../auth.actions';
 import * as fromRoot from '../../../app.reducers';
 
 @Component({
@@ -34,7 +34,7 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new AuthActions.ClearErrorAction());
+    this.store.dispatch(new ClearErrorAction());
   }
 
   onSubmit(form: NgForm) {
@@ -43,6 +43,6 @@ export class SignUpComponent implements OnInit {
       password: form.value.password,
       passwordConfirmation: form.value.passwordConfirmation
     };
-    this.store.dispatch(new AuthActions.SignUpAction(this.registerData));
+    this.store.dispatch(new SignUpAction(this.registerData));
   }
 }

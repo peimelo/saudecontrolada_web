@@ -1,8 +1,10 @@
-///<reference path="../../../node_modules/@angular/material/typings/tabs/index.d.ts"/>
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import 'hammerjs';
+
+// @angular/material
 import {
   FullscreenOverlayContainer,
   MdAutocompleteModule,
@@ -41,7 +43,12 @@ import {
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk';
 
-const MATERIAL_MODULES = [
+// @angular/flex-layout
+import { FlexLayoutModule } from "@angular/flex-layout";
+
+// modules constant
+const modules = [
+  FlexLayoutModule,
   MdAutocompleteModule,
   MdButtonModule,
   MdButtonToggleModule,
@@ -81,10 +88,10 @@ const MATERIAL_MODULES = [
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    MATERIAL_MODULES
+    modules
   ],
   declarations: [],
-  exports: [MATERIAL_MODULES],
+  exports: [modules],
   providers: [
     {provide: OverlayContainer, useClass: FullscreenOverlayContainer}
   ]

@@ -5,9 +5,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { SignInData } from 'angular2-token';
 
-import * as AuthActions from '../../auth.actions';
+import { ClearErrorAction, AuthenticateAction } from '../../auth.actions';
 import { AuthService } from '../../auth.service';
-import * as fromRoot from '../../../app.reducers';
+import { State } from '../../../app.reducers';
 
 @Component({
   selector: 'app-sign-in',
@@ -21,8 +21,12 @@ export class SignInComponent implements OnInit {
   signInData: SignInData = <SignInData>{};
 
   constructor(private authService: AuthService,
-              private store: Store<fromRoot.State>,
+              private store: Store<State>,
               private router: Router) {
+  }
+
+  ngOnInit() {
+    this.store.dispatch(new ClearErrorAction());
 
     this.error$ = this.authService.error$();
     this.loading$ = this.authService.loading$();
@@ -33,15 +37,11 @@ export class SignInComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
-    this.store.dispatch(new AuthActions.ClearErrorAction());
-  }
-
   onSubmit(form: NgForm) {
     this.signInData = {
       email: form.value.email,
       password: form.value.password
     };
-    this.store.dispatch(new AuthActions.SignInAction(this.signInData));
+    this.store.dispatch(new AuthenticateAction(this.signInData));
   }
 }

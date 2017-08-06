@@ -1,93 +1,98 @@
-import * as AuthActions from './auth.actions';
+import { Actions, ActionTypes } from './auth.actions';
 import { User } from '../user/user.model';
 
 export interface State {
-  error: string,
+  authenticated: boolean;
+  error?: string,
   loading: boolean,
-  current: User
+  user?: User
 }
 
 const initialState: State = {
-  error: '',
-  loading: false,
-  current: {
-    id: null,
-    admin: null,
-    authentication_token: null,
-    date_of_birth: null,
-    email: null,
-    gender: null,
-    height: null,
-    name: null,
-    unconfirmed_email: null
-  }
+  authenticated: false,
+  loading: false
 };
 
-export function reducer(state = initialState, action: AuthActions.Actions): State {
+export function reducer(state = initialState, action: Actions): State {
 
   switch (action.type) {
-    case AuthActions.CLEAR_ERROR: {
+    case ActionTypes.CLEAR_ERROR: {
       return Object.assign({}, state, {
-        error: ''
+        error: undefined
       });
     }
 
-    case AuthActions.SIGN_IN: {
+    case ActionTypes.AUTHENTICATE: {
       return Object.assign({}, state, {
-        error: '',
+        error: undefined,
         loading: true
       });
     }
 
-    case AuthActions.SIGN_IN_FAILURE: {
-      const error = action.payload;
+    case ActionTypes.AUTHENTICATE_ERROR:
+    case ActionTypes.SIGN_UP_ERROR:
       return Object.assign({}, state, {
-        error,
+        authenticated: false,
+        error: action.payload.error.message,
         loading: false
       });
-    }
 
-    case AuthActions.SIGN_IN_SUCCESS: {
-      const current = action.payload;
+    case ActionTypes.AUTHENTICATE_SUCCESS:
+    case ActionTypes.SIGN_UP_SUCCESS:
+      const user: User = action.payload.user;
+
+      // verify user is not null
+      if (user === null) {
+        return state;
+      }
+
       return Object.assign({}, state, {
+        authenticated: true,
+        error: undefined,
         loading: false,
-        current,
+        user: user
       });
-    }
 
-    case AuthActions.SIGN_OUT_SUCCESS: {
-      return initialState;
-    }
-
-    case AuthActions.SIGN_UP: {
+    case ActionTypes.AUTHENTICATED_ERROR:
       return Object.assign({}, state, {
-        error: '',
+        authenticated: false,
+        error: action.payload.error.message,
+        loaded: true
+      });
+
+    case ActionTypes.AUTHENTICATED_SUCCESS:
+      return Object.assign({}, state, {
+        authenticated: action.payload.authenticated,
+        loaded: true,
+        user: action.payload.user
+      });
+
+    case ActionTypes.SIGN_OUT_ERROR:
+      return Object.assign({}, state, {
+        authenticated: true,
+        error: action.payload.error.message,
+        user: undefined
+      });
+
+    case ActionTypes.SIGN_OUT_SUCCESS:
+      return Object.assign({}, state, {
+        authenticated: false,
+        error: undefined,
+        user: undefined
+      });
+
+    case ActionTypes.SIGN_UP:
+      return Object.assign({}, state, {
+        authenticated: false,
+        error: undefined,
         loading: true
       });
-    }
 
-    case AuthActions.SIGN_UP_FAILURE: {
-      const error = action.payload;
-      return Object.assign({}, state, {
-        error,
-        loading: false
-      });
-    }
-
-    case AuthActions.SIGN_UP_SUCCESS: {
-      const current = action.payload;
-      return Object.assign({}, state, {
-        loading: false,
-        current,
-      });
-    }
-
-    default: {
+    default:
       return state;
-    }
   }
 }
 
-export const errorSelector           = (state: State) => state.error;
-export const isAuthenticatedSelector = (state: State) => (state.current && state.current.id ? true : false);
-export const loadingSelector         = (state: State) => state.loading;
+export const getError        = (state: State) => state.error;
+export const isAuthenticated = (state: State) => state.authenticated;
+export const isLoading       = (state: State) => state.loading;

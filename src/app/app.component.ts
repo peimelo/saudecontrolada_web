@@ -5,7 +5,7 @@ import { AuthService } from './auth/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
-import * as AuthActions from './auth/auth.actions';
+import { AuthenticatedAction, SignOutAction } from './auth/auth.actions';
 import * as fromRoot from './app.reducers';
 
 @Component({
@@ -29,12 +29,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // if user refresh page
     if (this._tokenService.userSignedIn()) {
-      this.store.dispatch(new AuthActions.ValidateTokenAction());
+      this.store.dispatch(new AuthenticatedAction());
     }
   }
 
   onSignOut() {
-    this.store.dispatch(new AuthActions.SignOutAction());
+    this.store.dispatch(new SignOutAction());
     this.router.navigate(['/']);
   }
 }
