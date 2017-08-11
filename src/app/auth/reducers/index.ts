@@ -3,33 +3,33 @@ import * as fromAuth from './auth.reducer';
 import * as fromRoot from '../../reducers';
 
 export interface AuthState {
-  auth: fromAuth.State;
+  status: fromAuth.State;
 }
 
 export interface State extends fromRoot.State {
-  'auth': AuthState;
+  auth: AuthState;
 }
 
 export const reducers = {
-  auth: fromAuth.reducer,
+  status: fromAuth.reducer,
 };
 
-export const authFeature = createFeatureSelector<AuthState>('auth');
+export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
-export const authState = createSelector(
-  authFeature,
-  (state: AuthState) => state.auth
+export const selectAuthStatusState = createSelector(
+  selectAuthState,
+  (state: AuthState) => state.status
 );
 
 export const getError = createSelector(
-  authState,
+  selectAuthStatusState,
   fromAuth.getError
 );
 export const isAuthenticated = createSelector(
-  authState,
+  selectAuthStatusState,
   fromAuth.isAuthenticated
 );
 export const isLoading = createSelector(
-  authState,
+  selectAuthStatusState,
   fromAuth.isLoading
 );

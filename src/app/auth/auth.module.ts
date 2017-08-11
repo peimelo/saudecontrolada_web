@@ -27,6 +27,22 @@ export const COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     AngularMaterialModule,
+  ],
+  declarations: COMPONENTS,
+  exports: COMPONENTS,
+})
+export class AuthModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: RootAuthModule,
+      providers: [AuthService, AuthGuard],
+    };
+  }
+}
+
+@NgModule({
+  imports: [
+    AuthModule,
     RouterModule.forChild([
       { path: 'recover', component: RecoverComponent },
       { path: 'sign-in', component: SignInComponent },
@@ -34,19 +50,7 @@ export const COMPONENTS = [
     ]),
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([AuthEffects]),
+
   ],
-  declarations: [
-    COMPONENTS
-  ],
-  providers: [
-    AuthService
-  ]
 })
-export class AuthModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: AuthModule,
-      providers: [AuthService, AuthGuard],
-    };
-  }
-}
+export class RootAuthModule {}
