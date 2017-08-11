@@ -1,25 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Store } from '@ngrx/store';
-import { createSelector } from 'reselect';
-import { Observable } from 'rxjs/Observable';
 import { Angular2TokenService } from 'angular2-token';
 import * as moment from 'moment/moment';
-
-import * as DashboardReducer from './dashboard.reducer';
-import * as fromRoot from '../app.reducers';
-
-/**
- * Selectors
- */
-export const dashboardState = (state: fromRoot.State) => state.dashboard;
-export const weightsChartSelector = createSelector(dashboardState, DashboardReducer.weightsChartSelector);
 
 @Injectable()
 export class DashboardService {
 
   constructor(private http: Http,
-              private store: Store<fromRoot.State>,
               private _tokenService: Angular2TokenService) {
   }
 
@@ -41,9 +28,5 @@ export class DashboardService {
     }
 
     return [weightsChart];
-  }
-
-  weightsChart$(): Observable<any> {
-    return this.store.select(weightsChartSelector);
   }
 }

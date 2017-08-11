@@ -4,9 +4,10 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { ResetPasswordData } from 'angular2-token';
 
-import * as AuthActions from '../../auth.actions';
-import { AuthService } from '../../auth.service';
-import * as fromRoot from '../../../app.reducers';
+import * as AuthActions from '../../actions/auth';
+import { AuthService } from '../../services/auth.service';
+import * as fromAuth from '../../reducers';
+import * as fromRoot from '../../../reducers';
 
 @Component({
   selector: 'app-recover',
@@ -23,10 +24,10 @@ export class RecoverComponent {
               private store: Store<fromRoot.State>,
               private router: Router) {
 
-    this.error$ = this.authService.error$();
-    this.loading$ = this.authService.loading$();
+    this.error$ = this.store.select(fromAuth.getError);
+    this.loading$ = this.store.select(fromAuth.isLoading);
 
-    this.authService.isAuthenticated$()
+    this.store.select(fromAuth.isAuthenticated)
       .subscribe((isAuthenticated: boolean) => {
         if (isAuthenticated) { this.router.navigate(['/dashboard']); }
       });

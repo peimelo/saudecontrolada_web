@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import * as DashboardActions from '../../dashboard.actions';
 import { DashboardService } from '../../dashboard.service';
-import * as fromRoot from '../../../app.reducers';
+import * as fromRoot from '../../../reducers/index';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,6 +26,6 @@ export class DashboardComponent {
               private store: Store<fromRoot.State>) {
 
     this.store.dispatch(new DashboardActions.LoadAction());
-    this.weightsChart$ = this.dashboardService.weightsChart$();
+    // this.weightsChart$ = this.dashboardService.weightsChart$();
   }
 }

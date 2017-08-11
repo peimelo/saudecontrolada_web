@@ -1,5 +1,5 @@
-import { Actions, ActionTypes } from './auth.actions';
-import { User } from '../user/user.model';
+import { Actions, ActionTypes } from '../actions/auth';
+import { User } from '../../user/user.model';
 
 export interface State {
   authenticated: boolean;
@@ -69,7 +69,7 @@ export function reducer(state = initialState, action: Actions): State {
 
     case ActionTypes.SIGN_OUT_ERROR:
       return Object.assign({}, state, {
-        authenticated: true,
+        authenticated: false,
         error: action.payload.error.message,
         user: undefined
       });

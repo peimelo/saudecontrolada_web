@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Angular2TokenService, RegisterData, SignInData} from 'angular2-token';
+import { RegisterData, SignInData } from 'angular2-token';
 
 // import @ngrx
 import { Action } from '@ngrx/store';
@@ -12,8 +12,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
 
-import { AuthService } from './auth.service';
-import { User } from '../user/user.model';
+import { AuthService } from '../services/auth.service';
 
 // import actions
 import {
@@ -23,14 +22,13 @@ import {
   SignOutErrorAction,
   SignOutSuccessAction, SignUpErrorAction,
   SignUpSuccessAction
-} from './auth.actions';
+} from '../actions/auth';
 
 @Injectable()
 export class AuthEffects {
 
   constructor(private actions$: Actions,
-              private authService: AuthService,
-              private _tokenService: Angular2TokenService) {
+              private authService: AuthService) {
   }
 
   @Effect()
@@ -42,6 +40,16 @@ export class AuthEffects {
       return this.authService.authenticate(credentials)
         .map(user => new AuthenticateSuccessAction({ user }))
         .catch(error => of(new AuthenticateErrorAction({ error })));
+    });
+
+  @Effect()
+  public authenticated: Observable<Action> = this.actions$
+    .ofType(ActionTypes.AUTHENTICATED)
+    .map(toPayload)
+    .switchMap(() => {
+      return this.authService.validateToken()
+        .map(user => new AuthenticatedSuccessAction({ authenticated: (user !== null), user: user }))
+        .catch(error => of(new AuthenticatedErrorAction({ error: error })));
     });
 
   // @Effect()
@@ -67,7 +75,7 @@ export class AuthEffects {
   @Effect()
   signOut: Observable<Action> = this.actions$
     .ofType(ActionTypes.SIGN_OUT)
-    .switchMap(payload => {
+    .switchMap(() => {
       return this.authService.signOut()
         .map(() => new SignOutSuccessAction())
         .catch(error => of(new SignOutErrorAction({ error })));
@@ -83,27 +91,4 @@ export class AuthEffects {
         .map((user) => new SignUpSuccessAction({ user }))
         .catch((error) => of(new SignUpErrorAction({ error })));
     });
-
-  @Effect()
-  public authenticated: Observable<Action> = this.actions$
-    .ofType(ActionTypes.AUTHENTICATED)
-    .map(toPayload)
-    .switchMap(payload => {
-      return this.authService.validateToken()
-        .map(user => new AuthenticatedSuccessAction({ authenticated: (user !== null), user: user }))
-        .catch(error => of(new AuthenticatedErrorAction({ error: error })));
-    });
-
-  // @Effect()
-  // validateToken$: Observable<Action> = this.actions$
-  //   .ofType(ActionTypes.VALIDATE_TOKEN)
-  //   .switchMap(() => {
-  //
-  //     return this.authService.validateToken()
-  //       .map(() => {
-  //         const user = this._tokenService.currentUserData;
-  //         return new SignInSuccessAction(user)
-  //       })
-  //       .catch(() => of(new SignOutSuccessAction()));
-  //   });
 }

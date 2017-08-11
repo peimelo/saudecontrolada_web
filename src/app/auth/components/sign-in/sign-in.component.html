@@ -1,51 +1,62 @@
-<form (ngSubmit)="onSubmit(signInForm)" #signInForm="ngForm">
-  <md-card>
-    <md-card-title>Entrar</md-card-title>
+<div class="flex-container" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center" class="card-container">
+    <div fxFlex="90%" fxFlex.md="50%" fxFlex.lg="40%">
+      <md-card>
+        <md-card-title>Entrar</md-card-title>
 
-    <md-card-content>
-      <p style="color:red;">{{ error$ | async }}</p>
+        <md-card-content>
+          <p><md-error *ngIf="error$ | async">{{ error$ | async }}</md-error></p>
+          <form
+            *ngIf="!(loading$ | async)"
+            (ngSubmit)="submit()"
+            [formGroup]="form"
+            novalidate
+          >
+            <div fxLayout="column">
+              <md-input-container fxFlex="100%">
+                <input
+                  mdInput
+                  autocorrect="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  formControlName="email"
+                  placeholder="E-mail"
+                  required
+                  type="email">
+              </md-input-container>
 
-      <md-input-container class="example-full-width">
-        <input
-          mdInput
-          placeholder="E-mail"
-          required
-          type="email"
-          name="email"
-          ngModel>
-      </md-input-container>
+              <md-input-container fxFlex="100%">
+                <input
+                  mdInput
+                  autocorrect="off"
+                  autocapitalize="off"
+                  spellcheck="false"
+                  formControlName="password"
+                  placeholder="Senha"
+                  required
+                  type="password"
+                  ngModel>
+              </md-input-container>
 
-      <md-input-container class="example-full-width">
-        <input
-          mdInput
-          placeholder="Senha"
-          required
-          type="password"
-          name="password"
-          ngModel>
-      </md-input-container>
+              <a md-button routerLink="/recover">Esqueceu-se da senha?</a>
 
-      <a md-button routerLink="/recover">Esqueceu-se da senha?</a>
-    </md-card-content>
+              <button
+                md-raised-button
+                color="primary"
+                [disabled]="form.invalid"
+              >
+                Entrar
+              </button>
 
-    <md-card-actions>
-      <button
-        md-raised-button
-        color="primary"
-        [disabled]="!signInForm.form.valid"
-      >
-        Entrar
-      </button>
+              <a md-button (click)="signUp()">Criar uma conta?</a>
+            </div>
+          </form>
 
-      <a md-button routerLink="/sign-up">Criar uma conta?</a>
-    </md-card-actions>
-
-    <md-card-footer>
-      <md-progress-bar
-        mode="indeterminate"
-        *ngIf="loading$ | async"
-      >
-      </md-progress-bar>
-    </md-card-footer>
-  </md-card>
-</form>
+          <div fxLayout="row" fxLayoutAlign="center">
+            <md-spinner *ngIf="loading$ | async"></md-spinner>
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+</div>

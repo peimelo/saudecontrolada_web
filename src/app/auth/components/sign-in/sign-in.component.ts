@@ -1,13 +1,20 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
-import {NgForm} from "@angular/forms";
+import {
+  ChangeDetectionStrategy, Component, OnDestroy,
+  OnInit
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Store } from '@ngrx/store';
+
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/takeWhile';
+
 import { SignInData } from 'angular2-token';
 
-import { ClearErrorAction, AuthenticateAction } from '../../auth.actions';
-import { AuthService } from '../../auth.service';
-import { State } from '../../../app.reducers';
+import { ClearErrorAction, AuthenticateAction } from '../../actions/auth';
+import { AuthService } from '../../services/auth.service';
+import * as fromAuth from '../../reducers';
+import * as fromRoot from '../../../reducers';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,33 +22,69 @@ import { State } from '../../../app.reducers';
   styleUrls: ['./sign-in.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnDestroy, OnInit {
+  /**
+   * Component state.
+   * @type {boolean}
+   */
+  private alive = true;
+
   error$: Observable<string>;
+  form: FormGroup;
   loading$: Observable<boolean>;
-  signInData: SignInData = <SignInData>{};
 
   constructor(private authService: AuthService,
-              private store: Store<State>,
-              private router: Router) {
+              private formBuilder: FormBuilder,
+              private store: Store<fromRoot.State>) {
+  }
+
+  /**
+   *  Lifecycle hook that is called when a directive, pipe or service is destroyed.
+   * @method ngOnDestroy
+   */
+  public ngOnDestroy() {
+    this.alive = false;
   }
 
   ngOnInit() {
-    this.store.dispatch(new ClearErrorAction());
+    this.form = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
 
-    this.error$ = this.authService.error$();
-    this.loading$ = this.authService.loading$();
+    this.error$ = this.store.select(fromAuth.getError);
+    this.loading$ = this.store.select(fromAuth.isLoading);
 
-    this.authService.isAuthenticated$()
-      .subscribe((isAuthenticated: boolean) => {
-        if (isAuthenticated) { this.router.navigate(['/dashboard']); }
+    this.store.select(fromAuth.isAuthenticated)
+      .takeWhile(() => this.alive)
+      .filter(authenticated => authenticated)
+      .subscribe((isAuthenticated) => {
+        if (isAuthenticated) {
+          // this.store.dispatch(go('/dashboard'));
+        }
       });
+
+    this.store.dispatch(new ClearErrorAction());
   }
 
-  onSubmit(form: NgForm) {
-    this.signInData = {
-      email: form.value.email,
-      password: form.value.password
+  signUp() {
+    // this.store.dispatch(go("/sign-up"));
+  }
+
+  submit() {
+    const email: string = this.form.get('email').value;
+    const password: string = this.form.get('password').value;
+
+    // trim values
+    email.trim();
+    password.trim();
+
+    // set payload
+    const payload: SignInData = {
+      email,
+      password
     };
-    this.store.dispatch(new AuthenticateAction(this.signInData));
+
+    this.store.dispatch(new AuthenticateAction(payload));
   }
 }

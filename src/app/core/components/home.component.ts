@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  template: `
+    <md-card>
+      Ajudando você a ter uma vida mais saudável.
+    </md-card>
+  `,
 })
 export class HomeComponent implements OnInit {
   // name: string;

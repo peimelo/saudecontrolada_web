@@ -1,24 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AppComponent } from "./containers/app.component";
+import { ToolbarComponent } from "./components/toolbar/toolbar.component";
+import { AngularMaterialModule } from "../shared/angular-material.module";
+import { HomeComponent } from "./components/home.component";
+import { RouterModule } from "@angular/router";
 
-import { HomeComponent } from './home/home.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { AngularMaterialModule } from '../shared/angular-material.module';
-import { AppRoutingModule } from '../app-routing.module';
+export const COMPONENTS = [
+  AppComponent,
+  HomeComponent,
+  ToolbarComponent,
+];
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     AngularMaterialModule,
-    AppRoutingModule
   ],
   declarations: [
-    HomeComponent,
-    ToolbarComponent
+    COMPONENTS
   ],
   exports: [
-    AppRoutingModule,
-    ToolbarComponent
+    COMPONENTS
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+  static forRoot() {
+    return {
+      ngModule: CoreModule
+    }
+  }
+}

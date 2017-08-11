@@ -1,48 +1,91 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {RegisterData} from "angular2-token";
-import {Observable} from "rxjs/Observable";
-import {Router} from "@angular/router";
-import {Store} from "@ngrx/store";
-import {NgForm} from "@angular/forms";
+import {
+  ChangeDetectionStrategy, Component, OnDestroy,
+  OnInit
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-import {AuthService} from "../../auth.service";
-import { ClearErrorAction, SignUpAction } from '../../auth.actions';
-import * as fromRoot from '../../../app.reducers';
+import {Store} from "@ngrx/store";
+
+import {Observable} from "rxjs/Observable";
+import {RegisterData} from "angular2-token";
+
+import { AuthService } from "../../services/auth.service";
+import { ClearErrorAction, SignUpAction } from '../../actions/auth';
+import * as fromAuth from '../../reducers';
+import * as fromRoot from '../../../reducers';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss'],
+  styleUrls: ['../sign-in/sign-in.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnDestroy, OnInit {
+  /**
+   * Component state.
+   * @type {boolean}
+   */
+  private alive = true;
+
   error$: Observable<string>;
+  form: FormGroup;
   loading$: Observable<boolean>;
-  registerData: RegisterData = <RegisterData>{};
 
-  constructor(private authService: AuthService,
-              private store: Store<fromRoot.State>,
-              private router: Router) {
+  constructor(private formBuilder: FormBuilder,
+              private store: Store<fromRoot.State>) {
+  }
 
-    this.error$ = this.authService.error$();
-    this.loading$ = this.authService.loading$();
-
-    this.authService.isAuthenticated$()
-      .subscribe((isAuthenticated: boolean) => {
-        if (isAuthenticated) { this.router.navigate(['/dashboard']); }
-      });
+  /**
+   *  Lifecycle hook that is called when a directive, pipe or service is destroyed.
+   * @method ngOnDestroy
+   */
+  public ngOnDestroy() {
+    this.alive = false;
   }
 
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      passwordConfirmation: ['', Validators.required]
+    });
+
+    this.error$ = this.store.select(fromAuth.getError);
+    this.loading$ = this.store.select(fromAuth.isLoading);
+
+    // this.authService.isAuthenticated$()
+    //   .takeWhile(() => this.alive)
+    //   .filter(authenticated => authenticated)
+    //   .subscribe((isAuthenticated: boolean) => {
+    //     if (isAuthenticated) {
+    //       this.store.dispatch(go('/dashboard'));
+    //     }
+    //   });
+
     this.store.dispatch(new ClearErrorAction());
   }
 
-  onSubmit(form: NgForm) {
-    this.registerData = {
-      email: form.value.email,
-      password: form.value.password,
-      passwordConfirmation: form.value.passwordConfirmation
+  signIn() {
+    // this.store.dispatch(go("/sign-in"));
+  }
+
+  submit() {
+    const email = this.form.get('email').value;
+    const password = this.form.get('password').value;
+    const passwordConfirmation = this.form.get('passwordConfirmation').value;
+
+    // trim values
+    email.trim();
+    password.trim();
+    passwordConfirmation.trim();
+
+    // set payload
+    const payload: RegisterData = {
+      email,
+      password,
+      passwordConfirmation
     };
-    this.store.dispatch(new SignUpAction(this.registerData));
+
+    this.store.dispatch(new SignUpAction(payload));
   }
 }

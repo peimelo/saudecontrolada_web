@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
-import { Store } from '@ngrx/store';
-import { createSelector } from 'reselect';
 
 // rxjs
 import { Observable } from 'rxjs/Observable';
@@ -12,21 +10,12 @@ import {
   SignInData
 } from 'angular2-token';
 
-import * as AuthReducer from './auth.reducer';
-import { State } from '../app.reducers';
-import { User } from "../user/user.model";
-
-// selectors
-export const authState = (state: State) => state.auth;
-export const getError        = createSelector(authState, AuthReducer.getError);
-export const isAuthenticated = createSelector(authState, AuthReducer.isAuthenticated);
-export const isLoading      = createSelector(authState, AuthReducer.isLoading);
+import { User } from "../../user/user.model";
 
 @Injectable()
 export class AuthService {
 
   constructor(private http: Http,
-              private store: Store<State>,
               private _tokenService: Angular2TokenService) {
   }
 
@@ -34,18 +23,6 @@ export class AuthService {
     return this._tokenService.signIn(credentials)
       .map((response: Response) => response.json().data || {})
       .catch(this._handleError);
-  }
-
-  error$(): Observable<string> {
-    return this.store.select(getError);
-  }
-
-  isAuthenticated$(): Observable<boolean> {
-    return this.store.select(isAuthenticated);
-  }
-
-  loading$(): Observable<boolean> {
-    return this.store.select(isLoading);
   }
 
   resetPassword(email: ResetPasswordData) {

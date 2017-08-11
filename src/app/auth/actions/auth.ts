@@ -2,8 +2,8 @@ import { Action } from '@ngrx/store';
 import {RegisterData, ResetPasswordData, SignInData} from 'angular2-token';
 
 // import type function
-import { type } from "../core/util";
-import { User } from "../user/user.model";
+import { type } from "../../core/util";
+import { User } from "../../user/user.model";
 
 export const ActionTypes = {
   AUTHENTICATE: type('[auth] Authenticate'),
