@@ -10,9 +10,3 @@ export const routes: Routes = [
   //   canActivate: [Angular2TokenService]
   // },
 ];
-
-// @NgModule({
-//   imports: [RouterModule.forRoot(appRoutes)],
-//   exports: [RouterModule]
-// })
-// export class AppRoutingModule {}

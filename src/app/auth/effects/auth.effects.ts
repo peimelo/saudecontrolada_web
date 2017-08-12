@@ -1,39 +1,44 @@
 import { Injectable } from '@angular/core';
-import { RegisterData, SignInData } from 'angular2-token';
+import { Router } from "@angular/router";
 
-// import @ngrx
-import { Action } from '@ngrx/store';
-import { Actions, Effect } from '@ngrx/effects';
-
-// import rxjs
+// rxjs
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
 
-import { AuthService } from '../services/auth.service';
+import { Action } from '@ngrx/store';
+import { Actions, Effect } from '@ngrx/effects';
 
-// import actions
-import * as Auth from '../actions/auth';
+import { RegisterData } from 'angular2-token';
+import { AuthService } from '../services/auth.service';
+import * as Auth from '../actions/auth.actions';
+import { SignInData } from "../models/user.model";
 
 @Injectable()
 export class AuthEffects {
 
   constructor(private actions$: Actions,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
   }
 
   @Effect()
-  authenticate: Observable<Action> = this.actions$
-    .ofType(Auth.AUTHENTICATE)
-    // .debounceTime(500)
-    .map((action: Auth.AuthenticateAction) => action.payload)
+  signIn$: Observable<Action> = this.actions$
+    .ofType(Auth.SIGN_IN)
+    .map((action: Auth.SignInAction) => action.payload)
     .switchMap((credentials: SignInData) => {
       return this.authService.authenticate(credentials)
-        .map(user => new Auth.AuthenticateSuccessAction({ user }))
-        .catch(error => of(new Auth.AuthenticateErrorAction({ error })));
+        .map(user => new Auth.SignInSuccessAction({ user }))
+        .catch(error => of(new Auth.SignInErrorAction({ error })));
     });
+
+  @Effect({ dispatch: false })
+  signInSuccess$ = this.actions$
+    .ofType(Auth.SIGN_IN_SUCCESS)
+    .do(() => this.router.navigate(['/']));
 
   // @Effect()
   // public authenticated: Observable<Action> = this.actions$

@@ -6,18 +6,21 @@ import { RouterModule } from "@angular/router";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 
+import { AngularMaterialModule } from '../shared/angular-material.module';
+
+import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { RecoverComponent } from './components/recover/recover.component';
+import { SignInPageComponent } from "./containers/sign-in-page.component";
 import { AuthEffects } from './effects/auth.effects';
 import { AuthService } from './services/auth.service';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { AngularMaterialModule } from '../shared/angular-material.module';
-import { RecoverComponent } from './components/recover/recover.component';
 import { reducers } from './reducers';
 import { AuthGuard } from "./guards/auth.guard";
 
 export const COMPONENTS = [
   RecoverComponent,
-  SignInComponent,
+  SignInFormComponent,
+  SignInPageComponent,
   SignUpComponent
 ];
 
@@ -27,6 +30,13 @@ export const COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     AngularMaterialModule,
+    RouterModule.forChild([
+      { path: 'recover', component: RecoverComponent },
+      { path: 'sign-in', component: SignInPageComponent },
+      { path: 'sign-up', component: SignUpComponent }
+    ]),
+    StoreModule.forFeature('auth', reducers),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS,
@@ -34,23 +44,8 @@ export const COMPONENTS = [
 export class AuthModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: RootAuthModule,
+      ngModule: AuthModule,
       providers: [AuthService, AuthGuard],
     };
   }
 }
-
-@NgModule({
-  imports: [
-    AuthModule,
-    RouterModule.forChild([
-      { path: 'recover', component: RecoverComponent },
-      { path: 'sign-in', component: SignInComponent },
-      { path: 'sign-up', component: SignUpComponent }
-    ]),
-    StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([AuthEffects]),
-
-  ],
-})
-export class RootAuthModule {}

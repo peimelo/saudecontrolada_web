@@ -36,7 +36,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     // redirect to sign in page if user is not authenticated
     observable.subscribe(authenticated => {
       if (!authenticated) {
-        // this.store.dispatch(go("/sign-in"));
+        // this.store.dispatch(go("/sign-in-form"));
       }
     });
 
@@ -54,7 +54,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     // redirect to sign in page if user is not authenticated
     observable.subscribe(authenticated => {
       if (!authenticated) {
-        // this.store.dispatch(go("/sign-in"));
+        // this.store.dispatch(go("/sign-in-form"));
       }
     });
 

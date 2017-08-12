@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { ResetPasswordData } from 'angular2-token';
 
-import * as AuthActions from '../../actions/auth';
+import * as AuthActions from '../../actions/auth.actions';
 import { AuthService } from '../../services/auth.service';
 import * as fromAuth from '../../reducers';
 import * as fromRoot from '../../../reducers';

@@ -4,7 +4,7 @@ import { Store } from "@ngrx/store";
 import { Angular2TokenService } from 'angular2-token';
 import { Observable } from 'rxjs/Observable';
 
-import * as Auth from '../../auth/actions/auth';
+import * as Auth from '../../auth/actions/auth.actions';
 import * as fromAuth from '../../auth/reducers';
 import * as fromRoot from '../../reducers';
 

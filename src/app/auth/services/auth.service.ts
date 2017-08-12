@@ -10,7 +10,7 @@ import {
   SignInData
 } from 'angular2-token';
 
-import { User } from "../../user/user.model";
+import { User } from "../models/user.model";
 
 @Injectable()
 export class AuthService {

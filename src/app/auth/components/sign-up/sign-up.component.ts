@@ -10,14 +10,14 @@ import {Observable} from "rxjs/Observable";
 import {RegisterData} from "angular2-token";
 
 import { AuthService } from "../../services/auth.service";
-import { ClearErrorAction, SignUpAction } from '../../actions/auth';
+import { ClearErrorAction, SignUpAction } from '../../actions/auth.actions';
 import * as fromAuth from '../../reducers';
 import * as fromRoot from '../../../reducers';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['../sign-in/sign-in.component.scss'],
+  styleUrls: ['../sign-in-form/sign-in-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignUpComponent implements OnDestroy, OnInit {
@@ -66,7 +66,7 @@ export class SignUpComponent implements OnDestroy, OnInit {
   }
 
   signIn() {
-    // this.store.dispatch(go("/sign-in"));
+    // this.store.dispatch(go("/sign-in-form"));
   }
 
   submit() {

@@ -5,9 +5,9 @@
         <md-card-title>Entrar</md-card-title>
 
         <md-card-content>
-          <p><md-error *ngIf="error$ | async">{{ error$ | async }}</md-error></p>
+          <p><md-error *ngIf="errorMessage">{{ errorMessage }}</md-error></p>
           <form
-            *ngIf="!(loading$ | async)"
+            *ngIf="!loading"
             (ngSubmit)="submit()"
             [formGroup]="form"
             novalidate
@@ -53,7 +53,7 @@
           </form>
 
           <div fxLayout="row" fxLayoutAlign="center">
-            <md-spinner *ngIf="loading$ | async"></md-spinner>
+            <md-spinner *ngIf="loading"></md-spinner>
           </div>
         </md-card-content>
       </md-card>
