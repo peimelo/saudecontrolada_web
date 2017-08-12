@@ -23,6 +23,12 @@
                   placeholder="E-mail"
                   required
                   type="email">
+                <md-error *ngIf="form.controls['email'].hasError('required')">
+                  Email is required
+                </md-error>
+                <md-error *ngIf="form.controls['email'].hasError('email')">
+                  Please enter a valid email address
+                </md-error>
               </md-input-container>
 
               <md-input-container fxFlex="100%">
@@ -36,6 +42,9 @@
                   required
                   type="password"
                   ngModel>
+                <md-error *ngIf="form.controls['password'].hasError('required')">
+                  Password is required
+                </md-error>
               </md-input-container>
 
               <a md-button routerLink="/recover">Esqueceu-se da senha?</a>
@@ -48,7 +57,7 @@
                 Entrar
               </button>
 
-              <a md-button (click)="signUp()">Criar uma conta?</a>
+              <a md-button routerLink="/sign-up">Criar uma conta?</a>
             </div>
           </form>
 

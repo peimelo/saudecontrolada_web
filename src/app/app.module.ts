@@ -4,14 +4,13 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 
+// @ngrx
 import { StoreModule } from "@ngrx/store";
 import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
 
 import { Angular2TokenService } from 'angular2-token';
-
-// import { AngularMaterialModule } from './shared/angular-material.module';
 
 import { CoreModule } from './core/core.module';
 import { AuthModule } from "./auth/auth.module";
@@ -37,7 +36,6 @@ import { environment } from "../environments/environment";
     EffectsModule.forRoot([]),
 
     // app modules
-    // AngularMaterialModule,
     CoreModule.forRoot(),
     AuthModule.forRoot(),
     // DashboardModule,

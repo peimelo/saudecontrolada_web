@@ -1,50 +1,30 @@
 import {
-  ChangeDetectionStrategy, Component, EventEmitter, Input,
-  OnInit, Output
+  Component, EventEmitter, Input, Output
 } from '@angular/core';
 import {
-  FormBuilder, FormControl, FormGroup,
-  Validators
+  FormBuilder, FormGroup, Validators
 } from '@angular/forms';
 
 import { SignInData } from "../../models/user.model";
 
 @Component({
   selector: 'app-sign-in-form',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './sign-in-form.component.html',
   styleUrls: ['./sign-in-form.component.scss'],
 })
-export class SignInFormComponent implements OnInit {
-  @Input()
-  set loading(isLoading: boolean) {
-    if (isLoading) {
-      this.form.disable();
-    }
-
-    this.form.enable();
-  }
-
+export class SignInFormComponent {
   @Input() errorMessage: string | null;
-
+  @Input() loading: boolean;
   @Output() submitted = new EventEmitter<SignInData>();
 
-  form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
+  form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
-  }
-
-  ngOnInit() {
     this.form = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
-
-  signUp() {}
 
   submit() {
     if (this.form.valid) {

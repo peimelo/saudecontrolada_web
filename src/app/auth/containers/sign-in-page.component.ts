@@ -1,7 +1,4 @@
-import {
-  ChangeDetectionStrategy, Component,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
@@ -23,16 +20,13 @@ import { SignInData } from "../models/user.model";
     </app-sign-in-form>
   `,
 })
-export class SignInPageComponent implements OnInit {
+export class SignInPageComponent {
   error$: Observable<string>;
   loading$: Observable<boolean>;
 
   constructor(private store: Store<fromAuth.State>) {
     this.error$ = this.store.select(fromAuth.getError);
     this.loading$ = this.store.select(fromAuth.isLoading);
-  }
-
-  ngOnInit() {
   }
 
   onSubmit($event: SignInData) {

@@ -13,8 +13,8 @@ import * as fromRoot from '../../reducers';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-toolbar
-    [isAuthenticated]="isAuthenticated$ | async"
-    (signOut)="signOut()"
+      [isAuthenticated]="isAuthenticated$ | async"
+      (signOut)="signOut()"
     >
     </app-toolbar>
     <br>
