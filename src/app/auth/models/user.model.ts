@@ -11,16 +11,26 @@ export class User {
   }
 }
 
-export interface SignInData {
-  email: string;
+export interface ChangePasswordData {
   password: string;
-  userType?: string;
+  password_confirmation: string;
+  accessToken?: string;
+  client?: string;
+  expiry?: string;
+  uid?: string;
 }
 
 export interface RegisterData {
   email: string;
   password: string;
   passwordConfirmation: string;
-  name?: string;
-  userType?: string;
+}
+
+export interface ResetPasswordData {
+  email: string;
+}
+
+export interface SignInData {
+  email: string;
+  password: string;
 }

@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-// rxjs
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
-
 import { Action } from '@ngrx/store';
 import { Actions, Effect } from '@ngrx/effects';
 
 import { AuthService } from '../services/auth.service';
 import * as Auth from '../actions/auth.actions';
-import { RegisterData, SignInData } from '../models/user.model';
+import {
+  ChangePasswordData,
+  RegisterData,
+  ResetPasswordData,
+  SignInData
+} from '../models/user.model';
 
 @Injectable()
 export class AuthEffects {
@@ -23,6 +26,26 @@ export class AuthEffects {
               private authService: AuthService,
               private router: Router) {
   }
+
+  @Effect()
+  changePassword$: Observable<Action> = this.actions$
+    .ofType(Auth.CHANGE_PASSWORD)
+    .map((action: Auth.ChangePasswordAction) => action.payload)
+    .switchMap((changePasswordData: ChangePasswordData) => {
+      return this.authService.changePassword(changePasswordData)
+        .map((res) => new Auth.ChangePasswordSuccessAction(''))
+        .catch((error) => of(new Auth.ChangePasswordErrorAction({ error })));
+    });
+
+  @Effect()
+  resetPassword$: Observable<Action> = this.actions$
+    .ofType(Auth.RESET_PASSWORD)
+    .map((action: Auth.ResetPasswordAction) => action.payload)
+    .switchMap((resetPasswordData: ResetPasswordData) => {
+      return this.authService.resetPassword(resetPasswordData)
+        .map((res) => new Auth.ResetPasswordSuccessAction(''))
+        .catch((error) => of(new Auth.ResetPasswordErrorAction({ error })));
+    });
 
   @Effect()
   signIn$: Observable<Action> = this.actions$
@@ -71,25 +94,5 @@ export class AuthEffects {
   //     return this.authService.validateToken()
   //       .map(user => new AuthenticatedSuccessAction({ authenticated: (user !== null), user: user }))
   //       .catch(error => of(new AuthenticatedErrorAction({ error: error })));
-  //   });
-
-  // @Effect()
-  // resetPassword$: Observable<Action> = this.actions$
-  //   .ofType(ActionTypes.RESET_PASSWORD)
-  //   .map(toPayload)
-  //   .switchMap((email) => {
-  //
-  //     return this.authService.resetPassword(email)
-  //       .map((res) => {
-  //         console.log(res);
-  //         return new SignInFailureAction('')
-  //       })
-  //       .catch((error) => {
-  //         const message = error.status === 401 ?
-  //           error.json().errors[0] :
-  //           'Erro na conexão com o servidor.';
-  //
-  //         return of(new SignInFailureAction(message));
-  //       });
   //   });
 }

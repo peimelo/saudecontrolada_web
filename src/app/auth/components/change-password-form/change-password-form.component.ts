@@ -2,13 +2,13 @@ import {
   Component, EventEmitter, Input,
   Output
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { RegisterData } from "../../models/user.model";
+import { ChangePasswordData } from '../../models/user.model';
 
 @Component({
-  selector: 'app-sign-up-form',
-  templateUrl: './sign-up-form.component.html',
+  selector: 'app-change-password-form',
+  templateUrl: './change-password-form.component.html',
   styles: [`
     :host {
       display: flex;
@@ -25,20 +25,20 @@ import { RegisterData } from "../../models/user.model";
     input {
       width: 300px;
     }
-  `]
+  `],
 })
-export class SignUpFormComponent {
+export class ChangePasswordFormComponent {
+  @Input() email: string | null;
   @Input() errorMessage: string | null;
   @Input() loading: boolean;
-  @Output() submitted = new EventEmitter<RegisterData>();
+  @Output() submitted = new EventEmitter<ChangePasswordData>();
 
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      passwordConfirmation: ['', Validators.required]
+      password_confirmation: ['', Validators.required],
     });
   }
 

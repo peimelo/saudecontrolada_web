@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, Response, Headers} from '@angular/http';
 
-// rxjs
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
+import { Angular2TokenService } from "angular2-token";
 
 import {
-  Angular2TokenService, ResetPasswordData
-} from 'angular2-token';
-
-import { RegisterData, SignInData, User } from "../models/user.model";
+  ChangePasswordData,
+  RegisterData,
+  ResetPasswordData,
+  SignInData,
+  User
+} from "../models/user.model";
 
 @Injectable()
 export class AuthService {
@@ -18,15 +21,31 @@ export class AuthService {
               private _tokenService: Angular2TokenService) {
   }
 
+  changePassword(changePasswordData: ChangePasswordData) {
+    let headers = new Headers();
+    headers.append('access-token', changePasswordData.accessToken);
+    headers.append('client', changePasswordData.client);
+    headers.append('expiry', changePasswordData.expiry);
+    headers.append('token-type', 'Bearer');
+    headers.append('uid', changePasswordData.uid);
+
+    return this.http.put('/api/auth/password', changePasswordData, {
+      headers: headers
+    })
+      .map((response: Response) => response.json() || {})
+      .catch(this._handleError);
+  }
+
+  resetPassword(resetPasswordData: ResetPasswordData) {
+    return this._tokenService.resetPassword(resetPasswordData)
+      .map((response: Response) => response)
+      .catch(this._handleError);
+  }
+
   signIn(credentials: SignInData): Observable<User> {
     return this._tokenService.signIn(credentials)
       .map((response: Response) => response.json().data || {})
       .catch(this._handleError);
-  }
-
-  resetPassword(email: ResetPasswordData) {
-    return this._tokenService.resetPassword(email)
-      .map((response: Response) => response);
   }
 
   signOut() {

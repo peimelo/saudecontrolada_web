@@ -8,6 +8,7 @@ import * as Auth from '../../auth/actions/auth.actions';
 import * as fromAuth from '../../auth/reducers';
 import * as Layout from '../actions/layout';
 import * as fromRoot from '../../reducers';
+import { NavItem } from "../models/nav_item";
 
 @Component({
   selector: 'app-root',
@@ -15,17 +16,22 @@ import * as fromRoot from '../../reducers';
   template: `
     <app-layout>
       <app-sidenav [open]="showSidenav$ | async">
-        <app-nav-item (activate)="closeSidenav()" *ngIf="isAuthenticated$ | async" routerLink="/" icon="book" hint="View your book collection">
-          My Collection
-        </app-nav-item>
-        <app-nav-item (activate)="closeSidenav()" *ngIf="isAuthenticated$ | async" routerLink="/books/find" icon="search" hint="Find your next book!">
-          Browse Books
-        </app-nav-item>
-        <app-nav-item (activate)="closeSidenav()" *ngIf="!(isAuthenticated$ | async)">
-          Sign In
-        </app-nav-item>
-        <app-nav-item (activate)="signOut()" *ngIf="isAuthenticated$ | async">
-          Sign Out
+        <span *ngFor="let navItem of navItems">
+          <app-nav-item
+            *ngIf="navItem.isAuthenticated ? (isAuthenticated$ | async) : !(isAuthenticated$ | async)"
+            (activate)="closeSidenav()"
+            routerLink="{{ navItem.link }}"
+            icon="{{ navItem.icon }}"
+            hint="{{ navItem.hint }}"
+          >
+            {{ navItem.label }}
+          </app-nav-item>
+        </span>
+        <app-nav-item 
+          *ngIf="isAuthenticated$ | async" 
+          (activate)="signOut()" 
+          icon="power_settings_new">
+          Sair
         </app-nav-item>
       </app-sidenav>
       <app-toolbar
@@ -38,16 +44,13 @@ import * as fromRoot from '../../reducers';
 
       <router-outlet></router-outlet>
     </app-layout>
-    
-    
-    <br>
-    <router-outlet></router-outlet>
   `,
-  styleUrls: ['../../app.component.scss']
 })
 export class AppComponent implements OnInit {
   isAuthenticated$: Observable<boolean>;
   showSidenav$: Observable<boolean>;
+
+  navItems: NavItem[] = [];
 
   constructor(private store: Store<fromRoot.State>,
               private _tokenService: Angular2TokenService) {
@@ -55,19 +58,23 @@ export class AppComponent implements OnInit {
     this._tokenService.init({ apiBase: '/api' });
 
     this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
-  }
-
-  ngOnInit() {
     this.isAuthenticated$ = this.store.select(fromAuth.isAuthenticated);
-
-    // if user refresh page
-    // if (this._tokenService.userSignedIn()) {
-    //   this.store.dispatch(new AuthenticatedAction());
-    // }
   }
 
   closeSidenav() {
     this.store.dispatch(new Layout.CloseSidenavAction());
+  }
+
+  getNavItems() {
+    this.navItems.push(
+      new NavItem('Entrar', 'Entra no sistema', 'exit_to_app', '/sign-in', false),
+      new NavItem('Criar conta', 'Cria uma conta', 'person_add', '/sign-up', false),
+      new NavItem('Dashboard', 'Painel da minha saúde', 'dashboard', '/sign-up', true),
+    );
+  }
+
+  ngOnInit() {
+    this.getNavItems();
   }
 
   openSidenav() {
@@ -77,6 +84,5 @@ export class AppComponent implements OnInit {
   signOut() {
     this.closeSidenav();
     this.store.dispatch(new Auth.SignOutAction());
-    // this.store.dispatch(go("/"));
   }
 }

@@ -3,7 +3,7 @@
     <md-icon>menu</md-icon>
   </button>
   <ng-content></ng-content>
-  <span class="fill-space"></span>
+  <!--<span class="fill-space"></span>-->
 
   <!--<a-->
   <!--md-button-->
@@ -13,31 +13,31 @@
   <!--<md-icon>person_add</md-icon>-->
   <!--</a>-->
 
-  <a
-    *ngIf="!isAuthenticated"
-    md-button
-    mdTooltip="Entrar"
-    routerLink="/sign-in"
-  >
-    Entrar
-  </a>
+  <!--<a-->
+    <!--*ngIf="!isAuthenticated"-->
+    <!--md-button-->
+    <!--mdTooltip="Entrar"-->
+    <!--routerLink="/sign-in"-->
+  <!--&gt;-->
+    <!--Entrar-->
+  <!--</a>-->
 
-  <button
-    *ngIf="isAuthenticated"
-    md-icon-button
-    mdTooltip="{{ email }}"
-    [mdTooltipPosition]="position"
-    [mdMenuTriggerFor]="menu"
-  >
-    <md-icon>account_circle</md-icon>
-  </button>
-  <md-menu #menu="mdMenu">
-    <button
-      md-menu-item
-      (click)="signOut.emit()"
-    >
-      Sair
-    </button>
-  </md-menu>
+  <!--<button-->
+    <!--*ngIf="isAuthenticated"-->
+    <!--md-icon-button-->
+    <!--mdTooltip="{{ email }}"-->
+    <!--[mdTooltipPosition]="position"-->
+    <!--[mdMenuTriggerFor]="menu"-->
+  <!--&gt;-->
+    <!--<md-icon>account_circle</md-icon>-->
+  <!--</button>-->
+  <!--<md-menu #menu="mdMenu">-->
+    <!--<button-->
+      <!--md-menu-item-->
+      <!--(click)="signOut.emit()"-->
+    <!--&gt;-->
+      <!--Sair-->
+    <!--</button>-->
+  <!--</md-menu>-->
 
 </md-toolbar>

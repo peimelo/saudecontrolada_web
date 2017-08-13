@@ -10,6 +10,23 @@ import { RegisterData } from "../../models/user.model";
 @Component({
   selector: 'app-sign-in-form',
   templateUrl: './sign-in-form.component.html',
+  styles: [`
+    :host {
+      display: flex;
+      justify-content: center;
+      margin: 72px 0;
+    }
+
+    md-card-title,
+    md-card-content {
+      display: flex;
+      justify-content: center;
+    }
+
+    input {
+      width: 300px;
+    }
+  `]
 })
 export class SignInFormComponent {
   @Input() errorMessage: string | null;

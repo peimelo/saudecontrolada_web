@@ -1,9 +1,22 @@
 import { Action } from '@ngrx/store';
-import { ResetPasswordData } from 'angular2-token';
 
-import { RegisterData, SignInData, User } from "../models/user.model";
+import {
+  ChangePasswordData,
+  RegisterData,
+  ResetPasswordData,
+  SignInData,
+  User
+} from "../models/user.model";
+
+export const CHANGE_PASSWORD         = '[Auth] Change Password';
+export const CHANGE_PASSWORD_ERROR   = '[Auth] Change Password Error';
+export const CHANGE_PASSWORD_SUCCESS = '[Auth] Change Password Success';
 
 export const CLEAR_ERROR = '[Auth] Clear Error';
+
+export const RESET_PASSWORD         = '[Auth] Reset Password';
+export const RESET_PASSWORD_ERROR   = '[Auth] Reset Password Error';
+export const RESET_PASSWORD_SUCCESS = '[Auth] Reset Password Success';
 
 export const SIGN_IN         = '[Auth] Sign In';
 export const SIGN_IN_ERROR   = '[Auth] Sign In Error';
@@ -21,10 +34,25 @@ export const SIGN_UP_SUCCESS = '[Auth] Sign Up Success';
 export const AUTHENTICATED = '[auth] Authenticated';
 export const   AUTHENTICATED_ERROR = '[auth] Authenticated error';
 export const   AUTHENTICATED_SUCCESS = '[auth] Authenticated success';
-export const   RESET_PASSWORD = '[auth] Reset password';
-export const   RESET_PASSWORD_FAILURE = '[auth] Reset password failure';
-export const   RESET_PASSWORD_SUCCESS = '[auth] Reset password success';
 export const   VALIDATE_TOKEN = '[auth] Validate token';
+
+// reset password
+export class ChangePasswordAction implements Action {
+  readonly type = CHANGE_PASSWORD;
+
+  constructor(public payload: ChangePasswordData) { }
+}
+export class ChangePasswordErrorAction implements Action {
+  readonly type = CHANGE_PASSWORD_ERROR;
+
+  constructor(public payload?: any) { }
+}
+export class ChangePasswordSuccessAction implements Action {
+  readonly type = CHANGE_PASSWORD_SUCCESS;
+
+  constructor(public payload: any) { }
+}
+
 
 // clear error
 export class ClearErrorAction implements Action {
@@ -32,6 +60,24 @@ export class ClearErrorAction implements Action {
 
   constructor(public payload?: any) { }
 }
+
+// reset password
+export class ResetPasswordAction implements Action {
+  readonly type = RESET_PASSWORD;
+
+  constructor(public payload: ResetPasswordData) { }
+}
+export class ResetPasswordErrorAction implements Action {
+  readonly type = RESET_PASSWORD_ERROR;
+
+  constructor(public payload?: any) { }
+}
+export class ResetPasswordSuccessAction implements Action {
+  readonly type = RESET_PASSWORD_SUCCESS;
+
+  constructor(public payload: any) { }
+}
+
 
 // sign in
 export class SignInAction implements Action {
@@ -50,6 +96,7 @@ export class SignInSuccessAction implements Action {
   constructor(public payload: { user: User }) { }
 }
 
+
 // sign out
 export class SignOutAction implements Action {
   readonly type = SIGN_OUT;
@@ -66,6 +113,7 @@ export class SignOutSuccessAction implements Action {
 
   constructor(public payload?: any) { }
 }
+
 
 // sign up
 export class SignUpAction implements Action {
@@ -103,14 +151,14 @@ export class AuthenticatedErrorAction implements Action {
   constructor(public payload?: any) {}
 }
 
-export class ResetPasswordAction implements Action {
-  readonly type = RESET_PASSWORD;
-
-  constructor(public payload: ResetPasswordData) { }
-}
-
 export type Actions
-  = ClearErrorAction
+  = ChangePasswordAction
+  | ChangePasswordErrorAction
+  | ChangePasswordSuccessAction
+  | ClearErrorAction
+  | ResetPasswordAction
+  | ResetPasswordErrorAction
+  | ResetPasswordSuccessAction
   | SignInAction
   | SignInErrorAction
   | SignInSuccessAction

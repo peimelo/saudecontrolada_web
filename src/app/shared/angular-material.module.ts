@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import 'hammerjs';
-
-// @angular/material
 import {
   FullscreenOverlayContainer,
   MdAutocompleteModule,
@@ -43,12 +39,11 @@ import {
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk';
 
-// @angular/flex-layout
-import { FlexLayoutModule } from "@angular/flex-layout";
+import 'hammerjs';
 
 // modules constant
-const modules = [
-  FlexLayoutModule,
+const MODULES = [
+  CdkTableModule,
   MdAutocompleteModule,
   MdButtonModule,
   MdButtonToggleModule,
@@ -80,7 +75,6 @@ const modules = [
   MdToolbarModule,
   MdTooltipModule,
   MdNativeDateModule,
-  CdkTableModule,
   StyleModule
 ];
 
@@ -88,10 +82,10 @@ const modules = [
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    modules
+    MODULES
   ],
   declarations: [],
-  exports: [modules],
+  exports: [MODULES],
   providers: [
     {provide: OverlayContainer, useClass: FullscreenOverlayContainer}
   ]

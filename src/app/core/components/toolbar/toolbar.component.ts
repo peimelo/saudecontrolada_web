@@ -10,5 +10,5 @@ export class ToolbarComponent {
   @Input() isAuthenticated: false;
   @Output() openMenu = new EventEmitter();
   @Output() signOut = new EventEmitter();
-  position: TooltipPosition = 'before';
+  // position: TooltipPosition = 'before';
 }

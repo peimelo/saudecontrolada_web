@@ -1,26 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   template: `
-    <!--<div class="flex-container" fxLayout="column">-->
-      <!--<div fxLayout="row" fxLayoutAlign="center" class="card-container">-->
-        <!--<div fxFlex="90%" fxFlex.md="50%" fxFlex.lg="40%">-->
-          <md-card>
-            Ajudando você a ter uma vida mais saudável.
-          </md-card>
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <md-card>
+      Ajudando você a ter uma vida mais saudável.
+    </md-card>
   `,
+  styles: [`
+    :host {
+      display: flex;
+      justify-content: center;
+      margin: 72px 0;
+    }
+
+    md-card {
+      width: 400px;
+      height: 300px;
+      margin: 15px;
+    }
+  `]
 })
-export class HomeComponent implements OnInit {
-  // name: string;
-
-  constructor(/*private authService: AuthService*/) { }
-
-  ngOnInit() {
-    // this.name = this.authService.getName();
-  }
-
+export class HomeComponent {
 }

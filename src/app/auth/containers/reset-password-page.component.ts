@@ -5,33 +5,33 @@ import { Observable } from 'rxjs/Observable';
 
 import * as Auth from '../actions/auth.actions';
 import * as fromAuth from '../reducers';
-import { SignInData } from "../models/user.model";
+import { ResetPasswordData } from "../models/user.model";
 
 @Component({
-  selector: 'app-sign-in-page',
+  selector: 'app-reset-password-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-sign-in-form
+    <app-reset-password-form
       [errorMessage]="error$ | async"
       [loading]="loading$ | async"
       (submitted)="onSubmit($event)"
     >
-    </app-sign-in-form>
+    </app-reset-password-form>
   `,
-  styles: [],
 })
-export class SignInPageComponent {
+export class ResetPasswordPageComponent {
   error$: Observable<string>;
   loading$: Observable<boolean>;
 
   constructor(private store: Store<fromAuth.State>) {
-    this.error$ = this.store.select(fromAuth.getSignInError);
-    this.loading$ = this.store.select(fromAuth.isLoadingSignIn);
+
+    this.error$ = this.store.select(fromAuth.getResetPasswordError);
+    this.loading$ = this.store.select(fromAuth.isLoadingResetPassword);
 
     this.store.dispatch(new Auth.ClearErrorAction());
   }
 
-  onSubmit($event: SignInData) {
-    this.store.dispatch(new Auth.SignInAction($event));
+  onSubmit($event: ResetPasswordData) {
+    this.store.dispatch(new Auth.ResetPasswordAction($event));
   }
 }
