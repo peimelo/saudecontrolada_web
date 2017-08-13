@@ -12,6 +12,13 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: Auth.Actions): State {
   switch (action.type) {
+    case Auth.CLEAR_ERROR: {
+      return {
+        ...state,
+        error: null
+      };
+    }
+
     case Auth.SIGN_IN: {
       return {
         ...state,
@@ -23,7 +30,7 @@ export function reducer(state = initialState, action: Auth.Actions): State {
     case Auth.SIGN_IN_ERROR: {
       return {
         ...state,
-        error: action.payload.error,
+        error: action.payload.error.message,
         loading: false,
       };
     }

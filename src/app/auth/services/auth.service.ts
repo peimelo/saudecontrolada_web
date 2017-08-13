@@ -6,11 +6,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
 import {
-  Angular2TokenService, RegisterData, ResetPasswordData,
-  SignInData
+  Angular2TokenService, ResetPasswordData
 } from 'angular2-token';
 
-import { User } from "../models/user.model";
+import { RegisterData, SignInData, User } from "../models/user.model";
 
 @Injectable()
 export class AuthService {
@@ -19,7 +18,7 @@ export class AuthService {
               private _tokenService: Angular2TokenService) {
   }
 
-  authenticate(credentials: SignInData): Observable<User> {
+  signIn(credentials: SignInData): Observable<User> {
     return this._tokenService.signIn(credentials)
       .map((response: Response) => response.json().data || {})
       .catch(this._handleError);

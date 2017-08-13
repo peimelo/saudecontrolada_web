@@ -5,10 +5,10 @@
         <md-card-title>Criar uma conta</md-card-title>
 
         <md-card-content>
-          <p><md-error *ngIf="error$ | async">{{ error$ | async }}</md-error></p>
+          <p><md-error *ngIf="errorMessage">{{ errorMessage }}</md-error></p>
 
           <form
-            *ngIf="!(loading$ | async)"
+            *ngIf="!loading"
             (ngSubmit)="submit()"
             [formGroup]="form"
             novalidate
@@ -21,6 +21,12 @@
                   required
                   type="email"
                   formControlName="email">
+                <md-error *ngIf="form.controls['email'].hasError('required')">
+                  Email is required
+                </md-error>
+                <md-error *ngIf="form.controls['email'].hasError('email')">
+                  Please enter a valid email address
+                </md-error>
               </md-input-container>
 
               <md-input-container fxFlex="100%">
@@ -30,6 +36,9 @@
                   required
                   type="password"
                   formControlName="password">
+                <md-error *ngIf="form.controls['password'].hasError('required')">
+                  Password is required
+                </md-error>
               </md-input-container>
 
               <md-input-container fxFlex="100%">
@@ -39,6 +48,9 @@
                   required
                   type="password"
                   formControlName="passwordConfirmation">
+                <md-error *ngIf="form.controls['password'].hasError('required')">
+                  Password is required
+                </md-error>
               </md-input-container>
 
               <button
@@ -49,12 +61,12 @@
                 Criar
               </button>
 
-              <a md-button (click)="signIn()">Já tenho uma conta</a>
+              <a md-button routerLink="/sign-in">Já tenho uma conta</a>
             </div>
           </form>
 
           <div fxLayout="row" fxLayoutAlign="center">
-            <md-spinner *ngIf="loading$ | async"></md-spinner>
+            <md-spinner *ngIf="loading"></md-spinner>
           </div>
         </md-card-content>
 

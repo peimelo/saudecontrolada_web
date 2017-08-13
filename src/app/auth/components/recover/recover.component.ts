@@ -24,8 +24,8 @@ export class RecoverComponent {
               private store: Store<fromRoot.State>,
               private router: Router) {
 
-    this.error$ = this.store.select(fromAuth.getError);
-    this.loading$ = this.store.select(fromAuth.isLoading);
+    // this.error$ = this.store.select(fromAuth.getError);
+    // this.loading$ = this.store.select(fromAuth.isLoading);
 
     this.store.select(fromAuth.isAuthenticated)
       .subscribe((isAuthenticated: boolean) => {

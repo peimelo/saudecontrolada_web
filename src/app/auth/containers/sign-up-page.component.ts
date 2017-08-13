@@ -5,32 +5,32 @@ import { Observable } from 'rxjs/Observable';
 
 import * as Auth from '../actions/auth.actions';
 import * as fromAuth from '../reducers';
-import { SignInData } from "../models/user.model";
+import { RegisterData } from "../models/user.model";
 
 @Component({
   selector: 'app-sign-in-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-sign-in-form
+    <app-sign-up-form
       [errorMessage]="error$ | async"
       [loading]="loading$ | async"
       (submitted)="onSubmit($event)"
     >
-    </app-sign-in-form>
+    </app-sign-up-form>
   `,
 })
-export class SignInPageComponent {
+export class SignUpPageComponent {
   error$: Observable<string>;
   loading$: Observable<boolean>;
 
   constructor(private store: Store<fromAuth.State>) {
-    this.error$ = this.store.select(fromAuth.getSignInError);
-    this.loading$ = this.store.select(fromAuth.isLoadingSignIn);
+    this.error$ = this.store.select(fromAuth.getSignUpError);
+    this.loading$ = this.store.select(fromAuth.isLoadingSignUp);
 
     this.store.dispatch(new Auth.ClearErrorAction());
   }
 
-  onSubmit($event: SignInData) {
-    this.store.dispatch(new Auth.SignInAction($event));
+  onSubmit($event: RegisterData) {
+    this.store.dispatch(new Auth.SignUpAction($event));
   }
 }

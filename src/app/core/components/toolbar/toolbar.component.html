@@ -1,12 +1,15 @@
 <md-toolbar color="primary">
-  <span>SIGR</span>
+  <button md-icon-button (click)="openMenu.emit()">
+    <md-icon>menu</md-icon>
+  </button>
+  <ng-content></ng-content>
   <span class="fill-space"></span>
 
   <!--<a-->
   <!--md-button-->
   <!--md-icon-button-->
   <!--mdTooltip="Criar um conta"-->
-  <!--routerLink="/sign-up">-->
+  <!--routerLink="/sign-up-form">-->
   <!--<md-icon>person_add</md-icon>-->
   <!--</a>-->
 

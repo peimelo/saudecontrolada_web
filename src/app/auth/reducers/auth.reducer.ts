@@ -26,34 +26,6 @@ export function reducer(state = initialState, action: Auth.Actions): State {
 
 
 
-    case Auth.CLEAR_ERROR: {
-      return Object.assign({}, state, {
-        error: undefined
-      });
-    }
-
-    case Auth.SIGN_UP_ERROR:
-      return Object.assign({}, state, {
-        authenticated: false,
-        error: action.payload.error.message,
-        loading: false
-      });
-
-    case Auth.SIGN_UP_SUCCESS:
-      const user: User = action.payload.user;
-
-      // verify user is not null
-      if (user === null) {
-        return state;
-      }
-
-      return Object.assign({}, state, {
-        authenticated: true,
-        error: undefined,
-        loading: false,
-        user: user
-      });
-
     case Auth.AUTHENTICATED_ERROR:
       return Object.assign({}, state, {
         authenticated: false,
@@ -80,13 +52,6 @@ export function reducer(state = initialState, action: Auth.Actions): State {
         authenticated: false,
         error: undefined,
         user: undefined
-      });
-
-    case Auth.SIGN_UP:
-      return Object.assign({}, state, {
-        authenticated: false,
-        error: undefined,
-        loading: true
       });
 
     default:

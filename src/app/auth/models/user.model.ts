@@ -10,8 +10,17 @@ export class User {
               public unconfirmed_email: string) {
   }
 }
+
 export interface SignInData {
   email: string;
   password: string;
+  userType?: string;
+}
+
+export interface RegisterData {
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+  name?: string;
   userType?: string;
 }

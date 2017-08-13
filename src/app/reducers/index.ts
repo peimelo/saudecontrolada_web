@@ -1,10 +1,10 @@
-import { environment } from '../../environments/environment';
-import * as fromLayout from '../core/reducers/layout';
-
 import {
   ActionReducer, ActionReducerMap, createFeatureSelector,
   createSelector
 } from "@ngrx/store";
+
+import { environment } from '../../environments/environment';
+import * as fromLayout from '../core/reducers/layout';
 
 export interface State {
   layout: fromLayout.State;
