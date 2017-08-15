@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -21,5 +22,16 @@ import { Component } from '@angular/core';
     }
   `]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+  constructor(private activatedRoute: ActivatedRoute,
+              private router: Router) {}
+
+  ngOnInit() {
+    const queryParams = this.activatedRoute.snapshot.queryParams;
+
+    if (queryParams && queryParams['reset_password']) {
+      this.router.navigate(['/change-password'], { queryParamsHandling: 'merge' });
+    }
+  }
 }

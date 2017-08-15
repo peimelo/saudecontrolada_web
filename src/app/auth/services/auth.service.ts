@@ -22,12 +22,9 @@ export class AuthService {
   }
 
   changePassword(changePasswordData: ChangePasswordData) {
-    let headers = new Headers();
-    headers.append('access-token', changePasswordData.accessToken);
-    headers.append('client', changePasswordData.client);
-    headers.append('expiry', changePasswordData.expiry);
-    headers.append('token-type', 'Bearer');
-    headers.append('uid', changePasswordData.uid);
+    let headers = this._getHeaders(changePasswordData);
+
+    console.log(changePasswordData);
 
     return this.http.put('/api/auth/password', changePasswordData, {
       headers: headers
@@ -70,6 +67,22 @@ export class AuthService {
     return this._tokenService.validateToken()
       .map((response: Response) => response)
       .catch(this._handleError);
+  }
+
+  private _getHeaders(changePasswordData): Headers {
+    let headers = new Headers();
+    headers.append('access-token', changePasswordData.accessToken);
+    headers.append('client', changePasswordData.client);
+    headers.append('expiry', changePasswordData.expiry);
+    headers.append('token-type', 'Bearer');
+    headers.append('uid', changePasswordData.uid);
+
+    delete changePasswordData.accessToken;
+    delete changePasswordData.client;
+    delete changePasswordData.expiry;
+    delete changePasswordData.uid;
+
+    return headers;
   }
 
   private _handleError (error: Response) {

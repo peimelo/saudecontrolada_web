@@ -37,6 +37,11 @@ export class AuthEffects {
         .catch((error) => of(new Auth.ChangePasswordErrorAction({ error })));
     });
 
+  @Effect({ dispatch: false })
+  changePasswordSuccess$ = this.actions$
+    .ofType(Auth.CHANGE_PASSWORD_SUCCESS)
+    .do(() => this.router.navigate(['/']));
+
   @Effect()
   resetPassword$: Observable<Action> = this.actions$
     .ofType(Auth.RESET_PASSWORD)

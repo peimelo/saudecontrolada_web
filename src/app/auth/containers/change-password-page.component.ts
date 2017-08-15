@@ -31,8 +31,9 @@ export class ChangePasswordPageComponent implements OnInit {
               private store: Store<fromAuth.State>) {
 
     this.queryParams = this.activatedRoute.snapshot.queryParams;
+    this.email = this._getParam(this.queryParams['uid']);
+    console.log(this.queryParams);
 
-    this.email = this.queryParams['uid'];
     this.error$ = this.store.select(fromAuth.getChangePasswordError);
     this.loading$ = this.store.select(fromAuth.isLoadingChangePassword);
 
@@ -43,11 +44,22 @@ export class ChangePasswordPageComponent implements OnInit {
   }
 
   onSubmit($event: ChangePasswordData) {
-    $event.client =      this.queryParams['client_id'];
-    $event.expiry =      this.queryParams['expiry'];
-    $event.accessToken = this.queryParams['token'];
-    $event.uid =         this.queryParams['uid'];
+    $event.accessToken = this._getParam(this.queryParams['token']);
+    $event.client      = this._getParam(this.queryParams['client_id']);
+    $event.expiry      = this._getParam(this.queryParams['expiry']);
+    $event.uid         = this._getParam(this.queryParams['uid']);
 
     this.store.dispatch(new Auth.ChangePasswordAction($event));
+  }
+
+  // Sometime returns {'uid':'xxx'} or {'uid':['aaa','bbb']}
+  private _getParam(param: string) {
+    if (Object.prototype.toString.call(param) === '[object Array]') {
+      const paramLength = param.length;
+      return param[paramLength - 1];
+    }
+    else {
+      return param;
+    }
   }
 }

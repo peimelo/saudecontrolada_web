@@ -9,6 +9,7 @@ import * as fromAuth from '../../auth/reducers';
 import * as Layout from '../actions/layout';
 import * as fromRoot from '../../reducers';
 import { NavItem } from "../models/nav_item";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -52,7 +53,8 @@ export class AppComponent implements OnInit {
 
   navItems: NavItem[] = [];
 
-  constructor(private store: Store<fromRoot.State>,
+  constructor(private activatedRoute: ActivatedRoute,
+              private store: Store<fromRoot.State>,
               private _tokenService: Angular2TokenService) {
 
     this._tokenService.init({ apiBase: '/api' });
@@ -75,6 +77,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getNavItems();
+
+    console.log(this.activatedRoute.snapshot.queryParams);
   }
 
   openSidenav() {
