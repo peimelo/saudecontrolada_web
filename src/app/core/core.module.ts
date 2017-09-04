@@ -8,12 +8,15 @@ import { RouterModule } from "@angular/router";
 import { LayoutComponent } from "./components/layout.component";
 import { NavItemComponent } from "./components/nav-item.component";
 import { SidenavComponent } from "./components/sidenav.component";
+import { NotFoundPageComponent } from './containers/not-found-page';
+import { FormsModule } from '@angular/forms';
 
 export const COMPONENTS = [
   AppComponent,
   HomeComponent,
   LayoutComponent,
   NavItemComponent,
+  NotFoundPageComponent,
   SidenavComponent,
   ToolbarComponent,
 ];
@@ -23,6 +26,7 @@ export const COMPONENTS = [
     CommonModule,
     RouterModule,
     AngularMaterialModule,
+    FormsModule,
   ],
   declarations: [
     COMPONENTS

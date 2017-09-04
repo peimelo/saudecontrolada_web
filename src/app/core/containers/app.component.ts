@@ -53,14 +53,18 @@ export class AppComponent implements OnInit {
 
   navItems: NavItem[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private store: Store<fromRoot.State>,
+  constructor(private store: Store<fromRoot.State>,
               private _tokenService: Angular2TokenService) {
 
-    this._tokenService.init({ apiBase: '/api' });
+    this._tokenService.init({
+      apiBase: '/api',
+      oAuthCallbackPath: '/',
+      oAuthWindowType: 'sameWindow',
+      oAuthBase: '/api',
+    });
 
-    this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
     this.isAuthenticated$ = this.store.select(fromAuth.isAuthenticated);
+    this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
   }
 
   closeSidenav() {
@@ -77,8 +81,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getNavItems();
-
-    console.log(this.activatedRoute.snapshot.queryParams);
   }
 
   openSidenav() {

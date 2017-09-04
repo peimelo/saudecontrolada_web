@@ -33,6 +33,16 @@ export class AuthService {
       .catch(this._handleError);
   }
 
+  logGithub() {
+    return this._tokenService.signInOAuth(
+      'github'
+    )
+    // return this.http.get('/api/auth/github',
+    //   authProviderPaths: { github: '/auth/github'})
+      .map((response: Response) => response)
+      .catch(this._handleError);
+  }
+
   resetPassword(resetPasswordData: ResetPasswordData) {
     return this._tokenService.resetPassword(resetPasswordData)
       .map((response: Response) => response)
