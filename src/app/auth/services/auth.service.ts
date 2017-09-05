@@ -50,8 +50,8 @@ export class AuthService {
   }
 
   signIn(credentials: SignInData): Observable<User> {
-    return this._tokenService.signIn(credentials)
-      .map((response: Response) => response.json().data || {})
+    return this.http.post('/api/sessions', credentials)
+      .map((response: Response) => response.json() || {})
       .catch(this._handleError);
   }
 

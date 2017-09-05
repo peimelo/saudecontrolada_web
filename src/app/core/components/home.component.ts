@@ -8,18 +8,6 @@ import { Angular2TokenService } from 'angular2-token';
   template: `
     <md-card>
       Ajudando você a ter uma vida mais saudável.
-
-      <button (click)="onSubmit()">Github</button>
-
-      <form #accessResourceForm="ngForm" (ngSubmit)="onSubmit()">
-
-        <button
-          type="submit"
-          class="btn btn-primary">
-          Sign In OAuth
-        </button>
-
-      </form>
     </md-card>
   `,
   styles: [`
