@@ -2,17 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  FullscreenOverlayContainer,
   MdAutocompleteModule,
   MdButtonModule,
   MdButtonToggleModule,
   MdCardModule,
   MdCheckboxModule,
   MdChipsModule,
-  MdCoreModule,
   MdDatepickerModule,
   MdDialogModule,
   MdExpansionModule,
+  MdFormFieldModule,
   MdGridListModule,
   MdIconModule,
   MdInputModule,
@@ -34,16 +33,25 @@ import {
   MdTabsModule,
   MdToolbarModule,
   MdTooltipModule,
-  OverlayContainer,
-  StyleModule
+  StyleModule,
 } from '@angular/material';
-import { CdkTableModule } from '@angular/cdk';
+import {CdkTableModule} from '@angular/cdk/table';
+import {A11yModule} from '@angular/cdk/a11y';
+import {BidiModule} from '@angular/cdk/bidi';
+import {
+  FullscreenOverlayContainer, OverlayContainer,
+  OverlayModule
+} from '@angular/cdk/overlay';
+import {PlatformModule} from '@angular/cdk/platform';
+import {ObserversModule} from '@angular/cdk/observers';
+import {PortalModule} from '@angular/cdk/portal';
 
 import 'hammerjs';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // modules constant
 const MODULES = [
-  CdkTableModule,
+  FlexLayoutModule,
   MdAutocompleteModule,
   MdButtonModule,
   MdButtonToggleModule,
@@ -54,12 +62,12 @@ const MODULES = [
   MdDatepickerModule,
   MdDialogModule,
   MdExpansionModule,
+  MdFormFieldModule,
   MdGridListModule,
   MdIconModule,
   MdInputModule,
   MdListModule,
   MdMenuModule,
-  MdCoreModule,
   MdPaginatorModule,
   MdProgressBarModule,
   MdProgressSpinnerModule,
@@ -75,7 +83,14 @@ const MODULES = [
   MdToolbarModule,
   MdTooltipModule,
   MdNativeDateModule,
-  StyleModule
+  CdkTableModule,
+  StyleModule,
+  A11yModule,
+  BidiModule,
+  ObserversModule,
+  OverlayModule,
+  PlatformModule,
+  PortalModule,
 ];
 
 @NgModule({
