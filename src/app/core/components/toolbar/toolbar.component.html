@@ -1,8 +1,22 @@
 <md-toolbar color="primary">
-  <button md-icon-button (click)="openMenu.emit()">
+  <button md-icon-button (click)="toggleMenu.emit()">
     <md-icon>menu</md-icon>
   </button>
-  <ng-content></ng-content>
+  <span>Saúde Controlada</span>
+
+  <!-- Filler that pushes the menu button to the end of the toolbar -->
+  <span fxFlex></span>
+
+  <button md-icon-button [mdMenuTriggerFor]="themeMenu">
+    <md-icon>more_vert</md-icon>
+  </button>
+
+  <md-menu #themeMenu x-position="before">
+    <button md-menu-item (click)="toggleTheme.emit()">
+      Toggle Theme
+    </button>
+  </md-menu>
+
   <!--<span class="fill-space"></span>-->
 
   <!--<a-->

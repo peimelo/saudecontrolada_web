@@ -4,7 +4,6 @@ import {Http, Response, Headers} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
-import { Angular2TokenService } from "angular2-token";
 
 import {
   ChangePasswordData,
@@ -17,8 +16,7 @@ import {
 @Injectable()
 export class AuthService {
 
-  constructor(private http: Http,
-              private _tokenService: Angular2TokenService) {
+  constructor(private http: Http) {
   }
 
   changePassword(changePasswordData: ChangePasswordData) {
@@ -34,19 +32,19 @@ export class AuthService {
   }
 
   logGithub() {
-    return this._tokenService.signInOAuth(
-      'github'
-    )
-    // return this.http.get('/api/auth/github',
-    //   authProviderPaths: { github: '/auth/github'})
-      .map((response: Response) => response)
-      .catch(this._handleError);
+    // return this._tokenService.signInOAuth(
+    //   'github'
+    // )
+    // // return this.http.get('/api/auth/github',
+    // //   authProviderPaths: { github: '/auth/github'})
+    //   .map((response: Response) => response)
+    //   .catch(this._handleError);
   }
 
   resetPassword(resetPasswordData: ResetPasswordData) {
-    return this._tokenService.resetPassword(resetPasswordData)
-      .map((response: Response) => response)
-      .catch(this._handleError);
+    // return this._tokenService.resetPassword(resetPasswordData)
+    //   .map((response: Response) => response)
+    //   .catch(this._handleError);
   }
 
   signIn(credentials: SignInData): Observable<User> {
@@ -56,9 +54,9 @@ export class AuthService {
   }
 
   signOut() {
-    return this._tokenService.signOut()
-      .map((response: Response) => response)
-      .catch(this._handleError);
+    // return this._tokenService.signOut()
+    //   .map((response: Response) => response)
+    //   .catch(this._handleError);
   }
 
   signUp(registerData: RegisterData) {
@@ -74,9 +72,9 @@ export class AuthService {
   }
 
   validateToken() {
-    return this._tokenService.validateToken()
-      .map((response: Response) => response)
-      .catch(this._handleError);
+    // return this._tokenService.validateToken()
+    //   .map((response: Response) => response)
+    //   .catch(this._handleError);
   }
 
   private _getHeaders(changePasswordData): Headers {

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TooltipPosition } from '@angular/material';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,7 +7,7 @@ import { TooltipPosition } from '@angular/material';
 export class ToolbarComponent {
   @Input() email: '';
   @Input() isAuthenticated: false;
-  @Output() openMenu = new EventEmitter();
+  @Output() toggleMenu = new EventEmitter();
+  @Output() toggleTheme = new EventEmitter();
   @Output() signOut = new EventEmitter();
-  // position: TooltipPosition = 'before';
 }

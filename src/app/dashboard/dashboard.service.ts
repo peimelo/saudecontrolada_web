@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Angular2TokenService } from 'angular2-token';
 import * as moment from 'moment/moment';
 
 @Injectable()
 export class DashboardService {
 
-  constructor(private http: Http,
-              private _tokenService: Angular2TokenService) {
+  constructor(private http: Http) {
   }
 
   getDashboard() {
     return this.http.get('/api/dashboards', {
-      headers: this._tokenService.currentAuthHeaders
+      // headers: this._tokenService.currentAuthHeaders
     })
       .map((response: Response) => response.json() || {});
   }

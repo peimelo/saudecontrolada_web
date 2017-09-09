@@ -18,7 +18,12 @@ import { SignInData } from "../models/user.model";
     >
     </app-sign-in-form>
   `,
-  styles: [],
+  styles: [`
+    /*:host {*/
+      /*display: flex;*/
+      /*flex: 1;*/
+    /*}*/
+  `]
 })
 export class SignInPageComponent {
   error$: Observable<string>;

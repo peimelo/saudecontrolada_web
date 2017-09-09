@@ -8,12 +8,13 @@
       [formGroup]="form"
       novalidate
     >
-      <p>
-        <md-error *ngIf="errorMessage">{{ errorMessage }}</md-error>
-      </p>
+      <div fxLayout="column">
+        <p>
+          <md-error *ngIf="errorMessage">{{ errorMessage }}</md-error>
+        </p>
 
-      <p>
-        <md-input-container>
+        <!--<p>-->
+        <md-input-container fxFlex="100%">
           <input
             mdInput
             formControlName="email"
@@ -27,10 +28,10 @@
             Please enter a valid email address
           </md-error>
         </md-input-container>
-      </p>
+        <!--</p>-->
 
-      <p>
-        <md-input-container>
+        <!--<p>-->
+        <md-input-container fxFlex="100%">
           <input
             mdInput
             formControlName="password"
@@ -42,25 +43,27 @@
             Password is required
           </md-error>
         </md-input-container>
-      </p>
+        <!--</p>-->
 
-      <p>
-        <a md-button routerLink="/reset-password">Esqueceu-se da senha?</a>
-      </p>
+        <p>
+          <a md-button routerLink="/reset-password">Esqueceu-se da
+            senha?</a>
+        </p>
 
-      <p>
-        <button
-          md-raised-button
-          color="primary"
-          [disabled]="form.invalid"
-        >
-          Entrar
-        </button>
-      </p>
+        <p>
+          <button
+            md-raised-button
+            color="primary"
+            [disabled]="form.invalid"
+          >
+            Entrar
+          </button>
+        </p>
 
-      <p>
-        <a md-button routerLink="/sign-up">Criar uma conta?</a>
-      </p>
+        <p>
+          <a md-button routerLink="/sign-up">Criar uma conta?</a>
+        </p>
+      </div>
     </form>
 
     <md-spinner *ngIf="loading"></md-spinner>

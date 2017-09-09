@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../auth/services/auth.service';
-import { Angular2TokenService } from 'angular2-token';
 
 @Component({
   selector: 'app-home',
@@ -27,18 +25,7 @@ import { Angular2TokenService } from 'angular2-token';
 export class HomeComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
-              private router: Router,
-              private authService: AuthService,
-              private _tokenService: Angular2TokenService) {
-  }
-
-  onSubmit() {
-    this._tokenService.signInOAuth('github');
-    // this.authService.logGithub()
-    //   .subscribe(
-    //     res =>      console.log(res),
-    //     error =>    console.log(error)
-    //   );
+              private router: Router) {
   }
 
   ngOnInit() {

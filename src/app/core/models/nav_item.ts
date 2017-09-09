@@ -1,9 +1,7 @@
-export class NavItem {
-  constructor(
-    public label: string,
-    public hint: string,
-    public icon: string,
-    public link: string,
-    public isAuthenticated: boolean
-  ){}
+export interface NavItem {
+  label: string
+  hint: string,
+  icon: string,
+  link: string,
+  isAuthenticated: boolean
 }

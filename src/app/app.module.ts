@@ -8,7 +8,6 @@ import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { Angular2TokenService } from 'angular2-token';
 
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
@@ -36,7 +35,7 @@ import { environment } from '../environments/environment';
     AuthModule.forRoot(),
     // DashboardModule,
   ],
-  providers: [Angular2TokenService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

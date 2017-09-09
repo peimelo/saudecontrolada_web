@@ -1,0 +1,23 @@
+[
+  {
+    "label": "Entrar",
+    "hint": "Entra no sistema",
+    "icon": "exit_to_app",
+    "link": "/sign-in",
+    "isAuthenticated": false
+  },
+  {
+    "label": "Criar conta",
+    "hint": "Cria uma conta",
+    "icon": "person_add",
+    "link": "/sign-up",
+    "isAuthenticated": false
+  },
+  {
+    "label": "Dashboard",
+    "hint": "Painel da minha saúde",
+    "icon": "dashboard",
+    "link": "/sign-up",
+    "isAuthenticated": true
+  }
+]

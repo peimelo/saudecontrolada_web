@@ -42,15 +42,15 @@ export class AuthEffects {
     .ofType(Auth.CHANGE_PASSWORD_SUCCESS)
     .do(() => this.router.navigate(['/']));
 
-  @Effect()
-  resetPassword$: Observable<Action> = this.actions$
-    .ofType(Auth.RESET_PASSWORD)
-    .map((action: Auth.ResetPasswordAction) => action.payload)
-    .switchMap((resetPasswordData: ResetPasswordData) => {
-      return this.authService.resetPassword(resetPasswordData)
-        .map((res) => new Auth.ResetPasswordSuccessAction(''))
-        .catch((error) => of(new Auth.ResetPasswordErrorAction({ error })));
-    });
+  // @Effect()
+  // resetPassword$: Observable<Action> = this.actions$
+  //   .ofType(Auth.RESET_PASSWORD)
+  //   .map((action: Auth.ResetPasswordAction) => action.payload)
+  //   .switchMap((resetPasswordData: ResetPasswordData) => {
+  //     return this.authService.resetPassword(resetPasswordData)
+  //       .map((res) => new Auth.ResetPasswordSuccessAction(''))
+  //       .catch((error) => of(new Auth.ResetPasswordErrorAction({ error })));
+  //   });
 
   @Effect()
   signIn$: Observable<Action> = this.actions$
@@ -67,24 +67,24 @@ export class AuthEffects {
     .ofType(Auth.SIGN_IN_SUCCESS)
     .do(() => this.router.navigate(['/']));
 
-  @Effect()
-  signOut: Observable<Action> = this.actions$
-    .ofType(Auth.SIGN_OUT)
-    .switchMap(() => {
-      return this.authService.signOut()
-        .map(() => new Auth.SignOutSuccessAction())
-        .catch(error => of(new Auth.SignOutErrorAction({ error })));
-    });
+  // @Effect()
+  // signOut: Observable<Action> = this.actions$
+  //   .ofType(Auth.SIGN_OUT)
+  //   .switchMap(() => {
+  //     return this.authService.signOut()
+  //       .map(() => new Auth.SignOutSuccessAction())
+  //       .catch(error => of(new Auth.SignOutErrorAction({ error })));
+  //   });
 
-  @Effect()
-  signUp$: Observable<Action> = this.actions$
-    .ofType(Auth.SIGN_UP)
-    .map((action: Auth.SignUpAction) => action.payload)
-    .switchMap((registerData: RegisterData) => {
-      return this.authService.signUp(registerData)
-        .map((user) => new Auth.SignUpSuccessAction({ user }))
-        .catch((error) => of(new Auth.SignUpErrorAction({ error })));
-    });
+  // @Effect()
+  // signUp$: Observable<Action> = this.actions$
+  //   .ofType(Auth.SIGN_UP)
+  //   .map((action: Auth.SignUpAction) => action.payload)
+  //   .switchMap((registerData: RegisterData) => {
+  //     return this.authService.signUp(registerData)
+  //       .map((user) => new Auth.SignUpSuccessAction({ user }))
+  //       .catch((error) => of(new Auth.SignUpErrorAction({ error })));
+  //   });
 
   @Effect({ dispatch: false })
   signUpSuccess$ = this.actions$

@@ -1,94 +1,94 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-
-import { Store } from "@ngrx/store";
-import { Angular2TokenService } from 'angular2-token';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as Auth from '../../auth/actions/auth.actions';
+import * as AuthActions from '../../auth/actions/auth.actions';
+import * as LayoutActions from '../actions/layout';
 import * as fromAuth from '../../auth/reducers';
-import * as Layout from '../actions/layout';
+import * as fromLayout from '../reducers';
 import * as fromRoot from '../../reducers';
-import { NavItem } from "../models/nav_item";
-import { ActivatedRoute } from '@angular/router';
+import * as navItems from '../data/nav-items.json';
 
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-layout>
-      <app-sidenav [open]="showSidenav$ | async">
-        <span *ngFor="let navItem of navItems">
-          <app-nav-item
-            *ngIf="navItem.isAuthenticated ? (isAuthenticated$ | async) : !(isAuthenticated$ | async)"
-            (activate)="closeSidenav()"
-            routerLink="{{ navItem.link }}"
-            icon="{{ navItem.icon }}"
-            hint="{{ navItem.hint }}"
-          >
-            {{ navItem.label }}
-          </app-nav-item>
-        </span>
-        <app-nav-item 
-          *ngIf="isAuthenticated$ | async" 
-          (activate)="signOut()" 
-          icon="power_settings_new">
-          Sair
-        </app-nav-item>
-      </app-sidenav>
+    <div fxLayout="column" fxFlex [class.dark-theme]="isDarkTheme$ | async">
       <app-toolbar
         [isAuthenticated]="isAuthenticated$ | async"
-        (openMenu)="openSidenav()"
+        (toggleMenu)="toggleSidenav()"
+        (toggleTheme)="toggleTheme()"
         (signOut)="signOut()"
       >
-        Saúde Controlada
       </app-toolbar>
 
-      <router-outlet></router-outlet>
-    </app-layout>
+      <md-sidenav-container fxFlex>
+        <md-sidenav mode="side" [opened]="showSidenav$ | async">
+          <md-nav-list>
+            <span *ngFor="let navItem of navItems">
+              <app-nav-item
+                *ngIf="navItem.isAuthenticated ? (isAuthenticated$ | async) : !(isAuthenticated$ | async)"
+                routerLink="{{ navItem.link }}"
+                icon="{{ navItem.icon }}"
+                hint="{{ navItem.hint }}"
+              >
+                {{ navItem.label }}
+              </app-nav-item>
+            </span>
+            <app-nav-item
+              *ngIf="isAuthenticated$ | async"
+              (activate)="signOut()"
+              icon="power_settings_new">
+              Sair
+            </app-nav-item>
+          </md-nav-list>
+        </md-sidenav>
+        <div class="content" fxLayout="row" fxLayout.sm="column"
+             fxLayoutGap="16px">
+          <router-outlet></router-outlet>
+        </div>
+      </md-sidenav-container>
+    </div>
   `,
+  styles: [`
+    :host {
+      display: flex;
+      flex: 1;
+    }
+
+    md-sidenav {
+      width: 320px;
+    }
+
+    .content {
+      padding: 12px;
+    }
+  `]
 })
 export class AppComponent implements OnInit {
+  isDarkTheme$: Observable<boolean>;
   isAuthenticated$: Observable<boolean>;
+  navItems = navItems;
   showSidenav$: Observable<boolean>;
 
-  navItems: NavItem[] = [];
-
-  constructor(private store: Store<fromRoot.State>,
-              private _tokenService: Angular2TokenService) {
-
-    this._tokenService.init({
-      apiBase: '/api',
-      oAuthCallbackPath: '/',
-      oAuthWindowType: 'sameWindow',
-      oAuthBase: '/api',
-    });
-
-    this.isAuthenticated$ = this.store.select(fromAuth.isAuthenticated);
-    this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
-  }
-
-  closeSidenav() {
-    this.store.dispatch(new Layout.CloseSidenavAction());
-  }
-
-  getNavItems() {
-    this.navItems.push(
-      new NavItem('Entrar', 'Entra no sistema', 'exit_to_app', '/sign-in', false),
-      new NavItem('Criar conta', 'Cria uma conta', 'person_add', '/sign-up', false),
-      new NavItem('Dashboard', 'Painel da minha saúde', 'dashboard', '/sign-up', true),
-    );
+  constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
-    this.getNavItems();
-  }
-
-  openSidenav() {
-    this.store.dispatch(new Layout.OpenSidenavAction());
+    this.isAuthenticated$ = this.store.select(fromAuth.isAuthenticated);
+    this.isDarkTheme$ = this.store.select(fromLayout.isDarkTheme);
+    this.showSidenav$ = this.store.select(fromLayout.getShowSidenav);
   }
 
   signOut() {
-    this.closeSidenav();
-    this.store.dispatch(new Auth.SignOutAction());
+    this.store.dispatch(new AuthActions.SignOutAction());
+  }
+
+  toggleTheme() {
+    this.store.dispatch(new LayoutActions.ToggleThemeAction());
+  }
+
+  toggleSidenav() {
+    this.store.dispatch(new LayoutActions.ToggleSidenavAction());
   }
 }

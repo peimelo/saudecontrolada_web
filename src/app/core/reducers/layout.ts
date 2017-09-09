@@ -1,23 +1,27 @@
 import * as layout from '../actions/layout';
 
 export interface State {
+  isDarkTheme: boolean;
   showSidenav: boolean;
 }
 
 const initialState: State = {
+  isDarkTheme: false,
   showSidenav: false,
 };
 
 export function reducer(state = initialState, action: layout.Actions): State {
   switch (action.type) {
-    case layout.CLOSE_SIDENAV:
+    case layout.TOGGLE_THEME:
       return {
-        showSidenav: false,
+        ...state,
+        isDarkTheme: !state.isDarkTheme,
       };
 
-    case layout.OPEN_SIDENAV:
+    case layout.TOGGLE_SIDENAV:
       return {
-        showSidenav: true,
+        ...state,
+        showSidenav: !state.showSidenav,
       };
 
     default:
@@ -25,4 +29,5 @@ export function reducer(state = initialState, action: layout.Actions): State {
   }
 }
 
+export const isDarkTheme = (state: State) => state.isDarkTheme;
 export const getShowSidenav = (state: State) => state.showSidenav;
