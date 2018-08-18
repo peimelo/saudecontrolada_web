@@ -6,7 +6,7 @@
     .factory('examsService', examsService);
 
   /** @ngInject */
-  function examsService($http) {
+  function examsService($http, baseUrl) {
     var exams = [];
 
     return {
@@ -20,7 +20,7 @@
     }
 
     function getExam(id) {
-      return $http.get('/api/exams/' + id).then(
+      return $http.get(baseUrl + '/exams/' + id).then(
         function(response) {
           return response.data;
         }
@@ -32,7 +32,7 @@
         return exams;
       }
       else {
-        return $http.get('/api/exams').then(
+        return $http.get(baseUrl + '/exams').then(
           function(response) {
             exams = response.data.exams;
             return response.data.exams;

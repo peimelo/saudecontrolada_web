@@ -6,7 +6,7 @@
     .factory('mealService', mealService);
 
   /** @ngInject */
-  function mealService($http) {
+  function mealService($http, baseUrl) {
     var meals = [];
 
     return {
@@ -23,7 +23,7 @@
         return meals;
       }
       else {
-        return $http.get('/api/meals').then(
+        return $http.get(baseUrl + '/meals').then(
           function(response) {
             meals = response.data.meals;
             return response.data.meals;

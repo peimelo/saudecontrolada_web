@@ -6,8 +6,8 @@
     .factory('ConfirmationResource', ConfirmationResource);
 
   /** @ngInject */
-  function ConfirmationResource($resource) {
-    var urlBase = '/api/confirmations/:token';
+  function ConfirmationResource($resource, baseUrl) {
+    var urlBase = baseUrl + '/confirmations/:token';
 
     return $resource(urlBase, { token: '@token' }, {
       update: { method: 'PUT' }

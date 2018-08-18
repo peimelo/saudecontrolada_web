@@ -10,3 +10,4 @@ src/app/patterns/
 src/app/SCSS/
 
 coverage/
+.DS_Store

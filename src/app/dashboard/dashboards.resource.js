@@ -6,8 +6,8 @@
     .factory('DashboardsResource', DashboardsResource);
 
   /** @ngInject */
-  function DashboardsResource($resource) {
-    return $resource('/api/dashboards/:id', { id: '@id' }, {
+  function DashboardsResource($resource, baseUrl) {
+    return $resource(baseUrl + '/dashboards/:id', { id: '@id' }, {
       query: { isArray: false }
     });
   }

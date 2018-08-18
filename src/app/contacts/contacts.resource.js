@@ -6,8 +6,8 @@
     .factory('ContactsResource', ContactsResource);
 
   /** @ngInject */
-  function ContactsResource($resource) {
-    return $resource('/api/contacts/:id', { id: '@id' }, {
+  function ContactsResource($resource, baseUrl) {
+    return $resource(baseUrl + '/contacts/:id', { id: '@id' }, {
       query: { isArray: false },
       update: { method: 'PUT' }
     });

@@ -6,9 +6,9 @@
     .factory('UsersResource', UsersResource);
 
   /** @ngInject */
-  function UsersResource($resource) {
+  function UsersResource($resource, baseUrl) {
     return $resource(
-      '/api/users/:id', { id: '@id' }, {
+      baseUrl + '/users/:id', { id: '@id' }, {
         query: { isArray: false },
         update: {method: 'PUT'}
       }

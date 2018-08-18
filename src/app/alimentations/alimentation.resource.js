@@ -6,8 +6,8 @@
     .factory('AlimentationResource', AlimentationResource);
 
   /** @ngInject */
-  function AlimentationResource($resource) {
-    return $resource('/api/alimentations/:id', { id: '@id' }, {
+  function AlimentationResource($resource, baseUrl) {
+    return $resource(baseUrl + '/alimentations/:id', { id: '@id' }, {
       query: { isArray: false },
       update: { method: 'PUT' }
     });

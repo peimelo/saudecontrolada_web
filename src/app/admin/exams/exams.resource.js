@@ -6,8 +6,8 @@
     .factory('ExamsResource', ExamsResource);
 
   /** @ngInject */
-  function ExamsResource($resource) {
-    return $resource('/api/exams/:id', { id: '@id' }, {
+  function ExamsResource($resource, baseUrl) {
+    return $resource(baseUrl + '/exams/:id', { id: '@id' }, {
       query: { isArray: false },
       update: { method: 'PUT' }
     });

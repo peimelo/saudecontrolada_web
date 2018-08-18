@@ -7,10 +7,10 @@
     .factory('sessionService', sessionService);
 
   /** @ngInject */
-  function sessionService($http, examsService, foodService, localStorageService,
+  function sessionService($http, baseUrl, examsService, foodService, localStorageService,
                           mealService, referencesService,
                           $rootScope, unitsService, USERKEY) {
-    var api = '/api/sessions';
+    var api = baseUrl + '/sessions';
 
     var service = {
       login: login,

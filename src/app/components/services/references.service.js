@@ -6,7 +6,7 @@
     .factory('referencesService', referencesService);
 
   /** @ngInject */
-  function referencesService($http) {
+  function referencesService($http, baseUrl) {
     var references = [];
 
     return {
@@ -24,7 +24,7 @@
         return references;
       }
       else {
-        return $http.get('/api/references').then(
+        return $http.get(baseUrl + '/references').then(
           function(response) {
             references = response.data.references;
             return response.data.references;
@@ -34,7 +34,7 @@
     }
 
     function getReference(id) {
-      return $http.get('/api/references/' + id).then(
+      return $http.get(baseUrl + '/references/' + id).then(
         function(response) {
           return response.data;
         }

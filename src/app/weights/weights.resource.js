@@ -6,8 +6,8 @@
     .factory('WeightsResource', WeightsResource);
 
   /** @ngInject */
-  function WeightsResource($resource) {
-    return $resource('/api/weights/:id', { id: '@id' }, {
+  function WeightsResource($resource, baseUrl) {
+    return $resource(baseUrl + '/weights/:id', { id: '@id' }, {
       query: { isArray: false },
       update: { method: 'PUT' }
     });
