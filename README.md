@@ -1,3 +1,3 @@
-# saudecontrolada_web 
+# Saudecontrolada Web
 
-[![Code Climate](https://codeclimate.com/github/peimelo/saudecontrolada_web/badges/gpa.svg)](https://codeclimate.com/github/peimelo/saudecontrolada_web)
+This repository has been discontinued and replaced by the repository [Controlled Health Frontend](https://github.com/peimelo/controlled-health-frontend).
